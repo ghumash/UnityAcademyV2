@@ -3,7 +3,7 @@ import { Section, Container } from "@/shared/ui/custom";
 import Link from "next/link";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config";
-import { ContactForm } from "@/features/contact";
+import { ContactForm } from "@/entities/contact";
 import { getDictionary, Locale } from "@/shared/lib/i18n";
 
 export async function generateMetadata({

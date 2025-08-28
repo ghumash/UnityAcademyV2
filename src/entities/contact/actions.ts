@@ -6,7 +6,7 @@ import {
   type SubmitResult,
   type SubmitErrors,
   deliverContact,
-} from "@/features/apply";
+} from "@/entities/apply";
 
 // отдельный простейший rate-limit: 5/10мин на IP (in-memory)
 const BUCKET = new Map<string, { count: number; resetAt: number }>();

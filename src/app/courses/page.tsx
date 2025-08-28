@@ -3,7 +3,7 @@ import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import CoursesEmptyState from "./_components/empty-state";
-import { Course, CourseCard } from "@/features/course";
+import { Course, CourseCard } from "@/entities/course";
 
 export const metadata: Metadata = createMetadata({
   title: "Курсы",

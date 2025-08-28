@@ -1,6 +1,7 @@
 import type { Dict } from "../types";
 
 export const hy: Dict = {
+  common: { home: "Գլխավոր" },
   header: {
     menu: "Մենյու",
     nav: {

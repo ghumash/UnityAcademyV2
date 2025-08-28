@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config";
-import { Person } from "@/features/person";
+import { Person } from "@/entities/person";
 import { TeamSection } from "@/widgets";
 
 export const metadata: Metadata = createMetadata({

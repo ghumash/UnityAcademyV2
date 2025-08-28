@@ -17,9 +17,9 @@ import {
   NavigationMenuList,
   Button,
 } from "@/shared/ui";
-import { ModeToggle } from "@/features/theme";
+import { ModeToggle } from "@/entities/theme";
 import { HeaderDict, Locale } from "@/shared/lib/i18n";
-import { LanguageSwitcher } from "@/features/i18n";
+import { LanguageSwitcher } from "@/entities/i18n";
 
 export type HeaderProps = { locale: Locale; dict: HeaderDict };
 

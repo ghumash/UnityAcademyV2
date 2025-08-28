@@ -9,4 +9,7 @@ export type HeaderDict = {
   };
 };
 
-export type Dict = { header: HeaderDict };
+export type Dict = {
+  common: { home: string };
+  header: HeaderDict;
+};

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Container, Section } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { ApplyForm } from "@/features/apply";
+import { ApplyForm } from "@/entities/apply";
 
 export const metadata: Metadata = createMetadata({
   title: "Подать заявку",

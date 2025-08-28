@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/widgets";
-import { ThemeProvider } from "@/features/theme";
+import { ThemeProvider } from "@/entities/theme";
 import { createMetadata, JsonLd, buildOrganizationJsonLd } from "@/shared/seo";
 import { getDictionary, Locale } from "@/shared/lib/i18n";
 import { Toaster } from "@/shared/ui";
-import { HtmlLang } from "@/features/i18n";
+import { HtmlLang } from "@/entities/i18n";
 
 export const metadata: Metadata = createMetadata();
 
