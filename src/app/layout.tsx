@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { createMetadata } from "@/shared/seo/meta";
-import { JsonLd, buildOrganizationJsonLd } from "@/shared/seo/jsonld";
+import { createMetadata } from "@/shared/seo";
+import { Toaster } from "@/shared/ui";
 import { ThemeProvider } from "@/features/theme";
 import { Footer, Header } from "@/widgets";
 
@@ -29,8 +29,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased min-h-dvh`}
       >
-        {/* Organization JSON-LD */}
-        <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -41,6 +39,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
+        <Toaster richColors closeButton duration={4000} />
       </body>
     </html>
   );

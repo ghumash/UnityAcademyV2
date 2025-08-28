@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { ApplicationSchema, type ApplicationInput } from "./schema";
+import { type SubmitResult, type SubmitErrors } from "./types";
 import { deliverApplication } from "./delivery";
 
 // simple rate-limit: 5 req / 10 min per IP (in-memory)
@@ -21,19 +22,22 @@ function rateLimit(ip: string) {
   return { ok: true as const };
 }
 
-export async function submitApplication(input: ApplicationInput) {
+export async function submitApplication(
+  input: ApplicationInput
+): Promise<SubmitResult> {
   const parsed = ApplicationSchema.safeParse(input);
   if (!parsed.success) {
-    return { ok: false as const, errors: parsed.error.flatten().fieldErrors };
+    const errors = parsed.error.flatten().fieldErrors as SubmitErrors;
+    return { ok: false, errors };
   }
   const data = parsed.data;
 
   // honeypot
-  if (data.hp && data.hp.trim() !== "") return { ok: true as const };
+  if (data.hp && data.hp.trim() !== "") return { ok: true };
 
   // time-to-fill: минимум 3 секунды
   if (typeof data.ts === "number" && Date.now() - data.ts < 3000) {
-    return { ok: true as const };
+    return { ok: true };
   }
 
   // headers() в server action — асинхронный
@@ -42,19 +46,19 @@ export async function submitApplication(input: ApplicationInput) {
   const ip = xff.split(",")[0]?.trim() || h.get("x-real-ip") || "0.0.0.0";
 
   if (!rateLimit(ip).ok) {
-    return {
-      ok: false as const,
-      errors: { form: ["Слишком много попыток. Попробуй позже."] },
+    const errors: SubmitErrors = {
+      form: ["Слишком много попыток. Попробуй позже."],
     };
+    return { ok: false, errors };
   }
 
   const res = await deliverApplication(data, ip);
   if (!res.ok) {
-    return {
-      ok: false as const,
-      errors: { form: ["Не удалось отправить заявку. Попробуй позже."] },
+    const errors: SubmitErrors = {
+      form: ["Не удалось отправить заявку. Попробуй позже."],
     };
+    return { ok: false, errors };
   }
 
-  return { ok: true as const };
+  return { ok: true };
 }

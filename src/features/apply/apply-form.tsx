@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ApplicationSchema, type ApplicationInput } from "./schema";
@@ -23,6 +23,7 @@ import {
   Checkbox,
   Button,
 } from "@/shared/ui";
+import { toast } from "sonner";
 
 const COURSES = [
   { value: "web", label: "Веб-разработка" },
@@ -33,6 +34,7 @@ const COURSES = [
 
 export default function ApplyForm() {
   const [pending, startTransition] = React.useTransition();
+  const [liveMsg, setLiveMsg] = useState<string>("");
 
   const form = useForm<ApplicationInput>({
     resolver: zodResolver(ApplicationSchema),
@@ -48,7 +50,6 @@ export default function ApplyForm() {
     mode: "onBlur",
   });
 
-  // записываем метку времени начала заполнения
   useEffect(() => {
     form.setValue("ts", Date.now(), { shouldDirty: false, shouldTouch: false });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,15 +68,37 @@ export default function ApplyForm() {
           consent: false,
           hp: "",
         });
-        alert("Заявка отправлена. Мы свяжемся с тобой!");
-      } else {
-        alert("Не удалось отправить. Попробуй позже.");
+        setLiveMsg("Заявка отправлена");
+        toast.success("Заявка отправлена. Мы свяжемся в ближайшее время!");
+        return;
       }
+
+      const msg =
+        res.errors?.form?.[0] ||
+        res.errors?.name?.[0] ||
+        res.errors?.email?.[0] ||
+        res.errors?.phone?.[0] ||
+        res.errors?.course?.[0] ||
+        res.errors?.consent?.[0] ||
+        "Не удалось отправить. Попробуй позже.";
+
+      setLiveMsg(msg);
+      toast.error(msg);
     });
   };
 
   return (
     <Form {...form}>
+      {/* aria-live регион для SR */}
+      <p
+        className="sr-only"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {liveMsg}
+      </p>
+
       {/* honeypot */}
       <input
         type="text"
