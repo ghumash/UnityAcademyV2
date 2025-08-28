@@ -3,14 +3,28 @@ import Link from "next/link";
 import { siteConfig } from "@/shared/config";
 import { Container } from "@/shared/ui/custom";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { HeaderDict, Locale } from "@/shared/lib/i18n";
 
-const socials = [
-  { href: siteConfig.socials.instagram, label: "Instagram", Icon: Instagram },
-  { href: siteConfig.socials.facebook, label: "Facebook", Icon: Facebook },
-  { href: siteConfig.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
-].filter((s) => !!s.href);
+const socialsList = (dict?: typeof siteConfig.socials) =>
+  [
+    { href: dict?.instagram, label: "Instagram", Icon: Instagram },
+    { href: dict?.facebook, label: "Facebook", Icon: Facebook },
+    { href: dict?.linkedin, label: "LinkedIn", Icon: Linkedin },
+  ].filter((s) => !!s.href) as { href: string; label: string; Icon: any }[];
 
-export default function Footer() {
+export default function Footer({
+  locale,
+  dict,
+}: {
+  locale: Locale;
+  dict: HeaderDict;
+}) {
+  const href = (path: string) => `/${locale}${path}`;
+  const nav = [
+    { label: dict.nav.courses, href: "/courses" },
+    { label: dict.nav.about, href: "/about" },
+    { label: dict.nav.contacts, href: "/contacts" },
+  ];
   const year = new Date().getFullYear();
 
   return (
@@ -18,9 +32,9 @@ export default function Footer() {
       <Container className="grid gap-8 py-10 md:grid-cols-3">
         <div className="space-y-3">
           <Link
-            href="/"
+            href={href("/")}
             className="inline-flex items-center gap-2"
-            aria-label="Unity Academy — на главную"
+            aria-label="Unity Academy — home"
           >
             <Image
               src={siteConfig.assets.logo}
@@ -35,36 +49,38 @@ export default function Footer() {
           <p className="max-w-prose text-sm text-muted-foreground">
             {siteConfig.description}
           </p>
-          {socials.length > 0 && (
+          {socialsList(siteConfig.socials).length > 0 && (
             <div
               className="flex items-center gap-3 pt-1"
-              aria-label="Социальные сети"
+              aria-label="Social links"
             >
-              {socials.map(({ href, label, Icon }) => (
-                <Link
-                  key={label}
-                  href={href!}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="inline-flex size-9 items-center justify-center rounded-md border hover:bg-accent hover:text-accent-foreground"
-                >
-                  <Icon className="size-4" />
-                </Link>
-              ))}
+              {socialsList(siteConfig.socials).map(
+                ({ href: h, label, Icon }) => (
+                  <Link
+                    key={label}
+                    href={h}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="inline-flex size-9 items-center justify-center rounded-md border hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <Icon className="size-4" />
+                  </Link>
+                )
+              )}
             </div>
           )}
         </div>
 
-        <nav aria-label="Навигация по сайту">
+        <nav aria-label="Footer navigation">
           <h2 className="mb-3 text-sm font-semibold tracking-wide">
-            Навигация
+            {dict.footer.navigation}
           </h2>
           <ul className="grid gap-2">
-            {siteConfig.navMain.map((item) => (
+            {nav.map((item) => (
               <li key={item.href}>
                 <Link
-                  href={item.href}
+                  href={href(item.href)}
                   className="text-sm text-foreground/80 hover:text-foreground"
                 >
                   {item.label}
@@ -75,7 +91,9 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="mb-3 text-sm font-semibold tracking-wide">Контакты</h2>
+          <h2 className="mb-3 text-sm font-semibold tracking-wide">
+            {dict.footer.contacts}
+          </h2>
           <address className="not-italic text-sm text-foreground/80">
             <div className="mb-1">{siteConfig.contacts.location}</div>
             <div className="mb-1">
@@ -97,10 +115,10 @@ export default function Footer() {
           </address>
           <div className="mt-4">
             <Link
-              href={siteConfig.cta.href}
+              href={href(siteConfig.cta.href)}
               className="inline-flex rounded-md border px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
             >
-              {siteConfig.cta.label}
+              {dict.nav.apply}
             </Link>
           </div>
         </div>
@@ -109,9 +127,9 @@ export default function Footer() {
       <div className="border-t">
         <Container className="flex flex-col items-center justify-between gap-3 py-4 text-xs text-muted-foreground md:flex-row">
           <span>
-            © {year} {siteConfig.name}. Все права защищены.
+            © {year} {siteConfig.name}. {dict.footer.rights}
           </span>
-          <span>Сделано в Ванадзоре</span>
+          <span>{dict.footer.madeIn}</span>
         </Container>
       </div>
     </footer>

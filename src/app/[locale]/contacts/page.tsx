@@ -4,24 +4,36 @@ import Link from "next/link";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config";
 import { ContactForm } from "@/features/contact";
+import { Locale } from "@/shared/lib/i18n";
 
-export const metadata: Metadata = createMetadata({
-  title: "Контакты",
-  canonical: absoluteUrl("/contacts"),
-  description: "Как связаться с Unity Academy и где нас найти.",
-});
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Metadata {
+  return createMetadata({
+    title: "Контакты",
+    canonical: absoluteUrl(`/${params.locale}/contacts`),
+    alternatesPath: "/contacts",
+    locale: params.locale,
+    description: "Как связаться с Unity Academy и где нас найти.",
+  });
+}
 
-export default function ContactsPage() {
+export default function ContactsPage({
+  params,
+}: {
+  params: { locale: Locale };
+}) {
   const phoneHref = `tel:${siteConfig.contacts.phone.replace(/\s+/g, "")}`;
   const mailHref = `mailto:${siteConfig.contacts.email}`;
-
   return (
     <main>
       <JsonLd
         id="breadcrumbs-contacts"
         data={buildBreadcrumbsJsonLd([
-          { name: "Главная", href: "/" },
-          { name: "Контакты", href: "/contacts" },
+          { name: "Главная", href: `/${params.locale}` },
+          { name: "Контакты", href: `/${params.locale}/contacts` },
         ])}
       />
       <Section>

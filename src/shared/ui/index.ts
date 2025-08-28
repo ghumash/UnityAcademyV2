@@ -11,3 +11,4 @@ export * from "./form";
 export * from "./sonner";
 export * from "./card";
 export * from "./skeleton";
+export * from "./avatar";

@@ -18,15 +18,26 @@ import {
   Button,
 } from "@/shared/ui";
 import { ModeToggle } from "@/features/theme";
+import { HeaderDict, LanguageSwitcher, Locale } from "@/shared/lib/i18n";
 
-export default function Header() {
+export type HeaderProps = { locale: Locale; dict: HeaderDict };
+
+export default function Header({ locale, dict }: HeaderProps) {
+  const nav = [
+    { label: dict.nav.courses, href: "/courses" },
+    { label: dict.nav.about, href: "/about" },
+    { label: dict.nav.contacts, href: "/contacts" },
+  ];
+
+  const href = (path: string) => `/${locale}${path}`;
+
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Container className="flex h-14 items-center justify-between gap-3 md:h-16">
         <Link
-          href="/"
+          href={href("/")}
           className="flex items-center gap-2"
-          aria-label="Unity Academy — на главную"
+          aria-label="Unity Academy — home"
         >
           <Image
             src={siteConfig.assets.logo}
@@ -40,14 +51,14 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden md:block" aria-label="Главная навигация">
+        <nav className="hidden md:block" aria-label="Main navigation">
           <NavigationMenu>
             <NavigationMenuList>
-              {siteConfig.navMain.map((item) => (
+              {nav.map((item) => (
                 <NavigationMenuItem key={item.href}>
                   <NavigationMenuLink asChild>
                     <Link
-                      href={item.href}
+                      href={href(item.href)}
                       className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
                     >
                       {item.label}
@@ -62,9 +73,10 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <div className="hidden md:block">
             <Button asChild>
-              <Link href={siteConfig.cta.href}>{siteConfig.cta.label}</Link>
+              <Link href={href(siteConfig.cta.href)}>{dict.nav.apply}</Link>
             </Button>
           </div>
+          <LanguageSwitcher locale={locale} />
           <ModeToggle />
 
           <Sheet>
@@ -73,28 +85,27 @@ export default function Header() {
                 variant="outline"
                 size="icon"
                 className="md:hidden"
-                aria-label="Открыть меню"
+                aria-label="Open menu"
               >
                 <Menu className="size-4" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-72 sm:w-80">
               <SheetHeader className="border-b pb-2">
-                <SheetTitle>Меню</SheetTitle>
+                <SheetTitle>{dict.menu}</SheetTitle>
               </SheetHeader>
-
-              <nav className="mt-4 grid gap-2" aria-label="Мобильная навигация">
-                {siteConfig.navMain.map((item) => (
+              <nav className="mt-4 grid gap-2" aria-label="Mobile navigation">
+                {nav.map((item) => (
                   <Link
                     key={item.href}
-                    href={item.href}
+                    href={href(item.href)}
                     className="rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
                   >
                     {item.label}
                   </Link>
                 ))}
                 <Button asChild className="mt-2">
-                  <Link href={siteConfig.cta.href}>{siteConfig.cta.label}</Link>
+                  <Link href={href(siteConfig.cta.href)}>{dict.nav.apply}</Link>
                 </Button>
               </nav>
             </SheetContent>

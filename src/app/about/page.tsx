@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
-import { createMetadata, JsonLd, buildBreadcrumbsJsonLd } from "@/shared/seo";
+import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config";
+import { Person } from "@/features/person";
+import { TeamSection } from "@/widgets";
 
 export const metadata: Metadata = createMetadata({
   title: "О нас",
@@ -9,7 +11,14 @@ export const metadata: Metadata = createMetadata({
   description: siteConfig.description,
 });
 
-export default function AboutPage() {
+async function getTeam(): Promise<Person[]> {
+  // Источник данных подключим позже (CMS/BaaS). Пока — пусто.
+  return [];
+}
+
+export default async function AboutPage() {
+  const team = await getTeam();
+
   return (
     <main>
       <JsonLd
@@ -19,10 +28,11 @@ export default function AboutPage() {
           { name: "О нас", href: "/about" },
         ])}
       />
+
       <Section>
         <Container>
           <h1 className="text-3xl font-bold tracking-tight">О нас</h1>
-          <p className="mt-3 text-muted-foreground max-w-prose">
+          <p className="mt-3 max-w-prose text-muted-foreground">
             Unity Academy — современная IT-академия в Ванадзоре. Мы обучаем
             подростков и молодёжь веб-разработке, искусственному интеллекту,
             созданию контента, Android, SMM и навыкам карьеры. Упор на практику,
@@ -30,6 +40,8 @@ export default function AboutPage() {
           </p>
         </Container>
       </Section>
+
+      <TeamSection people={team} />
     </main>
   );
 }
