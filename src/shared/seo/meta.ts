@@ -1,40 +1,31 @@
 import type { Metadata } from "next";
-
-export const site = {
-  name: "Unity Academy",
-  url: "https://example.com",
-  titleTemplate: "%s — Unity Academy",
-  description:
-    "Современная IT-академия в Ванадзоре: веб, AI, контент, Android, SMM, soft skills."
-};
-
-export function absoluteUrl(path = "/") {
-  const base = site.url.endsWith("/") ? site.url.slice(0, -1) : site.url;
-  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
-}
+import { siteConfig, absoluteUrl } from "@/shared/config";
 
 export function createMetadata(
-  input?: Partial<Pick<Metadata, "title" | "description">> & { canonical?: string }
+  input?: Partial<Pick<Metadata, "title" | "description">> & {
+    canonical?: string;
+  }
 ): Metadata {
   const title =
-    typeof input?.title === "string"
-      ? input.title
-      : site.name;
-  const description = input?.description ?? site.description;
+    typeof input?.title === "string" ? input.title : siteConfig.name;
+  const description = input?.description ?? siteConfig.description;
 
   return {
-    title: { default: site.name, template: site.titleTemplate },
+    title: { default: siteConfig.name, template: `%s — ${siteConfig.name}` },
     description,
-    metadataBase: new URL(site.url),
+    metadataBase: new URL(siteConfig.url),
     alternates: { canonical: input?.canonical ?? absoluteUrl("/") },
     openGraph: {
       title,
       description,
       url: absoluteUrl("/"),
-      siteName: site.name,
+      siteName: siteConfig.name,
       type: "website",
-      locale: "ru_RU"
+      locale: siteConfig.locale,
+      images: siteConfig.assets.ogImage
+        ? [siteConfig.assets.ogImage]
+        : undefined,
     },
-    twitter: { card: "summary_large_image", title, description }
+    twitter: { card: "summary_large_image", title, description },
   };
 }
