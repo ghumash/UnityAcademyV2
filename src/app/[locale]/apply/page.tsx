@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { Locale } from "@/shared/lib/i18n";
+import { getDictionary, Locale } from "@/shared/lib/i18n";
 import { ApplyForm } from "@/features/apply";
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: { locale: Locale };
-}): Metadata {
+}): Promise<Metadata> {
+  const dict = await getDictionary(params.locale);
   return createMetadata({
-    title: "Подать заявку",
+    title: dict.header.nav.apply,
     canonical: absoluteUrl(`/${params.locale}/apply`),
     alternatesPath: "/apply",
     locale: params.locale,
@@ -19,19 +20,26 @@ export function generateMetadata({
   });
 }
 
-export default function ApplyPage({ params }: { params: { locale: Locale } }) {
+export default async function ApplyPage({
+  params,
+}: {
+  params: { locale: Locale };
+}) {
+  const dict = await getDictionary(params.locale);
   return (
     <main>
       <JsonLd
         id="breadcrumbs-apply"
         data={buildBreadcrumbsJsonLd([
-          { name: "Главная", href: `/${params.locale}` },
-          { name: "Подать заявку", href: `/${params.locale}/apply` },
+          { name: "Home", href: `/${params.locale}` },
+          { name: dict.header.nav.apply, href: `/${params.locale}/apply` },
         ])}
       />
       <Section>
         <Container>
-          <h1 className="text-3xl font-bold tracking-tight">Подать заявку</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            {dict.header.nav.apply}
+          </h1>
           <p className="mt-3 text-muted-foreground">
             Оставь контакты и выбери направление. Мы свяжемся.
           </p>

@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { locales, type Locale, localeNames } from "./config";
 import {
   Select,
   SelectTrigger,
@@ -10,6 +9,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/shared/ui";
+import { Locale, localeNames, locales } from "@/shared/lib/i18n";
 
 export default function LanguageSwitcher({ locale }: { locale: Locale }) {
   const pathname = usePathname();

@@ -4,15 +4,16 @@ import Link from "next/link";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config";
 import { ContactForm } from "@/features/contact";
-import { Locale } from "@/shared/lib/i18n";
+import { getDictionary, Locale } from "@/shared/lib/i18n";
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: { locale: Locale };
-}): Metadata {
+}): Promise<Metadata> {
+  const dict = await getDictionary(params.locale);
   return createMetadata({
-    title: "Контакты",
+    title: dict.header.nav.contacts,
     canonical: absoluteUrl(`/${params.locale}/contacts`),
     alternatesPath: "/contacts",
     locale: params.locale,
@@ -20,25 +21,32 @@ export function generateMetadata({
   });
 }
 
-export default function ContactsPage({
+export default async function ContactsPage({
   params,
 }: {
   params: { locale: Locale };
 }) {
+  const dict = await getDictionary(params.locale);
   const phoneHref = `tel:${siteConfig.contacts.phone.replace(/\s+/g, "")}`;
   const mailHref = `mailto:${siteConfig.contacts.email}`;
+
   return (
     <main>
       <JsonLd
         id="breadcrumbs-contacts"
         data={buildBreadcrumbsJsonLd([
-          { name: "Главная", href: `/${params.locale}` },
-          { name: "Контакты", href: `/${params.locale}/contacts` },
+          { name: "Home", href: `/${params.locale}` },
+          {
+            name: dict.header.nav.contacts,
+            href: `/${params.locale}/contacts`,
+          },
         ])}
       />
       <Section>
         <Container>
-          <h1 className="text-3xl font-bold tracking-tight">Контакты</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            {dict.header.nav.contacts}
+          </h1>
           <address className="mt-4 not-italic text-foreground/90">
             <div className="mb-1">{siteConfig.contacts.location}</div>
             <div className="mb-1">

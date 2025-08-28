@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { createMetadata } from "@/shared/seo";
-import { JsonLd, buildOrganizationJsonLd } from "@/shared/seo/jsonld";
-import { Toaster } from "@/shared/ui";
-import { getDictionary, Locale } from "@/shared/lib/i18n";
+import { Header, Footer } from "@/widgets";
 import { ThemeProvider } from "@/features/theme";
-import { Footer, Header } from "@/widgets";
+import { createMetadata, JsonLd, buildOrganizationJsonLd } from "@/shared/seo";
+import { getDictionary, Locale } from "@/shared/lib/i18n";
+import { Toaster } from "@/shared/ui";
+import { HtmlLang } from "@/features/i18n";
 
 export const metadata: Metadata = createMetadata();
 
@@ -19,6 +19,7 @@ export default async function LocaleLayout({
 
   return (
     <>
+      <HtmlLang locale={params.locale} />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
       <ThemeProvider
         attribute="class"

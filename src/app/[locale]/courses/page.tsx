@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { Locale } from "@/shared/lib/i18n";
+import { getDictionary, Locale } from "@/shared/lib/i18n";
 import CoursesEmptyState from "@/app/courses/_components/empty-state";
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: { locale: Locale };
-}): Metadata {
+}): Promise<Metadata> {
+  const dict = await getDictionary(params.locale);
   return createMetadata({
-    title: "Курсы",
+    title: dict.header.nav.courses,
     canonical: absoluteUrl(`/${params.locale}/courses`),
     alternatesPath: "/courses",
     locale: params.locale,
@@ -25,18 +26,21 @@ export default async function CoursesPage({
 }: {
   params: { locale: Locale };
 }) {
+  const dict = await getDictionary(params.locale);
   return (
     <main>
       <JsonLd
         id="breadcrumbs-courses"
         data={buildBreadcrumbsJsonLd([
-          { name: "Главная", href: `/${params.locale}` },
-          { name: "Курсы", href: `/${params.locale}/courses` },
+          { name: "Home", href: `/${params.locale}` },
+          { name: dict.header.nav.courses, href: `/${params.locale}/courses` },
         ])}
       />
       <Section>
         <Container>
-          <h1 className="text-3xl font-bold tracking-tight">Курсы</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            {dict.header.nav.courses}
+          </h1>
           <div className="mt-8">
             <CoursesEmptyState />
           </div>

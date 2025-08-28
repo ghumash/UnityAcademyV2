@@ -1,4 +1,3 @@
-export { default as LanguageSwitcher } from "./language-switcher";
 export * from "./config";
 export * from "./get-dictionary";
 export { ru } from "./directories/ru";

@@ -18,7 +18,8 @@ import {
   Button,
 } from "@/shared/ui";
 import { ModeToggle } from "@/features/theme";
-import { HeaderDict, LanguageSwitcher, Locale } from "@/shared/lib/i18n";
+import { HeaderDict, Locale } from "@/shared/lib/i18n";
+import { LanguageSwitcher } from "@/features/i18n";
 
 export type HeaderProps = { locale: Locale; dict: HeaderDict };
 
