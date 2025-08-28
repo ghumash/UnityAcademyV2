@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
-import Link from "next/link";
-import { absoluteUrl } from "@/shared/config";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { Button } from "@/shared/ui";
+import { absoluteUrl } from "@/shared/config";
+import CoursesEmptyState from "./_components/empty-state";
+import { Course, CourseCard } from "@/features/course";
 
 export const metadata: Metadata = createMetadata({
   title: "Курсы",
@@ -12,7 +12,14 @@ export const metadata: Metadata = createMetadata({
     "Курсы Unity Academy: веб-разработка, искусственный интеллект, создание контента, Android, SMM и soft skills.",
 });
 
-export default function CoursesPage() {
+async function getCourses(): Promise<Course[]> {
+  // Подключим CMS/БД позже — пока возвращаем пустой список без моков.
+  return [];
+}
+
+export default async function CoursesPage() {
+  const courses = await getCourses();
+
   return (
     <main>
       <JsonLd
@@ -25,15 +32,18 @@ export default function CoursesPage() {
       <Section>
         <Container>
           <h1 className="text-3xl font-bold tracking-tight">Курсы</h1>
-          <p className="mt-3 text-muted-foreground">
-            Мы готовим практиков: от основ до продакшена. Скоро здесь появится
-            каталог с программами и наборами групп.
-          </p>
-          <div className="mt-6">
-            <Button asChild>
-              <Link href="/apply">Подать заявку</Link>
-            </Button>
-          </div>
+
+          {courses.length === 0 ? (
+            <div className="mt-8">
+              <CoursesEmptyState />
+            </div>
+          ) : (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {courses.map((c) => (
+                <CourseCard key={c.slug} {...c} />
+              ))}
+            </div>
+          )}
         </Container>
       </Section>
     </main>
