@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { siteConfig } from "@/shared/config";
 import { Container } from "@/shared/ui/custom";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 const socials = [
   { href: siteConfig.socials.instagram, label: "Instagram", Icon: Instagram },
@@ -16,7 +16,6 @@ export default function Footer() {
   return (
     <footer className="border-t bg-background">
       <Container className="grid gap-8 py-10 md:grid-cols-3">
-        {/* Brand */}
         <div className="space-y-3">
           <Link
             href="/"
@@ -33,7 +32,7 @@ export default function Footer() {
               {siteConfig.name}
             </span>
           </Link>
-          <p className="text-sm text-muted-foreground max-w-prose">
+          <p className="max-w-prose text-sm text-muted-foreground">
             {siteConfig.description}
           </p>
           {socials.length > 0 && (
@@ -57,7 +56,6 @@ export default function Footer() {
           )}
         </div>
 
-        {/* Navigation */}
         <nav aria-label="Навигация по сайту">
           <h2 className="mb-3 text-sm font-semibold tracking-wide">
             Навигация
@@ -76,7 +74,6 @@ export default function Footer() {
           </ul>
         </nav>
 
-        {/* Contacts */}
         <div>
           <h2 className="mb-3 text-sm font-semibold tracking-wide">Контакты</h2>
           <address className="not-italic text-sm text-foreground/80">
@@ -109,7 +106,6 @@ export default function Footer() {
         </div>
       </Container>
 
-      {/* Bottom bar */}
       <div className="border-t">
         <Container className="flex flex-col items-center justify-between gap-3 py-4 text-xs text-muted-foreground md:flex-row">
           <span>

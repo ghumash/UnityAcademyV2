@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
+import { Section, Container } from "@/shared/ui/custom";
 import Link from "next/link";
-import { createMetadata } from "@/shared/seo/meta";
-import { JsonLd, buildBreadcrumbsJsonLd } from "@/shared/seo/jsonld";
 import { absoluteUrl, siteConfig } from "@/shared/config";
-import { Container, Section } from "@/shared/ui/custom";
+import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Контакты",

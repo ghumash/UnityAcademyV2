@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import { Container } from "@/shared/ui/custom";
+import { siteConfig } from "@/shared/config";
 import {
   Sheet,
   SheetContent,
@@ -15,15 +17,12 @@ import {
   NavigationMenuList,
   Button,
 } from "@/shared/ui";
-import { Container } from "@/shared/ui/custom";
-import { siteConfig } from "@/shared/config";
 import { ModeToggle } from "@/features/theme";
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Container className="flex h-14 items-center justify-between gap-3 md:h-16">
-        {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-2"
@@ -41,7 +40,6 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden md:block" aria-label="Главная навигация">
           <NavigationMenu>
             <NavigationMenuList>
@@ -61,7 +59,6 @@ export default function Header() {
           </NavigationMenu>
         </nav>
 
-        {/* Right side */}
         <div className="flex items-center gap-2">
           <div className="hidden md:block">
             <Button asChild>
@@ -70,7 +67,6 @@ export default function Header() {
           </div>
           <ModeToggle />
 
-          {/* Mobile menu */}
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -83,7 +79,6 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-72 sm:w-80">
-              {/* A11y: обязателен заголовок для DialogContent */}
               <SheetHeader className="border-b pb-2">
                 <SheetTitle>Меню</SheetTitle>
               </SheetHeader>
