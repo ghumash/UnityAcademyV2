@@ -1,77 +1,55 @@
 import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
-import Link from "next/link";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config";
 import { getT, Locale } from "@/shared/lib/i18n";
-import { ContactForm } from "@/entities/contact";
+import { TeamSection } from "@/widgets";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
-  const tt = await getT(params.locale);
+  const { locale } = await params;
+  const tt = await getT(locale);
   return createMetadata({
-    title: tt("header.nav.contacts"),
-    canonical: absoluteUrl(`/${params.locale}/contacts`),
-    alternatesPath: "/contacts",
-    locale: params.locale,
-    description: "Как связаться с Unity Academy и где нас найти.",
+    title: tt("header.nav.about"),
+    canonical: absoluteUrl(`/${locale}/about`),
+    alternatesPath: "/about",
+    locale,
+    description: siteConfig.description,
   });
 }
 
-export default async function ContactsPage({
+export default async function AboutPage({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
-  const tt = await getT(params.locale);
-  const phoneHref = `tel:${siteConfig.contacts.phone.replace(/\s+/g, "")}`;
-  const mailHref = `mailto:${siteConfig.contacts.email}`;
+  const { locale } = await params;
+  const tt = await getT(locale);
+  const team: any[] = [];
 
   return (
     <main>
       <JsonLd
-        id="breadcrumbs-contacts"
+        id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
-          { name: tt("common.home"), href: `/${params.locale}` },
-          {
-            name: tt("header.nav.contacts"),
-            href: `/${params.locale}/contacts`,
-          },
+          { name: tt("common.home"), href: `/${locale}` },
+          { name: tt("header.nav.about"), href: `/${locale}/about` },
         ])}
       />
       <Section>
         <Container>
           <h1 className="text-3xl font-bold tracking-tight">
-            {tt("header.nav.contacts")}
+            {tt("header.nav.about")}
           </h1>
-          <address className="mt-4 not-italic text-foreground/90">
-            <div className="mb-1">{siteConfig.contacts.location}</div>
-            <div className="mb-1">
-              <Link href={mailHref} className="hover:underline">
-                {siteConfig.contacts.email}
-              </Link>
-            </div>
-            <div>
-              <Link href={phoneHref} className="hover:underline">
-                {siteConfig.contacts.phone}
-              </Link>
-            </div>
-          </address>
-
-          <div className="my-8 h-px w-full bg-border" />
-
-          <h2 className="text-xl font-semibold tracking-tight">Написать нам</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Заполни форму — ответим на почту как можно скорее.
+          <p className="mt-3 max-w-prose text-muted-foreground">
+            {siteConfig.description}
           </p>
-          <div className="mt-6">
-            <ContactForm />
-          </div>
         </Container>
       </Section>
+      <TeamSection people={team as any} />
     </main>
   );
 }

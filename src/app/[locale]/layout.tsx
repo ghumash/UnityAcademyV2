@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/widgets";
-import { ThemeProvider } from "@/entities/theme";
 import { createMetadata, JsonLd, buildOrganizationJsonLd } from "@/shared/seo";
 import { getDictionary, Locale } from "@/shared/lib/i18n";
 import { Toaster } from "@/shared/ui";
 import { HtmlLang } from "@/entities/i18n";
+import { ThemeProvider } from "@/entities/theme";
 
 export const metadata: Metadata = createMetadata();
 
@@ -13,13 +13,14 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
-  const dict = await getDictionary(params.locale);
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
 
   return (
     <>
-      <HtmlLang locale={params.locale} />
+      <HtmlLang locale={locale} />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
       <ThemeProvider
         attribute="class"
@@ -27,9 +28,9 @@ export default async function LocaleLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <Header locale={params.locale} dict={dict.header} />
+        <Header locale={locale} dict={dict.header} />
         {children}
-        <Footer locale={params.locale} dict={dict.header} />
+        <Footer locale={locale} dict={dict.header} />
       </ThemeProvider>
       <Toaster richColors closeButton duration={4000} />
     </>

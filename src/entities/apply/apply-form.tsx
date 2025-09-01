@@ -1,11 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ApplicationSchema, type ApplicationInput } from "./schema";
-import { submitApplication } from "./actions";
 import {
   Form,
   FormControl,
@@ -24,6 +22,8 @@ import {
   Button,
 } from "@/shared/ui";
 import { toast } from "sonner";
+import { ApplicationInput, ApplicationSchema } from "./schema";
+import { submitApplication } from "./actions";
 
 const COURSES = [
   { value: "web", label: "Веб-разработка" },
@@ -33,7 +33,7 @@ const COURSES = [
 ] as const;
 
 export default function ApplyForm() {
-  const [pending, startTransition] = React.useTransition();
+  const [isPending, startTransition] = useTransition();
   const [liveMsg, setLiveMsg] = useState<string>("");
 
   const form = useForm<ApplicationInput>({
@@ -46,18 +46,25 @@ export default function ApplyForm() {
       message: "",
       consent: false,
       hp: "",
+      ts: undefined,
     },
     mode: "onBlur",
   });
 
   useEffect(() => {
-    form.setValue("ts", Date.now(), { shouldDirty: false, shouldTouch: false });
+    form.setValue("ts", Date.now(), {
+      shouldDirty: false,
+      shouldTouch: false,
+      shouldValidate: false,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit = (values: ApplicationInput) => {
     startTransition(async () => {
       const res = await submitApplication(values);
+      form.clearErrors();
+
       if (res.ok) {
         form.reset({
           name: "",
@@ -67,19 +74,32 @@ export default function ApplyForm() {
           message: "",
           consent: false,
           hp: "",
+          ts: Date.now(),
         });
         setLiveMsg("Заявка отправлена");
         toast.success("Заявка отправлена. Мы свяжемся в ближайшее время!");
         return;
       }
 
+      if (res.errors) {
+        (
+          Object.entries(res.errors) as Array<
+            [keyof ApplicationInput, string | undefined]
+          >
+        ).forEach(([field, msg]) => {
+          if (msg)
+            form.setError(field as any, { type: "server", message: msg });
+        });
+      }
+
       const msg =
-        res.errors?.form?.[0] ||
-        res.errors?.name?.[0] ||
-        res.errors?.email?.[0] ||
-        res.errors?.phone?.[0] ||
-        res.errors?.course?.[0] ||
-        res.errors?.consent?.[0] ||
+        res.errors?.form ||
+        res.errors?.name ||
+        res.errors?.email ||
+        res.errors?.phone ||
+        res.errors?.course ||
+        res.errors?.consent ||
+        res.message ||
         "Не удалось отправить. Попробуй позже.";
 
       setLiveMsg(msg);
@@ -89,7 +109,6 @@ export default function ApplyForm() {
 
   return (
     <Form {...form}>
-      {/* aria-live регион для SR */}
       <p
         className="sr-only"
         role="status"
@@ -108,7 +127,7 @@ export default function ApplyForm() {
         aria-hidden="true"
         {...form.register("hp")}
       />
-      {/* ts — скрытое поле */}
+      {/* hidden ts */}
       <input type="hidden" {...form.register("ts", { valueAsNumber: true })} />
 
       <form
@@ -244,8 +263,12 @@ export default function ApplyForm() {
         />
 
         <div className="sm:col-span-2">
-          <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-            {pending ? "Отправка..." : "Отправить"}
+          <Button
+            type="submit"
+            disabled={isPending}
+            className="w-full sm:w-auto"
+          >
+            {isPending ? "Отправка..." : "Отправить"}
           </Button>
         </div>
       </form>

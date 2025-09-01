@@ -1,174 +1,100 @@
 "use client";
 
 import * as React from "react";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ContactSchema, type ContactInput } from "./schema";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Input,
-  Textarea,
-  Checkbox,
-  Button,
-} from "@/shared/ui";
-import { toast } from "sonner";
-import { submitContact } from "./actions";
+import { useActionState } from "react";
+import type { ActionState } from "@/shared/lib/actions/result";
+import { Button, Input, Label, Textarea, Checkbox } from "@/shared/ui";
+import { contactAction } from "./actions";
+
+const initial: ActionState = { ok: false, message: "" };
 
 export default function ContactForm() {
-  const [pending, startTransition] = React.useTransition();
-  const [liveMsg, setLiveMsg] = useState("");
-
-  const form = useForm<ContactInput>({
-    resolver: zodResolver(ContactSchema),
-    defaultValues: { name: "", email: "", message: "", consent: false, hp: "" },
-    mode: "onBlur",
-  });
-
-  useEffect(() => {
-    form.setValue("ts", Date.now(), { shouldDirty: false, shouldTouch: false });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const onSubmit = (values: ContactInput) => {
-    startTransition(async () => {
-      const res = await submitContact(values);
-      if (res.ok) {
-        form.reset({
-          name: "",
-          email: "",
-          message: "",
-          consent: false,
-          hp: "",
-        });
-        setLiveMsg("Сообщение отправлено");
-        toast.success("Сообщение отправлено. Спасибо!");
-      } else {
-        const msg =
-          res.errors?.form?.[0] ||
-          res.errors?.name?.[0] ||
-          res.errors?.email?.[0] ||
-          res.errors?.message?.[0] ||
-          res.errors?.consent?.[0] ||
-          "Не удалось отправить. Попробуй позже.";
-        setLiveMsg(msg);
-        toast.error(msg);
-      }
-    });
-  };
+  const [state, formAction, pending] = useActionState(contactAction, initial);
+  const createdAt = React.useRef<number>(Date.now());
 
   return (
-    <Form {...form}>
-      <p
-        className="sr-only"
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {liveMsg}
-      </p>
+    <form action={formAction} className="grid gap-4">
+      {/* hidden anti-bot */}
       <input
         type="text"
+        name="hp"
+        className="hidden"
         tabIndex={-1}
         autoComplete="off"
-        className="hidden"
-        aria-hidden="true"
-        {...form.register("hp")}
       />
-      <input type="hidden" {...form.register("ts", { valueAsNumber: true })} />
+      <input type="hidden" name="ts" value={createdAt.current} />
 
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="grid gap-4 md:grid-cols-2"
-      >
-        <FormField
-          control={form.control}
+      <div className="grid gap-2">
+        <Label htmlFor="name">Имя</Label>
+        <Input
+          id="name"
           name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Имя</FormLabel>
-              <FormControl>
-                <Input placeholder="Иван" autoComplete="name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          required
+          aria-invalid={!!state?.errors?.name}
         />
-        <FormField
-          control={form.control}
+        {state?.errors?.name && (
+          <p className="text-sm text-destructive">{state.errors.name}</p>
+        )}
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input
-                  type="email"
-                  placeholder="name@example.com"
-                  autoComplete="email"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          type="email"
+          required
+          aria-invalid={!!state?.errors?.email}
         />
-        <FormField
-          control={form.control}
+        {state?.errors?.email && (
+          <p className="text-sm text-destructive">{state.errors.email}</p>
+        )}
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="message">Сообщение</Label>
+        <Textarea
+          id="message"
           name="message"
-          render={({ field }) => (
-            <FormItem className="md:col-span-2">
-              <FormLabel>Сообщение</FormLabel>
-              <FormControl>
-                <Textarea
-                  rows={6}
-                  placeholder="Опиши вопрос или предложение"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          rows={5}
+          required
+          aria-invalid={!!state?.errors?.message}
         />
-        <FormField
-          control={form.control}
+        {state?.errors?.message && (
+          <p className="text-sm text-destructive">{state.errors.message}</p>
+        )}
+      </div>
+
+      <div className="flex items-start gap-2">
+        <Checkbox
+          id="consent"
           name="consent"
-          render={({ field }) => (
-            <FormItem className="md:col-span-2">
-              <div className="flex items-start gap-2">
-                <FormControl>
-                  <Checkbox
-                    checked={(field.value as boolean) ?? false}
-                    onCheckedChange={(v) => field.onChange(v === true)}
-                    aria-describedby="contact-consent"
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel className="font-normal">
-                    Согласие на обработку персональных данных
-                  </FormLabel>
-                  <p
-                    id="contact-consent"
-                    className="text-xs text-muted-foreground"
-                  >
-                    Используем данные только для ответа на обращение.
-                  </p>
-                </div>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
+          aria-invalid={!!state?.errors?.consent}
         />
-        <div className="md:col-span-2">
-          <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-            {pending ? "Отправка..." : "Отправить"}
-          </Button>
-        </div>
-      </form>
-    </Form>
+        <Label htmlFor="consent" className="text-sm text-foreground/80">
+          Согласие на обработку данных
+        </Label>
+      </div>
+      {state?.errors?.consent && (
+        <p className="text-sm text-destructive">{state.errors.consent}</p>
+      )}
+
+      {state?.errors?.form && (
+        <p className="text-sm text-destructive">{state.errors.form}</p>
+      )}
+
+      <div className="pt-2">
+        <Button type="submit" disabled={pending}>
+          {pending ? "Отправка..." : "Отправить"}
+        </Button>
+      </div>
+
+      {state?.ok && (
+        <p className="text-sm text-green-600">Сообщение отправлено. Спасибо!</p>
+      )}
+      {!state?.ok && state?.message && (
+        <p className="text-sm text-muted-foreground">{state.message}</p>
+      )}
+    </form>
   );
 }

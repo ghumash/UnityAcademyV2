@@ -8,14 +8,15 @@ import { ApplyForm } from "@/entities/apply";
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
-  const tt = await getT(params.locale);
+  const { locale } = await params;
+  const tt = await getT(locale);
   return createMetadata({
     title: tt("header.nav.apply"),
-    canonical: absoluteUrl(`/${params.locale}/apply`),
+    canonical: absoluteUrl(`/${locale}/apply`),
     alternatesPath: "/apply",
-    locale: params.locale,
+    locale,
     description: "Запишись на курс Unity Academy. Короткая форма заявки.",
   });
 }
@@ -23,17 +24,18 @@ export async function generateMetadata({
 export default async function ApplyPage({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
-  const tt = await getT(params.locale);
+  const { locale } = await params;
+  const tt = await getT(locale);
 
   return (
     <main>
       <JsonLd
         id="breadcrumbs-apply"
         data={buildBreadcrumbsJsonLd([
-          { name: tt("common.home"), href: `/${params.locale}` },
-          { name: tt("header.nav.apply"), href: `/${params.locale}/apply` },
+          { name: tt("common.home"), href: `/${locale}` },
+          { name: tt("header.nav.apply"), href: `/${locale}/apply` },
         ])}
       />
       <Section>

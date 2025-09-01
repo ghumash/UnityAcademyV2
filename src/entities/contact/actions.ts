@@ -1,59 +1,45 @@
 "use server";
 
-import { headers } from "next/headers";
-import { ContactSchema, type ContactInput } from "./schema";
-import {
-  type SubmitResult,
-  type SubmitErrors,
-  deliverContact,
-} from "@/entities/apply";
+import { ContactSchema } from "./schema";
+import { checkAntiBot } from "@/shared/lib/anti-bot";
+import { notify } from "@/shared/lib/notify";
+import { getClientMeta } from "@/shared/lib/request";
+import type { ActionState } from "@/shared/lib/actions/result";
 
-// отдельный простейший rate-limit: 5/10мин на IP (in-memory)
-const BUCKET = new Map<string, { count: number; resetAt: number }>();
-const LIMIT = 5;
-const WINDOW_MS = 10 * 60 * 1000;
-
-function rateLimit(ip: string) {
-  const now = Date.now();
-  const bucket = BUCKET.get(ip);
-  if (!bucket || bucket.resetAt < now) {
-    BUCKET.set(ip, { count: 1, resetAt: now + WINDOW_MS });
-    return { ok: true as const };
-  }
-  if (bucket.count >= LIMIT) return { ok: false as const };
-  bucket.count += 1;
-  return { ok: true as const };
+function toBool(v: unknown) {
+  return v === "on" || v === "true" || v === true || v === 1 || v === "1";
 }
 
-export async function submitContact(
-  input: ContactInput
-): Promise<SubmitResult> {
+export async function contactAction(
+  _: ActionState | undefined,
+  form: FormData
+): Promise<ActionState> {
+  const hp = form.get("hp");
+  const ts = form.get("ts");
+  const ab = checkAntiBot(hp, ts);
+  if (ab) {
+    return { ok: false, message: "Rejected", errors: { form: ab } };
+  }
+
+  const input = {
+    name: String(form.get("name") ?? ""),
+    email: String(form.get("email") ?? ""),
+    message: String(form.get("message") ?? ""),
+    consent: toBool(form.get("consent")),
+    hp: typeof hp === "string" ? hp : "",
+    ts: Number(ts ?? 0),
+  };
+
   const parsed = ContactSchema.safeParse(input);
   if (!parsed.success) {
-    const errors = parsed.error.flatten().fieldErrors as SubmitErrors;
-    return { ok: false, errors };
+    const errors = Object.fromEntries(
+      parsed.error.issues.map((i) => [i.path.join("."), i.message])
+    );
+    return { ok: false, message: "Проверьте поля формы", errors };
   }
-  const data = parsed.data;
 
-  if (data.hp && data.hp.trim() !== "") return { ok: true }; // honeypot
-  if (typeof data.ts === "number" && Date.now() - data.ts < 3000)
-    return { ok: true }; // time-to-fill
+  const meta = await getClientMeta();
+  await notify("contact", { data: parsed.data, meta });
 
-  const h = await headers();
-  const xff = h.get("x-forwarded-for") ?? "";
-  const ip = xff.split(",")[0]?.trim() || h.get("x-real-ip") || "0.0.0.0";
-  if (!rateLimit(ip).ok)
-    return {
-      ok: false,
-      errors: { form: ["Слишком много попыток. Попробуй позже."] },
-    };
-
-  const res = await deliverContact(data, ip);
-  if (!res.ok)
-    return {
-      ok: false,
-      errors: { form: ["Не удалось отправить сообщение. Попробуй позже."] },
-    };
-
-  return { ok: true };
+  return { ok: true, message: "Сообщение отправлено" };
 }

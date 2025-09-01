@@ -12,3 +12,4 @@ export * from "./sonner";
 export * from "./card";
 export * from "./skeleton";
 export * from "./avatar";
+export * from "./breadcrumb";

@@ -3,9 +3,17 @@ import { z } from "zod";
 export const ApplicationSchema = z.object({
   name: z.string().min(2, "Минимум 2 символа").max(64, "Слишком длинное имя"),
   email: z.string().email({ message: "Некорректный email" }),
-  phone: z.string().min(5, "Укажи телефон").max(32, "Слишком длинный телефон"),
+  phone: z
+    .string()
+    .min(5, "Укажи телефон")
+    .max(32, "Слишком длинный телефон")
+    .optional(),
   course: z.string().min(1, "Выбери курс"),
-  message: z.string().max(1000, "Максимум 1000 символов").optional(),
+  message: z
+    .string()
+    .max(1000, "Максимум 1000 символов")
+    .optional()
+    .or(z.literal("")),
   consent: z
     .boolean()
     .refine((v) => v === true, {

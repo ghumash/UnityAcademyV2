@@ -3,20 +3,21 @@ import { Section, Container } from "@/shared/ui/custom";
 import Link from "next/link";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config";
+import { getT, Locale } from "@/shared/lib/i18n";
 import { ContactForm } from "@/entities/contact";
-import { getDictionary, Locale } from "@/shared/lib/i18n";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
-  const dict = await getDictionary(params.locale);
+  const { locale } = await params;
+  const tt = await getT(locale);
   return createMetadata({
-    title: dict.header.nav.contacts,
-    canonical: absoluteUrl(`/${params.locale}/contacts`),
+    title: tt("header.nav.contacts"),
+    canonical: absoluteUrl(`/${locale}/contacts`),
     alternatesPath: "/contacts",
-    locale: params.locale,
+    locale,
     description: "Как связаться с Unity Academy и где нас найти.",
   });
 }
@@ -24,9 +25,10 @@ export async function generateMetadata({
 export default async function ContactsPage({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
-  const dict = await getDictionary(params.locale);
+  const { locale } = await params;
+  const tt = await getT(locale);
   const phoneHref = `tel:${siteConfig.contacts.phone.replace(/\s+/g, "")}`;
   const mailHref = `mailto:${siteConfig.contacts.email}`;
 
@@ -35,17 +37,14 @@ export default async function ContactsPage({
       <JsonLd
         id="breadcrumbs-contacts"
         data={buildBreadcrumbsJsonLd([
-          { name: "Home", href: `/${params.locale}` },
-          {
-            name: dict.header.nav.contacts,
-            href: `/${params.locale}/contacts`,
-          },
+          { name: tt("common.home"), href: `/${locale}` },
+          { name: tt("header.nav.contacts"), href: `/${locale}/contacts` },
         ])}
       />
       <Section>
         <Container>
           <h1 className="text-3xl font-bold tracking-tight">
-            {dict.header.nav.contacts}
+            {tt("header.nav.contacts")}
           </h1>
           <address className="mt-4 not-italic text-foreground/90">
             <div className="mb-1">{siteConfig.contacts.location}</div>

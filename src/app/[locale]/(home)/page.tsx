@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
+import type { Locale } from "@/shared/lib/i18n";
 import { Section, Container } from "@/shared/ui/custom";
 import { createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { Locale } from "@/shared/lib/i18n";
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale };
-}): Metadata {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
   return createMetadata({
     title: "Unity Academy",
-    canonical: absoluteUrl(`/${params.locale}`),
+    canonical: absoluteUrl(`/${locale}`),
     alternatesPath: "/",
-    locale: params.locale,
+    locale,
     description:
       "Стартовый каркас Unity Academy. Веб, AI, Android, контент и карьера.",
   });
 }
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <main>
       <Section>

@@ -1,64 +1,49 @@
 "use server";
 
-import { headers } from "next/headers";
-import { ApplicationSchema, type ApplicationInput } from "./schema";
-import { type SubmitResult, type SubmitErrors } from "./types";
-import { deliverApplication } from "./delivery";
+import { checkAntiBot } from "@/shared/lib/anti-bot";
+import { notify } from "@/shared/lib/notify";
+import { getClientMeta } from "@/shared/lib/request";
+import type { ActionState } from "@/shared/lib/actions/result";
+import { ApplicationInput, ApplicationSchema } from "./schema";
 
-// simple rate-limit: 5 req / 10 min per IP (in-memory)
-const BUCKET = new Map<string, { count: number; resetAt: number }>();
-const LIMIT = 5;
-const WINDOW_MS = 10 * 60 * 1000;
-
-function rateLimit(ip: string) {
-  const now = Date.now();
-  const bucket = BUCKET.get(ip);
-  if (!bucket || bucket.resetAt < now) {
-    BUCKET.set(ip, { count: 1, resetAt: now + WINDOW_MS });
-    return { ok: true as const };
-  }
-  if (bucket.count >= LIMIT) return { ok: false as const };
-  bucket.count += 1;
-  return { ok: true as const };
+function toBool(v: unknown) {
+  return v === "on" || v === "true" || v === true || v === 1 || v === "1";
 }
 
 export async function submitApplication(
   input: ApplicationInput
-): Promise<SubmitResult> {
+): Promise<ActionState> {
+  const ab = checkAntiBot(input.hp, input.ts);
+  if (ab) return { ok: false, message: "Rejected", errors: { form: ab } };
+
   const parsed = ApplicationSchema.safeParse(input);
   if (!parsed.success) {
-    const errors = parsed.error.flatten().fieldErrors as SubmitErrors;
-    return { ok: false, errors };
-  }
-  const data = parsed.data;
-
-  // honeypot
-  if (data.hp && data.hp.trim() !== "") return { ok: true };
-
-  // time-to-fill: минимум 3 секунды
-  if (typeof data.ts === "number" && Date.now() - data.ts < 3000) {
-    return { ok: true };
+    const errors = Object.fromEntries(
+      parsed.error.issues.map((i) => [i.path.join("."), i.message])
+    );
+    return { ok: false, message: "Проверьте поля формы", errors };
   }
 
-  // headers() в server action — асинхронный
-  const h = await headers();
-  const xff = h.get("x-forwarded-for") ?? "";
-  const ip = xff.split(",")[0]?.trim() || h.get("x-real-ip") || "0.0.0.0";
+  const meta = await getClientMeta();
+  await notify("apply", { data: parsed.data, meta });
 
-  if (!rateLimit(ip).ok) {
-    const errors: SubmitErrors = {
-      form: ["Слишком много попыток. Попробуй позже."],
-    };
-    return { ok: false, errors };
-  }
+  return { ok: true, message: "Заявка отправлена" };
+}
 
-  const res = await deliverApplication(data, ip);
-  if (!res.ok) {
-    const errors: SubmitErrors = {
-      form: ["Не удалось отправить заявку. Попробуй позже."],
-    };
-    return { ok: false, errors };
-  }
-
-  return { ok: true };
+// Совместимость с useActionState (если где-то используешь form action)
+export async function applyAction(
+  _: ActionState | undefined,
+  form: FormData
+): Promise<ActionState> {
+  const input: ApplicationInput = {
+    name: String(form.get("name") ?? ""),
+    email: String(form.get("email") ?? ""),
+    phone: String(form.get("phone") ?? ""),
+    course: String(form.get("course") ?? ""),
+    message: String(form.get("message") ?? ""),
+    consent: toBool(form.get("consent")),
+    hp: typeof form.get("hp") === "string" ? (form.get("hp") as string) : "",
+    ts: Number(form.get("ts") ?? 0),
+  };
+  return submitApplication(input);
 }

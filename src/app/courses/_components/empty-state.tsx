@@ -14,7 +14,7 @@ export default function CoursesEmptyState() {
         <Button asChild>
           <Link href="/apply">Подать заявку</Link>
         </Button>
-      </div>
+      </div>``
     </div>
   );
 }
