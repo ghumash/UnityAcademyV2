@@ -92,7 +92,7 @@ export default async function CoursesPage({
   };
 
   return (
-    <main>
+    <main id="main">
       {/* Breadcrumbs JSON-LD c учётом query */}
       <JsonLd
         id="breadcrumbs-courses"

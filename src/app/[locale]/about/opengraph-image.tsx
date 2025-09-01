@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
+import { getPageBySlugLocale } from "@/shared/content/pages";
 import { siteConfig } from "@/shared/config";
-import { getCourseBySlugLocale } from "@/shared/content";
 import type { Locale } from "@/shared/lib/i18n";
 
 export const runtime = "edge";
@@ -10,15 +10,13 @@ export const contentType = "image/png";
 export default async function OG({
   params,
 }: {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: Locale }>;
 }) {
-  const { locale, slug } = await params;
-  const course = await getCourseBySlugLocale(locale, slug);
+  const { locale } = await params;
+  const page = await getPageBySlugLocale(locale, "about");
 
-  const title = course?.title ?? decodeURIComponent(slug).replace(/-/g, " ");
-  const desc =
-    course?.excerpt ??
-    "Курс Unity Academy: веб, AI, Android, контент и карьера.";
+  const title = page?.title ?? "About";
+  const desc = page?.description ?? siteConfig.description;
 
   return new ImageResponse(
     (
@@ -31,7 +29,7 @@ export default async function OG({
           justifyContent: "space-between",
           padding: 48,
           background:
-            "linear-gradient(135deg, rgba(16,16,24,1) 0%, rgba(38,25,72,1) 55%, rgba(16,16,24,1) 100%)",
+            "linear-gradient(135deg, rgba(16,16,24,1) 0%, rgba(38,25,72,1) 50%, rgba(16,16,24,1) 100%)",
           color: "white",
         }}
       >
@@ -48,10 +46,10 @@ export default async function OG({
           <div style={{ fontSize: 36, fontWeight: 800 }}>{siteConfig.name}</div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <div
             style={{
-              fontSize: 60,
+              fontSize: 54,
               fontWeight: 800,
               letterSpacing: -1,
               lineHeight: 1.05,
@@ -62,7 +60,7 @@ export default async function OG({
           </div>
           <div
             style={{
-              fontSize: 28,
+              fontSize: 26,
               opacity: 0.9,
               lineHeight: 1.35,
               maxWidth: 1000,

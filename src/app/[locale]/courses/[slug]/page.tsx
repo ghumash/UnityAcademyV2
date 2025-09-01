@@ -40,7 +40,9 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
-  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
+  return locales.flatMap((locale) =>
+    slugs.map((slug: string) => ({ locale, slug }))
+  );
 }
 
 async function TocSidebar({ source }: { source: string }) {
@@ -57,12 +59,10 @@ export default async function CoursePage({
   const tt = await getT(locale);
   const course = await getCourseBySlugLocale(locale, slug);
 
-  if (!course) {
-    notFound();
-  }
+  if (!course) notFound();
 
   return (
-    <main>
+    <main id="main">
       <JsonLd
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([
@@ -107,13 +107,10 @@ export default async function CoursePage({
 
           {course!.body ? (
             <div className="mt-8">
-              {/* сетка: контент + TOC */}
               <div className="grid gap-8 lg:grid-cols-[1fr_280px]">
                 <div>
                   <MdxRenderer source={course!.body} />
                 </div>
-                {/* серверное оглавление */}
-                {/** вычисляем TOC на сервере */}
                 <TocSidebar source={course!.body} />
               </div>
             </div>

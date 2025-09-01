@@ -1,31 +1,32 @@
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkMdx from "remark-mdx";
-import { visit } from "unist-util-visit";
-import { toString } from "mdast-util-to-string";
 import GithubSlugger from "github-slugger";
 
-export type TocItem = { id: string; title: string; level: 2 | 3 };
+// Быстрый TOC парсер: игнорируем fenced code, берём строки, начинающиеся с #/##/###
+export type TocItem = { id: string; title: string; level: 1 | 2 | 3 };
 
 export async function getMdxToc(source: string): Promise<TocItem[]> {
-  if (!source?.trim()) return [];
-  const tree = unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkMdx)
-    .parse(source);
-  const items: TocItem[] = [];
+  const lines = source.split(/\r?\n/);
   const slugger = new GithubSlugger();
+  const items: TocItem[] = [];
 
-  visit(tree, "heading", (node: any) => {
-    const depth: number = node.depth;
-    if (depth !== 2 && depth !== 3) return;
-    const text = toString(node).trim();
-    if (!text) return;
-    const id = slugger.slug(text);
-    items.push({ id, title: text, level: depth as 2 | 3 });
-  });
+  let inFence = false;
+  for (const raw of lines) {
+    const line = raw.trim();
 
+    // fenced ``` / ~~~
+    if (/^(```|~~~)/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+
+    const m = /^(#{1,3})\s+(.*)$/.exec(line);
+    if (!m) continue;
+
+    const level = m[1].length as 1 | 2 | 3;
+    const title = m[2].replace(/\s+#*$/, "").trim();
+    const id = slugger.slug(title);
+
+    items.push({ id, title, level });
+  }
   return items;
 }

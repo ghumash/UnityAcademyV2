@@ -35,7 +35,7 @@ export default function NotFound() {
   const t = D[locale] ?? D.ru;
 
   return (
-    <main>
+    <main id="main">
       <Section>
         <Container className="py-16 text-center">
           <p className="text-sm text-muted-foreground">{t.code}</p>

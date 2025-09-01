@@ -1,65 +1,63 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "lucide-react";
-import { Container } from "@/shared/ui/custom";
 import { siteConfig } from "@/shared/config";
+import { Container } from "@/shared/ui/custom";
 import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetHeader,
-  SheetTitle,
   NavigationMenu,
+  NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
-  NavigationMenuList,
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
   Button,
 } from "@/shared/ui";
-import { ModeToggle } from "@/entities/theme";
-import { HeaderDict, Locale } from "@/shared/lib/i18n";
+import { Menu } from "lucide-react";
+import type { HeaderDict, Locale } from "@/shared/lib/i18n";
 import { LanguageSwitcher } from "@/entities/i18n";
+import { ModeToggle } from "@/entities/theme";
 
-export type HeaderProps = { locale: Locale; dict: HeaderDict };
+type Props = {
+  locale: Locale;
+  dict: HeaderDict;
+};
 
-export default function Header({ locale, dict }: HeaderProps) {
+export default function Header({ locale, dict }: Props) {
   const nav = [
-    { label: dict.nav.courses, href: "/courses" },
-    { label: dict.nav.about, href: "/about" },
-    { label: dict.nav.contacts, href: "/contacts" },
+    { label: dict.nav.courses, href: `/${locale}/courses` },
+    { label: dict.nav.about, href: `/${locale}/about` },
+    { label: dict.nav.contacts, href: `/${locale}/contacts` },
   ];
 
-  const href = (path: string) => `/${locale}${path}`;
-
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Container className="flex h-14 items-center justify-between gap-3 md:h-16">
+    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
+      <Container className="flex h-14 items-center justify-between gap-3">
         <Link
-          href={href("/")}
-          className="flex items-center gap-2"
+          href={`/${locale}`}
+          className="inline-flex items-center gap-2"
           aria-label="Unity Academy — home"
         >
           <Image
             src={siteConfig.assets.logo}
-            alt=""
+            alt="Unity Academy logo"
             width={24}
             height={24}
-            priority
           />
-          <span className="font-semibold tracking-tight">
+          <span className="hidden text-sm font-semibold tracking-tight sm:inline">
             {siteConfig.name}
           </span>
         </Link>
 
-        <nav className="hidden md:block" aria-label="Main navigation">
+        <div className="hidden md:block">
           <NavigationMenu>
             <NavigationMenuList>
               {nav.map((item) => (
                 <NavigationMenuItem key={item.href}>
                   <NavigationMenuLink asChild>
                     <Link
-                      href={href(item.href)}
+                      href={item.href}
                       className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
                     >
                       {item.label}
@@ -69,46 +67,42 @@ export default function Header({ locale, dict }: HeaderProps) {
               ))}
             </NavigationMenuList>
           </NavigationMenu>
-        </nav>
+        </div>
 
         <div className="flex items-center gap-2">
-          <div className="hidden md:block">
-            <Button asChild>
-              <Link href={href(siteConfig.cta.href)}>{dict.nav.apply}</Link>
-            </Button>
-          </div>
           <LanguageSwitcher locale={locale} />
           <ModeToggle />
 
           <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className="md:hidden"
-                aria-label="Open menu"
-              >
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="outline" size="sm" aria-label="Open menu">
                 <Menu className="size-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72 sm:w-80">
-              <SheetHeader className="border-b pb-2">
-                <SheetTitle>{dict.menu}</SheetTitle>
+            <SheetContent side="right" className="w-[320px]">
+              <SheetHeader>
+                <SheetTitle>{siteConfig.name}</SheetTitle>
               </SheetHeader>
-              <nav className="mt-4 grid gap-2" aria-label="Mobile navigation">
+
+              <nav className="mt-4 grid gap-1">
                 {nav.map((item) => (
                   <Link
                     key={item.href}
-                    href={href(item.href)}
-                    className="rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                    href={item.href}
+                    className="rounded-md px-2 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
                   >
                     {item.label}
                   </Link>
                 ))}
-                <Button asChild className="mt-2">
-                  <Link href={href(siteConfig.cta.href)}>{dict.nav.apply}</Link>
-                </Button>
               </nav>
+
+              <div className="mt-6 flex items-center gap-2">
+                <LanguageSwitcher locale={locale} />
+                <ModeToggle />
+                <Button asChild className="ml-auto">
+                  <Link href={`/${locale}/apply`}>{dict.nav.apply}</Link>
+                </Button>
+              </div>
             </SheetContent>
           </Sheet>
         </div>

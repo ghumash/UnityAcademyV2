@@ -46,7 +46,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <main>
+    <main id="main">
       <Section>
         <Container className="py-16 text-center">
           <p className="text-sm text-muted-foreground">

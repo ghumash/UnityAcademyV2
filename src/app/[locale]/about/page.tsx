@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl, siteConfig } from "@/shared/config";
+import { absoluteUrl } from "@/shared/config";
 import { getT, Locale } from "@/shared/lib/i18n";
-import { TeamSection } from "@/widgets";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/shared/ui";
+import { getPageBySlugLocale } from "@/shared/content/pages";
+import { MdxRenderer } from "@/shared/mdx";
 
 export async function generateMetadata({
   params,
@@ -12,12 +22,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const tt = await getT(locale);
+  const page = await getPageBySlugLocale(locale, "about");
   return createMetadata({
-    title: tt("header.nav.about"),
+    title: page?.title ?? tt("nav.about"),
     canonical: absoluteUrl(`/${locale}/about`),
     alternatesPath: "/about",
     locale,
-    description: siteConfig.description,
+    description: page?.description ?? tt("nav.about"),
   });
 }
 
@@ -28,28 +39,46 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const tt = await getT(locale);
-  const team: any[] = [];
+  const page = await getPageBySlugLocale(locale, "about");
 
   return (
-    <main>
+    <main id="main">
       <JsonLd
         id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
           { name: tt("common.home"), href: `/${locale}` },
-          { name: tt("header.nav.about"), href: `/${locale}/about` },
+          { name: page?.title ?? tt("nav.about"), href: `/${locale}/about` },
         ])}
       />
       <Section>
         <Container>
-          <h1 className="text-3xl font-bold tracking-tight">
-            {tt("header.nav.about")}
+          <Breadcrumb aria-label="Breadcrumb">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href={`/${locale}`}>{tt("common.home")}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>
+                  {page?.title ?? tt("nav.about")}
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
+          <h1 className="mt-4 text-3xl font-bold tracking-tight">
+            {page?.title ?? tt("nav.about")}
           </h1>
-          <p className="mt-3 max-w-prose text-muted-foreground">
-            {siteConfig.description}
-          </p>
+
+          {page?.body ? (
+            <div className="mt-6">
+              <MdxRenderer source={page.body} />
+            </div>
+          ) : null}
         </Container>
       </Section>
-      <TeamSection people={team as any} />
     </main>
   );
 }

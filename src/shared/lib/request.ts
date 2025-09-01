@@ -1,15 +1,30 @@
-import { headers } from "next/headers";
+// src/shared/lib/request.ts
+export type ClientMeta = {
+  ua: string;
+  referer?: string;
+  lang?: string;
+};
 
-export async function getClientMeta() {
-  const h = await headers();
-  // порядок попыток IP: стандартные прокси/edge заголовки
-  const xff =
-    h.get("x-forwarded-for") ||
-    h.get("x-real-ip") ||
-    h.get("cf-connecting-ip") ||
-    "";
-  const ip = xff.split(",")[0]?.trim() || undefined;
-  const ua = h.get("user-agent") || undefined;
-  const referer = h.get("referer") || undefined;
-  return { ip, ua, referer };
+type HeadersShim = { get(name: string): string | null };
+
+export async function getClientMeta(): Promise<ClientMeta> {
+  // Клиент
+  if (typeof window !== "undefined") {
+    return {
+      ua: navigator.userAgent,
+      referer: document.referrer || undefined,
+      lang: navigator.language,
+    };
+  }
+
+  // Сервер: ленивый импорт + унификация sync/async сигнатуры headers()
+  const mod = await import("next/headers");
+  const maybe = mod.headers() as unknown;
+  const h: HeadersShim = (await Promise.resolve(maybe)) as HeadersShim;
+
+  return {
+    ua: h.get("user-agent") ?? "",
+    referer: h.get("referer") ?? undefined,
+    lang: h.get("accept-language") ?? undefined,
+  };
 }

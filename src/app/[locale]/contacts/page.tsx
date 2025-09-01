@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
-import { Section, Container } from "@/shared/ui/custom";
 import Link from "next/link";
+import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl, siteConfig } from "@/shared/config";
+import { absoluteUrl } from "@/shared/config";
 import { getT, Locale } from "@/shared/lib/i18n";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/shared/ui";
+import { getPageBySlugLocale } from "@/shared/content/pages";
+import { MdxRenderer } from "@/shared/mdx";
 import { ContactForm } from "@/entities/contact";
 
 export async function generateMetadata({
@@ -13,12 +23,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const tt = await getT(locale);
+  const page = await getPageBySlugLocale(locale, "contacts");
   return createMetadata({
-    title: tt("header.nav.contacts"),
+    title: page?.title ?? tt("nav.contacts"),
     canonical: absoluteUrl(`/${locale}/contacts`),
     alternatesPath: "/contacts",
     locale,
-    description: "Как связаться с Unity Academy и где нас найти.",
+    description: page?.description ?? tt("nav.contacts"),
   });
 }
 
@@ -29,44 +40,49 @@ export default async function ContactsPage({
 }) {
   const { locale } = await params;
   const tt = await getT(locale);
-  const phoneHref = `tel:${siteConfig.contacts.phone.replace(/\s+/g, "")}`;
-  const mailHref = `mailto:${siteConfig.contacts.email}`;
+  const page = await getPageBySlugLocale(locale, "contacts");
 
   return (
-    <main>
+    <main id="main">
       <JsonLd
         id="breadcrumbs-contacts"
         data={buildBreadcrumbsJsonLd([
           { name: tt("common.home"), href: `/${locale}` },
-          { name: tt("header.nav.contacts"), href: `/${locale}/contacts` },
+          {
+            name: page?.title ?? tt("nav.contacts"),
+            href: `/${locale}/contacts`,
+          },
         ])}
       />
       <Section>
         <Container>
-          <h1 className="text-3xl font-bold tracking-tight">
-            {tt("header.nav.contacts")}
+          <Breadcrumb aria-label="Breadcrumb">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href={`/${locale}`}>{tt("common.home")}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>
+                  {page?.title ?? tt("nav.contacts")}
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
+          <h1 className="mt-4 text-3xl font-bold tracking-tight">
+            {page?.title ?? tt("nav.contacts")}
           </h1>
-          <address className="mt-4 not-italic text-foreground/90">
-            <div className="mb-1">{siteConfig.contacts.location}</div>
-            <div className="mb-1">
-              <Link href={mailHref} className="hover:underline">
-                {siteConfig.contacts.email}
-              </Link>
-            </div>
-            <div>
-              <Link href={phoneHref} className="hover:underline">
-                {siteConfig.contacts.phone}
-              </Link>
-            </div>
-          </address>
 
-          <div className="my-8 h-px w-full bg-border" />
+          {page?.body ? (
+            <div className="mt-6">
+              <MdxRenderer source={page.body} />
+            </div>
+          ) : null}
 
-          <h2 className="text-xl font-semibold tracking-tight">Написать нам</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Заполни форму — ответим на почту как можно скорее.
-          </p>
-          <div className="mt-6">
+          <div className="mt-8">
             <ContactForm />
           </div>
         </Container>

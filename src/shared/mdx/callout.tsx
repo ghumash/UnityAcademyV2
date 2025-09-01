@@ -1,37 +1,39 @@
+import * as React from "react";
 import { Alert, AlertTitle, AlertDescription } from "@/shared/ui";
-import { Info, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
+import { Info, CheckCircle2, AlertTriangle, AlertCircle } from "lucide-react";
 
-type Tone = "info" | "success" | "warning" | "danger";
+type Kind = "info" | "success" | "warning" | "error";
 
-const ICONS: Record<Tone, any> = {
+const ICON: Record<Kind, React.ElementType> = {
   info: Info,
   success: CheckCircle2,
   warning: AlertTriangle,
-  danger: XCircle,
+  error: AlertCircle,
 };
 
-const TONES: Record<Tone, string> = {
-  info: "border-blue-500/50",
-  success: "border-emerald-500/50",
-  warning: "border-amber-500/50",
-  danger: "border-red-500/50",
+const TITLE: Record<Kind, string> = {
+  info: "Note",
+  success: "Success",
+  warning: "Warning",
+  error: "Error",
 };
 
 export function Callout({
-  type = "info",
+  kind = "info",
   title,
   children,
 }: {
-  type?: Tone;
+  kind?: Kind;
   title?: string;
   children?: React.ReactNode;
 }) {
-  const Icon = ICONS[type];
+  const Icon = ICON[kind];
+  const isError = kind === "error";
   return (
-    <Alert className={TONES[type]}>
+    <Alert variant={isError ? "destructive" : "default"} className="mt-6">
       <Icon className="size-4" aria-hidden />
-      {title ? <AlertTitle>{title}</AlertTitle> : null}
-      <AlertDescription>{children}</AlertDescription>
+      <AlertTitle>{title ?? TITLE[kind]}</AlertTitle>
+      {children ? <AlertDescription>{children}</AlertDescription> : null}
     </Alert>
   );
 }

@@ -1,5 +1,8 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import type { Locale } from "@/shared/lib/i18n";
+
+const DEFAULT_LOCALE: Locale = "ru";
 
 const CSP_RO = [
   "default-src 'self'",
@@ -14,7 +17,15 @@ const CSP_RO = [
   "form-action 'self'",
 ].join("; ");
 
-export function middleware(_req: NextRequest) {
+export function middleware(req: NextRequest) {
+  const { nextUrl } = req;
+
+  if (nextUrl.pathname === "/") {
+    const url = nextUrl.clone();
+    url.pathname = `/${DEFAULT_LOCALE}`;
+    return NextResponse.redirect(url);
+  }
+
   const res = NextResponse.next();
   if (process.env.NODE_ENV !== "production") {
     res.headers.set("Content-Security-Policy-Report-Only", CSP_RO);

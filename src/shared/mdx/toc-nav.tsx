@@ -1,45 +1,37 @@
-import Link from "next/link";
-import type { TocItem } from "./toc";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  ScrollArea,
-} from "@/shared/ui";
+"use client";
 
-export function MdxTocNav({
-  items,
-  title = "Содержание",
-}: {
-  items: TocItem[];
-  title?: string;
-}) {
-  if (!items?.length) return null;
+import * as React from "react";
+import type { TocItem } from "./toc";
+import { ScrollArea } from "@/shared/ui/scroll-area";
+import { cn } from "../lib";
+
+export function MdxTocNav({ items }: { items: TocItem[] }) {
+  if (!items || items.length === 0) return null;
 
   return (
-    <Card className="sticky top-24 hidden lg:block">
-      <CardHeader className="py-3">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <ScrollArea className="max-h-[70svh]">
-          <nav aria-label={title} className="text-sm">
-            <ul className="space-y-1">
-              {items.map((item) => (
-                <li key={item.id} className={item.level === 3 ? "pl-4" : ""}>
-                  <Link
-                    href={`#${item.id}`}
-                    className="text-foreground/80 hover:text-foreground"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+    <aside aria-label="Table of contents" className="lg:sticky lg:top-24">
+      <div className="rounded-lg border p-3">
+        <div className="px-1 pb-2 text-xs font-semibold tracking-wide text-muted-foreground">
+          On this page
+        </div>
+        <ScrollArea className="max-h-[60vh] pr-2">
+          <nav className="grid gap-1">
+            {items.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={cn(
+                  "block rounded px-2 py-1 text-sm text-foreground/80 hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50",
+                  it.level === 2 && "ml-2",
+                  it.level === 3 && "ml-4"
+                )}
+              >
+                {it.title}
+              </a>
+            ))}
           </nav>
         </ScrollArea>
-      </CardContent>
-    </Card>
+      </div>
+    </aside>
   );
 }

@@ -1,12 +1,25 @@
 import type { Metadata } from "next";
-import { Header, Footer } from "@/widgets";
-import { createMetadata, JsonLd, buildOrganizationJsonLd } from "@/shared/seo";
+import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
 import { getDictionary, Locale } from "@/shared/lib/i18n";
-import { Toaster } from "@/shared/ui";
+import { Footer, Header } from "@/widgets";
 import { HtmlLang } from "@/entities/i18n";
 import { ThemeProvider } from "@/entities/theme";
 
-export const metadata: Metadata = createMetadata();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return createMetadata({
+    title: "Unity Academy",
+    alternatesPath: "/",
+    canonical: `https://unityacademy.am/${locale}`,
+    locale,
+    description:
+      "Стартовый каркас Unity Academy. Веб, AI, Android, контент и карьера.",
+  });
+}
 
 export default async function LocaleLayout({
   children,
@@ -20,6 +33,7 @@ export default async function LocaleLayout({
 
   return (
     <>
+      {/* меняем lang атрибут на клиенте согласно locale */}
       <HtmlLang locale={locale} />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
       <ThemeProvider
@@ -32,7 +46,6 @@ export default async function LocaleLayout({
         {children}
         <Footer locale={locale} dict={dict.header} />
       </ThemeProvider>
-      <Toaster richColors closeButton duration={4000} />
     </>
   );
 }

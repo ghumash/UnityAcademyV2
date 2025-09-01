@@ -1,8 +1,19 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, Locale } from "@/shared/lib/i18n";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/shared/ui";
+import { getPageBySlugLocale } from "@/shared/content/pages";
+import { MdxRenderer } from "@/shared/mdx";
 import { ApplyForm } from "@/entities/apply";
 
 export async function generateMetadata({
@@ -12,12 +23,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const tt = await getT(locale);
+  const page = await getPageBySlugLocale(locale, "apply");
   return createMetadata({
-    title: tt("header.nav.apply"),
+    title: page?.title ?? tt("nav.apply"),
     canonical: absoluteUrl(`/${locale}/apply`),
     alternatesPath: "/apply",
     locale,
-    description: "Запишись на курс Unity Academy. Короткая форма заявки.",
+    description: page?.description ?? tt("nav.apply"),
   });
 }
 
@@ -28,24 +40,45 @@ export default async function ApplyPage({
 }) {
   const { locale } = await params;
   const tt = await getT(locale);
+  const page = await getPageBySlugLocale(locale, "apply");
 
   return (
-    <main>
+    <main id="main">
       <JsonLd
         id="breadcrumbs-apply"
         data={buildBreadcrumbsJsonLd([
           { name: tt("common.home"), href: `/${locale}` },
-          { name: tt("header.nav.apply"), href: `/${locale}/apply` },
+          { name: page?.title ?? tt("nav.apply"), href: `/${locale}/apply` },
         ])}
       />
       <Section>
         <Container>
-          <h1 className="text-3xl font-bold tracking-tight">
-            {tt("header.nav.apply")}
+          <Breadcrumb aria-label="Breadcrumb">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href={`/${locale}`}>{tt("common.home")}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>
+                  {page?.title ?? tt("nav.apply")}
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
+          <h1 className="mt-4 text-3xl font-bold tracking-tight">
+            {page?.title ?? tt("nav.apply")}
           </h1>
-          <p className="mt-3 text-muted-foreground">
-            Оставь контакты и выбери направление. Мы свяжемся.
-          </p>
+
+          {page?.body ? (
+            <div className="mt-6">
+              <MdxRenderer source={page.body} />
+            </div>
+          ) : null}
+
           <div className="mt-8">
             <ApplyForm />
           </div>
