@@ -2,7 +2,9 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSanitize from "rehype-sanitize";
 import { MDXComponents } from "./components";
+import { mdxSanitizeSchema } from "./sanitize";
 
 export async function MdxRenderer({ source }: { source: string }) {
   if (!source?.trim()) return null;
@@ -15,6 +17,7 @@ export async function MdxRenderer({ source }: { source: string }) {
       mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
+          [rehypeSanitize, mdxSanitizeSchema],
           rehypeSlug,
           [
             rehypeAutolinkHeadings,

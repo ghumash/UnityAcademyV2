@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/shared/config";
+import { absoluteUrl } from "@/shared/config";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [{ userAgent: "*", allow: "/" }],
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

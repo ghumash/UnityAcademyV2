@@ -15,7 +15,7 @@ import {
   Button,
 } from "@/shared/ui";
 import { getAllSlugs, getCourseBySlugLocale } from "@/shared/content";
-import { MdxRenderer } from "@/shared/mdx";
+import { getMdxToc, MdxRenderer, MdxTocNav } from "@/shared/mdx";
 
 export async function generateMetadata({
   params,
@@ -41,6 +41,11 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
   return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
+}
+
+async function TocSidebar({ source }: { source: string }) {
+  const items = await getMdxToc(source);
+  return <MdxTocNav items={items} />;
 }
 
 export default async function CoursePage({
@@ -102,7 +107,15 @@ export default async function CoursePage({
 
           {course!.body ? (
             <div className="mt-8">
-              <MdxRenderer source={course!.body} />
+              {/* сетка: контент + TOC */}
+              <div className="grid gap-8 lg:grid-cols-[1fr_280px]">
+                <div>
+                  <MdxRenderer source={course!.body} />
+                </div>
+                {/* серверное оглавление */}
+                {/** вычисляем TOC на сервере */}
+                <TocSidebar source={course!.body} />
+              </div>
             </div>
           ) : (
             <div className="mt-8 rounded-lg border p-6">

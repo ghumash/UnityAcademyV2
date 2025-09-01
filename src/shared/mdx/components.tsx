@@ -1,5 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
+import { Callout } from "./callout";
+import { YouTube } from "./youtube-lite";
+import { MdxImage } from "./image";
 
 type AnyProps = React.HTMLAttributes<HTMLElement> & { className?: string };
 
@@ -11,6 +14,7 @@ const H = (Tag: "h1" | "h2" | "h3", cls: string) =>
   };
 
 export const MDXComponents = {
+  // базовая типографика
   h1: H("h1", "mt-8 scroll-m-20 text-3xl font-bold tracking-tight"),
   h2: H("h2", "mt-10 scroll-m-20 text-2xl font-semibold tracking-tight"),
   h3: H("h3", "mt-8 scroll-m-20 text-xl font-semibold tracking-tight"),
@@ -80,10 +84,17 @@ export const MDXComponents = {
       className={`my-8 border-border ${props.className ?? ""}`.trim()}
     />
   ),
+
+  // изображения: Markdown -> <img>, спецкомпонент -> <Image />
   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <img
       {...props}
       className={`mt-6 rounded-lg border ${props.className ?? ""}`.trim()}
     />
   ),
+  Image: MdxImage,
+
+  // кастомные MDX-компоненты
+  Callout,
+  YouTube,
 } as const;

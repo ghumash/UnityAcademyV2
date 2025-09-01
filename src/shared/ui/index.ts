@@ -13,3 +13,5 @@ export * from "./card";
 export * from "./skeleton";
 export * from "./avatar";
 export * from "./breadcrumb";
+export * from "./scroll-area";
+export * from "./alert";
