@@ -101,3 +101,36 @@ export async function getAllSlugs(): Promise<string[]> {
   const all = await loadAll();
   return all.map((c) => c.slug);
 }
+
+export type CourseLite = {
+  slug: string;
+  title: string;
+  excerpt?: string;
+  tags?: string[];
+};
+
+export async function getAllTagsForLocale(locale: Locale): Promise<string[]> {
+  const all = await getAllCoursesForLocale(locale); // предполагается, что функция уже существует
+  const set = new Set<string>();
+  for (const c of all) (c.tags ?? []).forEach((t) => set.add(t));
+  return Array.from(set).sort((a, b) => a.localeCompare(b));
+}
+
+export async function searchFilterCourses(
+  locale: Locale,
+  { q, tag }: { q?: string; tag?: string }
+): Promise<CourseLite[]> {
+  const all = (await getAllCoursesForLocale(locale)) as CourseLite[];
+  const qq = (q ?? "").trim().toLowerCase();
+  const tt = (tag ?? "").trim().toLowerCase();
+
+  return all.filter((c) => {
+    const matchesQ =
+      !qq ||
+      c.title.toLowerCase().includes(qq) ||
+      (c.excerpt ? c.excerpt.toLowerCase().includes(qq) : false);
+    const matchesTag =
+      !tt || (c.tags ?? []).some((t) => t.toLowerCase() === tt);
+    return matchesQ && matchesTag;
+  });
+}
