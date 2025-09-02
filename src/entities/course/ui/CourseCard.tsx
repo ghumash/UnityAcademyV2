@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardFooter, CardTitle } from "@/shared/ui";
-import type { Course } from "./types";
+import type { Course } from "../model/types";
 
 type Props = Pick<Course, "slug" | "title" | "excerpt" | "imageUrl" | "tags">;
 

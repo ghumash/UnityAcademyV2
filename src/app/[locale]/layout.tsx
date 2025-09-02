@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
 import { getDictionary, Locale } from "@/shared/lib/i18n";
 import { Footer, Header } from "@/widgets";
-import { HtmlLang } from "@/entities/i18n";
-import { ThemeProvider } from "@/entities/theme";
+import { HtmlLang } from "@/features/i18n";
+import { ThemeProvider } from "@/features/theme";
 
 export async function generateMetadata({
   params,

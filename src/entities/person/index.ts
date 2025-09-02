@@ -1,2 +1,2 @@
-export { default as PersonCard } from "./person-card";
-export * from "./types";
+export { default as PersonCard } from "./ui/PersonCard";
+export * from "./model/types";

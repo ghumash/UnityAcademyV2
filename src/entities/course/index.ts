@@ -1,2 +1,2 @@
-export * from "./types";
-export { default as CourseCard } from "./course-card";
+export * from "./model/types";
+export { default as CourseCard } from "./ui/CourseCard";

@@ -14,7 +14,7 @@ import {
 } from "@/shared/ui";
 import { getPageBySlugLocale } from "@/shared/content/pages";
 import { MdxRenderer } from "@/shared/mdx";
-import { ContactForm } from "@/entities/contact";
+import { ContactForm } from "@/features/contact";
 
 export async function generateMetadata({
   params,

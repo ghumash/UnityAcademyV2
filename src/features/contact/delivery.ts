@@ -1,6 +1,6 @@
 // Общие доставщики (Resend/Telegram) + 2 формирователя: application/contact
 
-import { ApplicationInput } from "@/entities/apply";
+import { ApplicationInput } from "@/features/apply";
 import type { ContactInput } from "./schema";
 
 type DeliverResult =

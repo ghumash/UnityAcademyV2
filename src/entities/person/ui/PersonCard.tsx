@@ -9,7 +9,7 @@ import {
   AvatarFallback,
 } from "@/shared/ui";
 import { Facebook, Instagram, Linkedin, Github } from "lucide-react";
-import { Person } from "./types";
+import { Person } from "../model/types";
 
 type Props = Pick<Person, "slug" | "name" | "role" | "avatarUrl" | "socials">;
 

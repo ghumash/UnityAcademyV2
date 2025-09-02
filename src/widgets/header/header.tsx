@@ -16,8 +16,8 @@ import {
 } from "@/shared/ui";
 import { Menu } from "lucide-react";
 import type { HeaderDict, Locale } from "@/shared/lib/i18n";
-import { LanguageSwitcher } from "@/entities/i18n";
-import { ModeToggle } from "@/entities/theme";
+import { LanguageSwitcher } from "@/features/i18n";
+import { ModeToggle } from "@/features/theme";
 
 type Props = {
   locale: Locale;
