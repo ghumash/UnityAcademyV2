@@ -4,7 +4,124 @@ import { Callout } from "./callout";
 import { YouTube } from "./youtube-lite";
 import { MdxImage } from "./image";
 import { cn } from "../lib";
-import { UI as AutoUI } from "@/shared/mdx/auto-ui";
+import {
+  // base
+  Button,
+
+  // accordion
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+
+  // alert
+  Alert,
+  AlertTitle,
+  AlertDescription,
+
+  // avatar
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+
+  // badge
+  Badge,
+  badgeVariants,
+
+  // breadcrumb
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+
+  // card
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
+
+  // checkbox
+  Checkbox,
+
+  // dropdown-menu
+  DropdownMenu,
+  DropdownMenuPortal,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+
+  // form
+  Form,
+  useFormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+
+  // input/label/textarea
+  Input,
+  Label,
+  Textarea,
+
+  // navigation-menu
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuContent,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+  NavigationMenuIndicator,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+
+  // scroll-area
+  ScrollArea,
+  ScrollBar,
+
+  // select
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+
+  // sheet
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+
+  // misc
+  Skeleton,
+  Toaster,
+} from "@/shared/ui";
 
 /** Заголовки: строгий тип для HTMLHeadingElement без generic конфликтов */
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
@@ -189,6 +306,120 @@ export const MDXComponents = {
   Callout,
   YouTube,
 
-  // авто-реестр shadcn/ui
-  ...AutoUI,
+  // shadcn/ui
+  // base
+  Button,
+
+  // accordion
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+
+  // alert
+  Alert,
+  AlertTitle,
+  AlertDescription,
+
+  // avatar
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+
+  // badge
+  Badge,
+  badgeVariants,
+
+  // breadcrumb
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+
+  // card
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
+
+  // checkbox
+  Checkbox,
+
+  // dropdown-menu
+  DropdownMenu,
+  DropdownMenuPortal,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+
+  // form
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+
+  // input/label/textarea
+  Input,
+  Label,
+  Textarea,
+
+  // navigation-menu
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuContent,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+  NavigationMenuIndicator,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+
+  // scroll-area
+  ScrollArea,
+  ScrollBar,
+
+  // select
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+
+  // sheet
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+
+  // misc
+  Skeleton,
+  Toaster,
 } satisfies Record<string, React.ComponentType<any>>;

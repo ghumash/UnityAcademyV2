@@ -34,7 +34,13 @@ const baseSecurityHeaders = [
 
 const securityHeaders =
   process.env.NODE_ENV === "production"
-    ? [...baseSecurityHeaders, { key: "Content-Security-Policy", value: CSP }]
+    ? [
+        ...baseSecurityHeaders,
+        {
+          key: "Content-Security-Policy",
+          value: process.env.CSP ?? CSP,
+        },
+      ]
     : baseSecurityHeaders;
 
 const nextConfig: NextConfig = {

@@ -27,8 +27,9 @@ export function middleware(req: NextRequest) {
   }
 
   const res = NextResponse.next();
+  const cspDev = process.env.CSP_RO ?? CSP_RO;
   if (process.env.NODE_ENV !== "production") {
-    res.headers.set("Content-Security-Policy-Report-Only", CSP_RO);
+    res.headers.set("Content-Security-Policy-Report-Only", cspDev);
   }
   return res;
 }

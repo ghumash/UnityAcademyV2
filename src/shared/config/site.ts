@@ -5,7 +5,7 @@ export const siteConfig = {
   shortName: "Unity",
   description:
     "Современная IT-академия в Ванадзоре: веб, AI, контент, Android, SMM, soft skills.",
-  url: "https://unityacademy.am", // TODO: заменить на прод-домен
+  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   locale: "ru-RU",
   contacts: {
     email: "unityacademyarmenia@gmail.com",
