@@ -1,34 +1,49 @@
 "use server";
 
-import { ApplicationSchema, type ApplicationInput } from "./model/schema";
+import {
+  ApplicationSchema,
+  type ApplicationInput,
+} from "@/features/apply/model/schema";
+import type { ActionState } from "@/shared/lib/actions/result";
+
 import { checkAntiBot } from "@/shared/lib/anti-bot";
 import { rateLimit } from "@/shared/lib/rate-limit";
 import { notify } from "@/shared/lib/notify";
 import { getClientMeta } from "@/shared/lib/request";
-import type { ActionState } from "@/shared/lib/actions/result";
-import { logError } from "@/shared/lib/logger";
+import { logError } from "@/shared/lib/logger.server";
 
 function toBool(v: unknown) {
   return v === "on" || v === "true" || v === true || v === 1 || v === "1";
+}
+
+function zodIssuesToErrors(issues: import("zod").ZodIssue[]) {
+  return Object.fromEntries(issues.map((i) => [i.path.join("."), i.message]));
 }
 
 export async function submitApplication(
   input: ApplicationInput
 ): Promise<ActionState> {
   try {
+    // 1) Anti-bot
     const ab = checkAntiBot(input.hp, input.ts);
     if (ab) return { ok: false, message: "Rejected", errors: { form: ab } };
 
+    // 2) Валидация
     const parsed = ApplicationSchema.safeParse(input);
     if (!parsed.success) {
-      const errors = Object.fromEntries(
-        parsed.error.issues.map((i) => [i.path.join("."), i.message])
-      );
-      return { ok: false, message: "Проверьте поля формы", errors };
+      return {
+        ok: false,
+        message: "Проверьте поля формы",
+        errors: zodIssuesToErrors(parsed.error.issues),
+      };
     }
 
+    // 3) Метаданные клиента и rate limit (in-memory)
     const meta = await getClientMeta();
-    const key = `apply:${meta.ip ?? "noip"}:${(meta.ua ?? "noua").slice(0, 64)}`;
+    const ip = meta.ip ?? "noip";
+    const ua = (meta.ua ?? "noua").slice(0, 64);
+    const key = `apply:${ip}:${ua}`;
+
     const rl = await rateLimit(key, { limit: 5, windowMs: 15 * 60 * 1000 });
     if (!rl.ok) {
       return {
@@ -40,6 +55,7 @@ export async function submitApplication(
       };
     }
 
+    // 4) Уведомление через вебхук
     await notify("apply", { data: parsed.data, meta });
     return { ok: true, message: "Заявка отправлена" };
   } catch (err) {
