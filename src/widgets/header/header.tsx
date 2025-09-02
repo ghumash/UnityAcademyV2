@@ -73,6 +73,12 @@ export default function Header({ locale, dict }: Props) {
           <LanguageSwitcher locale={locale} />
           <ModeToggle />
 
+          <div className="hidden md:block">
+            <Button asChild size="sm">
+              <Link href={`/${locale}/apply`}>{dict.nav.apply}</Link>
+            </Button>
+          </div>
+
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="outline" size="sm" aria-label="Open menu">

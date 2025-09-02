@@ -14,7 +14,7 @@ const CSP = [
   "upgrade-insecure-requests",
 ].join("; ");
 
-const securityHeaders = [
+const baseSecurityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
   {
     key: "Strict-Transport-Security",
@@ -29,8 +29,13 @@ const securityHeaders = [
   },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
-  { key: "Content-Security-Policy", value: CSP },
+  // CSP добавляем только в продакшене
 ] as const;
+
+const securityHeaders =
+  process.env.NODE_ENV === "production"
+    ? [...baseSecurityHeaders, { key: "Content-Security-Policy", value: CSP }]
+    : baseSecurityHeaders;
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
