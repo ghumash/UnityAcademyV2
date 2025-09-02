@@ -16,3 +16,4 @@ export * from "./breadcrumb";
 export * from "./scroll-area";
 export * from "./alert";
 export * from "./badge";
+export * from "./accordion";

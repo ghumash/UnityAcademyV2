@@ -4,6 +4,7 @@ import { Callout } from "./callout";
 import { YouTube } from "./youtube-lite";
 import { MdxImage } from "./image";
 import { cn } from "../lib";
+import * as UI from "@/shared/ui";
 
 /** Заголовки: строгий тип для HTMLHeadingElement без generic конфликтов */
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
@@ -185,4 +186,10 @@ export const MDXComponents = {
   Image: MdxImage,
   Callout,
   YouTube,
+  // Авто-регистрация всех экспортов из @/shared/ui
+  ...(Object.fromEntries(
+    Object.entries(UI).filter(([, val]) =>
+      typeof val === "function" || (typeof val === "object" && val)
+    ) as [string, React.ComponentType<any>][]
+  )),
 } satisfies Record<string, React.ComponentType<any>>;

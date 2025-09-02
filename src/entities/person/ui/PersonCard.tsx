@@ -35,11 +35,7 @@ export default function PersonCard({
           <AvatarFallback>{initials}</AvatarFallback>
         </Avatar>
         <div>
-          <CardTitle className="text-base leading-tight">
-            <Link href={`/about#${slug}`} className="hover:underline">
-              {name}
-            </Link>
-          </CardTitle>
+          <CardTitle className="text-base leading-tight">{name}</CardTitle>
           <p className="text-sm text-muted-foreground">{role}</p>
         </div>
       </CardContent>

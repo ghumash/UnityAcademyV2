@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/shared/lib/i18n";
 import { Section, Container } from "@/shared/ui/custom";
+import { TeamSection } from "@/widgets";
+import { peopleMock } from "@/entities/person";
 import { createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 
@@ -31,6 +33,8 @@ export default async function HomePage() {
           </p>
         </Container>
       </Section>
+
+      <TeamSection people={peopleMock} />
     </main>
   );
 }
