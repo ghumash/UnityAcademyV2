@@ -1,2 +1,2 @@
-export { default as LanguageSwitcher } from "./language-switcher";
-export { default as HtmlLang } from "./html-lang";
+export { default as LanguageSwitcher } from "./ui/LanguageSwitcher";
+export { default as HtmlLang } from "./ui/HtmlLang";

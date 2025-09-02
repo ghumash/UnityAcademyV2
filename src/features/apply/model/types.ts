@@ -1,4 +1,4 @@
-import type { ApplicationInput } from "./schema";
+import type { ApplicationInput } from "./model/schema";
 
 export type SubmitErrors = Partial<
   Record<keyof ApplicationInput | "form", string[]>

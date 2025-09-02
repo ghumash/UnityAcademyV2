@@ -1,2 +1,2 @@
-export { default as ModeToggle } from "./mode-toggle";
-export * from "./theme-provider";
+export { default as ModeToggle } from "./ui/ModeToggle";
+export * from "./ui/ThemeProvider";

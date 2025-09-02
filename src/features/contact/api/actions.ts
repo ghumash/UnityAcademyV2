@@ -1,12 +1,12 @@
 "use server";
 
-import { ContactSchema } from "./schema";
 import { checkAntiBot } from "@/shared/lib/anti-bot";
 import { rateLimit } from "@/shared/lib/rate-limit";
 import { notify } from "@/shared/lib/notify";
 import { getClientMeta } from "@/shared/lib/request";
 import type { ActionState } from "@/shared/lib/actions/result";
 import { logError } from "@/shared/lib/logger";
+import { ContactSchema } from "../model/schema";
 
 function toBool(v: unknown) {
   return v === "on" || v === "true" || v === true || v === 1 || v === "1";

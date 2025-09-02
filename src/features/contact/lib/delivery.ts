@@ -1,7 +1,7 @@
 // Общие доставщики (Resend/Telegram) + 2 формирователя: application/contact
 
 import { ApplicationInput } from "@/features/apply";
-import type { ContactInput } from "./schema";
+import type { ContactInput } from "../model/schema";
 
 type DeliverResult =
   | { ok: true; channel: "resend" | "telegram" | "console"; id?: string }

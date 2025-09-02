@@ -1,6 +1,6 @@
 "use server";
 
-import { ApplicationSchema, type ApplicationInput } from "./schema";
+import { ApplicationSchema, type ApplicationInput } from "./model/schema";
 import { checkAntiBot } from "@/shared/lib/anti-bot";
 import { rateLimit } from "@/shared/lib/rate-limit";
 import { notify } from "@/shared/lib/notify";
