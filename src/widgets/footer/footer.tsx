@@ -1,137 +1,162 @@
-import Image from "next/image";
+"use client";
+
+import React from "react";
+import type { ComponentProps, ReactNode } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import {
+  FacebookIcon,
+  FrameIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  YoutubeIcon,
+} from "lucide-react";
+import { Container, Section } from "@/shared/ui/custom";
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/shared/config";
-import { Container } from "@/shared/ui/custom";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
-import { HeaderDict, Locale } from "@/shared/lib/i18n";
 
-const socialsList = (dict?: typeof siteConfig.socials) =>
-  [
-    { href: dict?.instagram, label: "Instagram", Icon: Instagram },
-    { href: dict?.facebook, label: "Facebook", Icon: Facebook },
-    { href: dict?.linkedin, label: "LinkedIn", Icon: Linkedin },
-  ].filter((s) => !!s.href) as { href: string; label: string; Icon: any }[];
+interface FooterLink {
+  title: string;
+  href: string;
+  icon?: React.ComponentType<{ className?: string }>;
+}
 
-export default function Footer({
-  locale,
-  dict,
-}: {
-  locale: Locale;
-  dict: HeaderDict;
-}) {
-  const href = (path: string) => `/${locale}${path}`;
-  const nav = [
-    { label: dict.nav.courses, href: "/courses" },
-    { label: dict.nav.about, href: "/about" },
-    { label: dict.nav.contacts, href: "/contacts" },
-  ];
-  const year = new Date().getFullYear();
+interface FooterSection {
+  label: string;
+  links: FooterLink[];
+}
 
+const footerLinks: FooterSection[] = [
+  {
+    label: "Resources",
+    links: [
+      { title: "Home", href: "/" },
+      { title: "About", href: "/about" },
+      { title: "Courses", href: "/courses" },
+      { title: "Questions", href: "/questions" },
+    ],
+  },
+  {
+    label: "Social Links",
+    links: [
+      { title: "Facebook", href: "#", icon: FacebookIcon },
+      { title: "Instagram", href: "#", icon: InstagramIcon },
+      { title: "Youtube", href: "#", icon: YoutubeIcon },
+      { title: "LinkedIn", href: "#", icon: LinkedinIcon },
+    ],
+  },
+  {
+    label: "Product",
+    links: [
+      { title: "Features", href: "#features" },
+      { title: "Pricing", href: "#pricing" },
+      { title: "Testimonials", href: "#testimonials" },
+      { title: "Integration", href: "/" },
+    ],
+  },
+  {
+    label: "Company",
+    links: [
+      { title: "FAQs", href: "/faqs" },
+      { title: "About Us", href: "/about" },
+      { title: "Privacy Policy", href: "/privacy" },
+      { title: "Terms of Services", href: "/terms" },
+    ],
+  },
+];
+
+export function Footer() {
   return (
-    <footer className="border-t bg-background">
-      <Container className="grid gap-8 py-10 md:grid-cols-3">
-        <div className="space-y-3">
-          <Link
-            href={href("/")}
-            className="inline-flex items-center gap-2"
-            aria-label="Unity Academy — home"
-          >
-            <Image
-              src={siteConfig.assets.logo}
-              alt="Unity Academy logo"
-              width={28}
-              height={28}
-            />
-            <span className="text-base font-semibold tracking-tight">
-              {siteConfig.name}
-            </span>
-          </Link>
-          <p className="max-w-prose text-sm text-muted-foreground">
-            {siteConfig.description}
-          </p>
-          {socialsList(siteConfig.socials).length > 0 && (
-            <div
-              className="flex items-center gap-3 pt-1"
-              aria-label="Social links"
-            >
-              {socialsList(siteConfig.socials).map(
-                ({ href: h, label, Icon }) => (
-                  <Link
-                    key={label}
-                    href={h}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="inline-flex size-9 items-center justify-center rounded-md border hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <Icon className="size-4" />
-                  </Link>
-                )
-              )}
-            </div>
-          )}
-        </div>
+    <Section as="footer">
+      <Container>
+        <div className="md:rounded-t-6xl relative flex flex-col items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 lg:py-16">
+          <div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
 
-        <nav aria-label="Footer navigation">
-          <h2 className="mb-3 text-sm font-semibold tracking-wide">
-            {dict.footer.navigation}
-          </h2>
-          <ul className="grid gap-2">
-            {nav.map((item) => (
-              <li key={item.href}>
+          <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
+            <AnimatedContainer className="space-y-4">
+              <div className="space-y-3">
                 <Link
-                  href={href(item.href)}
-                  className="text-sm text-foreground/80 hover:text-foreground"
+                  href={"/"}
+                  className="inline-flex items-center gap-2"
+                  aria-label="Unity Academy — home"
                 >
-                  {item.label}
+                  <Image
+                    src={siteConfig.assets.logo}
+                    alt="Unity Academy logo"
+                    width={28}
+                    height={28}
+                  />
+                  <span className="text-base font-semibold tracking-tight">
+                    {siteConfig.name}
+                  </span>
                 </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+                <p className="max-w-prose text-sm text-muted-foreground">
+                  {siteConfig.description}
+                </p>
+                <p className="text-muted-foreground mt-8 text-sm md:mt-0">
+                  © {new Date().getFullYear()} Asme. All rights reserved.
+                </p>
+              </div>
+            </AnimatedContainer>
 
-        <div>
-          <h2 className="mb-3 text-sm font-semibold tracking-wide">
-            {dict.footer.contacts}
-          </h2>
-          <address className="not-italic text-sm text-foreground/80">
-            <div className="mb-1">{siteConfig.contacts.location}</div>
-            <div className="mb-1">
-              <Link
-                href={`mailto:${siteConfig.contacts.email}`}
-                className="hover:underline"
-              >
-                {siteConfig.contacts.email}
-              </Link>
+            <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
+              {footerLinks.map((section, index) => (
+                <AnimatedContainer
+                  key={section.label}
+                  delay={0.1 + index * 0.1}
+                >
+                  <div className="mb-10 md:mb-0">
+                    <h3 className="text-xs">{section.label}</h3>
+                    <ul className="text-muted-foreground mt-4 space-y-2 text-sm">
+                      {section.links.map((link) => (
+                        <li key={link.title}>
+                          <a
+                            href={link.href}
+                            className="hover:text-foreground inline-flex items-center transition-all duration-300"
+                          >
+                            {link.icon && <link.icon className="me-1 size-4" />}
+                            {link.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </AnimatedContainer>
+              ))}
             </div>
-            <div>
-              <Link
-                href={`tel:${siteConfig.contacts.phone.replace(/\s+/g, "")}`}
-                className="hover:underline"
-              >
-                {siteConfig.contacts.phone}
-              </Link>
-            </div>
-          </address>
-          <div className="mt-4">
-            <Link
-              href={href(siteConfig.cta.href)}
-              className="inline-flex rounded-md border px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-            >
-              {dict.nav.apply}
-            </Link>
           </div>
         </div>
       </Container>
+    </Section>
+  );
+}
 
-      <div className="border-t">
-        <Container className="flex flex-col items-center justify-between gap-3 py-4 text-xs text-muted-foreground md:flex-row">
-          <span>
-            © {year} {siteConfig.name}. {dict.footer.rights}
-          </span>
-          <span>{dict.footer.madeIn}</span>
-        </Container>
-      </div>
-    </footer>
+type ViewAnimationProps = {
+  delay?: number;
+  className?: ComponentProps<typeof motion.div>["className"];
+  children: ReactNode;
+};
+
+function AnimatedContainer({
+  className,
+  delay = 0.1,
+  children,
+}: ViewAnimationProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return children;
+  }
+
+  return (
+    <motion.div
+      initial={{ filter: "blur(4px)", translateY: -8, opacity: 0 }}
+      whileInView={{ filter: "blur(0px)", translateY: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.8 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
   );
 }
