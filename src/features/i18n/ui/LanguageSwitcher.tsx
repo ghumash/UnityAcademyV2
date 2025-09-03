@@ -25,7 +25,7 @@ export default function LanguageSwitcher({ locale }: { locale: Locale }) {
 
   return (
     <Select value={locale} onValueChange={(v) => onChange(v as Locale)}>
-      <SelectTrigger aria-label="Language">
+      <SelectTrigger className="rounded-full" aria-label="Language">
         <SelectValue />
       </SelectTrigger>
       <SelectContent align="end">

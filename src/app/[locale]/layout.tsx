@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
 import { getDictionary, Locale } from "@/shared/lib/i18n";
-import { Footer, Header } from "@/widgets";
+import { Footer, Header, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
+import { Briefcase, FileText, Home, User } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -20,6 +21,16 @@ export async function generateMetadata({
       "Стартовый каркас Unity Academy. Веб, AI, Android, контент и карьера.",
   });
 }
+
+const navItems = [
+  { name: "Home", url: "/", icon: <Home size={18} strokeWidth={2.5} /> },
+  { name: "About", url: "/about", icon: <User size={18} strokeWidth={2.5} /> },
+  {
+    name: "Courses",
+    url: "/courses",
+    icon: <Briefcase size={18} strokeWidth={2.5} />,
+  },
+];
 
 export default async function LocaleLayout({
   children,
@@ -42,8 +53,8 @@ export default async function LocaleLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <Header locale={locale} dict={dict.header} />
         {children}
+        <NavBar items={navItems} locale={locale} dict={dict.header} />
         <Footer locale={locale} dict={dict.header} />
       </ThemeProvider>
     </>

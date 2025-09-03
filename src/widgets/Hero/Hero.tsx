@@ -78,7 +78,7 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
         aria-labelledby={titleId}
         title={nativeTitle}
         className={cn(
-          "relative z-0 flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden rounded-md bg-background mt-10 radius",
+          "relative z-0 flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden rounded-md bg-background radius",
           className
         )}
         {...props}
