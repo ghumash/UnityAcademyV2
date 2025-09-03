@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/shared/lib/i18n";
-import { Section, Container } from "@/shared/ui/custom";
-import { TeamSection } from "@/widgets";
+import { Hero, TeamSection } from "@/widgets";
 import { peopleMock } from "@/entities/person";
 import { createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { GlowingGrid, GridItemData } from "@/widgets";
 import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
+import { home } from "@/shared/config";
 
 export async function generateMetadata({
   params,
@@ -56,19 +56,20 @@ const items: GridItemData[] = [
 export default async function HomePage() {
   return (
     <main>
-      <Section>
-        <Container>
-          <h1 className="text-3xl font-bold tracking-tight">Unity Academy</h1>
-          <p className="mt-3 text-muted-foreground">
-            Стартовый каркас готов. Двигаемся по шагам.
-          </p>
-          <GlowingGrid
-            items={items}
-            glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
-          />
-        </Container>
-      </Section>
-
+      {home.hero.display && (
+        <Hero
+          title={home.hero.title}
+          subtitle={home.hero.subtitle}
+          actions={home.hero.actions}
+          titleClassName="text-5xl md:text-6xl font-extrabold"
+          subtitleClassName="text-lg md:text-xl max-w-[600px]"
+          actionsClassName="mt-8"
+        />
+      )}
+      <GlowingGrid
+        items={items}
+        glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
+      />
       <TeamSection people={peopleMock} />
     </main>
   );

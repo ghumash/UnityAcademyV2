@@ -6,16 +6,38 @@ import { animate } from "motion/react";
 
 interface GlowingEffectProps {
   blur?: number;
-  inactiveZone?: number;
-  proximity?: number;
-  spread?: number;
+  inactiveZone?: number; // 0..1 — доля от меньшей стороны, внутри которой эффект «спит»
+  proximity?: number; // «аура» вокруг элемента, при попадании в которую эффект активируется
+  spread?: number; // ширина конуса свечения (в градусах*2)
   variant?: "default" | "white";
-  glow?: boolean;
+  glow?: boolean; // включает/выключает сам эффект
   className?: string;
-  disabled?: boolean;
-  movementDuration?: number;
-  borderWidth?: number;
+  disabled?: boolean; // форс-отключение (например, для SSR/тестов)
+  movementDuration?: number; // длительность поворота «конуса» (сек)
+  borderWidth?: number; // толщина бордера «свечения»
 }
+
+/** Уважает настройку системы «предпочитать уменьшенное движение». */
+function usePrefersReducedMotion() {
+  const mqlRef = useRef<MediaQueryList | null>(null);
+  const reducedRef = useRef(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    mqlRef.current = mql;
+    reducedRef.current = mql.matches;
+
+    const onChange = () => {
+      reducedRef.current = mql.matches;
+    };
+    mql.addEventListener?.("change", onChange);
+    return () => mql.removeEventListener?.("change", onChange);
+  }, []);
+
+  return reducedRef;
+}
+
 const GlowingEffect = memo(
   ({
     blur = 0,
@@ -25,43 +47,41 @@ const GlowingEffect = memo(
     variant = "default",
     glow = false,
     className,
-    movementDuration = 2,
+    movementDuration = 0.6,
     borderWidth = 1,
-    disabled = true,
+    disabled = false,
   }: GlowingEffectProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const lastPosition = useRef({ x: 0, y: 0 });
-    const animationFrameRef = useRef<number>(0);
+    const rafRef = useRef<number>(0);
+    const angleAnimRef = useRef<any>(null); // контрол анимации от motion
+
+    const prefersReducedMotionRef = usePrefersReducedMotion();
 
     const handleMove = useCallback(
-      (e?: MouseEvent | { x: number; y: number }) => {
-        if (!containerRef.current) return;
+      (e?: PointerEvent | { x: number; y: number }) => {
+        const el = containerRef.current;
+        if (!el) return;
 
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
-        }
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
-        animationFrameRef.current = requestAnimationFrame(() => {
-          const element = containerRef.current;
-          if (!element) return;
+        rafRef.current = requestAnimationFrame(() => {
+          const { left, top, width, height } = el.getBoundingClientRect();
 
-          const { left, top, width, height } = element.getBoundingClientRect();
           const mouseX = e?.x ?? lastPosition.current.x;
           const mouseY = e?.y ?? lastPosition.current.y;
 
-          if (e) {
-            lastPosition.current = { x: mouseX, y: mouseY };
-          }
+          if (e) lastPosition.current = { x: mouseX, y: mouseY };
 
-          const center = [left + width * 0.5, top + height * 0.5];
-          const distanceFromCenter = Math.hypot(
-            mouseX - center[0],
-            mouseY - center[1]
-          );
+          const cx = left + width * 0.5;
+          const cy = top + height * 0.5;
+
+          // «Мёртвая зона» вокруг центра
           const inactiveRadius = 0.5 * Math.min(width, height) * inactiveZone;
+          const dist = Math.hypot(mouseX - cx, mouseY - cy);
 
-          if (distanceFromCenter < inactiveRadius) {
-            element.style.setProperty("--active", "0");
+          if (dist < inactiveRadius) {
+            el.style.setProperty("--active", "0");
             return;
           }
 
@@ -71,25 +91,28 @@ const GlowingEffect = memo(
             mouseY > top - proximity &&
             mouseY < top + height + proximity;
 
-          element.style.setProperty("--active", isActive ? "1" : "0");
-
+          el.style.setProperty("--active", isActive ? "1" : "0");
           if (!isActive) return;
 
           const currentAngle =
-            parseFloat(element.style.getPropertyValue("--start")) || 0;
-          let targetAngle =
-            (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) /
-              Math.PI +
-            90;
+            parseFloat(el.style.getPropertyValue("--start")) || 0;
 
+          // - atan2 -> градусы -> поворот «вверх» = 90°
+          let targetAngle =
+            (180 * Math.atan2(mouseY - cy, mouseX - cx)) / Math.PI + 90;
+
+          // кратчайший путь
           const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
           const newAngle = currentAngle + angleDiff;
 
-          animate(currentAngle, newAngle, {
+          // Отменяем предыдущую анимацию, чтобы не копились.
+          if (angleAnimRef.current?.cancel) angleAnimRef.current.cancel();
+
+          angleAnimRef.current = animate(currentAngle, newAngle, {
             duration: movementDuration,
             ease: [0.16, 1, 0.3, 1],
             onUpdate: (value) => {
-              element.style.setProperty("--start", String(value));
+              el.style.setProperty("--start", String(value));
             },
           });
         });
@@ -98,36 +121,57 @@ const GlowingEffect = memo(
     );
 
     useEffect(() => {
-      if (disabled) return;
+      const el = containerRef.current;
 
-      const handleScroll = () => handleMove();
-      const handlePointerMove = (e: PointerEvent) => handleMove(e);
+      // Авто-отключение при reduced motion или когда glow=false
+      const runtimeDisabled =
+        disabled || !glow || prefersReducedMotionRef.current;
 
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      document.body.addEventListener("pointermove", handlePointerMove, {
-        passive: true,
-      });
+      if (runtimeDisabled) {
+        // Сброс активного состояния/анимаций
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        if (angleAnimRef.current?.cancel) angleAnimRef.current.cancel();
+        if (el) {
+          el.style.setProperty("--active", "0");
+          el.style.setProperty("--start", "0");
+        }
+        return;
+      }
+
+      const onScroll = () => handleMove();
+      const onPointerMove = (e: PointerEvent) => handleMove(e);
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("pointermove", onPointerMove, { passive: true });
+
+      // начальная позиция (если курсор уже внутри)
+      handleMove();
 
       return () => {
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
-        }
-        window.removeEventListener("scroll", handleScroll);
-        document.body.removeEventListener("pointermove", handlePointerMove);
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("pointermove", onPointerMove);
+        if (angleAnimRef.current?.cancel) angleAnimRef.current.cancel();
       };
-    }, [handleMove, disabled]);
+    }, [disabled, glow, handleMove, prefersReducedMotionRef]);
+
+    const isStaticBorder = disabled || !glow || prefersReducedMotionRef.current;
 
     return (
       <>
+        {/* Фоллбек-бордер (доступность, без движения) */}
         <div
+          aria-hidden
           className={cn(
             "pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity",
             glow && "opacity-100",
             variant === "white" && "border-white",
-            disabled && "!block"
+            isStaticBorder && "!block"
           )}
         />
+        {/* Основной контейнер эффекта */}
         <div
+          aria-hidden
           ref={containerRef}
           style={
             {
@@ -140,33 +184,34 @@ const GlowingEffect = memo(
               "--gradient":
                 variant === "white"
                   ? `repeating-conic-gradient(
-                  from 236.84deg at 50% 50%,
-                  var(--black),
-                  var(--black) calc(25% / var(--repeating-conic-gradient-times))
-                )`
+                      from 236.84deg at 50% 50%,
+                      var(--black, #000),
+                      var(--black, #000) calc(25% / var(--repeating-conic-gradient-times))
+                    )`
                   : `radial-gradient(circle, #dd7bbb 10%, #dd7bbb00 20%),
-                radial-gradient(circle at 40% 40%, #d79f1e 5%, #d79f1e00 15%),
-                radial-gradient(circle at 60% 60%, #5a922c 10%, #5a922c00 20%), 
-                radial-gradient(circle at 40% 60%, #4c7894 10%, #4c789400 20%),
-                repeating-conic-gradient(
-                  from 236.84deg at 50% 50%,
-                  #dd7bbb 0%,
-                  #d79f1e calc(25% / var(--repeating-conic-gradient-times)),
-                  #5a922c calc(50% / var(--repeating-conic-gradient-times)), 
-                  #4c7894 calc(75% / var(--repeating-conic-gradient-times)),
-                  #dd7bbb calc(100% / var(--repeating-conic-gradient-times))
-                )`,
+                     radial-gradient(circle at 40% 40%, #d79f1e 5%, #d79f1e00 15%),
+                     radial-gradient(circle at 60% 60%, #5a922c 10%, #5a922c00 20%), 
+                     radial-gradient(circle at 40% 60%, #4c7894 10%, #4c789400 20%),
+                     repeating-conic-gradient(
+                       from 236.84deg at 50% 50%,
+                       #dd7bbb 0%,
+                       #d79f1e calc(25% / var(--repeating-conic-gradient-times)),
+                       #5a922c calc(50% / var(--repeating-conic-gradient-times)), 
+                       #4c7894 calc(75% / var(--repeating-conic-gradient-times)),
+                       #dd7bbb calc(100% / var(--repeating-conic-gradient-times))
+                     )`,
             } as React.CSSProperties
           }
           className={cn(
             "pointer-events-none absolute inset-0 rounded-[inherit] opacity-100 transition-opacity",
             glow && "opacity-100",
-            blur > 0 && "blur-[var(--blur)] ",
+            blur > 0 && "blur-[var(--blur)]",
             className,
-            disabled && "!hidden"
+            isStaticBorder && "!hidden"
           )}
         >
           <div
+            aria-hidden
             className={cn(
               "glow",
               "rounded-[inherit]",
