@@ -128,13 +128,12 @@ export function LogoCarouselSection() {
     <Section id="logo-carousel" aria-labelledby="logo-carousel-title">
       <Container>
         <div className="flex flex-col items-center gap-8 md:pb-20 pb-10">
-          <header className="text-center">
+          <div className="text-center">
             <GradientHeading variant="secondary" id="logo-carousel-title">
               The best are already here
             </GradientHeading>
-
             <GradientHeading size="xxl">Join New Cult</GradientHeading>
-          </header>
+          </div>
 
           <div role="region" aria-label="Partner and technology logos">
             <LogoCarousel columnCount={3} logos={allLogos} />

@@ -47,6 +47,8 @@ export interface HeroProps extends SectionProps {
   gradient?: boolean;
   /** Add top blur overlay */
   blur?: boolean;
+  /** Animation repeat */
+  once?: boolean;
 }
 
 const TRANSITION = { ease: "easeInOut" as const, delay: 0.3, duration: 0.8 };
@@ -65,6 +67,7 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
       actionsClassName,
       as = "h1",
       nativeTitle,
+      once = false,
       ...props
     },
     ref
@@ -104,7 +107,7 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
                 <m.div
                   initial={{ width: "15rem" }}
                   whileInView={{ width: "30rem" }}
-                  viewport={{ once: true, amount: 0.4 }}
+                  viewport={{ once, amount: 0.4 }}
                   transition={TRANSITION}
                   className="absolute h-0.5 -translate-y-[10%] bg-primary"
                 />
@@ -113,7 +116,7 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
                 <m.div
                   initial={{ width: "8rem" }}
                   whileInView={{ width: "25rem" }}
-                  viewport={{ once: true, amount: 0.4 }}
+                  viewport={{ once, amount: 0.4 }}
                   transition={TRANSITION}
                   className="absolute top-0 h-36 -translate-y-[40%] rounded-full bg-primary/70 blur-xl"
                 />
@@ -122,7 +125,7 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
                 <m.div
                   initial={{ width: "10rem" }}
                   whileInView={{ width: "25rem" }}
-                  viewport={{ once: true, amount: 0.4 }}
+                  viewport={{ once, amount: 0.4 }}
                   transition={TRANSITION}
                   className="absolute h-40 w-[25rem] -translate-y-[10%] rounded-full bg-primary opacity-80 blur-2xl"
                 />
@@ -131,7 +134,7 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
                 <m.div
                   initial={{ width: "10rem" }}
                   whileInView={{ width: "35rem" }}
-                  viewport={{ once: true, amount: 0.4 }}
+                  viewport={{ once, amount: 0.4 }}
                   transition={TRANSITION}
                   className="absolute h-40 w-[28rem] translate-y-[50%] rounded-full bg-primary/60 opacity-80 blur-3xl"
                 />
@@ -145,7 +148,7 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
                 shouldAnimate ? { y: 100, opacity: 0.5 } : (false as const)
               }
               whileInView={shouldAnimate ? { y: 0, opacity: 1 } : undefined}
-              viewport={shouldAnimate ? { once: true, amount: 0.3 } : undefined}
+              viewport={shouldAnimate ? { once, amount: 0.3 } : undefined}
               transition={shouldAnimate ? TRANSITION : undefined}
               className="relative z-10 flex flex-1 flex-col justify-center gap-4"
             >
