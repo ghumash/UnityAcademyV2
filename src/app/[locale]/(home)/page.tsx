@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { Locale } from "@/shared/lib/i18n";
 import {
   Carousel,
+  Courses,
   CtaBanner,
   FeaturesSection,
   Hero,
@@ -45,6 +46,7 @@ export default async function HomePage() {
       <FeaturesSection />
       <VideoCardsCarousel />
       <LogoCarouselSection />
+      <Courses />
       <CtaBanner
         heading="Գրանցվիր անվճար խորհրդատվության՝ գտնելու քո ուղղությունը ՏՏ-ում"
         buttons={{

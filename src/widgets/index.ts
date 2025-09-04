@@ -9,3 +9,4 @@ export { FeaturesSection } from "./FeaturesSection/FeaturesSection";
 export * from "./VideoCardsCarousel/VideoCardsCarousel";
 export * from "./LogoCarouselSection/LogoCarouselSection";
 export * from "./CtaBanner/CtaBanner";
+export * from "./Courses/Courses";
