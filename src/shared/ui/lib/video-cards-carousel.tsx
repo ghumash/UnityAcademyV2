@@ -319,7 +319,8 @@ const PromoVideoDialog = memo(function PromoVideoDialog({
       srcWebm={srcWebm}
       srcMp4={srcMp4}
       poster={posterSrc}
-      autoPlay={false}
+      autoPlay
+      muted={false}
       controls
       preload="metadata"
       aspect="4 / 5"
@@ -419,7 +420,7 @@ export const Card = memo(function Card({
                 transition: { duration: reducedMotion ? 0.1 : 0.2 },
               }}
               layoutId={layout ? `card-${titleText}` : undefined}
-              className="relative z-[60] mx-auto my-10 h-fit max-w-2xl rounded-3xl bg-white p-4 font-sans shadow-lg outline-none md:p-10 dark:bg-neutral-900"
+              className="relative z-[60] mx-auto my-30 max-w-lg rounded-3xl bg-white p-4 font-sans shadow-lg outline-none md:p-6 dark:bg-neutral-900"
             >
               <button
                 type="button"
@@ -445,7 +446,7 @@ export const Card = memo(function Card({
               <motion.h2
                 id={titleId}
                 layoutId={layout ? `title-${titleText}` : undefined}
-                className="mt-2 text-2xl font-semibold text-neutral-700 md:mt-4 md:text-5xl dark:text-white"
+                className="text-2xl font-semibold text-neutral-700 md:text-3xl dark:text-white"
               >
                 {card.student}
               </motion.h2>
