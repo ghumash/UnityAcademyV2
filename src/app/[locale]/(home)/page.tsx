@@ -11,7 +11,7 @@ import {
 } from "@/widgets";
 import { createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { home } from "@/shared/config";
+import { hero } from "@/shared/config/home";
 
 export async function generateMetadata({
   params,
@@ -32,11 +32,11 @@ export async function generateMetadata({
 export default async function HomePage() {
   return (
     <main>
-      {home.hero.display && (
+      {hero.display && (
         <Hero
-          title={home.hero.title}
-          subtitle={home.hero.subtitle}
-          actions={home.hero.actions}
+          title={hero.title}
+          subtitle={hero.subtitle}
+          actions={hero.actions}
           titleClassName="text-5xl md:text-6xl font-extrabold"
           subtitleClassName="text-lg md:text-xl max-w-[600px]"
           actionsClassName="mt-8"
