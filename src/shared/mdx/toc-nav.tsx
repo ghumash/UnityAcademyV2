@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import type { TocItem } from "./toc";
 import { ScrollArea } from "@/shared/ui/scroll-area";
 import { cn } from "../lib";
@@ -17,7 +18,7 @@ export function MdxTocNav({ items }: { items: TocItem[] }) {
         <ScrollArea className="max-h-[60vh] pr-2">
           <nav className="grid gap-1">
             {items.map((it) => (
-              <a
+              <Link
                 key={it.id}
                 href={`#${it.id}`}
                 className={cn(
@@ -27,7 +28,7 @@ export function MdxTocNav({ items }: { items: TocItem[] }) {
                 )}
               >
                 {it.title}
-              </a>
+              </Link>
             ))}
           </nav>
         </ScrollArea>

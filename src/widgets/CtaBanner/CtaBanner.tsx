@@ -45,7 +45,7 @@ function SmartLink({ href, newTab, ...rest }: SmartLinkProps) {
   if (!external) {
     return <Link href={href} {...rest} />;
   }
-  return <a href={href} target={target} rel={rel} {...rest} />;
+  return <Link href={href} target={target} rel={rel} {...rest} />;
 }
 
 const CtaBanner = memo(function CtaBanner({

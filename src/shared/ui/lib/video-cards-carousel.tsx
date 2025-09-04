@@ -300,7 +300,6 @@ const PromoVideoPreview = memo(function PromoVideoPreview({
   );
 });
 
-
 const PromoVideoDialog = memo(function PromoVideoDialog({
   srcWebm,
   srcMp4,
@@ -312,7 +311,6 @@ const PromoVideoDialog = memo(function PromoVideoDialog({
   posterSrc?: string;
   title: string;
 }) {
-  // проигрыватель в модалке: без автоплея, с контролами
   return (
     <PromoVideo
       title={title}
@@ -471,7 +469,7 @@ export const Card = memo(function Card({
         aria-expanded={open}
         onClick={handleOpen}
         layoutId={layout ? `card-${titleText}` : undefined}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 dark:bg-neutral-900"
+        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[30rem] md:w-86 dark:bg-neutral-900"
         title={titleText}
       >
         <div

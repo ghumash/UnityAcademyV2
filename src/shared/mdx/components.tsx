@@ -1,5 +1,5 @@
 import * as React from "react";
-import Link from "next/link";
+import NextLink from "next/link";
 import { Callout } from "./callout";
 import { YouTube } from "./youtube-lite";
 import { MdxImage } from "./image";
@@ -68,7 +68,6 @@ import {
 
   // form
   Form,
-  useFormField,
   FormItem,
   FormLabel,
   FormControl,
@@ -123,7 +122,16 @@ import {
   Toaster,
 } from "@/shared/ui";
 
-/** Заголовки: строгий тип для HTMLHeadingElement без generic конфликтов */
+/** Вспомогательная утилита для объединения rel */
+function mergeRel(base: string, extra?: string) {
+  if (!extra) return base;
+  const set = new Set(
+    [...base.split(" "), ...extra.split(" ")].filter(Boolean)
+  );
+  return Array.from(set).join(" ");
+}
+
+/** Заголовки */
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
 function makeHeading(Tag: "h1" | "h2" | "h3", base: string) {
   const Comp = React.forwardRef<HTMLHeadingElement, HeadingProps>(
@@ -151,7 +159,11 @@ const UL = React.forwardRef<
   HTMLUListElement,
   React.ComponentPropsWithoutRef<"ul">
 >(({ className, ...rest }, ref) => (
-  <ul ref={ref} {...rest} className={cn("mt-4 list-disc pl-6", className)} />
+  <ul
+    ref={ref}
+    {...rest}
+    className={cn("mt-4 list-disc pl-6 marker:text-foreground/70", className)}
+  />
 ));
 UL.displayName = "MDX.UL";
 
@@ -159,7 +171,14 @@ const OL = React.forwardRef<
   HTMLOListElement,
   React.ComponentPropsWithoutRef<"ol">
 >(({ className, ...rest }, ref) => (
-  <ol ref={ref} {...rest} className={cn("mt-4 list-decimal pl-6", className)} />
+  <ol
+    ref={ref}
+    {...rest}
+    className={cn(
+      "mt-4 list-decimal pl-6 marker:text-foreground/70",
+      className
+    )}
+  />
 ));
 OL.displayName = "MDX.OL";
 
@@ -178,7 +197,10 @@ const BLOCKQUOTE = React.forwardRef<
   <blockquote
     ref={ref}
     {...rest}
-    className={cn("mt-6 border-l-2 pl-6 italic text-foreground/80", className)}
+    className={cn(
+      "mt-6 border-l-2 pl-6 italic text-muted-foreground",
+      className
+    )}
   />
 ));
 BLOCKQUOTE.displayName = "MDX.Blockquote";
@@ -218,15 +240,16 @@ const HR = React.forwardRef<
 ));
 HR.displayName = "MDX.HR";
 
-/** Ссылки: http(s) → target=_blank; mailto/tel/# → <a>; внутренние → <Link> */
-const A = React.forwardRef<
+/** Ссылки: внешние → target=_blank + безопасный rel; внутренние → <Link>; hash/mail/tel → <a> */
+const Link = React.forwardRef<
   HTMLAnchorElement,
   React.ComponentPropsWithoutRef<"a">
->(({ href = "#", className, children, ...rest }, ref) => {
+>(({ href = "#", className, children, rel, ...rest }, ref) => {
   const cls = cn(
-    "underline underline-offset-4 hover:text-foreground",
+    "underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
     className
   );
+
   const isHttp = /^https?:\/\//i.test(href);
   const isMailTel = /^(mailto:|tel:)/i.test(href);
   const isHash = href.startsWith("#");
@@ -238,41 +261,45 @@ const A = React.forwardRef<
 
   if (isHttp) {
     return (
-      <a
-        ref={ref}
-        {...rest}
+      <NextLink
         href={href}
         className={cls}
         target="_blank"
-        rel="noopener noreferrer"
+        rel={mergeRel("noopener noreferrer", rel)}
+        prefetch={false}
+        ref={ref}
+        {...rest}
       >
         {children}
-      </a>
+      </NextLink>
     );
   }
-  if (isInternal) {
-    return (
-      <Link href={href} className={cls}>
-        {children}
-      </Link>
-    );
-  }
+
+  // для внутренних, hash, mailto, tel — тоже используем Link
   return (
-    <a ref={ref} {...rest} href={href} className={cls}>
+    <NextLink
+      href={href}
+      className={cls}
+      prefetch={isInternal ? false : undefined}
+      ref={ref}
+      {...rest}
+    >
       {children}
-    </a>
+    </NextLink>
   );
 });
-A.displayName = "MDX.A";
+Link.displayName = "MDX.Link";
 
-/** Markdown <img> как есть */
+/** Markdown <img> как есть (ленивая загрузка, async-декодирование, безопасный alt по умолчанию) */
 const IMG = React.forwardRef<
   HTMLImageElement,
   React.ImgHTMLAttributes<HTMLImageElement>
->(({ className, ...rest }, ref) => (
+>(({ className, alt, ...rest }, ref) => (
   <img
     ref={ref}
     loading="lazy"
+    decoding="async"
+    alt={alt ?? ""}
     {...rest}
     className={cn("mt-6 rounded-lg border", className)}
   />
@@ -294,14 +321,14 @@ export const MDXComponents = {
   ul: UL,
   ol: OL,
   li: LI,
-  a: A,
+  Link,
   blockquote: BLOCKQUOTE,
   code: CODE,
   pre: PRE,
   hr: HR,
   img: IMG,
 
-  // ваши «кастомные» MDX-компоненты
+  // Кастомные MDX-компоненты
   Image: MdxImage,
   Callout,
   YouTube,
@@ -391,7 +418,7 @@ export const MDXComponents = {
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
-  navigationMenuTriggerStyle,
+  navigationMenuTriggerStyle, // оставляю как есть, если у тебя он типизирован как any
 
   // scroll-area
   ScrollArea,

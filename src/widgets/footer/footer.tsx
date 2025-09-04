@@ -153,7 +153,7 @@ function FooterItem({ link }: { link: FooterLink }) {
 
   // anchors or external absolute URLs
   return (
-    <a
+    <Link
       href={link.href}
       className={className}
       {...(!isAnchor && {
@@ -165,7 +165,7 @@ function FooterItem({ link }: { link: FooterLink }) {
       {Icon ? <Icon className="me-1 size-4" aria-hidden /> : null}
       <span className="sr-only">{Icon ? link.title : undefined}</span>
       {!Icon ? <span>{link.title}</span> : null}
-    </a>
+    </Link>
   );
 }
 

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Button, Card, CardContent } from "@/shared/ui";
+import Link from "next/link";
 
 type Props = {
   id?: string; // Google Form ID (e.g. 1FAIpQLS...)
@@ -41,9 +42,9 @@ export function GoogleFormEmbed({
           {open && (
             <div className="mt-4">
               <Button asChild>
-                <a href={open} target="_blank" rel="noopener noreferrer">
+                <Link href={open} target="_blank" rel="noopener noreferrer">
                   {openText}
-                </a>
+                </Link>
               </Button>
             </div>
           )}
@@ -65,9 +66,9 @@ export function GoogleFormEmbed({
       <div className="border-t p-3 text-right">
         {open && (
           <Button asChild variant="outline" size="sm">
-            <a href={open} target="_blank" rel="noopener noreferrer">
+            <Link href={open} target="_blank" rel="noopener noreferrer">
               {openText}
-            </a>
+            </Link>
           </Button>
         )}
       </div>
