@@ -1,12 +1,9 @@
 // app/(site)/courses/Courses.tsx
-"use client"
+"use client";
 import React from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
-import {
-  Container,
-  Section,
-} from "@/shared/ui/custom";
+import { Container, Section } from "@/shared/ui/custom";
 import {
   ArrowRight,
   Code,
@@ -26,13 +23,7 @@ import {
 
 type Level = "beginner" | "intermediate" | "advanced";
 type Format = "online" | "offline" | "hybrid";
-type Theme =
-  | "indigo"
-  | "purple"
-  | "orange"
-  | "emerald"
-  | "cyan"
-  | "rose";
+type Theme = "indigo" | "purple" | "orange" | "emerald" | "cyan" | "rose";
 
 export type Course = {
   id: string;
@@ -43,7 +34,7 @@ export type Course = {
   format: Format;
   /** lucide icon name to render on the card header */
   icon?: keyof typeof ICONS;
-  /** visual theme color */ 
+  /** visual theme color */
   theme?: Theme;
   /** optional link to course page */
   href?: string;
@@ -89,10 +80,8 @@ const THEMES: Record<
   }
 > = {
   indigo: {
-    button:
-      "from-indigo-900/40 via-black/60 to-black/80 border-indigo-500/30",
-    sweep:
-      "bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent",
+    button: "from-indigo-900/40 via-black/60 to-black/80 border-indigo-500/30",
+    sweep: "bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent",
     hoverOverlay:
       "bg-gradient-to-r from-indigo-500/10 via-indigo-400/20 to-indigo-500/10",
     iconBg:
@@ -104,10 +93,8 @@ const THEMES: Record<
     borderHoverShadow: "hover:border-indigo-400/60 hover:shadow-indigo-500/30",
   },
   purple: {
-    button:
-      "from-purple-900/40 via-black/60 to-black/80 border-purple-500/30",
-    sweep:
-      "bg-gradient-to-r from-transparent via-purple-400/30 to-transparent",
+    button: "from-purple-900/40 via-black/60 to-black/80 border-purple-500/30",
+    sweep: "bg-gradient-to-r from-transparent via-purple-400/30 to-transparent",
     hoverOverlay:
       "bg-gradient-to-r from-purple-500/10 via-purple-400/20 to-purple-500/10",
     iconBg:
@@ -119,10 +106,8 @@ const THEMES: Record<
     borderHoverShadow: "hover:border-purple-400/60 hover:shadow-purple-500/30",
   },
   orange: {
-    button:
-      "from-orange-900/40 via-black/60 to-black/80 border-orange-500/30",
-    sweep:
-      "bg-gradient-to-r from-transparent via-orange-400/30 to-transparent",
+    button: "from-orange-900/40 via-black/60 to-black/80 border-orange-500/30",
+    sweep: "bg-gradient-to-r from-transparent via-orange-400/30 to-transparent",
     hoverOverlay:
       "bg-gradient-to-r from-orange-500/10 via-orange-400/20 to-orange-500/10",
     iconBg:
@@ -151,8 +136,7 @@ const THEMES: Record<
   },
   cyan: {
     button: "from-cyan-900/40 via-black/60 to-black/80 border-cyan-500/30",
-    sweep:
-      "bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent",
+    sweep: "bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent",
     hoverOverlay:
       "bg-gradient-to-r from-cyan-500/10 via-cyan-400/20 to-cyan-500/10",
     iconBg:
@@ -165,8 +149,7 @@ const THEMES: Record<
   },
   rose: {
     button: "from-rose-900/40 via-black/60 to-black/80 border-rose-500/30",
-    sweep:
-      "bg-gradient-to-r from-transparent via-rose-400/30 to-transparent",
+    sweep: "bg-gradient-to-r from-transparent via-rose-400/30 to-transparent",
     hoverOverlay:
       "bg-gradient-to-r from-rose-500/10 via-rose-400/20 to-rose-500/10",
     iconBg:
@@ -218,7 +201,8 @@ function CourseCard({ course }: { course: Course }) {
         "transition-all duration-500 ease-out overflow-hidden focus:outline-none",
         t.button,
         t.borderHoverShadow,
-        href && "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/40"
+        href &&
+          "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/40"
       )}
       aria-label={title}
     >
@@ -291,7 +275,10 @@ function CourseCard({ course }: { course: Course }) {
                 "ring-1 ring-white/10 backdrop-blur"
               )}
             >
-              <GraduationCap className="w-4 h-4 opacity-80" aria-hidden="true" />
+              <GraduationCap
+                className="w-4 h-4 opacity-80"
+                aria-hidden="true"
+              />
               {levelLabel(level)}
             </span>
 
