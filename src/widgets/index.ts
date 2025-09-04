@@ -4,3 +4,5 @@ export { default as TeamSection } from "./TeamSection/TeamSection";
 export * from "./GlowingGrid/GlowingGrid";
 export * from "./Hero/Hero";
 export * from "./NavBar/NavBar";
+export { Carousel } from "./Carousel/Carousel";
+export { FeaturesSection } from "./FeaturesSection/FeaturesSection";

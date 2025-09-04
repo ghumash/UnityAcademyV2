@@ -3,7 +3,11 @@ import { HeroAction } from "@/widgets";
 export const home = {
   hero: {
     display: true,
-    title: "Քո ապագան ՏՏ - ում սկսվում է այստեղ",
+    title: (
+      <>
+        Քո ապագան ՏՏ - ում <br /> սկսվում է այստեղ
+      </>
+    ),
     subtitle: "Զարգացիր ջերմ և ոգեշնչող միջավայրում",
     actions: [
       {

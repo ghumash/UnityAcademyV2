@@ -66,7 +66,7 @@ export const NavBar = React.memo(function NavBar({
     <nav
       aria-label="Primary"
       className={cn(
-        "fixed left-1/2 z-50 -translate-x-1/2",
+        "fixed left-1/2 z-50 -translate-x-1/2 max-h-[5rem]",
         wrapperPosition,
         className
       )}
