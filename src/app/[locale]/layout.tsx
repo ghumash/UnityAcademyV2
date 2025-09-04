@@ -55,7 +55,7 @@ export default async function LocaleLayout({
       >
         {children}
         <NavBar items={navItems} locale={locale} dict={dict.header} />
-        <Footer locale={locale} dict={dict.header} />
+        <Footer />
       </ThemeProvider>
     </>
   );

@@ -8,6 +8,7 @@ import { LanguageSwitcher } from "@/features/i18n";
 import { ModeToggle } from "@/features/theme";
 import { Button } from "@/shared/ui";
 import type { HeaderDict, Locale } from "@/shared/lib/i18n";
+import { ChevronRight } from "lucide-react";
 
 /** Pass `icon` as a ReactNode (e.g. `<Home size={18} />`) — not a component type */
 export type NavItem = {
@@ -122,10 +123,25 @@ export const NavBar = React.memo(function NavBar({
         })}
         <div className="h-6 border border-border" />
         <div className="flex items-center gap-2">
-          <LanguageSwitcher locale={locale} />
           <ModeToggle />
-          <Button asChild className="rounded-full">
-            <Link href={`/${locale}/apply`}>{dict.nav.apply}</Link>
+          <LanguageSwitcher locale={locale} />
+          <Button
+            asChild
+            className="
+              rounded-full
+              h-9 w-9 p-0
+              md:h-10 md:w-auto md:px-4
+              gap-2
+            "
+          >
+            <Link
+              href={`/${locale}/apply`}
+              aria-label={dict.nav.apply}
+              title={dict.nav.apply}
+            >
+              <span className="hidden md:inline">{dict.nav.apply}</span>
+              <ChevronRight aria-hidden="true" className="h-4 w-4 shrink-0" />
+            </Link>
           </Button>
         </div>
       </div>

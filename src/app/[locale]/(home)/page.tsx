@@ -50,7 +50,7 @@ export default async function HomePage() {
         buttons={{
           primary: {
             text: "Գրանցվել",
-            url: "/",
+            url: "/contact",
           },
         }}
       />
