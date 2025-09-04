@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/shared/lib/i18n";
-import { Carousel, FeaturesSection, Hero, TeamSection } from "@/widgets";
+import {
+  Carousel,
+  FeaturesSection,
+  Hero,
+  TeamSection,
+  VideoCardsCarousel,
+} from "@/widgets";
 import { peopleMock } from "@/entities/person";
 import { createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
@@ -68,6 +74,7 @@ export default async function HomePage() {
       )}
       <Carousel />
       <FeaturesSection />
+      <VideoCardsCarousel />
       <GlowingGrid
         items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}

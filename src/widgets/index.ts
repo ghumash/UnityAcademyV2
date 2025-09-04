@@ -6,3 +6,4 @@ export * from "./Hero/Hero";
 export * from "./NavBar/NavBar";
 export { Carousel } from "./Carousel/Carousel";
 export { FeaturesSection } from "./FeaturesSection/FeaturesSection";
+export * from "./VideoCardsCarousel/VideoCardsCarousel";
