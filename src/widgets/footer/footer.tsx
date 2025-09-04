@@ -5,7 +5,6 @@ import type { ComponentProps, ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import {
   FacebookIcon,
-  FrameIcon,
   InstagramIcon,
   LinkedinIcon,
   YoutubeIcon,
@@ -15,18 +14,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/shared/config";
 
-interface FooterLink {
+type FooterLink = {
   title: string;
   href: string;
-  icon?: React.ComponentType<{ className?: string }>;
-}
+  icon?: React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
+};
 
-interface FooterSection {
+type FooterSection = {
   label: string;
   links: FooterLink[];
-}
+};
 
-const footerLinks: FooterSection[] = [
+const footerLinks: ReadonlyArray<FooterSection> = [
   {
     label: "Resources",
     links: [
@@ -37,90 +36,93 @@ const footerLinks: FooterSection[] = [
     ],
   },
   {
-    label: "Social Links",
+    label: "Social",
     links: [
       { title: "Facebook", href: "#", icon: FacebookIcon },
       { title: "Instagram", href: "#", icon: InstagramIcon },
-      { title: "Youtube", href: "#", icon: YoutubeIcon },
+      { title: "YouTube", href: "#", icon: YoutubeIcon },
       { title: "LinkedIn", href: "#", icon: LinkedinIcon },
     ],
   },
-  {
-    label: "Product",
-    links: [
-      { title: "Features", href: "#features" },
-      { title: "Pricing", href: "#pricing" },
-      { title: "Testimonials", href: "#testimonials" },
-      { title: "Integration", href: "/" },
-    ],
-  },
-  {
-    label: "Company",
-    links: [
-      { title: "FAQs", href: "/faqs" },
-      { title: "About Us", href: "/about" },
-      { title: "Privacy Policy", href: "/privacy" },
-      { title: "Terms of Services", href: "/terms" },
-    ],
-  },
-];
+] as const;
+
+const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <Section as="footer">
+    <Section as="footer" role="contentinfo" aria-labelledby="footer-heading">
       <Container>
-        <div className="md:rounded-t-6xl relative flex flex-col items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 lg:py-16">
-          <div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
+        <div className="relative flex flex-col items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 md:rounded-t-6xl lg:py-16">
+          <div
+            aria-hidden="true"
+            className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur"
+          />
 
-          <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
-            <AnimatedContainer className="space-y-4">
+          <h2 id="footer-heading" className="sr-only">
+            Site footer
+          </h2>
+
+          <div className="flex w-full flex-col gap-8 md:flex-row md:justify-between md:gap-8">
+            <AnimatedContainer className="space-y-4 xl:flex-1 max-w-sm md:max-w-md">
               <div className="space-y-3">
                 <Link
-                  href={"/"}
-                  className="inline-flex items-center gap-2"
-                  aria-label="Unity Academy — home"
+                  href="/"
+                  prefetch={false}
+                  className="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  aria-label={`${siteConfig?.name ?? "Unity Academy"} — home`}
                 >
                   <Image
                     src={siteConfig.assets.logo}
                     alt="Unity Academy logo"
                     width={28}
                     height={28}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <span className="text-base font-semibold tracking-tight">
                     {siteConfig.name}
                   </span>
                 </Link>
+
                 <p className="max-w-prose text-sm text-muted-foreground">
                   {siteConfig.description}
                 </p>
-                <p className="text-muted-foreground mt-8 text-sm md:mt-0">
-                  © {new Date().getFullYear()} Asme. All rights reserved.
+
+                <p className="text-muted-foreground text-sm">
+                  © <time dateTime={String(currentYear)}>{currentYear}</time>{" "}
+                  {siteConfig.name}. All rights reserved.
                 </p>
               </div>
             </AnimatedContainer>
 
-            <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
-              {footerLinks.map((section, index) => (
+            <div className="flex gap-8">
+              {footerLinks.map((section, idx) => (
                 <AnimatedContainer
                   key={section.label}
-                  delay={0.1 + index * 0.1}
+                  delay={0.08 + idx * 0.08}
                 >
-                  <div className="mb-10 md:mb-0">
-                    <h3 className="text-xs">{section.label}</h3>
-                    <ul className="text-muted-foreground mt-4 space-y-2 text-sm">
+                  <nav
+                    aria-labelledby={`footer-section-${section.label}`}
+                    className="mb-10 min-w-[120px] flex-1 md:mb-0"
+                  >
+                    <h3
+                      id={`footer-section-${section.label}`}
+                      className="text-xs font-medium tracking-wide text-foreground"
+                    >
+                      {section.label}
+                    </h3>
+
+                    <ul
+                      role="list"
+                      className="mt-4 space-y-2 text-sm text-muted-foreground"
+                    >
                       {section.links.map((link) => (
                         <li key={link.title}>
-                          <a
-                            href={link.href}
-                            className="hover:text-foreground inline-flex items-center transition-all duration-300"
-                          >
-                            {link.icon && <link.icon className="me-1 size-4" />}
-                            {link.title}
-                          </a>
+                          <FooterItem link={link} />
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </nav>
                 </AnimatedContainer>
               ))}
             </div>
@@ -128,6 +130,42 @@ export function Footer() {
         </div>
       </Container>
     </Section>
+  );
+}
+
+/** Renders a single footer link with correct component (Link vs <a>) and a11y */
+function FooterItem({ link }: { link: FooterLink }) {
+  const isInternal = link.href.startsWith("/");
+  const isAnchor = link.href.startsWith("#");
+  const Icon = link.icon;
+
+  const className =
+    "inline-flex items-center transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
+
+  if (isInternal) {
+    return (
+      <Link href={link.href} prefetch={false} className={className}>
+        {Icon ? <Icon className="me-1 size-4" aria-hidden /> : null}
+        <span>{link.title}</span>
+      </Link>
+    );
+  }
+
+  // anchors or external absolute URLs
+  return (
+    <a
+      href={link.href}
+      className={className}
+      {...(!isAnchor && {
+        target: "_blank",
+        rel: "noopener noreferrer external",
+      })}
+      aria-label={Icon ? link.title : undefined}
+    >
+      {Icon ? <Icon className="me-1 size-4" aria-hidden /> : null}
+      <span className="sr-only">{Icon ? link.title : undefined}</span>
+      {!Icon ? <span>{link.title}</span> : null}
+    </a>
   );
 }
 
@@ -142,18 +180,16 @@ function AnimatedContainer({
   delay = 0.1,
   children,
 }: ViewAnimationProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const reduce = useReducedMotion();
 
-  if (shouldReduceMotion) {
-    return children;
-  }
+  if (reduce) return <>{children}</>;
 
   return (
     <motion.div
-      initial={{ filter: "blur(4px)", translateY: -8, opacity: 0 }}
-      whileInView={{ filter: "blur(0px)", translateY: 0, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.8 }}
+      initial={{ filter: "blur(4px)", y: -8, opacity: 0 }}
+      whileInView={{ filter: "blur(0px)", y: 0, opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ delay, duration: 0.5, ease: "easeOut" }}
       className={className}
     >
       {children}

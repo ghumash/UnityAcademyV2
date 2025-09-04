@@ -4,6 +4,7 @@ import {
   Carousel,
   FeaturesSection,
   Hero,
+  LogoCarouselSection,
   TeamSection,
   VideoCardsCarousel,
 } from "@/widgets";
@@ -75,6 +76,7 @@ export default async function HomePage() {
       <Carousel />
       <FeaturesSection />
       <VideoCardsCarousel />
+      <LogoCarouselSection />
       <GlowingGrid
         items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}

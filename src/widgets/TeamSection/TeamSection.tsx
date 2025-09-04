@@ -1,7 +1,8 @@
+"use client"
 import { Person, PersonCard } from "@/entities/person";
 import { Section, Container } from "@/shared/ui/custom";
 
-export default function TeamSection({ people }: { people: Person[] }) {
+export function TeamSection({ people }: { people: Person[] }) {
   return (
     <Section>
       <Container>
