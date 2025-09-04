@@ -11,7 +11,8 @@ import {
 } from "@/widgets";
 import { createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { hero } from "@/shared/config/home";
+import { getHeroConfig } from "@/shared/config/home";
+import { getT } from "@/shared/lib/i18n";
 
 export async function generateMetadata({
   params,
@@ -19,17 +20,25 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getT(locale);
   return createMetadata({
     title: "Unity Academy",
     canonical: absoluteUrl(`/${locale}`),
     alternatesPath: "/",
     locale,
-    description:
-      "Стартовый каркас Unity Academy. Веб, AI, Android, контент и карьера.",
+    description: t("home.hero.subtitle"),
   });
 }
 
-export default async function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const t = await getT(locale);
+  const hero = await getHeroConfig(locale);
+
   return (
     <main>
       {hero.display && (
@@ -48,10 +57,10 @@ export default async function HomePage() {
       <LogoCarouselSection />
       <Courses />
       <CtaBanner
-        heading="Գրանցվիր անվճար խորհրդատվության՝ գտնելու քո ուղղությունը ՏՏ-ում"
+        heading={t("home.ctaBanner.heading")}
         buttons={{
           primary: {
-            text: "Գրանցվել",
+            text: t("home.ctaBanner.buttons.primary"),
             url: "/contact",
           },
         }}

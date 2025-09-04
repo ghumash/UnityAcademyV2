@@ -1,18 +1,29 @@
 "use client"
 import { Person, PersonCard } from "@/entities/person";
 import { Section, Container } from "@/shared/ui/custom";
+import { getT } from "@/shared/lib/i18n";
+import type { Locale } from "@/shared/lib/i18n";
 
-export function TeamSection({ people }: { people: Person[] }) {
+export async function TeamSection({ 
+  people, 
+  locale 
+}: { 
+  people: Person[];
+  locale: Locale;
+}) {
+  const t = await getT(locale);
+  
   return (
     <Section>
       <Container>
-        <h2 className="text-2xl font-semibold tracking-tight">Команда</h2>
+        <h2 className="text-2xl font-semibold tracking-tight">
+          {t("about.teamSection.title")}
+        </h2>
 
         {people.length === 0 ? (
           <div className="mt-6 rounded-lg border bg-card p-6 text-card-foreground">
             <p className="text-sm text-muted-foreground">
-              Мы собираем информацию о команде. Скоро здесь появятся профили
-              преподавателей и менторов.
+              {t("about.teamSection.emptyState")}
             </p>
           </div>
         ) : (

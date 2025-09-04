@@ -119,7 +119,7 @@ export default async function AboutPage({
         items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
-      <TeamSection people={peopleMock} />
+      <TeamSection people={peopleMock} locale={locale} />
     </main>
   );
 }
