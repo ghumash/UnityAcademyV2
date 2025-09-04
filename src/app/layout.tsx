@@ -43,7 +43,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-dvh`}>
-        <div className="sm:mt-20">{children}</div>
+        <div className="sm:mt-20 md:mt-22">{children}</div>
         <Toaster richColors closeButton duration={4000} />
         <Analytics />
       </body>
