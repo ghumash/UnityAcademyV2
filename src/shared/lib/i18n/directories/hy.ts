@@ -1,5 +1,7 @@
 import type { Dict } from "../types";
 
+import { common } from "./common/en";
+
 import { hero } from "./home/hero/hy";
 import { carousel } from "./home/carousel/hy";
 import { featuresSection } from "./home/featuresSection/hy";
@@ -17,22 +19,7 @@ import { mapSection } from "./contact/mapSection/hy";
 import { formSection } from "./contact/formSection/hy";
 
 export const hy: Dict = {
-  common: { home: "Գլխավոր" },
-  header: {
-    menu: "Մենյու",
-    nav: {
-      courses: "Դասընթացներ",
-      about: "Մեր մասին",
-      contacts: "Կոնտակտներ",
-      apply: "Դիմել",
-    },
-    footer: {
-      navigation: "Նավիգացիա",
-      contacts: "Կոնտակտներ",
-      madeIn: "Ստեղծված Վանաձորում",
-      rights: "Բոլոր իրավունքները պաշտպանված են։",
-    },
-  },
+  common,
   home: {
     hero,
     carousel,

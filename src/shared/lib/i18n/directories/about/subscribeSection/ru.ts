@@ -1,4 +1,4 @@
-import type { SubscribeSectionDict } from "../../../types";
+import type { SubscribeSectionDict } from "../types";
 
 export const subscribeSection: SubscribeSectionDict = {
   title: "Подпишись на наши новости",

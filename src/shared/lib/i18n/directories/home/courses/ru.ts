@@ -1,4 +1,4 @@
-import type { CoursesDict } from "../../../types";
+import type { CoursesDict } from "../types";
 
 export const courses: CoursesDict = {
   title: "Наши курсы",

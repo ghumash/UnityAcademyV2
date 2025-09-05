@@ -1,4 +1,4 @@
-import type { ContactsSectionDict } from "../../../types";
+import type { ContactsSectionDict } from "../types";
 
 export const contactsSection: ContactsSectionDict = {
   title: "Կապվեք մեզ հետ",

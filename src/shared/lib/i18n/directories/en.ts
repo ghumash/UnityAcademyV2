@@ -1,5 +1,7 @@
 import type { Dict } from "../types";
 
+import { common } from "./common/en";
+
 import { hero } from "./home/hero/en";
 import { carousel } from "./home/carousel/en";
 import { featuresSection } from "./home/featuresSection/en";
@@ -17,22 +19,7 @@ import { mapSection } from "./contact/mapSection/en";
 import { formSection } from "./contact/formSection/en";
 
 export const en: Dict = {
-  common: { home: "Home" },
-  header: {
-    menu: "Menu",
-    nav: {
-      courses: "Courses",
-      about: "About",
-      contacts: "Contacts",
-      apply: "Apply",
-    },
-    footer: {
-      navigation: "Navigation",
-      contacts: "Contacts",
-      madeIn: "Made in Vanadzor",
-      rights: "All rights reserved.",
-    },
-  },
+  common,
   home: {
     hero,
     carousel,
@@ -53,4 +40,5 @@ export const en: Dict = {
     formSection,
   },
 };
+
 export default en;

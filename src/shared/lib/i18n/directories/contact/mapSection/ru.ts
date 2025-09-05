@@ -1,4 +1,4 @@
-import type { MapSectionDict } from "../../../types";
+import type { MapSectionDict } from "../types";
 
 export const mapSection: MapSectionDict = {
   title: "Наше местоположение",

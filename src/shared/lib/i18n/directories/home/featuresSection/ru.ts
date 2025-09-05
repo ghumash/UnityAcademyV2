@@ -1,4 +1,4 @@
-import type { FeaturesSectionDict } from "../../../types";
+import type { FeaturesSectionDict } from "../types";
 
 export const featuresSection: FeaturesSectionDict = {
   features: [

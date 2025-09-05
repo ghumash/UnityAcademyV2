@@ -4,7 +4,7 @@ import type { Locale } from "@/shared/lib/i18n";
 
 export async function getHeroConfig(locale: Locale) {
   const t = await getT(locale);
-  
+
   return {
     display: true,
     title: t("home.hero.title"),

@@ -26,9 +26,8 @@ export interface NavBarProps {
   className?: string;
   /** Mobile: bottom; ≥sm: top (kept from your original). You can override to "top" | "bottom". */
   position?: "top" | "bottom";
-
-  locale: Locale;
   dict: HeaderDict;
+  locale: Locale;
 }
 
 export const NavBar = React.memo(function NavBar({
@@ -136,10 +135,10 @@ export const NavBar = React.memo(function NavBar({
           >
             <Link
               href={`/${locale}/apply`}
-              aria-label={dict.nav.apply}
-              title={dict.nav.apply}
+              aria-label={dict.common.nav.apply}
+              title={dict.common.nav.apply}
             >
-              <span className="hidden md:inline">{dict.nav.apply}</span>
+              <span className="hidden md:inline">{dict.common.nav.apply}</span>
               <ChevronRight aria-hidden="true" className="h-4 w-4 shrink-0" />
             </Link>
           </Button>

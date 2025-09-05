@@ -1,4 +1,4 @@
-import type { FormSectionDict } from "../../../types";
+import type { FormSectionDict } from "../types";
 
 export const formSection: FormSectionDict = {
   title: "Напишите нам",

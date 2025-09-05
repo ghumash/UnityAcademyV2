@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
-import { getDictionary, Locale } from "@/shared/lib/i18n";
-import { Footer, Header, NavBar } from "@/widgets";
+import { getDictionary, getT, Locale } from "@/shared/lib/i18n";
+import { Footer, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
-import { Briefcase, FileText, Home, User } from "lucide-react";
+import { Briefcase, Home, User } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -54,7 +54,7 @@ export default async function LocaleLayout({
         disableTransitionOnChange
       >
         {children}
-        <NavBar items={navItems} locale={locale} dict={dict.header} />
+        <NavBar items={navItems} dict={dict} locale={locale} />
         <Footer />
       </ThemeProvider>
     </>

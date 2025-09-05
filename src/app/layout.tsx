@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/shared/ui";
 import { createMetadata } from "@/shared/seo";
 import "./globals.css";
+import { getT, Locale, locales } from "@/shared/lib/i18n";
+import { absoluteUrl, siteConfig } from "@/shared/config";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({
@@ -11,14 +13,21 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-export const metadata: Metadata = createMetadata({
-  title: "Unity Academy",
-  alternatesPath: "/",
-  canonical: "https://unityacademy.am/",
-  locale: "ru",
-  description:
-    "Стартовый каркас Unity Academy. Веб, AI, Android, контент и карьера.",
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getT(locale);
+  return createMetadata({
+    title: siteConfig.name,
+    canonical: absoluteUrl(`/${locale}`),
+    alternatesPath: "/",
+    locale,
+    description: t("home.hero.subtitle"),
+  });
+}
 
 export default function RootLayout({
   children,

@@ -1,0 +1,15 @@
+export type CommonDict = {
+  site: {
+    name: string;
+    shortName: string;
+    description: string;
+    locale: string;
+  };
+  nav: { courses: string; about: string; contacts: string; apply: string };
+  footer: {
+    navigation: string;
+    contacts: string;
+    madeIn: string;
+    rights: string;
+  };
+};

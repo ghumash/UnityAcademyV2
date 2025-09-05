@@ -1,4 +1,4 @@
-import type { HeroDict } from "../../../types";
+import type { HeroDict } from "../types";
 
 export const hero: HeroDict = {
   title: "Твое будущее в IT начинается здесь",

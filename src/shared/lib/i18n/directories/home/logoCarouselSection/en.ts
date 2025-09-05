@@ -1,4 +1,4 @@
-import type { LogoCarouselSectionDict } from "../../../types";
+import type { LogoCarouselSectionDict } from "../types";
 
 export const logoCarouselSection: LogoCarouselSectionDict = {
   title: "The best are already here",

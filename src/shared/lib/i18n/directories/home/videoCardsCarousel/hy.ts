@@ -1,4 +1,4 @@
-import type { VideoCardsCarouselDict } from "../../../types";
+import type { VideoCardsCarouselDict } from "../types";
 
 export const videoCardsCarousel: VideoCardsCarouselDict = {
   title: "Ուսանողների պրոմո տեսանյութեր",

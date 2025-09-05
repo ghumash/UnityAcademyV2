@@ -10,7 +10,7 @@ import {
   VideoCardsCarousel,
 } from "@/widgets";
 import { createMetadata } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config";
+import { absoluteUrl, siteConfig } from "@/shared/config";
 import { getHeroConfig } from "@/shared/config/home";
 import { getT } from "@/shared/lib/i18n";
 
@@ -21,20 +21,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getT(locale);
+
   return createMetadata({
-    title: "Unity Academy",
+    title: siteConfig.name,
     canonical: absoluteUrl(`/${locale}`),
     alternatesPath: "/",
     locale,
-    description: t("home.hero.subtitle"),
+    description: t("home.hero.title"),
   });
 }
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: Locale }>;
-}) {
+async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
   const t = await getT(locale);
   const hero = await getHeroConfig(locale);
@@ -68,3 +65,5 @@ export default async function HomePage({
     </main>
   );
 }
+
+export default HomePage;

@@ -1,4 +1,4 @@
-import type { TeamSectionDict } from "../../../types";
+import type { TeamSectionDict } from "../types";
 
 export const teamSection: TeamSectionDict = {
   title: "Команда",

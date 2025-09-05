@@ -3,7 +3,9 @@ import { getDictionary } from "./get-dictionary";
 import { Dict } from "./types";
 
 function getByPath(obj: any, path: string) {
-  return path.split(".").reduce((acc, key) => (acc ? acc[key] : undefined), obj);
+  return path
+    .split(".")
+    .reduce((acc, key) => (acc ? acc[key] : undefined), obj);
 }
 
 export function t(dict: Dict, path: string): string {

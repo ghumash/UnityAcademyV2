@@ -1,4 +1,4 @@
-import type { CarouselDict } from "../../../types";
+import type { CarouselDict } from "../types";
 
 export const carousel: CarouselDict = {
   items: [

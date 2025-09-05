@@ -1,4 +1,4 @@
-import type { OurStoryDict } from "../../../types";
+import type { OurStoryDict } from "../types";
 
 export const ourStory: OurStoryDict = {
   title: "Մեր պատմությունը",
