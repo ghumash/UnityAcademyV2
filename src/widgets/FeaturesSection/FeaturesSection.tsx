@@ -1,71 +1,13 @@
-import { memo, type ElementType } from "react";
+import { memo } from "react";
 import { cn } from "@/shared/lib/utils";
 import { Container, Section } from "@/shared/ui/custom";
-import {
-  IconAdjustmentsBolt,
-  IconCloud,
-  IconCurrencyDollar,
-  IconEaseInOut,
-  IconHeart,
-  IconHelp,
-  IconRouteAltLeft,
-  IconTerminal2,
-} from "@tabler/icons-react";
+import type { FeatureItem } from "@/shared/config/home";
 
-type FeatureItem = {
-  title: string;
-  description: string;
-  Icon: ElementType;
-};
+export interface FeaturesSectionProps {
+  features: readonly FeatureItem[];
+}
 
-const FEATURES: readonly FeatureItem[] = [
-  {
-    title: "Built for developers",
-    description:
-      "Built for engineers, developers, dreamers, thinkers and doers.",
-    Icon: IconTerminal2,
-  },
-  {
-    title: "Ease of use",
-    description:
-      "It's as easy as using an Apple, and as expensive as buying one.",
-    Icon: IconEaseInOut,
-  },
-  {
-    title: "Pricing like no other",
-    description:
-      "Our prices are best in the market. No cap, no lock, no credit card required.",
-    Icon: IconCurrencyDollar,
-  },
-  {
-    title: "100% Uptime guarantee",
-    description: "We just cannot be taken down by anyone.",
-    Icon: IconCloud,
-  },
-  {
-    title: "Multi-tenant Architecture",
-    description: "You can simply share passwords instead of buying new seats",
-    Icon: IconRouteAltLeft,
-  },
-  {
-    title: "24/7 Customer Support",
-    description:
-      "We are available 100% of the time. At least our AI Agents are.",
-    Icon: IconHelp,
-  },
-  {
-    title: "Money back guarantee",
-    description: "If you do not like EveryAI, we will convince you to like us.",
-    Icon: IconAdjustmentsBolt,
-  },
-  {
-    title: "And everything else",
-    description: "I just ran out of copy ideas. Accept my sincere apologies",
-    Icon: IconHeart,
-  },
-] as const;
-
-export function FeaturesSection() {
+export function FeaturesSection({ features }: FeaturesSectionProps) {
   return (
     <Section>
       <Container>
@@ -78,7 +20,7 @@ export function FeaturesSection() {
           aria-labelledby="features-heading"
           className="relative z-10 grid grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-4"
         >
-          {FEATURES.map((feature, idx) => (
+          {features.map((feature, idx) => (
             <MemoFeature key={feature.title} {...feature} idx={idx} />
           ))}
         </ul>

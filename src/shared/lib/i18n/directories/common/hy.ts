@@ -7,11 +7,13 @@ export const common: CommonDict = {
     description: "Քո ապագան ՏՏ-ում սկսվում է այստեղ",
     locale: "hy-HY"
   },
-  nav: {
-    courses: "Դասընթացներ",
-    about: "Մեի մասին",
-    contacts: "Կապ",
-    apply: "Դիմել",
+  header: {
+    nav: {
+      courses: "Դասընթացներ",
+      about: "Մեր մասին",
+      contacts: "Կապ",
+      apply: "Դիմել",
+    },
   },
   footer: {
     navigation: "Նավիգացիյա",

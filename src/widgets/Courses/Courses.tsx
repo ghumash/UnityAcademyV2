@@ -168,13 +168,27 @@ function formatIconByMode(mode: Format) {
   return Share2; // hybrid
 }
 
-function levelLabel(level: Level) {
-  if (level === "beginner") return "Новичкам";
-  if (level === "intermediate") return "Средний";
-  return "Продвинутый";
+function levelLabel(level: Level, levels: { beginner: string; intermediate: string; advanced: string }) {
+  if (level === "beginner") return levels.beginner;
+  if (level === "intermediate") return levels.intermediate;
+  return levels.advanced;
 }
 
-function CourseCard({ course }: { course: Course }) {
+function formatLabel(format: Format, formats: { online: string; offline: string; hybrid: string }) {
+  if (format === "online") return formats.online;
+  if (format === "offline") return formats.offline;
+  return formats.hybrid;
+}
+
+function CourseCard({ 
+  course, 
+  levels, 
+  formats 
+}: { 
+  course: Course;
+  levels: { beginner: string; intermediate: string; advanced: string };
+  formats: { online: string; offline: string; hybrid: string };
+}) {
   const {
     title,
     description,
@@ -279,7 +293,7 @@ function CourseCard({ course }: { course: Course }) {
                 className="w-4 h-4 opacity-80"
                 aria-hidden="true"
               />
-              {levelLabel(level)}
+              {levelLabel(level, levels)}
             </span>
 
             <span
@@ -289,7 +303,7 @@ function CourseCard({ course }: { course: Course }) {
               )}
             >
               <FormatIcon className="w-4 h-4 opacity-80" aria-hidden="true" />
-              {format}
+              {formatLabel(format, formats)}
             </span>
           </div>
         </div>
@@ -309,7 +323,7 @@ function CourseCard({ course }: { course: Course }) {
   );
 }
 
-const DEFAULT_COURSES: Course[] = [
+const _DEFAULT_COURSES: Course[] = [
   {
     id: "web-dev",
     title: "Веб-разработка: HTML, CSS, JavaScript, React",
@@ -384,7 +398,22 @@ const DEFAULT_COURSES: Course[] = [
   },
 ];
 
-export function Courses({ courses = DEFAULT_COURSES }: { courses?: Course[] }) {
+export interface CoursesProps {
+  title: string;
+  courses: readonly Course[];
+  levels: {
+    beginner: string;
+    intermediate: string;
+    advanced: string;
+  };
+  formats: {
+    online: string;
+    offline: string;
+    hybrid: string;
+  };
+}
+
+export function Courses({ title, courses, levels, formats }: CoursesProps) {
   const particles = Array.from({ length: 20 }, (_, i) => {
     const left = `${seeded(i, 1) * 100}%`;
     const top = `${seeded(i, 2) * 100}%`;
@@ -399,7 +428,7 @@ export function Courses({ courses = DEFAULT_COURSES }: { courses?: Course[] }) {
         <div className="relative py-12 sm:py-16">
           {/* Heading for SEO/A11y */}
           <h2 className="mb-8 sm:mb-10 text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
-            Наши курсы
+            {title}
           </h2>
 
           {/* Grid of course cards */}
@@ -410,7 +439,7 @@ export function Courses({ courses = DEFAULT_COURSES }: { courses?: Course[] }) {
             )}
           >
             {courses.map((course) => (
-              <CourseCard key={course.id} course={course} />
+              <CourseCard key={course.id} course={course} levels={levels} formats={formats} />
             ))}
           </div>
 

@@ -3,6 +3,8 @@ import { AboutDict } from "./directories/about/types";
 import { ContactDict } from "./directories/contact/types";
 import { HomeDict } from "./directories/home/types";
 
+export type HeaderDict = CommonDict["header"];
+
 export type Dict = {
   common: CommonDict;
   home: HomeDict;

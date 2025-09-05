@@ -37,8 +37,6 @@ export const NavBar = React.memo(function NavBar({
   locale,
   dict,
 }: NavBarProps) {
-  if (!items?.length) return null;
-
   const reduceMotion = useReducedMotion();
   const [active, setActive] = React.useState<string>(
     () => items[0]?.name ?? ""
@@ -54,6 +52,8 @@ export const NavBar = React.memo(function NavBar({
     if (m) setActive(m.name);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!items?.length) return null;
 
   const wrapperPosition =
     position === "top"
@@ -135,10 +135,10 @@ export const NavBar = React.memo(function NavBar({
           >
             <Link
               href={`/${locale}/apply`}
-              aria-label={dict.common.nav.apply}
-              title={dict.common.nav.apply}
+              aria-label={dict.nav.apply}
+              title={dict.nav.apply}
             >
-              <span className="hidden md:inline">{dict.common.nav.apply}</span>
+              <span className="hidden md:inline">{dict.nav.apply}</span>
               <ChevronRight aria-hidden="true" className="h-4 w-4 shrink-0" />
             </Link>
           </Button>

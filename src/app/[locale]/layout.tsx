@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
-import { getDictionary, getT, Locale } from "@/shared/lib/i18n";
+import { getDictionary, Locale } from "@/shared/lib/i18n";
 import { Footer, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
@@ -37,15 +37,15 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale);
+  const dict = await getDictionary(locale as Locale);
 
   return (
     <>
       {/* меняем lang атрибут на клиенте согласно locale */}
-      <HtmlLang locale={locale} />
+      <HtmlLang locale={locale as Locale} />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
       <ThemeProvider
         attribute="class"
@@ -54,7 +54,11 @@ export default async function LocaleLayout({
         disableTransitionOnChange
       >
         {children}
-        <NavBar items={navItems} dict={dict} locale={locale} />
+        <NavBar
+          items={navItems}
+          dict={dict.common.header}
+          locale={locale as Locale}
+        />
         <Footer />
       </ThemeProvider>
     </>
