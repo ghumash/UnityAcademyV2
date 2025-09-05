@@ -55,7 +55,7 @@ export async function getCourseBySlugLocale(
 export async function getAllTagsForLocale(locale: Locale): Promise<string[]> {
   const all = await getAllCoursesForLocale(locale);
   const set = new Set<string>();
-  for (const c of all) (c.tags ?? []).forEach((t) => t && set.add(t));
+  for (const c of all) (c.tags ?? []).forEach((tg) => tg && set.add(tg));
   return Array.from(set).sort((a, b) => a.localeCompare(b));
 }
 
@@ -72,10 +72,10 @@ export async function searchFilterCourses(
       !qq ||
       c.title.toLowerCase().includes(qq) ||
       (c.excerpt ? c.excerpt.toLowerCase().includes(qq) : false) ||
-      (c.tags ?? []).some((t) => t.toLowerCase().includes(qq));
+      (c.tags ?? []).some((tg) => tg.toLowerCase().includes(qq));
 
     const matchesTag =
-      !tt || (c.tags ?? []).some((t) => t.toLowerCase() === tt);
+      !tt || (c.tags ?? []).some((tg) => tg.toLowerCase() === tt);
     return matchesQ && matchesTag;
   });
 }

@@ -6,7 +6,6 @@ export async function getHeroConfig(locale: Locale) {
   const t = await getT(locale);
 
   return {
-    display: true,
     title: t("home.hero.title"),
     subtitle: t("home.hero.subtitle"),
     actions: [

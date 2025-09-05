@@ -23,12 +23,12 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const tt = await getT(locale);
+  const t = await getT(locale);
   const course = await getCourseBySlugLocale(locale, slug);
   const title = course
     ? course.title
-    : `${tt("header.nav.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
-  const description = course?.excerpt ?? tt("header.nav.courses");
+    : `${t("header.nav.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
+  const description = course?.excerpt ?? t("header.nav.courses");
   return createMetadata({
     title,
     canonical: absoluteUrl(`/${locale}/courses/${slug}`),
@@ -56,7 +56,7 @@ export default async function CoursePage({
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const tt = await getT(locale);
+  const t = await getT(locale);
   const course = await getCourseBySlugLocale(locale, slug);
 
   if (!course) notFound();
@@ -66,8 +66,8 @@ export default async function CoursePage({
       <JsonLd
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([
-          { name: tt("common.home"), href: `/${locale}` },
-          { name: tt("header.nav.courses"), href: `/${locale}/courses` },
+          { name: t("common.home"), href: `/${locale}` },
+          { name: t("header.nav.courses"), href: `/${locale}/courses` },
           { name: course!.title, href: `/${locale}/courses/${slug}` },
         ])}
       />
@@ -78,14 +78,14 @@ export default async function CoursePage({
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={`/${locale}`}>{tt("common.home")}</Link>
+                  <Link href={`/${locale}`}>{t("common.home")}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
                   <Link href={`/${locale}/courses`}>
-                    {tt("header.nav.courses")}
+                    {t("header.nav.courses")}
                   </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
@@ -124,7 +124,7 @@ export default async function CoursePage({
 
           <div className="mt-8">
             <Button asChild>
-              <Link href={`/${locale}/apply`}>{tt("header.nav.apply")}</Link>
+              <Link href={`/${locale}/apply`}>{t("header.nav.apply")}</Link>
             </Button>
           </div>
         </Container>

@@ -22,14 +22,14 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const tt = await getT(locale);
+  const t = await getT(locale);
   const page = await getPageBySlugLocale(locale, "apply");
   return createMetadata({
-    title: page?.title ?? tt("nav.apply"),
+    title: page?.title ?? t("nav.apply"),
     canonical: absoluteUrl(`/${locale}/apply`),
     alternatesPath: "/apply",
     locale,
-    description: page?.description ?? tt("nav.apply"),
+    description: page?.description ?? t("nav.apply"),
   });
 }
 
@@ -39,7 +39,7 @@ export default async function ApplyPage({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  const tt = await getT(locale);
+  const t = await getT(locale);
   const page = await getPageBySlugLocale(locale, "apply");
 
   return (
@@ -47,8 +47,8 @@ export default async function ApplyPage({
       <JsonLd
         id="breadcrumbs-apply"
         data={buildBreadcrumbsJsonLd([
-          { name: tt("common.home"), href: `/${locale}` },
-          { name: page?.title ?? tt("nav.apply"), href: `/${locale}/apply` },
+          { name: t("common.home"), href: `/${locale}` },
+          { name: page?.title ?? t("nav.apply"), href: `/${locale}/apply` },
         ])}
       />
       <Section>
@@ -57,20 +57,20 @@ export default async function ApplyPage({
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={`/${locale}`}>{tt("common.home")}</Link>
+                  <Link href={`/${locale}`}>{t("common.home")}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage>
-                  {page?.title ?? tt("nav.apply")}
+                  {page?.title ?? t("nav.apply")}
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {page?.title ?? tt("nav.apply")}
+            {page?.title ?? t("nav.apply")}
           </h1>
 
           {page?.body ? (

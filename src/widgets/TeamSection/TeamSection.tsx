@@ -1,4 +1,3 @@
-"use client"
 import { Person, PersonCard } from "@/entities/person";
 import { Section, Container } from "@/shared/ui/custom";
 import { getT } from "@/shared/lib/i18n";

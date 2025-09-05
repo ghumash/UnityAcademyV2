@@ -25,14 +25,15 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const tt = await getT(locale);
+  const t = await getT(locale);
   const page = await getPageBySlugLocale(locale, "about");
+
   return createMetadata({
-    title: page?.title ?? tt("header.nav.about"),
+    title: page?.title ?? t("common.header.nav.about"),
     canonical: absoluteUrl(`/${locale}/about`),
     alternatesPath: "/about",
     locale,
-    description: page?.description ?? tt("header.nav.about"),
+    description: page?.description ?? t("header.nav.about"),
   });
 }
 
@@ -71,7 +72,7 @@ export default async function AboutPage({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  const tt = await getT(locale);
+  const t = await getT(locale);
   const page = await getPageBySlugLocale(locale, "about");
 
   return (
@@ -79,9 +80,9 @@ export default async function AboutPage({
       <JsonLd
         id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
-          { name: tt("common.home"), href: `/${locale}` },
+          { name: t("common.home"), href: `/${locale}` },
           {
-            name: page?.title ?? tt("header.nav.about"),
+            name: page?.title ?? t("header.nav.about"),
             href: `/${locale}/about`,
           },
         ])}
@@ -92,20 +93,20 @@ export default async function AboutPage({
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={`/${locale}`}>{tt("common.home")}</Link>
+                  <Link href={`/${locale}`}>{t("common.home")}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage>
-                  {page?.title ?? tt("header.nav.about")}
+                  {page?.title ?? t("header.nav.about")}
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {page?.title ?? tt("header.nav.about")}
+            {page?.title ?? t("header.nav.about")}
           </h1>
 
           {page?.body ? (

@@ -33,7 +33,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { q, tag, page } = await searchParams;
-  const tt = await getT(locale);
+  const t = await getT(locale);
 
   const base = `/${locale}/courses`;
   const query = new URLSearchParams();
@@ -43,7 +43,7 @@ export async function generateMetadata({
   const canonicalPath = query.toString() ? `${base}?${query.toString()}` : base;
 
   const meta = createMetadata({
-    title: tt("header.nav.courses"),
+    title: t("header.nav.courses"),
     canonical: absoluteUrl(canonicalPath),
     alternatesPath: "/courses",
     locale,
@@ -69,7 +69,7 @@ export default async function CoursesPage({
 }) {
   const { locale } = await params;
   const { q, tag, page } = await searchParams;
-  const tt = await getT(locale);
+  const t = await getT(locale);
 
   const all = await searchFilterCourses(locale, { q, tag });
   const pager = paginate(all.length, Number(page ?? "1"), PER_PAGE);
@@ -97,8 +97,8 @@ export default async function CoursesPage({
       <JsonLd
         id="breadcrumbs-courses"
         data={buildBreadcrumbsJsonLd([
-          { name: tt("common.home"), href: `/${locale}` },
-          { name: tt("header.nav.courses"), href: href({}) },
+          { name: t("common.home"), href: `/${locale}` },
+          { name: t("header.nav.courses"), href: href({}) },
         ])}
       />
 
@@ -123,18 +123,18 @@ export default async function CoursesPage({
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={`/${locale}`}>{tt("common.home")}</Link>
+                  <Link href={`/${locale}`}>{t("common.home")}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>{tt("header.nav.courses")}</BreadcrumbPage>
+                <BreadcrumbPage>{t("header.nav.courses")}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {tt("header.nav.courses")}
+            {t("header.nav.courses")}
           </h1>
 
           {/* Панель фильтров */}
@@ -163,17 +163,17 @@ export default async function CoursesPage({
                 className="flex flex-wrap items-center gap-2 pt-1"
                 aria-label="Фильтр по тегам"
               >
-                {tags.map((t) => {
+                {tags.map((tg) => {
                   const selected =
-                    t.toLowerCase() === (tag ?? "").toLowerCase();
+                    tg.toLowerCase() === (tag ?? "").toLowerCase();
                   return (
                     <Link
-                      key={t}
-                      href={href({ tag: selected ? "" : t, page: 1 })}
+                      key={tg}
+                      href={href({ tag: selected ? "" : tg, page: 1 })}
                       className="inline-flex"
                     >
                       <Badge variant={selected ? "default" : "secondary"}>
-                        {t}
+                        {tg}
                       </Badge>
                     </Link>
                   );

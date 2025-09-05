@@ -30,7 +30,6 @@ export interface CtaBannerProps {
 }
 
 const isExternal = (href: string) => /^https?:\/\//i.test(href);
-const TRANSITION = { ease: "easeInOut" as const, delay: 0.3, duration: 0.8 };
 
 type SmartLinkProps = Omit<React.ComponentPropsWithoutRef<"a">, "href"> & {
   href: string;
