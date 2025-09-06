@@ -20,8 +20,8 @@ export async function generateMetadata({
   const course = await getCourseBySlugLocale(locale, slug);
   const title = course
     ? course.title
-    : `${t("common.nav.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
-  const description = course?.excerpt ?? t("common.nav.courses");
+    : `${t("common.navigation.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
+  const description = course?.excerpt ?? t("common.navigation.courses");
   return createMetadata({
     title,
     canonical: absoluteUrl(`/${locale}/courses/${slug}`),
@@ -60,7 +60,7 @@ export default async function CoursePage({
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
-          { name: t("common.nav.courses"), href: `/${locale}/courses` },
+          { name: t("common.navigation.courses"), href: `/${locale}/courses` },
           { name: course!.title, href: `/${locale}/courses/${slug}` },
         ])}
       />
@@ -69,7 +69,7 @@ export default async function CoursePage({
         <Container>
           <AppBreadcrumb
             items={[
-              { label: t("common.nav.courses"), href: `/${locale}/courses` },
+              { label: t("common.navigation.courses"), href: `/${locale}/courses` },
               { label: course!.title },
             ]}
           />
@@ -102,7 +102,7 @@ export default async function CoursePage({
 
           <div className="mt-8">
             <Button asChild>
-              <Link href={`/${locale}/apply`}>{t("common.nav.apply")}</Link>
+              <Link href={`/${locale}/apply`}>{t("common.navigation.apply")}</Link>
             </Button>
           </div>
         </Container>

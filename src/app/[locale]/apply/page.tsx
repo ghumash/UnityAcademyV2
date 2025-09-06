@@ -47,8 +47,8 @@ export default async function ApplyPage({
         <Container>
           <AppBreadcrumb
             items={[
-              { label: t("common.nav.home"), href: "/" },
-              { label: t("common.nav.apply") },
+              { label: t("common.navigation.home"), href: "/" },
+              { label: t("common.navigation.apply") },
             ]}
           />
 

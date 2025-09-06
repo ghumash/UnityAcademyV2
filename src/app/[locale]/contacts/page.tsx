@@ -18,11 +18,11 @@ export async function generateMetadata({
   const page = await getPageBySlugLocale(locale, "contacts");
 
   return createMetadata({
-    title: page?.title ?? t("common.nav.contacts"),
+    title: page?.title ?? t("common.navigation.contacts"),
     canonical: absoluteUrl(`/${locale}/contacts`),
     alternatesPath: "/contacts",
     locale,
-    description: page?.description ?? t("common.nav.contacts"),
+    description: page?.description ?? t("common.navigation.contacts"),
   });
 }
 
@@ -42,7 +42,7 @@ export default async function ContactsPage({
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
           {
-            name: page?.title ?? t("common.nav.contacts"),
+            name: page?.title ?? t("common.navigation.contacts"),
             href: `/${locale}/contacts`,
           },
         ])}
@@ -51,13 +51,13 @@ export default async function ContactsPage({
         <Container>
           <AppBreadcrumb
             items={[
-              { label: t("common.nav.home"), href: "/" },
-              { label: t("common.nav.contacts") },
+              { label: t("common.navigation.home"), href: "/" },
+              { label: t("common.navigation.contacts") },
             ]}
           />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {page?.title ?? t("common.nav.contacts")}
+            {page?.title ?? t("common.navigation.contacts")}
           </h1>
 
           {page?.body ? (

@@ -25,6 +25,24 @@ export function middleware(req: NextRequest) {
   const { nextUrl } = req;
   const pathname = nextUrl.pathname;
 
+  // If path looks like a static asset (contains a dot in the last segment),
+  // handle specially to avoid locale prefixing breaking URLs from /public
+  const isStaticFile = /\.[^/]+$/.test(pathname);
+
+  // If the path starts with a locale and targets a static file, rewrite to strip the locale
+  const localeInPath = getLocaleFromPathname(pathname);
+  if (localeInPath && isStaticFile) {
+    const stripped = pathname.replace(`/${localeInPath}`, "") || "/";
+    const url = nextUrl.clone();
+    url.pathname = stripped;
+    return NextResponse.rewrite(url);
+  }
+
+  // If it's any other static file request, let it pass without locale redirects
+  if (isStaticFile) {
+    return NextResponse.next();
+  }
+
   // Редирект с корня на дефолтную локаль
   if (pathname === "/") {
     const url = nextUrl.clone();
@@ -52,6 +70,8 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|assets/).*)",
+    // Include everything except Next internals and root files; static files will be
+    // handled in code (rewrite/skip) instead of excluding by matcher.
+    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
   ],
 };

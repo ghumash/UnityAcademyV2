@@ -34,7 +34,7 @@ export async function generateMetadata({
   const canonicalPath = query.toString() ? `${base}?${query.toString()}` : base;
 
   const meta = createMetadata({
-    title: t("common.nav.courses"),
+    title: t("common.navigation.courses"),
     canonical: absoluteUrl(canonicalPath),
     alternatesPath: "/courses",
     locale,
@@ -89,7 +89,7 @@ export default async function CoursesPage({
         id="breadcrumbs-courses"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
-          { name: t("common.nav.courses"), href: href({}) },
+          { name: t("common.navigation.courses"), href: href({}) },
         ])}
       />
 
@@ -112,13 +112,13 @@ export default async function CoursesPage({
         <Container>
           <AppBreadcrumb
             items={[
-              { label: t("common.nav.home"), href: "/" },
-              { label: t("common.nav.courses") },
+              { label: t("common.navigation.home"), href: "/" },
+              { label: t("common.navigation.courses") },
             ]}
           />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {t("common.nav.courses")}
+            {t("common.navigation.courses")}
           </h1>
 
           {/* Панель фильтров */}
