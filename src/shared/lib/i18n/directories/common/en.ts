@@ -1,10 +1,16 @@
 import { CommonDict } from "./types";
+import { errors } from "./errors/en";
+import { navigation } from "./navigation/en";
+import { footer } from "./footer/en";
 
 export const common: CommonDict = {
   site: {
     name: "Unity Academy",
     shortName: "Unity",
-    description: "Your IT future starts here",
-    locale: "en-EN",
+    description: "Your future in IT starts here",
+    locale: "en-US",
   },
+  errors,
+  navigation,
+  footer,
 };

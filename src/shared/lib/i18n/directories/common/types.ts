@@ -1,3 +1,7 @@
+import type { ErrorsDict } from "./errors/types";
+import type { NavigationDict } from "./navigation/types";
+import type { FooterDict } from "./footer/types";
+
 export type CommonDict = {
   site: {
     name: string;
@@ -5,4 +9,7 @@ export type CommonDict = {
     description: string;
     locale: string;
   };
+  errors: ErrorsDict;
+  navigation: NavigationDict;
+  footer: FooterDict;
 };

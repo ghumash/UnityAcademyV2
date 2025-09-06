@@ -44,13 +44,17 @@ function withScope(ctx: LogContext | undefined, fn: () => void) {
 
 export function log(level: LogLevel, message: string, ctx?: LogContext) {
   if (!isProd) {
-    (level === "debug"
-      ? console.debug
-      : level === "info"
-        ? console.info
-        : level === "warn"
-          ? console.warn
-          : console.error)(message, ctx ?? {});
+    if (level === "debug") {
+      // eslint-disable-next-line no-console
+      console.debug(message, ctx ?? {});
+    } else if (level === "info") {
+      // eslint-disable-next-line no-console
+      console.info(message, ctx ?? {});
+    } else if (level === "warn") {
+      console.warn(message, ctx ?? {});
+    } else {
+      console.error(message, ctx ?? {});
+    }
   }
   withScope({ ...ctx, level }, () =>
     Sentry.captureMessage(message, severityMap[level])
