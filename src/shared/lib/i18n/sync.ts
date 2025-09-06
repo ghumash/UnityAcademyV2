@@ -7,5 +7,5 @@ import { ru } from "./directories/ru";
 const dicts: Record<Locale, Dict> = { ru, en, hy };
 
 export function getDictionarySync(locale: Locale): Dict {
-  return dicts[locale] ?? ru;
+  return dicts[locale] ?? hy;
 }
