@@ -11,10 +11,9 @@ import {
 import { Facebook, Instagram, Linkedin, Github } from "lucide-react";
 import { Person } from "../model/types";
 
-type Props = Pick<Person, "slug" | "name" | "role" | "avatarUrl" | "socials">;
+type Props = Pick<Person, "name" | "role" | "avatarUrl" | "socials">;
 
 export default function PersonCard({
-  slug,
   name,
   role,
   avatarUrl,

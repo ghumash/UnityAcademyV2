@@ -18,27 +18,8 @@ import {
   Megaphone,
   Users,
   Smartphone,
-  ArrowBigDown,
 } from "lucide-react";
-
-type Level = "beginner" | "intermediate" | "advanced";
-type Format = "online" | "offline" | "hybrid";
-type Theme = "indigo" | "purple" | "orange" | "emerald" | "cyan" | "rose";
-
-export type Course = {
-  id: string;
-  title: string;
-  description: string;
-  duration: string; // e.g. "3 месяца"
-  level: Level;
-  format: Format;
-  /** lucide icon name to render on the card header */
-  icon?: keyof typeof ICONS;
-  /** visual theme color */
-  theme?: Theme;
-  /** optional link to course page */
-  href?: string;
-};
+import type { Course, CoursesProps, Level, Format, Theme } from "./types";
 
 const cn = (...classes: Array<string | false | null | undefined>) =>
   twMerge(clsx(classes));
@@ -62,7 +43,6 @@ const ICONS = {
   Megaphone,
   Users,
   Smartphone,
-  ArrowBigDown,
 };
 
 const THEMES: Record<
@@ -398,20 +378,6 @@ const _DEFAULT_COURSES: Course[] = [
   },
 ];
 
-export interface CoursesProps {
-  title: string;
-  courses: readonly Course[];
-  levels: {
-    beginner: string;
-    intermediate: string;
-    advanced: string;
-  };
-  formats: {
-    online: string;
-    offline: string;
-    hybrid: string;
-  };
-}
 
 export function Courses({ title, courses, levels, formats }: CoursesProps) {
   const particles = Array.from({ length: 20 }, (_, i) => {

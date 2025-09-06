@@ -35,7 +35,6 @@ export const NavBar = React.memo(function NavBar({
   className,
   position,
   locale,
-  dict,
 }: NavBarProps) {
   const reduceMotion = useReducedMotion();
   const [active, setActive] = React.useState<string>(

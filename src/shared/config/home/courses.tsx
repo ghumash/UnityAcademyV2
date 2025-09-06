@@ -1,63 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
-import {
-  Code,
-  Brain,
-  Palette,
-  Bot,
-  Globe,
-  MapPin,
-  Share2,
-  Clock,
-  GraduationCap,
-  Megaphone,
-  Users,
-  Smartphone,
-  ArrowBigDown,
-} from "lucide-react";
-
-export type Level = "beginner" | "intermediate" | "advanced";
-export type Format = "online" | "offline" | "hybrid";
-export type Theme = "indigo" | "purple" | "orange" | "emerald" | "cyan" | "rose";
-
-export type Course = {
-  id: string;
-  title: string;
-  description: string;
-  duration: string; // e.g. "3 месяца"
-  level: Level;
-  format: Format;
-  /** lucide icon name to render on the card header */
-  icon?: keyof typeof _ICONS;
-  /** visual theme color */
-  theme?: Theme;
-  /** optional link to course page */
-  href?: string;
-};
-
-const _ICONS = {
-  Code,
-  Brain,
-  Palette,
-  Bot,
-  Globe,
-  MapPin,
-  Share2,
-  Clock,
-  GraduationCap,
-  Megaphone,
-  Users,
-  Smartphone,
-  ArrowBigDown,
-};
-
-const THEME_ICON_MAPPING = [
-  "Code", "Brain", "Palette", "Bot", "Globe", "MapPin"
-] as const;
-
-const THEME_MAPPING = [
-  "indigo", "purple", "orange", "emerald", "cyan", "rose"
-] as const;
+import type { Course } from "@/widgets/Courses/types";
 
 export async function getCoursesConfig(locale: Locale) {
   const t = await getT(locale);
@@ -70,10 +13,10 @@ export async function getCoursesConfig(locale: Locale) {
         title: t("home.courses.courses.0.title"),
         description: t("home.courses.courses.0.description"),
         duration: t("home.courses.courses.0.duration"),
-        level: "beginner" as Level,
-        format: "offline" as Format,
-        icon: THEME_ICON_MAPPING[0],
-        theme: THEME_MAPPING[0] as Theme,
+        level: "beginner",
+        format: "offline",
+        icon: "Code",
+        theme: "indigo",
         href: "/courses/web-development",
       },
       {
@@ -81,10 +24,10 @@ export async function getCoursesConfig(locale: Locale) {
         title: t("home.courses.courses.1.title"),
         description: t("home.courses.courses.1.description"),
         duration: t("home.courses.courses.1.duration"),
-        level: "intermediate" as Level,
-        format: "hybrid" as Format,
-        icon: THEME_ICON_MAPPING[1],
-        theme: THEME_MAPPING[1] as Theme,
+        level: "intermediate",
+        format: "hybrid",
+        icon: "Brain",
+        theme: "purple",
         href: "/courses/ai-fundamentals",
       },
       {
@@ -92,10 +35,10 @@ export async function getCoursesConfig(locale: Locale) {
         title: t("home.courses.courses.2.title"),
         description: t("home.courses.courses.2.description"),
         duration: t("home.courses.courses.2.duration"),
-        level: "beginner" as Level,
-        format: "offline" as Format,
-        icon: THEME_ICON_MAPPING[2],
-        theme: THEME_MAPPING[2] as Theme,
+        level: "beginner",
+        format: "offline",
+        icon: "Palette",
+        theme: "orange",
         href: "/courses/graphic-design",
       },
       {
@@ -103,10 +46,10 @@ export async function getCoursesConfig(locale: Locale) {
         title: t("home.courses.courses.3.title"),
         description: t("home.courses.courses.3.description"),
         duration: t("home.courses.courses.3.duration"),
-        level: "intermediate" as Level,
-        format: "online" as Format,
-        icon: THEME_ICON_MAPPING[3],
-        theme: THEME_MAPPING[3] as Theme,
+        level: "intermediate",
+        format: "online",
+        icon: "Smartphone",
+        theme: "emerald",
         href: "/courses/android-development",
       },
       {
@@ -114,10 +57,10 @@ export async function getCoursesConfig(locale: Locale) {
         title: t("home.courses.courses.4.title"),
         description: t("home.courses.courses.4.description"),
         duration: t("home.courses.courses.4.duration"),
-        level: "beginner" as Level,
-        format: "hybrid" as Format,
-        icon: THEME_ICON_MAPPING[4],
-        theme: THEME_MAPPING[4] as Theme,
+        level: "beginner",
+        format: "hybrid",
+        icon: "Megaphone",
+        theme: "cyan",
         href: "/courses/smm-content",
       },
       {
@@ -125,10 +68,10 @@ export async function getCoursesConfig(locale: Locale) {
         title: t("home.courses.courses.5.title"),
         description: t("home.courses.courses.5.description"),
         duration: t("home.courses.courses.5.duration"),
-        level: "beginner" as Level,
-        format: "offline" as Format,
-        icon: THEME_ICON_MAPPING[5],
-        theme: THEME_MAPPING[5] as Theme,
+        level: "beginner",
+        format: "offline",
+        icon: "Users",
+        theme: "rose",
         href: "/courses/soft-skills",
       },
     ] as const satisfies readonly Course[],

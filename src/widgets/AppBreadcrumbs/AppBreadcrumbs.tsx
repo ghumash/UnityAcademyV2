@@ -29,9 +29,9 @@ export const AppBreadcrumb = memo(function AppBreadcrumb({
   ariaLabel = "Breadcrumb",
   className,
 }: AppBreadcrumbProps) {
-  const { locale } = useParams<{ locale: string }>();
+  const { locale: _locale } = useParams<{ locale: string }>();
 
-  const crumbs = useMemo(() => items, [items, locale]);
+  const crumbs = useMemo(() => items, [items]);
 
   return (
     <Breadcrumb aria-label={ariaLabel} className={cn(className)}>

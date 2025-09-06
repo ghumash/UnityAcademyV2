@@ -4,7 +4,6 @@ import * as React from "react";
 import type { ReactNode, ElementType } from "react";
 import { cn } from "@/shared/lib/utils";
 
-type TagName = "section" | "div" | "main" | "header" | "footer" | "aside";
 type Padding = "none" | "sm" | "md" | "lg";
 
 const paddingClasses: Record<Padding, string> = {
