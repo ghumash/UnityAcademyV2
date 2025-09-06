@@ -1,4 +1,4 @@
-import { HeroAction } from "@/widgets";
+import type { HeroAction } from "@/widgets";
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 

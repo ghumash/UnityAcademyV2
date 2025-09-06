@@ -9,7 +9,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/shared/ui";
-import { Locale, localeNames, locales } from "@/shared/lib/i18n";
+import { type Locale, localeNames, locales } from "@/shared/lib/i18n";
 import { Languages } from "lucide-react";
 
 type Props = { locale: Locale };

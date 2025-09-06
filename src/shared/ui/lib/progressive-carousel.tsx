@@ -7,8 +7,8 @@ import React, {
   useMemo,
   useRef,
   useState,
-  ReactNode,
-  KeyboardEvent,
+  type ReactNode,
+  type KeyboardEvent,
 } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { cn } from "@/shared/lib/utils";

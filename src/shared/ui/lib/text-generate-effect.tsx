@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useMemo, JSX } from "react";
+import { memo, useEffect, useMemo, type JSX } from "react";
 import { motion, stagger, useAnimate, useReducedMotion } from "framer-motion";
 import { cn } from "@/shared/lib/utils";
 

@@ -8,33 +8,33 @@ export async function getNavigationConfig(locale: Locale) {
   return {
     navItems: [
       { 
-        name: t("navigation.home"), 
+        name: t("common.navigation.home"), 
         url: "/", 
         icon: <Home size={18} strokeWidth={2.5} />,
-        ariaLabel: t("navigation.home")
+        ariaLabel: t("common.navigation.home")
       },
       { 
-        name: t("navigation.about"), 
+        name: t("common.navigation.about"), 
         url: "/about", 
         icon: <User size={18} strokeWidth={2.5} />,
-        ariaLabel: t("navigation.about")
+        ariaLabel: t("common.navigation.about")
       },
       {
-        name: t("navigation.courses"),
+        name: t("common.navigation.courses"),
         url: "/courses",
         icon: <Briefcase size={18} strokeWidth={2.5} />,
-        ariaLabel: t("navigation.courses")
+        ariaLabel: t("common.navigation.courses")
       },
       {
-        name: t("navigation.contacts"),
+        name: t("common.navigation.contacts"),
         url: "/contacts",
         icon: <Phone size={18} strokeWidth={2.5} />,
-        ariaLabel: t("navigation.contacts")
+        ariaLabel: t("common.navigation.contacts")
       },
     ],
     applyButton: {
-      label: t("navigation.apply"),
-      ariaLabel: t("navigation.apply")
+      label: t("common.navigation.apply"),
+      ariaLabel: t("common.navigation.apply")
     }
   } as const;
 }
@@ -45,24 +45,24 @@ export async function getFooterConfig(locale: Locale) {
   return {
     sections: {
       company: {
-        title: t("footer.company.title"),
+        title: t("common.footer.company.title"),
         links: [
-          { name: t("footer.company.about"), href: "/about" },
-          { name: t("footer.company.courses"), href: "/courses" },
-          { name: t("footer.company.contacts"), href: "/contacts" },
+          { name: t("common.footer.company.about"), href: "/about" },
+          { name: t("common.footer.company.courses"), href: "/courses" },
+          { name: t("common.footer.company.contacts"), href: "/contacts" },
         ]
       },
       support: {
-        title: t("footer.support.title"),
+        title: t("common.footer.support.title"),
         links: [
-          { name: t("footer.support.help"), href: "/help" },
-          { name: t("footer.support.faq"), href: "/faq" },
-          { name: t("footer.support.privacy"), href: "/privacy" },
-          { name: t("footer.support.terms"), href: "/terms" },
+          { name: t("common.footer.support.help"), href: "/help" },
+          { name: t("common.footer.support.faq"), href: "/faq" },
+          { name: t("common.footer.support.privacy"), href: "/privacy" },
+          { name: t("common.footer.support.terms"), href: "/terms" },
         ]
       },
       social: {
-        title: t("footer.social.title"),
+        title: t("common.footer.social.title"),
         links: [
           { name: "Instagram", href: "https://instagram.com/unityacademy" },
           { name: "Facebook", href: "https://facebook.com/unityacademy" },
@@ -71,7 +71,7 @@ export async function getFooterConfig(locale: Locale) {
         ]
       }
     },
-    copyright: t("footer.copyright"),
-    description: t("footer.description")
+    copyright: t("common.footer.copyright"),
+    description: t("common.footer.description")
   } as const;
 }

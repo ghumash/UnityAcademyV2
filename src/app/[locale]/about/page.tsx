@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { getT, Locale } from "@/shared/lib/i18n";
+import { getT, type Locale } from "@/shared/lib/i18n";
 import { peopleMock } from "@/entities/person";
 import {
   AppBreadcrumb,
   GlowingGrid,
-  GridItemData,
+  type GridItemData,
   TeamSection,
 } from "@/widgets";
 import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";

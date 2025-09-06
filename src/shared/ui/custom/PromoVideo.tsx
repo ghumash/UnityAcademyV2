@@ -1,4 +1,4 @@
-import { CSSProperties, forwardRef, memo } from "react";
+import { forwardRef, memo, type CSSProperties } from "react";
 
 type Track = {
   src: string;
@@ -10,7 +10,7 @@ type Track = {
 
 type PromoVideoProps = {
   title?: string;
-  srcWebm: string;
+  srcWebm?: string;
   srcMp4?: string;
   poster?: string;
   aspect?: string; // e.g. "16 / 9"
@@ -75,8 +75,8 @@ export const PromoVideo = memo(
             aspectRatio: aspect,
           }}
         >
-          <source src={srcWebm} type="video/webm" />
-          {srcMp4 ? <source src={srcMp4} type="video/mp4" /> : null}
+          {srcWebm && <source src={srcWebm} type="video/webm" />}
+          {srcMp4 && <source src={srcMp4} type="video/mp4" />}
           {tracks?.map((t, i) => (
             <track
               key={`${t.kind || "captions"}-${i}`}

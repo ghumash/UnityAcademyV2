@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { getT, Locale } from "@/shared/lib/i18n";
+import { getT, type Locale } from "@/shared/lib/i18n";
 import { Button, Input, Badge } from "@/shared/ui";
 import {
   getAllTagsForLocale,

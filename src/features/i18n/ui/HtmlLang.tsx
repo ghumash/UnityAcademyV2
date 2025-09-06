@@ -1,6 +1,6 @@
 "use client";
 
-import { Locale } from "@/shared/lib/i18n";
+import type { Locale } from "@/shared/lib/i18n";
 import { useEffect } from "react";
 
 export default function HtmlLang({ locale }: { locale: Locale }) {

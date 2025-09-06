@@ -1,6 +1,6 @@
-import { Locale } from "./config";
+import type { Locale } from "./config";
+import type { Dict } from "./types";
 import { getDictionary } from "./get-dictionary";
-import { Dict } from "./types";
 
 function getByPath(obj: any, path: string) {
   return path

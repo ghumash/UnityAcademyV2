@@ -1,8 +1,8 @@
-import { Locale } from "./config";
-import en from "./directories/en";
-import hy from "./directories/hy";
-import ru from "./directories/ru";
-import { Dict } from "./types";
+import type { Locale } from "./config";
+import type { Dict } from "./types";
+import { en } from "./directories/en";
+import { hy } from "./directories/hy";
+import { ru } from "./directories/ru";
 
 const dicts: Record<Locale, Dict> = { ru, en, hy };
 

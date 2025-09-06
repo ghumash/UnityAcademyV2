@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/shared/ui";
 import { createMetadata } from "@/shared/seo";
 import "./globals.css";
-import { getT, Locale } from "@/shared/lib/i18n";
+import { getT, type Locale } from "@/shared/lib/i18n";
 import { absoluteUrl, siteConfig } from "@/shared/config";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });

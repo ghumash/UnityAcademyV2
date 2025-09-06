@@ -7,12 +7,7 @@ import { contact } from "./contact/ru";
 
 export const ru: Dict = {
   common,
-  navigation: common.navigation,
-  footer: common.footer,
-  errors: common.errors,
   home,
   about,
   contact,
 } as const;
-
-export default ru

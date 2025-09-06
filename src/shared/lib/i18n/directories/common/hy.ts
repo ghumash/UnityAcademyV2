@@ -1,4 +1,4 @@
-import { CommonDict } from "./types";
+import type { CommonDict } from "./types";
 import { errors } from "./errors/hy";
 import { navigation } from "./navigation/hy";
 import { footer } from "./footer/hy";

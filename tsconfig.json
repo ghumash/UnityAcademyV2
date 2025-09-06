@@ -27,7 +27,8 @@
       }
     ],
     "incremental": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true
   },
   "include": [
     "next-env.d.ts",

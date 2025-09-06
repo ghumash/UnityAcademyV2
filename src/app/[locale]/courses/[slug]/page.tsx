@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { getT, Locale, locales } from "@/shared/lib/i18n";
+import { getT, type Locale, locales } from "@/shared/lib/i18n";
 import { Button } from "@/shared/ui";
 import { getAllSlugs, getCourseBySlugLocale } from "@/shared/content";
 import { getMdxToc, MdxRenderer, MdxTocNav } from "@/shared/mdx";

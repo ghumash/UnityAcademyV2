@@ -1,6 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
-import { ComponentType, SVGProps } from "react";
+import type { ComponentType, SVGProps } from "react";
 
 export type LogoItem = { 
   id: number; 

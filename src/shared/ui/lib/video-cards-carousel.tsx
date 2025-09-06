@@ -10,7 +10,7 @@ import React, {
   useCallback,
   useId,
   memo,
-  JSX,
+  type JSX,
 } from "react";
 import {
   IconArrowNarrowLeft,
@@ -38,7 +38,7 @@ interface CarouselProps {
 type StudentPromoCard = {
   student: string;
   group: string;
-  srcWebm: string;
+  srcWebm?: string;
   srcMp4?: string;
   posterSrc?: string;
 };
@@ -209,7 +209,7 @@ export const Carousel = memo(function Carousel({
  * =======================*/
 
 type Props = {
-  srcWebm: string;
+  srcWebm?: string;
   srcMp4?: string;
   posterSrc?: string;
   title: string;
@@ -306,7 +306,7 @@ const PromoVideoDialog = memo(function PromoVideoDialog({
   posterSrc,
   title,
 }: {
-  srcWebm: string;
+  srcWebm?: string;
   srcMp4?: string;
   posterSrc?: string;
   title: string;

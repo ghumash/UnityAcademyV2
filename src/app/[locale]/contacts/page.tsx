@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { getT, Locale } from "@/shared/lib/i18n";
+import { getT, type Locale } from "@/shared/lib/i18n";
 import { getPageBySlugLocale } from "@/shared/content/pages";
 import { MdxRenderer } from "@/shared/mdx";
 import { ContactForm } from "@/features/contact";
