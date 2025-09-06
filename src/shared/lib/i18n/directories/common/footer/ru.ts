@@ -1,4 +1,6 @@
-export const footer = {
+import type { FooterDict } from "./types";
+
+export const footer: FooterDict = {
   company: {
     title: "Компания",
     about: "О нас",
@@ -17,4 +19,4 @@ export const footer = {
   },
   copyright: "© 2025 Unity Academy. Все права защищены.",
   description: "Образовательная платформа для изучения веб-разработки, AI, дизайна и soft skills. Практические курсы с реальными проектами."
-} as const;
+};
