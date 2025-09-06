@@ -3,11 +3,12 @@
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/shared/lib/utils";
 import { LanguageSwitcher } from "@/features/i18n";
 import { ModeToggle } from "@/features/theme";
 import { Button } from "@/shared/ui";
-import type { HeaderDict, Locale } from "@/shared/lib/i18n";
+import type { Locale } from "@/shared/lib/i18n";
 import { ChevronRight } from "lucide-react";
 
 /** Pass `icon` as a ReactNode (e.g. `<Home size={18} />`) — not a component type */
@@ -26,8 +27,8 @@ export interface NavBarProps {
   className?: string;
   /** Mobile: bottom; ≥sm: top (kept from your original). You can override to "top" | "bottom". */
   position?: "top" | "bottom";
-  dict: HeaderDict;
   locale: Locale;
+  applyButtonLabel: string;
 }
 
 export const NavBar = React.memo(function NavBar({
@@ -35,22 +36,30 @@ export const NavBar = React.memo(function NavBar({
   className,
   position,
   locale,
+  applyButtonLabel,
 }: NavBarProps) {
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
   const [active, setActive] = React.useState<string>(
     () => items[0]?.name ?? ""
   );
 
-  // Derive active from current path on mount (kept logic)
+  // Derive active from current path
   React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const path = window.location.pathname + window.location.hash;
-    const m =
-      items.find((it) => it.url === path) ??
-      items.find((it) => it.url && path.startsWith(it.url));
-    if (m) setActive(m.name);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // Remove locale prefix from pathname for matching
+    const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
+
+    const matchedItem = items.find((item) => {
+      if (item.url === "/" && pathWithoutLocale === "/") return true;
+      if (item.url !== "/" && pathWithoutLocale.startsWith(item.url))
+        return true;
+      return false;
+    });
+
+    if (matchedItem) {
+      setActive(matchedItem.name);
+    }
+  }, [pathname, locale, items]);
 
   if (!items?.length) return null;
 
@@ -76,13 +85,13 @@ export const NavBar = React.memo(function NavBar({
           return (
             <Link
               key={item.name}
-              href={`/${locale + item.url}`}
+              href={`/${locale}${item.url}`}
               prefetch={item.prefetch ?? false}
               onClick={() => setActive(item.name)}
               aria-label={item.ariaLabel ?? item.name}
               aria-current={isActive ? "page" : undefined}
               className={cn(
-                "relative cursor-pointer border rounded-full px-6 py-2 text-sm font-semibold transition-colors outline-none",
+                "relative cursor-pointer border rounded-full px-6 py-2 text-sm font-semibold transition-colors outline-none whitespace-nowrap",
                 "text-foreground/80 hover:text-primary focus-visible:ring-2 focus-visible:ring-primary/40",
                 isActive && "bg-muted text-primary"
               )}
@@ -134,10 +143,10 @@ export const NavBar = React.memo(function NavBar({
           >
             <Link
               href={`/${locale}/apply`}
-              aria-label="Գրանցվել"
-              title="Գրանցվել"
+              aria-label={applyButtonLabel}
+              title={applyButtonLabel}
             >
-              <span className="hidden md:inline">Գրանցվել</span>
+              <span className="hidden md:inline">{applyButtonLabel}</span>
               <ChevronRight aria-hidden="true" className="h-4 w-4 shrink-0" />
             </Link>
           </Button>

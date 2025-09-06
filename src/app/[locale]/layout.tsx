@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
-import { getDictionary, Locale } from "@/shared/lib/i18n";
+import { Locale } from "@/shared/lib/i18n";
 import { Footer, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
-import { Briefcase, Home, User } from "lucide-react";
+import { getNavigationConfig, getFooterConfig } from "@/shared/config/navigation";
 
 export async function generateMetadata({
   params,
@@ -22,15 +22,6 @@ export async function generateMetadata({
   });
 }
 
-const navItems = [
-  { name: "Home", url: "/", icon: <Home size={18} strokeWidth={2.5} /> },
-  { name: "About", url: "/about", icon: <User size={18} strokeWidth={2.5} /> },
-  {
-    name: "Courses",
-    url: "/courses",
-    icon: <Briefcase size={18} strokeWidth={2.5} />,
-  },
-];
 
 export default async function LocaleLayout({
   children,
@@ -40,7 +31,8 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const navigation = await getNavigationConfig(locale as Locale);
+  const footer = await getFooterConfig(locale as Locale);
 
   return (
     <>
@@ -55,11 +47,15 @@ export default async function LocaleLayout({
       >
         {children}
         <NavBar
-          items={navItems}
-          dict={dict.common.header}
+          items={navigation.navItems}
           locale={locale as Locale}
+          applyButtonLabel={navigation.applyButton.label}
         />
-        <Footer />
+        <Footer
+          sections={footer.sections}
+          copyright={footer.copyright}
+          description={footer.description}
+        />
       </ThemeProvider>
     </>
   );

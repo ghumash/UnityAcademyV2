@@ -6,18 +6,5 @@ export const common: CommonDict = {
     shortName: "Unity",
     description: "Քո ապագան ՏՏ-ում սկսվում է այստեղ",
     locale: "hy-HY",
-  },
-  nav: {
-    home: "Գլխավոր",
-    courses: "Դասընթացներ",
-    about: "Մեր մասին",
-    contacts: "Կապ",
-    apply: "Դիմել",
-  },
-  footer: {
-    navigation: "Նավիգացիյա",
-    contacts: "Կոնտակտներ",
-    madeIn: "Ստեղծված է Վանաձորում",
-    rights: "Բոլոր իրավունքները պաշտպանված են.",
-  },
+  }
 };

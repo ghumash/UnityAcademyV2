@@ -3,52 +3,34 @@
 import React from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  YoutubeIcon,
-} from "lucide-react";
 import { Container, Section } from "@/shared/ui/custom";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/shared/config";
 
 type FooterLink = {
-  title: string;
+  name: string;
   href: string;
   icon?: React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
 };
 
 type FooterSection = {
-  label: string;
-  links: FooterLink[];
+  title: string;
+  links: readonly FooterLink[];
 };
 
-const footerLinks: ReadonlyArray<FooterSection> = [
-  {
-    label: "Resources",
-    links: [
-      { title: "Home", href: "/" },
-      { title: "About", href: "/about" },
-      { title: "Courses", href: "/courses" },
-      { title: "Questions", href: "/questions" },
-    ],
-  },
-  {
-    label: "Social",
-    links: [
-      { title: "Facebook", href: "#", icon: FacebookIcon },
-      { title: "Instagram", href: "#", icon: InstagramIcon },
-      { title: "YouTube", href: "#", icon: YoutubeIcon },
-      { title: "LinkedIn", href: "#", icon: LinkedinIcon },
-    ],
-  },
-] as const;
+export interface FooterProps {
+  sections: {
+    company: FooterSection;
+    support: FooterSection;
+    social: FooterSection;
+  };
+  copyright: string;
+  description: string;
+}
 
-const currentYear = new Date().getFullYear();
 
-export function Footer() {
+export function Footer({ sections, copyright, description }: FooterProps) {
   return (
     <Section as="footer" role="contentinfo" aria-labelledby="footer-heading">
       <Container>
@@ -85,31 +67,30 @@ export function Footer() {
                 </Link>
 
                 <p className="max-w-prose text-sm text-muted-foreground">
-                  {siteConfig.description}
+                  {description}
                 </p>
 
                 <p className="text-muted-foreground text-sm">
-                  © <time dateTime={String(currentYear)}>{currentYear}</time>{" "}
-                  {siteConfig.name}. All rights reserved.
+                  {copyright}
                 </p>
               </div>
             </AnimatedContainer>
 
             <div className="flex gap-8">
-              {footerLinks.map((section, idx) => (
+              {Object.values(sections).map((section, idx) => (
                 <AnimatedContainer
-                  key={section.label}
+                  key={section.title}
                   delay={0.08 + idx * 0.08}
                 >
                   <nav
-                    aria-labelledby={`footer-section-${section.label}`}
+                    aria-labelledby={`footer-section-${section.title}`}
                     className="mb-10 min-w-[120px] flex-1 md:mb-0"
                   >
                     <h3
-                      id={`footer-section-${section.label}`}
+                      id={`footer-section-${section.title}`}
                       className="text-xs font-medium tracking-wide text-foreground"
                     >
-                      {section.label}
+                      {section.title}
                     </h3>
 
                     <ul
@@ -117,7 +98,7 @@ export function Footer() {
                       className="mt-4 space-y-2 text-sm text-muted-foreground"
                     >
                       {section.links.map((link) => (
-                        <li key={link.title}>
+                        <li key={link.name}>
                           <FooterItem link={link} />
                         </li>
                       ))}
@@ -146,7 +127,7 @@ function FooterItem({ link }: { link: FooterLink }) {
     return (
       <Link href={link.href} prefetch={false} className={className}>
         {Icon ? <Icon className="me-1 size-4" aria-hidden /> : null}
-        <span>{link.title}</span>
+        <span>{link.name}</span>
       </Link>
     );
   }
@@ -160,11 +141,11 @@ function FooterItem({ link }: { link: FooterLink }) {
         target: "_blank",
         rel: "noopener noreferrer external",
       })}
-      aria-label={Icon ? link.title : undefined}
+      aria-label={Icon ? link.name : undefined}
     >
       {Icon ? <Icon className="me-1 size-4" aria-hidden /> : null}
-      <span className="sr-only">{Icon ? link.title : undefined}</span>
-      {!Icon ? <span>{link.title}</span> : null}
+      <span className="sr-only">{Icon ? link.name : undefined}</span>
+      {!Icon ? <span>{link.name}</span> : null}
     </Link>
   );
 }

@@ -1,4 +1,3 @@
-export { default as Header } from "./Header/Header";
 export { Footer } from "./Footer/Footer";
 export { TeamSection } from "./TeamSection/TeamSection";
 export * from "./GlowingGrid/GlowingGrid";

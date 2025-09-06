@@ -2,6 +2,9 @@ import type { Dict } from "../types";
 
 import { common } from "./common/en";
 
+import { navigation } from "./navigation/ru";
+import { footer } from "./footer/ru";
+
 import { hero } from "./home/hero/ru";
 import { carousel } from "./home/carousel/ru";
 import { featuresSection } from "./home/featuresSection/ru";
@@ -20,6 +23,8 @@ import { formSection } from "./contact/formSection/ru";
 
 export const ru: Dict = {
   common,
+  navigation,
+  footer,
   home: {
     hero,
     carousel,
