@@ -93,7 +93,7 @@
   ```ts
   import { getT } from "@/shared/lib/i18n";
   const t = await getT("ru");
-  t("header.nav.courses");
+  t("common.nav.courses");
   ```
 
 - MdxRenderer — рендерит MDX-строку в React
@@ -339,7 +339,7 @@ await logError("contact.submit", err, { extra });
 ```ts
 import { getT } from "@/shared/lib/i18n";
 const t = await getT("ru");
-const title = t("header.nav.courses");
+const title = t("common.nav.courses");
 ```
 
 Best practice: не класть длинные HTML-строки в словари; храните только короткие фразы.

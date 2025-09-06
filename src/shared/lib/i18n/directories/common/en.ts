@@ -5,15 +5,14 @@ export const common: CommonDict = {
     name: "Unity Academy",
     shortName: "Unity",
     description: "Your IT future starts here",
-    locale: "en-EN"
+    locale: "en-EN",
   },
-  header: {
-    nav: {
-      courses: "Courses",
-      about: "About",
-      contacts: "Contacts",
-      apply: "Apply",
-    },
+  nav: {
+    home: "Home",
+    courses: "Courses",
+    about: "About",
+    contacts: "Contacts",
+    apply: "Apply",
   },
   footer: {
     navigation: "Navigation",

@@ -5,17 +5,10 @@ import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, Locale, locales } from "@/shared/lib/i18n";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-  Button,
-} from "@/shared/ui";
+import { Button } from "@/shared/ui";
 import { getAllSlugs, getCourseBySlugLocale } from "@/shared/content";
 import { getMdxToc, MdxRenderer, MdxTocNav } from "@/shared/mdx";
+import { AppBreadcrumb } from "@/widgets";
 
 export async function generateMetadata({
   params,
@@ -27,8 +20,8 @@ export async function generateMetadata({
   const course = await getCourseBySlugLocale(locale, slug);
   const title = course
     ? course.title
-    : `${t("header.nav.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
-  const description = course?.excerpt ?? t("header.nav.courses");
+    : `${t("common.nav.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
+  const description = course?.excerpt ?? t("common.nav.courses");
   return createMetadata({
     title,
     canonical: absoluteUrl(`/${locale}/courses/${slug}`),
@@ -67,34 +60,19 @@ export default async function CoursePage({
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
-          { name: t("header.nav.courses"), href: `/${locale}/courses` },
+          { name: t("common.nav.courses"), href: `/${locale}/courses` },
           { name: course!.title, href: `/${locale}/courses/${slug}` },
         ])}
       />
 
       <Section>
         <Container>
-          <Breadcrumb aria-label="Breadcrumb">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={`/${locale}`}>{t("common.home")}</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={`/${locale}/courses`}>
-                    {t("header.nav.courses")}
-                  </Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{course!.title}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <AppBreadcrumb
+            items={[
+              { label: t("common.nav.courses"), href: `/${locale}/courses` },
+              { label: course!.title },
+            ]}
+          />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
             {course!.title}
@@ -124,7 +102,7 @@ export default async function CoursePage({
 
           <div className="mt-8">
             <Button asChild>
-              <Link href={`/${locale}/apply`}>{t("header.nav.apply")}</Link>
+              <Link href={`/${locale}/apply`}>{t("common.nav.apply")}</Link>
             </Button>
           </div>
         </Container>

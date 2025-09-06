@@ -1,23 +1,19 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, Locale } from "@/shared/lib/i18n";
 import { peopleMock } from "@/entities/person";
-import { GlowingGrid, GridItemData, TeamSection } from "@/widgets";
-import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
-
 import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-} from "@/shared/ui";
+  AppBreadcrumb,
+  GlowingGrid,
+  GridItemData,
+  TeamSection,
+} from "@/widgets";
+import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
 import { getPageBySlugLocale } from "@/shared/content/pages";
 import { MdxRenderer } from "@/shared/mdx";
+import { TextGenerateEffect } from "@/shared/ui/lib";
 
 export async function generateMetadata({
   params,
@@ -29,11 +25,11 @@ export async function generateMetadata({
   const page = await getPageBySlugLocale(locale, "about");
 
   return createMetadata({
-    title: page?.title ?? t("common.header.nav.about"),
+    title: page?.title ?? t("common.nav.about"),
     canonical: absoluteUrl(`/${locale}/about`),
     alternatesPath: "/about",
     locale,
-    description: page?.description ?? t("header.nav.about"),
+    description: page?.description ?? t("common.nav.about"),
   });
 }
 
@@ -66,6 +62,8 @@ const items: GridItemData[] = [
   },
 ];
 
+const words = `Oxygen gets you high. In a catastrophic emergency, we're taking giant, panicked breaths. Suddenly you become euphoric, docile. You accept your fate. It's all right here. Emergency water landing, six hundred miles an hour. Blank faces, calm as Hindu cows`;
+
 export default async function AboutPage({
   params,
 }: {
@@ -80,33 +78,25 @@ export default async function AboutPage({
       <JsonLd
         id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
-          { name: t("common.home"), href: `/${locale}` },
+          { name: t("common.nav.home"), href: `/${locale}` },
           {
-            name: page?.title ?? t("header.nav.about"),
+            name: t("common.nav.about"),
             href: `/${locale}/about`,
           },
         ])}
       />
+      <TextGenerateEffect as="h2" duration={2} filter={false} words={words} />
       <Section>
         <Container>
-          <Breadcrumb aria-label="Breadcrumb">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={`/${locale}`}>{t("common.home")}</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>
-                  {page?.title ?? t("header.nav.about")}
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <AppBreadcrumb
+            items={[
+              { label: t("common.nav.home"), href: "/" },
+              { label: t("common.nav.about") },
+            ]}
+          />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {page?.title ?? t("header.nav.about")}
+            {t("common.nav.about")}
           </h1>
 
           {page?.body ? (
@@ -120,7 +110,7 @@ export default async function AboutPage({
         items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
-      <TeamSection people={peopleMock} locale={locale} />
+      <TeamSection people={peopleMock} />
     </main>
   );
 }

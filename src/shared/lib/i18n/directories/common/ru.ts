@@ -7,13 +7,12 @@ export const common: CommonDict = {
     description: "Твое будущее в IT начинается здесь",
     locale: "ru-RU",
   },
-  header: {
-    nav: {
-      courses: "Курсы",
-      about: "О нас",
-      contacts: "Контакты",
-      apply: "Подать заявку",
-    },
+  nav: {
+    home: "Главная",
+    courses: "Курсы",
+    about: "О нас",
+    contacts: "Контакты",
+    apply: "Подать заявку",
   },
   footer: {
     navigation: "navigaciya",

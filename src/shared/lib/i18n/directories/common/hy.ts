@@ -5,15 +5,14 @@ export const common: CommonDict = {
     name: "Unity Academy",
     shortName: "Unity",
     description: "Քո ապագան ՏՏ-ում սկսվում է այստեղ",
-    locale: "hy-HY"
+    locale: "hy-HY",
   },
-  header: {
-    nav: {
-      courses: "Դասընթացներ",
-      about: "Մեր մասին",
-      contacts: "Կապ",
-      apply: "Դիմել",
-    },
+  nav: {
+    home: "Գլխավոր",
+    courses: "Դասընթացներ",
+    about: "Մեր մասին",
+    contacts: "Կապ",
+    apply: "Դիմել",
   },
   footer: {
     navigation: "Նավիգացիյա",

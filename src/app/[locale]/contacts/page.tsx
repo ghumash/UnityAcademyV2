@@ -1,20 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, Locale } from "@/shared/lib/i18n";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-} from "@/shared/ui";
 import { getPageBySlugLocale } from "@/shared/content/pages";
 import { MdxRenderer } from "@/shared/mdx";
 import { ContactForm } from "@/features/contact";
+import { AppBreadcrumb } from "@/widgets";
 
 export async function generateMetadata({
   params,
@@ -26,11 +18,11 @@ export async function generateMetadata({
   const page = await getPageBySlugLocale(locale, "contacts");
 
   return createMetadata({
-    title: page?.title ?? t("header.nav.contacts"),
+    title: page?.title ?? t("common.nav.contacts"),
     canonical: absoluteUrl(`/${locale}/contacts`),
     alternatesPath: "/contacts",
     locale,
-    description: page?.description ?? t("header.nav.contacts"),
+    description: page?.description ?? t("common.nav.contacts"),
   });
 }
 
@@ -50,31 +42,22 @@ export default async function ContactsPage({
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
           {
-            name: page?.title ?? t("header.nav.contacts"),
+            name: page?.title ?? t("common.nav.contacts"),
             href: `/${locale}/contacts`,
           },
         ])}
       />
       <Section>
         <Container>
-          <Breadcrumb aria-label="Breadcrumb">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={`/${locale}`}>{t("common.home")}</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>
-                  {page?.title ?? t("header.nav.contacts")}
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <AppBreadcrumb
+            items={[
+              { label: t("common.nav.home"), href: "/" },
+              { label: t("common.nav.contacts") },
+            ]}
+          />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {page?.title ?? t("header.nav.contacts")}
+            {page?.title ?? t("common.nav.contacts")}
           </h1>
 
           {page?.body ? (

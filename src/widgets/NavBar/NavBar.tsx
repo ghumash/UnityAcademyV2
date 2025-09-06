@@ -135,10 +135,10 @@ export const NavBar = React.memo(function NavBar({
           >
             <Link
               href={`/${locale}/apply`}
-              aria-label={dict.nav.apply}
-              title={dict.nav.apply}
+              aria-label="Գրանցվել"
+              title="Գրանցվել"
             >
-              <span className="hidden md:inline">{dict.nav.apply}</span>
+              <span className="hidden md:inline">Գրանցվել</span>
               <ChevronRight aria-hidden="true" className="h-4 w-4 shrink-0" />
             </Link>
           </Button>

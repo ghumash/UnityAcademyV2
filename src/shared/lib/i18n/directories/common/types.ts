@@ -5,13 +5,12 @@ export type CommonDict = {
     description: string;
     locale: string;
   };
-  header: {
-    nav: {
-      courses: string;
-      about: string;
-      contacts: string;
-      apply: string;
-    };
+  nav: {
+    home: string;
+    courses: string;
+    about: string;
+    contacts: string;
+    apply: string;
   };
   footer: {
     navigation: string;

@@ -16,7 +16,7 @@ export default function CourseNotFound() {
       <Section>
         <Container>
           <h1 className="text-2xl font-semibold tracking-tight">
-            {dict.common.header.nav.courses}
+            {dict.common.nav.courses}
           </h1>
           <div className="mt-6 rounded-lg border bg-card p-6 text-card-foreground">
             <p className="text-sm text-muted-foreground">
@@ -25,7 +25,7 @@ export default function CourseNotFound() {
             <div className="mt-4">
               {/* относительный путь → /[locale]/courses */}
               <Button asChild>
-                <Link href="../">← {dict.common.header.nav.courses}</Link>
+                <Link href="../">← {dict.common.nav.courses}</Link>
               </Button>
             </div>
           </div>

@@ -4,23 +4,14 @@ import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, Locale } from "@/shared/lib/i18n";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-  Button,
-  Input,
-  Badge,
-} from "@/shared/ui";
+import { Button, Input, Badge } from "@/shared/ui";
 import {
   getAllTagsForLocale,
   searchFilterCourses,
   type CourseLite,
 } from "@/shared/content/courses";
 import { paginate } from "@/shared/lib/pagination";
+import { AppBreadcrumb } from "@/widgets";
 
 const PER_PAGE = 9;
 
@@ -43,7 +34,7 @@ export async function generateMetadata({
   const canonicalPath = query.toString() ? `${base}?${query.toString()}` : base;
 
   const meta = createMetadata({
-    title: t("header.nav.courses"),
+    title: t("common.nav.courses"),
     canonical: absoluteUrl(canonicalPath),
     alternatesPath: "/courses",
     locale,
@@ -98,7 +89,7 @@ export default async function CoursesPage({
         id="breadcrumbs-courses"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
-          { name: t("header.nav.courses"), href: href({}) },
+          { name: t("common.nav.courses"), href: href({}) },
         ])}
       />
 
@@ -119,22 +110,15 @@ export default async function CoursesPage({
 
       <Section>
         <Container>
-          <Breadcrumb aria-label="Breadcrumb">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={`/${locale}`}>{t("common.home")}</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{t("header.nav.courses")}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <AppBreadcrumb
+            items={[
+              { label: t("common.nav.home"), href: "/" },
+              { label: t("common.nav.courses") },
+            ]}
+          />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {t("header.nav.courses")}
+            {t("common.nav.courses")}
           </h1>
 
           {/* Панель фильтров */}
