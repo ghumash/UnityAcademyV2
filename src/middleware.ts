@@ -21,6 +21,32 @@ function getLocaleFromPathname(pathname: string): Locale | null {
   return locales.includes(firstSegment as Locale) ? (firstSegment as Locale) : null;
 }
 
+function detectPreferredLocale(req: NextRequest): Locale {
+  // 1) Cookie-based preference
+  const cookieLocale = req.cookies.get("locale")?.value || req.cookies.get("NEXT_LOCALE")?.value;
+  if (cookieLocale && locales.includes(cookieLocale as Locale)) {
+    return cookieLocale as Locale;
+  }
+
+  // 2) Accept-Language header
+  const header = req.headers.get("accept-language");
+  if (header) {
+    // Parse languages like: "en-US,en;q=0.9,ru;q=0.8"
+    const codes = header
+      .split(',')
+      .map((part) => part.split(';')[0]?.trim())
+      .filter(Boolean) as string[];
+    for (const code of codes) {
+      const base = code.toLowerCase().split('-')[0];
+      const match = locales.find((l) => l === base);
+      if (match) return match as Locale;
+    }
+  }
+
+  // 3) Fallback to default
+  return defaultLocale;
+}
+
 export function middleware(req: NextRequest) {
   const { nextUrl } = req;
   const pathname = nextUrl.pathname;
@@ -56,11 +82,20 @@ export function middleware(req: NextRequest) {
   // Если пути нет локали, редиректим на путь с дефолтной локалью
   if (!locale) {
     const url = nextUrl.clone();
-    url.pathname = `/${defaultLocale}${pathname}`;
+    const preferred = detectPreferredLocale(req);
+    url.pathname = `/${preferred}${pathname}`;
     return NextResponse.redirect(url);
   }
 
   const res = NextResponse.next();
+  // Persist current locale preference for future visits without locale prefix
+  if (locale) {
+    res.cookies.set("NEXT_LOCALE", locale, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+      sameSite: "lax",
+    });
+  }
   const cspDev = process.env.CSP_RO ?? CSP_RO;
   if (process.env.NODE_ENV !== "production") {
     res.headers.set("Content-Security-Policy-Report-Only", cspDev);

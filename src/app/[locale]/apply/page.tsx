@@ -17,11 +17,11 @@ export async function generateMetadata({
   const t = await getT(locale);
   const page = await getPageBySlugLocale(locale, "apply");
   return createMetadata({
-    title: page?.title ?? t("nav.apply"),
+    title: page?.title ?? t("common.navigation.apply"),
     canonical: absoluteUrl(`/${locale}/apply`),
     alternatesPath: "/apply",
     locale,
-    description: page?.description ?? t("nav.apply"),
+    description: page?.description ?? t("common.navigation.apply"),
   });
 }
 
@@ -39,8 +39,8 @@ export default async function ApplyPage({
       <JsonLd
         id="breadcrumbs-apply"
         data={buildBreadcrumbsJsonLd([
-          { name: t("common.home"), href: `/${locale}` },
-          { name: page?.title ?? t("nav.apply"), href: `/${locale}/apply` },
+          { name: t("common.navigation.home"), href: `/${locale}` },
+          { name: page?.title ?? t("common.navigation.apply"), href: `/${locale}/apply` },
         ])}
       />
       <Section>
@@ -53,7 +53,7 @@ export default async function ApplyPage({
           />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {page?.title ?? t("nav.apply")}
+            {page?.title ?? t("common.navigation.apply")}
           </h1>
 
           {page?.body ? (
