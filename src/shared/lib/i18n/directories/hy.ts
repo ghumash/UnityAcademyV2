@@ -10,5 +10,5 @@ export const hy: Dict = {
   home,
   about,
   contact,
-} as const;
+};
 

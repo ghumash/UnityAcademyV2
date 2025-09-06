@@ -10,4 +10,4 @@ export const ru: Dict = {
   home,
   about,
   contact,
-} as const;
+};
