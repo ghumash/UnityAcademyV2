@@ -52,7 +52,7 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const ctaBanner = await getCtaBannerConfig(locale);
 
   return (
-    <main>
+    <main className="sm:mt-20 md:mt-22">
       <Hero
         title={hero.title}
         subtitle={hero.subtitle}

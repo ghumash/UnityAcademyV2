@@ -1,8 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import type { Locale } from "@/shared/lib/i18n";
-
-const DEFAULT_LOCALE: Locale = "ru";
+import { locales, defaultLocale, type Locale } from "@/shared/lib/i18n/config";
 
 const CSP_RO = [
   "default-src 'self'",
@@ -17,12 +15,30 @@ const CSP_RO = [
   "form-action 'self'",
 ].join("; ");
 
+function getLocaleFromPathname(pathname: string): Locale | null {
+  const segments = pathname.split('/').filter(Boolean);
+  const firstSegment = segments[0];
+  return locales.includes(firstSegment as Locale) ? (firstSegment as Locale) : null;
+}
+
 export function middleware(req: NextRequest) {
   const { nextUrl } = req;
+  const pathname = nextUrl.pathname;
 
-  if (nextUrl.pathname === "/") {
+  // Редирект с корня на дефолтную локаль
+  if (pathname === "/") {
     const url = nextUrl.clone();
-    url.pathname = `/${DEFAULT_LOCALE}`;
+    url.pathname = `/${defaultLocale}`;
+    return NextResponse.redirect(url);
+  }
+
+  // Проверяем, есть ли локаль в пути
+  const locale = getLocaleFromPathname(pathname);
+  
+  // Если пути нет локали, редиректим на путь с дефолтной локалью
+  if (!locale) {
+    const url = nextUrl.clone();
+    url.pathname = `/${defaultLocale}${pathname}`;
     return NextResponse.redirect(url);
   }
 

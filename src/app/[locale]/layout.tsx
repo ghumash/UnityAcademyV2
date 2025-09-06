@@ -4,7 +4,10 @@ import { Locale } from "@/shared/lib/i18n";
 import { Footer, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
-import { getNavigationConfig, getFooterConfig } from "@/shared/config/navigation";
+import {
+  getNavigationConfig,
+  getFooterConfig,
+} from "@/shared/config/navigation";
 
 export async function generateMetadata({
   params,
@@ -21,7 +24,6 @@ export async function generateMetadata({
       "Стартовый каркас Unity Academy. Веб, AI, Android, контент и карьера.",
   });
 }
-
 
 export default async function LocaleLayout({
   children,
