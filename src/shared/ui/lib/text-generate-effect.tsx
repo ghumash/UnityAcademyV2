@@ -3,6 +3,7 @@
 import { memo, useEffect, useMemo, type JSX } from "react";
 import { motion, stagger, useAnimate, useReducedMotion } from "framer-motion";
 import { cn } from "@/shared/lib/utils";
+import { Container, Section } from "../custom";
 
 type TextGenerateEffectProps = {
   /** Текст, который нужно “напечатать” с эффектом появления */
@@ -51,32 +52,36 @@ function TextGenerateEffectImpl({
   }, [animate, duration, filter, staggerDelay, shouldReduce, wordsArray]);
 
   return (
-    <Tag
-      className={cn(
-        "mt-4 font-bold text-2xl leading-snug tracking-wide dark:text-white text-black",
-        className
-      )}
-    >
-      {/* Доступный для скринридеров полный текст (без разбивки по словам) */}
-      <span className="sr-only">{words}</span>
+    <Section as="div">
+      <Container>
+        <Tag
+          className={cn(
+            "font-bold text-2xl leading-snug tracking-wide dark:text-white text-black",
+            className
+          )}
+        >
+          {/* Доступный для скринридеров полный текст (без разбивки по словам) */}
+          <span className="sr-only">{words}</span>
 
-      {/* Визуальная часть с анимацией — скрываем от ассистивных технологий */}
-      <span ref={scope} aria-hidden="true">
-        {wordsArray.map((word, idx) => (
-          <motion.span
-            key={`${word}-${idx}`}
-            data-word
-            className={cn(shouldReduce ? "opacity-100" : "opacity-0")}
-            style={{
-              ...(filter && !shouldReduce ? { filter: "blur(10px)" } : {}),
-              ...(shouldReduce ? {} : { willChange: "opacity, filter" }),
-            }}
-          >
-            {word}{" "}
-          </motion.span>
-        ))}
-      </span>
-    </Tag>
+          {/* Визуальная часть с анимацией — скрываем от ассистивных технологий */}
+          <span ref={scope} aria-hidden="true">
+            {wordsArray.map((word, idx) => (
+              <motion.span
+                key={`${word}-${idx}`}
+                data-word
+                className={cn(shouldReduce ? "opacity-100" : "opacity-0")}
+                style={{
+                  ...(filter && !shouldReduce ? { filter: "blur(10px)" } : {}),
+                  ...(shouldReduce ? {} : { willChange: "opacity, filter" }),
+                }}
+              >
+                {word}{" "}
+              </motion.span>
+            ))}
+          </span>
+        </Tag>
+      </Container>
+    </Section>
   );
 }
 

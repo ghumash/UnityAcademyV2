@@ -1,0 +1,4 @@
+TODO: refactor siteConfig
+TODO: use default language for application HY
+TODO: refactor seo, jsonld.tsx, createMetadata.tsx
+TODO: add documentation for all app and reusable components

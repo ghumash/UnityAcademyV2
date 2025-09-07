@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { peopleMock } from "@/entities/person";
-import {
-  AppBreadcrumb,
-  GlowingGrid,
-  type GridItemData,
-  TeamSection,
-} from "@/widgets";
+import { GlowingGrid, type GridItemData, TeamSection } from "@/widgets";
 import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
 import { getPageBySlugLocale } from "@/shared/content/pages";
-import { MdxRenderer } from "@/shared/mdx";
 import { TextGenerateEffect } from "@/shared/ui/lib";
 
 export async function generateMetadata({
@@ -62,7 +55,14 @@ const items: GridItemData[] = [
   },
 ];
 
-const words = `Oxygen gets you high. In a catastrophic emergency, we're taking giant, panicked breaths. Suddenly you become euphoric, docile. You accept your fate. It's all right here. Emergency water landing, six hundred miles an hour. Blank faces, calm as Hindu cows`;
+const title = "Ովքե՞ր ենք մենք";
+
+const description = `Մենք տալիս ենք ավելին, քան պարզապես դասընթացներ.
+Մենք համայնք ենք նրանց համար, ովքեր ձգտում են աճել մասնագիտապես,
+անձնապես և ճիշտ արժեքներով, ովքեր ցանկանում են զարգացնել իրենց հմտությունները և գտնել կարիերայի հնարավորություններ:`;
+
+const description_2 = `Սա այն վայրն է, որտեղ գիտելիքը վերածվում է մասնագիտության,
+ պրակտիկան դառնում է հաջողության հիմք, իսկ ամուր համայնքը աջակցում է քեզ ամեն քայլափոխի:`;
 
 export default async function AboutPage({
   params,
@@ -74,7 +74,7 @@ export default async function AboutPage({
   const page = await getPageBySlugLocale(locale, "about");
 
   return (
-    <main id="main">
+    <main id="main" className="sm:mt-20 md:mt-26">
       <JsonLd
         id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
@@ -85,27 +85,19 @@ export default async function AboutPage({
           },
         ])}
       />
-      <TextGenerateEffect as="h2" duration={2} filter={false} words={words} />
-      <Section>
-        <Container>
-          <AppBreadcrumb
-            items={[
-              { label: t("common.navigation.home"), href: "/" },
-              { label: t("common.navigation.about") },
-            ]}
-          />
-
-          <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {t("common.navigation.about")}
-          </h1>
-
-          {page?.body ? (
-            <div className="mt-6">
-              <MdxRenderer source={page.body} />
-            </div>
-          ) : null}
-        </Container>
-      </Section>
+      <TextGenerateEffect as="h2" duration={2} filter={false} words={title} />
+      <TextGenerateEffect
+        as="h2"
+        duration={2}
+        filter={false}
+        words={description}
+      />
+      <TextGenerateEffect
+        as="h2"
+        duration={2}
+        filter={false}
+        words={description_2}
+      />
       <GlowingGrid
         items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}

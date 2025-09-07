@@ -10,3 +10,4 @@ export * from "./LogoCarouselSection/LogoCarouselSection";
 export * from "./CtaBanner/CtaBanner";
 export * from "./Courses/Courses";
 export * from "./AppBreadcrumbs/AppBreadcrumbs";
+export * from "./AppAutoBreadcrumbs/AppAutoBreadcrumbs";
