@@ -4,9 +4,17 @@ import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { peopleMock } from "@/entities/person";
 import { GlowingGrid, type GridItemData, TeamSection } from "@/widgets";
-import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
+import {
+  Rocket,
+  Briefcase,
+  FileText,
+  BadgeCheck,
+  Mic,
+  Users,
+  CalendarDays,
+} from "lucide-react";
 import { getPageBySlugLocale } from "@/shared/content/pages";
-import { TextGenerateEffect } from "@/shared/ui/lib";
+import { TextGenerateEffect, TextHoverEffect } from "@/shared/ui/lib";
 
 export async function generateMetadata({
   params,
@@ -28,30 +36,119 @@ export async function generateMetadata({
 
 const items: GridItemData[] = [
   {
-    icon: <Box className="h-4 w-4 text-black dark:text-neutral-400" />,
-    title: "Do things the right way",
-    description: "Running out of copy so I'll write anything.",
+    icon: (
+      <Rocket
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: "Ժամանակակից պահանջված ուղղություններ",
+    description: (
+      <>
+        AI, Kids Coding, Mobile Development, Web Development, Graphic Design,
+        UI/UX Design, SMM, HR, դասընթացների ընթացքում նաև կազմակերպում ենք
+        էքսկուրսիաներ դեպր տարբեր կազմակերպություններ և ոչ միայն
+      </>
+    ),
   },
   {
-    icon: <Settings className="h-4 w-4 text-black dark:text-neutral-400" />,
-    title: "The best AI code editor ever.",
+    icon: (
+      <Briefcase
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: "Կարիերա",
     description:
-      "Yes, it's true. I'm not even kidding. Ask my mom if you don't believe me.",
+      "Լավագույն ուսանողները կստանան աշխատանքի առաջարկ մեր և/կամ գործընկերների կողմից",
   },
   {
-    icon: <Lock className="h-4 w-4 text-black dark:text-neutral-400" />,
-    title: "You should buy Aceternity UI Pro",
-    description: "It's the best money you'll ever spend",
+    icon: (
+      <FileText
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: "Պորտֆոլիո և ինքնակենսագրական",
+    description:
+      "Դասընթացի ավարտին դուք կունենաք պրոֆեսիոնալ աշատանքներ և կոգնենք ստեղծել գրագետ ինքնակենսագրական (CV) և այս ամենը կոգնի քեզ քո տեղը արագ գտնել աշխատաշուկայում",
   },
   {
-    icon: <Sparkles className="h-4 w-4 text-black dark:text-neutral-400" />,
-    title: "This card is also built by Cursor",
-    description: "I'm not even kidding. Ask my mom if you don't believe me.",
+    icon: (
+      <BadgeCheck
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: "Սերտիֆիկացում և թվային վավերացում",
+    description:
+      "Դասընթացի հաջող ավարտից հետո ստանում եք Unity Academy Armenia-ի անվանական սերտիֆիկատ՝ թվային վավերացումով (QR/հղում)։ Այն կարող եք ավելացնել LinkedIn-ում և կցել CV-ին։ Գնահատումը հիմնվում է ներկայության, տնայինների և եզրափակիչ նախագծի վրա։",
   },
   {
-    icon: <Search className="h-4 w-4 text-black dark:text-neutral-400" />,
-    title: "Coming soon on Aceternity UI",
-    description: "I'm writing the code as I record this, no shit.",
+    icon: (
+      <Mic
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: "Սեմինարներ",
+    description:
+      "Մենք ունենում ենք հյուրեր հայտնի ընկերություններից, որոնք կիսվում են իրենց փորձով և պատասխանում ձեզ հետաքրքրող հարցերին, բարելավելով ձեր գիտելիքները ՏՏ ոլորտում և աշխատանքի հարցում",
+  },
+  {
+    icon: (
+      <Users
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: "Համայնք",
+    description:
+      "Հզոր համայնք, որտեղ ուսանողները կրթվում են ստեղծում են նոր կապեր, միասին ուժերով ստեղծում նոր ստարտափեր և ոչ միայն",
+  },
+
+  {
+    icon: (
+      <CalendarDays
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: "Dayoff",
+    description: (
+      <>
+        <ul>
+          <li>
+            «Dayoff» հանդիպումներ — շաբաթական, անվճար և ոչ ֆորմալ
+            community-հավաքներ։
+          </li>
+          <li>
+            Համայնքային կապ — միավորում ենք բոլոր խմբերի մասնակիցներին՝
+            ծանոթություններ, նեթվորքինգ, թիմային շփումներ։
+          </li>
+          <li>
+            Ներքին ակտիվություններ — ժամանցային խաղեր, մտավոր ծրագրեր ու թիմային
+            մրցույթներ՝ ջերմ ու հարմարավետ միջավայրում։
+          </li>
+          <li>
+            Թեմատիկ քննարկումներ — ՏՏ ոլորտի արդիական թեմաներ, փորձի փոխանակում,
+            գաղափարների ներկայացում։
+          </li>
+          <li>
+            Արժեքներ և ինքնակրթություն — խոսում ենք մարդկային արժեքների մասին և
+            ձևավորում արդյունավետ սովորելու ռազմավարություններ։
+          </li>
+          <li>
+            Նոր նախաձեռնություններ — բրեյնսթորմինգ ու գաղափարների զարգացում
+            նախագծերի շուրջ։
+          </li>
+          <li>
+            Արտաքին ակտիվություններ — արշավներ, ճամբարներ և մասնակցություն
+            ՏՏ-միջոցառումներին։
+          </li>
+        </ul>
+      </>
+    ),
   },
 ];
 
@@ -74,7 +171,7 @@ export default async function AboutPage({
   const page = await getPageBySlugLocale(locale, "about");
 
   return (
-    <main id="main" className="sm:mt-20 md:mt-26">
+    <main id="main" className="sm:mt-20 md:mt-29">
       <JsonLd
         id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
@@ -85,6 +182,9 @@ export default async function AboutPage({
           },
         ])}
       />
+      <div className="flex items-center justify-center h-[300px] bg-neutral-100 dark:bg-neutral-900">
+        <TextHoverEffect text="Մեր մասին" />
+      </div>
       <TextGenerateEffect as="h2" duration={2} filter={false} words={title} />
       <TextGenerateEffect
         as="h2"
