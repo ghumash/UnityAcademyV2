@@ -16,7 +16,7 @@ import { useI18n } from "@/shared/lib/i18n";
 import { buildBreadcrumbsJsonLd } from "@/shared/seo";
 import { JsonLd } from "@/shared/seo";
 
-export interface AppBreadcrumbProps {
+export interface AppAutoBreadcrumbProps {
   ariaLabel?: string;
   className?: string;
 }
@@ -27,10 +27,10 @@ export interface AppBreadcrumbProps {
  * - подписи берёт из словаря (common.nav.*)
  * - в <head> добавляет JSON-LD для SEO
  */
-export function AppBreadcrumb({
+export function AppAutoBreadcrumb({
   ariaLabel = "Breadcrumb",
   className,
-}: AppBreadcrumbProps) {
+}: AppAutoBreadcrumbProps) {
   const pathname = usePathname();
   const { locale, t } = useI18n();
 
