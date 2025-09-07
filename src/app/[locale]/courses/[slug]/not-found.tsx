@@ -1,15 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { Section, Container } from "@/shared/ui/custom";
 import { Button } from "@/shared/ui";
-import type { Locale } from "@/shared/lib/i18n";
-import { getDictionarySync } from "@/shared/lib/i18n";
+import { useDictionary } from "@/shared/lib/i18n";
 
 export default function CourseNotFound() {
-  const { locale } = useParams<{ locale: Locale }>();
-  const dict = getDictionarySync(locale);
+  const { dict } = useDictionary();
 
   return (
     <main>
@@ -20,12 +17,13 @@ export default function CourseNotFound() {
           </h1>
           <div className="mt-6 rounded-lg border bg-card p-6 text-card-foreground">
             <p className="text-sm text-muted-foreground">
-              Курс не найден или ещё не опубликован.
+              {dict.common.errors.courseNotFound.description}
             </p>
             <div className="mt-4">
-              {/* относительный путь → /[locale]/courses */}
               <Button asChild>
-                <Link href="../">← {dict.common.navigation.courses}</Link>
+                <Link href="/">
+                  ← {dict.common.errors.courseNotFound.backToCourses}
+                </Link>
               </Button>
             </div>
           </div>

@@ -16,6 +16,6 @@ export const errors: ErrorsDict = {
   },
   courseNotFound: {
     description: "Դասընթացը չի գտնվել կամ դեռ չի հրապարակվել:",
-    backToCourses: "← Դասընթացներ",
+    backToCourses: "Դասընթացներ",
   },
 };

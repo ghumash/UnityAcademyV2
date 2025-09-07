@@ -16,6 +16,6 @@ export const errors: ErrorsDict = {
   },
   courseNotFound: {
     description: "Курс не найден или ещё не опубликован.",
-    backToCourses: "← К курсам",
+    backToCourses: "К курсам",
   },
 };

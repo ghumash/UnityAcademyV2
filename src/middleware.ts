@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { locales, defaultLocale, type Locale } from "@/shared/lib/i18n/config";
+import { locales, defaultLocale, type Locale } from "@/shared/lib/i18n";
 
 const CSP_RO = [
   "default-src 'self'",
@@ -16,14 +16,17 @@ const CSP_RO = [
 ].join("; ");
 
 function getLocaleFromPathname(pathname: string): Locale | null {
-  const segments = pathname.split('/').filter(Boolean);
+  const segments = pathname.split("/").filter(Boolean);
   const firstSegment = segments[0];
-  return locales.includes(firstSegment as Locale) ? (firstSegment as Locale) : null;
+  return locales.includes(firstSegment as Locale)
+    ? (firstSegment as Locale)
+    : null;
 }
 
 function detectPreferredLocale(req: NextRequest): Locale {
   // 1) Cookie-based preference
-  const cookieLocale = req.cookies.get("locale")?.value || req.cookies.get("NEXT_LOCALE")?.value;
+  const cookieLocale =
+    req.cookies.get("locale")?.value || req.cookies.get("NEXT_LOCALE")?.value;
   if (cookieLocale && locales.includes(cookieLocale as Locale)) {
     return cookieLocale as Locale;
   }
@@ -33,11 +36,11 @@ function detectPreferredLocale(req: NextRequest): Locale {
   if (header) {
     // Parse languages like: "en-US,en;q=0.9,ru;q=0.8"
     const codes = header
-      .split(',')
-      .map((part) => part.split(';')[0]?.trim())
+      .split(",")
+      .map((part) => part.split(";")[0]?.trim())
       .filter(Boolean) as string[];
     for (const code of codes) {
-      const base = code.toLowerCase().split('-')[0];
+      const base = code.toLowerCase().split("-")[0];
       const match = locales.find((l) => l === base);
       if (match) return match as Locale;
     }
@@ -78,7 +81,7 @@ export function middleware(req: NextRequest) {
 
   // Проверяем, есть ли локаль в пути
   const locale = getLocaleFromPathname(pathname);
-  
+
   // Если пути нет локали, редиректим на путь с дефолтной локалью
   if (!locale) {
     const url = nextUrl.clone();
