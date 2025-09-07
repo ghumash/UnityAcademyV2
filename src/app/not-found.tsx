@@ -1,25 +1,27 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/shared/ui";
+import { useDictionary } from "@/shared/lib/i18n";
 
 export default function NotFound() {
+  const { dict } = useDictionary();
+
   return (
     <main className="grid min-h-dvh place-items-center p-6">
       <div className="w-full max-w-md rounded-lg border bg-card p-6 text-card-foreground">
         <h1 className="text-2xl font-bold tracking-tight">
-          404 — Страница не найдена
+          {dict.common.errors.notFound.title}
         </h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          Такой страницы нет. Проверь адрес или вернись на главную.
+          {dict.common.errors.notFound.description}
         </p>
         <div className="mt-6 flex flex-wrap gap-2">
           <Button asChild>
-            <Link href="/">На главную</Link>
+            <Link href="/">{dict.common.errors.notFound.goHome}</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/courses">Курсы</Link>
-          </Button>
-          <Button asChild variant="outline">
-            <Link href="/apply">Подать заявку</Link>
+            <Link href="/courses">{dict.common.errors.notFound.courses}</Link>
           </Button>
         </div>
       </div>
