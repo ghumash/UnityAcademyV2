@@ -206,7 +206,7 @@ const GridItem = React.memo(function GridItem({
         ) : null}
 
         <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
-          <div className="relative flex flex-1 flex-col justify-between gap-3">
+          <div className="relative flex flex-1 flex-col justify-start gap-3">
             {icon ? (
               <div
                 className={cn(

@@ -12,9 +12,15 @@ import {
   Mic,
   Users,
   CalendarDays,
+  SparklesIcon,
+  UsersIcon,
+  ShieldCheckIcon,
+  GraduationCapIcon,
 } from "lucide-react";
 import { getPageBySlugLocale } from "@/shared/content/pages";
 import { TextGenerateEffect, TextHoverEffect } from "@/shared/ui/lib";
+import DatabaseWithRestApi from "@/shared/ui/database-with-rest-api";
+import { MissionVisionValuesSection } from "@/widgets";
 
 export async function generateMetadata({
   params,
@@ -182,7 +188,7 @@ export default async function AboutPage({
           },
         ])}
       />
-      <div className="flex items-center justify-center h-[300px] bg-neutral-100 dark:bg-neutral-900">
+      <div className="flex items-center justify-center h-[200px] bg-neutral-100 dark:bg-neutral-900">
         <TextHoverEffect text="Մեր մասին" />
       </div>
       <TextGenerateEffect as="h2" duration={2} filter={false} words={title} />
@@ -197,6 +203,35 @@ export default async function AboutPage({
         duration={2}
         filter={false}
         words={description_2}
+      />
+      <MissionVisionValuesSection />
+      <DatabaseWithRestApi
+        circleText="Unity"
+        badgeTexts={{
+          first: "ՏՏ-Իվենթներ",
+          second: "Նեթվորքինգ",
+          third: "Ջերմ միջավայր",
+          fourth: "Ինքնակրթություն",
+        }}
+        buttons={{
+          first: {
+            text: "Կրթություն",
+            icon: SparklesIcon,
+          },
+          second: {
+            text: "Համայնք",
+            icon: UsersIcon,
+          },
+          third: {
+            text: "Ճիշտ արժեքներ",
+            icon: ShieldCheckIcon,
+          },
+          fourth: {
+            text: "Զարգացում",
+            icon: GraduationCapIcon,
+          },
+        }}
+        title="Dayoff"
       />
       <GlowingGrid
         items={items}
