@@ -175,10 +175,10 @@ export const AnimatedLinesBadges: React.FC<AnimatedLinesBadgesProps> = ({
   );
 
   const topLabels = [
-    badgeTexts?.first ?? "GET",
-    badgeTexts?.second ?? "POST",
-    badgeTexts?.third ?? "PUT",
-    badgeTexts?.fourth ?? "DELETE",
+    badgeTexts?.first ?? "ՏՏ-Իվենթներ",
+    badgeTexts?.second ?? "Նեթվորքինգ",
+    badgeTexts?.third ?? "Ջերմ միջավայր",
+    badgeTexts?.fourth ?? "Ինքնակրթություն",
   ];
 
   // расстояние между якорями ≈ 46 — важно для позиционирования
@@ -308,30 +308,30 @@ export const AnimatedLinesBadges: React.FC<AnimatedLinesBadgesProps> = ({
             <div className="absolute -top-3 z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-2 py-1 sm:-top-4 sm:px-2.5 sm:py-1.5">
               <SparklesIcon className="size-3" aria-hidden="true" />
               <span className="ml-2 text-[10px] sm:text-[11px] whitespace-nowrap">
-                {title ?? "Data exchange using a customized REST API"}
+                {title ?? "Dayoff"}
               </span>
             </div>
 
-            <AutoCircle label={circleText ?? "SVG"} />
+            <AutoCircle label={circleText ?? "Unity"} />
 
             <div className="relative z-10 flex h-[185px] w-full items-center justify-center overflow-hidden rounded-lg border bg-background shadow-md">
               <BlockItem
-                text={buttonTexts?.first || "first"}
+                text={buttonTexts?.first || "Կրթություն"}
                 icon={GraduationCap}
                 className="left-10 bottom-24"
               />
               <BlockItem
-                text={buttonTexts?.second || "second"}
+                text={buttonTexts?.second || "Համայնք"}
                 icon={Users}
                 className="left-1/4 bottom-14"
               />
               <BlockItem
-                text={buttonTexts?.third || "third"}
+                text={buttonTexts?.third || "Ճիշտ արժեքներ"}
                 icon={ShieldCheck}
                 className="right-1/4 bottom-17"
               />
               <BlockItem
-                text={buttonTexts?.fourth || "fourth"}
+                text={buttonTexts?.fourth || "Զարգացում"}
                 icon={TrendingUp}
                 className="right-10 bottom-8"
               />

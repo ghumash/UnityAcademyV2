@@ -8,7 +8,7 @@ import {
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { peopleMock } from "@/entities/person";
-import { AnimatedLinesBadges } from "@/widgets";
+import { AnimatedLinesBadges, CtaBanner } from "@/widgets";
 import {
   GlowingGrid,
   type GridItemData,
@@ -25,6 +25,8 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { TextGenerateEffect, TextHoverEffect } from "@/shared/ui/lib";
+import { getCtaBannerConfig } from "@/shared/config/home";
+import { Container, Section } from "@/shared/ui/custom";
 
 export async function generateMetadata({
   params,
@@ -174,14 +176,14 @@ export default async function AboutPage({
 }: {
   params: { locale: Locale };
 }) {
-  const { locale } = params;
+  const { locale } = await params;
   const t = await getT(locale);
+
+  const ctaBanner = await getCtaBannerConfig(locale);
 
   return (
     <main id="main" className="sm:mt-20 md:mt-28">
       {/* a11y: реальный h1 + визуальный эффект отдельно */}
-      <h1 className="sr-only">{t("common.navigation.about")}</h1>
-
       <JsonLd
         id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
@@ -191,57 +193,43 @@ export default async function AboutPage({
       />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
 
-      <div className="flex h-[200px] items-center justify-center bg-neutral-100 dark:bg-neutral-900">
+      <div className="h-[200px] max-w-[735px] mx-auto">
         <TextHoverEffect text="Մեր մասին" />
       </div>
 
-      <section className="container mx-auto space-y-4 px-4 py-6">
-        <TextGenerateEffect as="h2" duration={2} filter={false} words={title} />
-        <TextGenerateEffect
-          as="p"
-          duration={2}
-          filter={false}
-          words={description}
-        />
-        <TextGenerateEffect
-          as="p"
-          duration={2}
-          filter={false}
-          words={description_2}
-        />
-      </section>
-
+      <Section>
+        <Container className="space-y-4">
+          <TextGenerateEffect
+            as="h1"
+            duration={2}
+            filter={false}
+            words={title}
+          />
+          <TextGenerateEffect
+            as="p"
+            startDelay={1}
+            duration={2}
+            filter={false}
+            words={description}
+            className="text-muted-foreground"
+          />
+          <TextGenerateEffect
+            as="p"
+            startDelay={5}
+            duration={2}
+            filter={false}
+            words={description_2}
+            className="text-muted-foreground"
+          />
+        </Container>
+      </Section>
       <MissionVisionValuesSection />
-
-      <section className="container mx-auto px-4 py-8">
-        <AnimatedLinesBadges
-          circleText="Unity"
-          badgeTexts={{
-            first: "ՏՏ-Իվենթներ",
-            second: "Նեթվորքինգ",
-            third: "Ջերմ միջավայր",
-            fourth: "Ինքնակրթություն",
-          }}
-          buttonTexts={{
-            first: "Կրթություն",
-            second: "Համայնք",
-            third: "Ճիշտ արժեքներ",
-            fourth: "Զարգացում",
-          }}
-          title="Dayoff"
-        />
-      </section>
-
-      <section className="container mx-auto px-4 py-8">
-        <GlowingGrid
-          items={items}
-          glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
-        />
-      </section>
-
-      <section className="container mx-auto px-4 pb-16">
-        <TeamSection people={peopleMock} />
-      </section>
+      <GlowingGrid
+        items={items}
+        glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
+      />
+      <TeamSection people={peopleMock} />
+      <CtaBanner heading={ctaBanner.heading} buttons={ctaBanner.buttons} />
     </main>
   );
 }

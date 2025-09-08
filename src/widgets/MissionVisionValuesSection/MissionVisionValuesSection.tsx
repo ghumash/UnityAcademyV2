@@ -155,7 +155,7 @@ function ItemList({ items }: { items: Item[] }) {
           <li
             key={i}
             className="
-              group relative flex  items-start
+              group relative flex items-start
               overflow-hidden rounded-2xl border border-white/10
               p-3 shadow-2xl backdrop-blur-xl transition
               hover:border-white/25 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]
@@ -185,7 +185,7 @@ function ItemList({ items }: { items: Item[] }) {
             </div>
             <div>
               {item.description && (
-                <p className="text-sm leading-6 text-foreground/80">
+                <p className="text-sm leading-6 text-muted-foreground">
                   {item.description}
                 </p>
               )}

@@ -137,7 +137,7 @@ export function GlowingGrid({
 
   return (
     <Section>
-      <Container className="mx-auto max-w-screen-2xl">
+      <Container>
         <ul
           className={cn(
             "grid grid-cols-1 auto-rows-[minmax(14rem,auto)] gap-4 md:grid-cols-12 lg:gap-6",

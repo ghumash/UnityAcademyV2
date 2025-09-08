@@ -20,3 +20,10 @@ export type AboutDict = {
   teamSection: TeamSectionDict;
   subscribeSection: SubscribeSectionDict;
 };
+
+export type CtaBannerDict = {
+  heading: string;
+  buttons: {
+    primary: string;
+  };
+};
