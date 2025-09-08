@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
+import { LazyMotion, domAnimation, m, useReducedMotion } from "motion/react";
 import { cn } from "@/shared/lib";
 import { Button } from "@/shared/ui";
 import { Container, Section } from "@/shared/ui/custom";

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/shared/lib";
 import { Button } from "@/shared/ui";
 import { Container, Section } from "@/shared/ui/custom";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 

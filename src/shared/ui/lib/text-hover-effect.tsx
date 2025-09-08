@@ -7,7 +7,7 @@ import React, {
   useId,
   useCallback,
 } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 
 type TextHoverEffectProps = {
   text: string;
