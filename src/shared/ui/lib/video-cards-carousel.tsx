@@ -131,7 +131,7 @@ export const Carousel = memo(function Carousel({
             if (e.key === "ArrowLeft") scrollLeft();
             if (e.key === "ArrowRight") scrollRight();
           }}
-          className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
+          className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth pb-10 [scrollbar-width:none]"
         >
           {/* Декоративный градиент */}
           <div
@@ -139,12 +139,7 @@ export const Carousel = memo(function Carousel({
             className="pointer-events-none absolute right-0 z-[1] h-auto w-[5%] bg-gradient-to-l from-white/70 to-transparent dark:from-neutral-950/70"
           />
 
-          <div
-            className={cn(
-              "mx-auto max-w-7xl",
-              "flex flex-row justify-start gap-4 pl-4"
-            )}
-          >
+          <div className={cn("max-w-7xl", "flex flex-row justify-start gap-4")}>
             {items.map((item, index) => (
               <motion.div
                 data-carousel-item

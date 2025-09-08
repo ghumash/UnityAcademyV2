@@ -8,7 +8,7 @@ import {
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { peopleMock } from "@/entities/person";
-import { AnimatedLinesBadges, CtaBanner } from "@/widgets";
+import { CtaBanner } from "@/widgets";
 import {
   GlowingGrid,
   type GridItemData,
@@ -194,13 +194,13 @@ export default async function AboutPage({
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
 
       <div className="h-[200px] max-w-[735px] mx-auto">
-        <TextHoverEffect text="Մեր մասին" />
+        <TextHoverEffect text="Մեր մասին" as="h1" />
       </div>
 
       <Section>
         <Container className="space-y-4">
           <TextGenerateEffect
-            as="h1"
+            as="h2"
             duration={2}
             filter={false}
             words={title}

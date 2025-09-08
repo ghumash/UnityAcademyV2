@@ -1,7 +1,7 @@
 import type { VideoCardsCarouselDict } from "../types";
 
 export const videoCardsCarousel: VideoCardsCarouselDict = {
-  title: "Student promo videos",
+  title: "Students about us",
   students: [
     {
       student: "Անի Մկրտչյան",

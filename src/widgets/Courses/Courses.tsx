@@ -393,7 +393,7 @@ export function Courses({ title, courses, levels, formats }: CoursesProps) {
       <Container>
         <div className="relative py-12 sm:py-16">
           {/* Heading for SEO/A11y */}
-          <h2 className="mb-8 sm:mb-10 text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+          <h2 className="mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white">
             {title}
           </h2>
 

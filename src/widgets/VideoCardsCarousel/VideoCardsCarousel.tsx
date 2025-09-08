@@ -32,7 +32,7 @@ export const VideoCardsCarousel = React.memo(function VideoCardsCarousel({
       <Container>
         <h2
           id="student-promo-videos-heading"
-          className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans"
+          className="sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white"
         >
           {title}
         </h2>

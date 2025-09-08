@@ -104,7 +104,7 @@ export function LogoCarouselSection({ title, subtitle }: LogoCarouselSectionProp
   return (
     <Section id="logo-carousel" aria-labelledby="logo-carousel-title">
       <Container>
-        <div className="flex flex-col items-center gap-8 md:pb-20 pb-10">
+        <div className="flex flex-col items-center gap-8">
           <div className="text-center">
             <GradientHeading variant="secondary" id="logo-carousel-title">
               {title}

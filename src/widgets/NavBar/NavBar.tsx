@@ -31,6 +31,29 @@ export interface NavBarProps {
   applyButtonLabel: string;
 }
 
+/** Helpers */
+const stripLocalePrefix = (path: string, locale: string): string => {
+  const prefix = `/${locale}`;
+  // строго обрезаем только ведущий префикс локали
+  if (path === prefix || path === `${prefix}/`) return "/";
+  return path.startsWith(`${prefix}/`) ? path.slice(prefix.length) : path;
+};
+
+const normalizePath = (path: string): string => {
+  if (!path) return "/";
+  let p = path.startsWith("/") ? path : `/${path}`;
+  // убираем трейлинг слеш кроме корня
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return p || "/";
+};
+
+const isMatch = (current: string, itemUrl: string): boolean => {
+  const base = normalizePath(itemUrl);
+  if (base === "/") return current === "/";
+  // точное совпадение или начало нового сегмента (исключаем ложные срабатывания вроде /faq2)
+  return current === base || current.startsWith(`${base}/`);
+};
+
 export const NavBar = React.memo(function NavBar({
   items,
   className,
@@ -40,28 +63,14 @@ export const NavBar = React.memo(function NavBar({
 }: NavBarProps) {
   const reduceMotion = useReducedMotion();
   const pathname = usePathname();
-  const [active, setActive] = React.useState<string>(
-    () => items[0]?.name ?? ""
-  );
-
-  // Derive active from current path
-  React.useEffect(() => {
-    // Remove locale prefix from pathname for matching
-    const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
-
-    const matchedItem = items.find((item) => {
-      if (item.url === "/" && pathWithoutLocale === "/") return true;
-      if (item.url !== "/" && pathWithoutLocale.startsWith(item.url))
-        return true;
-      return false;
-    });
-
-    if (matchedItem) {
-      setActive(matchedItem.name);
-    }
-  }, [pathname, locale, items]);
 
   if (!items?.length) return null;
+
+  // Текущий путь без префикса локали и без трейлинг-слеша
+  const currentPath = React.useMemo(() => {
+    const stripped = stripLocalePrefix(pathname, locale);
+    return normalizePath(stripped || "/");
+  }, [pathname, locale]);
 
   const wrapperPosition =
     position === "top"
@@ -81,22 +90,22 @@ export const NavBar = React.memo(function NavBar({
     >
       <div className="flex items-center gap-2 rounded-full border border-border bg-background/5 px-1 py-1 shadow-lg backdrop-blur-lg">
         {items.map((item) => {
-          const isActive = active === item.name;
+          const active = isMatch(currentPath, item.url);
+
           return (
             <Link
               key={item.name}
               href={`/${locale}${item.url}`}
               prefetch={item.prefetch ?? false}
-              onClick={() => setActive(item.name)}
               aria-label={item.ariaLabel ?? item.name}
-              aria-current={isActive ? "page" : undefined}
+              aria-current={active ? "page" : undefined}
               className={cn(
-                "relative cursor-pointer border rounded-full px-6 py-2 text-sm font-semibold transition-colors outline-none whitespace-nowrap",
+                "relative cursor-pointer rounded-full border px-6 py-2 text-sm font-semibold transition-colors outline-none whitespace-nowrap",
                 "text-foreground/80 hover:text-primary focus-visible:ring-2 focus-visible:ring-primary/40",
-                isActive && "bg-muted text-primary"
+                active && "bg-muted text-primary"
               )}
             >
-              {/* Desktop ≥ md: text label; Mobile < md: icon (if provided) */}
+              {/* Desktop ≥ md: текст; Mobile < md: иконка (если есть) */}
               <span className="hidden md:inline">{item.name}</span>
               {item.icon ? (
                 <span className="md:hidden" aria-hidden>
@@ -106,7 +115,7 @@ export const NavBar = React.memo(function NavBar({
                 <span className="md:hidden">{item.name}</span>
               )}
 
-              {isActive && (
+              {active && (
                 <motion.div
                   layoutId="nav-inkbar"
                   className="absolute inset-0 -z-10 w-full rounded-full bg-primary/5"
@@ -128,18 +137,15 @@ export const NavBar = React.memo(function NavBar({
             </Link>
           );
         })}
-        <div className="h-6 border border-border" />
+
+        <div className="h-6 border-l border-border" />
+
         <div className="flex items-center gap-2">
           <ModeToggle />
           <LanguageSwitcher locale={locale} />
           <Button
             asChild
-            className="
-              rounded-full
-              h-9 w-9 p-0
-              md:h-10 md:w-auto md:px-4
-              gap-2
-            "
+            className="rounded-full h-9 w-9 p-0 md:h-10 md:w-auto md:px-4 gap-2"
           >
             <Link
               href={`/${locale}/apply`}

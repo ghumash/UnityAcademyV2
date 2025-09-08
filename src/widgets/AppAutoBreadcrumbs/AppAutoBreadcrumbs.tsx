@@ -43,10 +43,10 @@ export function AppAutoBreadcrumb({
     const segments = parts.slice(1);
 
     return [
-      { name: t("common.home"), href: `/${locale}` },
+      { name: t("common.navigation.home"), href: `/${locale}` },
       ...segments.map((seg, idx) => {
         const href = "/" + [locale, ...segments.slice(0, idx + 1)].join("/");
-        const name = t(`common.nav.${seg}`) || seg;
+        const name = t(`common.navigation.${seg}`) || seg;
         return { name, href };
       }),
     ];

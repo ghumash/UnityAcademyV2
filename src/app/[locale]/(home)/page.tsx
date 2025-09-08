@@ -58,7 +58,7 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
         subtitle={hero.subtitle}
         actions={hero.actions}
       />
-      <Carousel items={carousel.items} />
+      <Carousel items={carousel.items} hideFooter={true} indicatorVariant="bars" />
       <FeaturesSection features={features.features} />
       <VideoCardsCarousel
         title={videoCards.title}

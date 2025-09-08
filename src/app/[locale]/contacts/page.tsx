@@ -36,7 +36,7 @@ export default async function ContactsPage({
   const page = await getPageBySlugLocale(locale, "contacts");
 
   return (
-    <main id="main">
+    <main id="main" className="sm:mt-20 md:mt-28">
       <JsonLd
         id="breadcrumbs-contacts"
         data={buildBreadcrumbsJsonLd([

@@ -8,20 +8,30 @@ export interface FeaturesSectionProps {
 }
 
 export function FeaturesSection({ features }: FeaturesSectionProps) {
+  const total = features.length;
+
   return (
     <Section>
       <Container>
-        {/* SEO/A11y heading without affecting UI */}
-        <h2 id="features-heading" className="sr-only">
-          Features
+        <h2
+          id="features-heading"
+          className="sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white"
+        >
+          Ինչու՞ ընտրել մեզ
         </h2>
+
         <ul
           role="list"
           aria-labelledby="features-heading"
-          className="relative z-10 grid grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-4"
+          className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
         >
           {features.map((feature, idx) => (
-            <MemoFeature key={feature.title} {...feature} idx={idx} />
+            <MemoFeature
+              key={feature.title}
+              {...feature}
+              idx={idx}
+              total={total}
+            />
           ))}
         </ul>
       </Container>
@@ -29,27 +39,21 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
   );
 }
 
-type FeatureProps = FeatureItem & { idx: number };
+type FeatureProps = FeatureItem & { idx: number; total: number };
 
-const Feature = ({ title, description, Icon, idx }: FeatureProps) => {
-  const isFirstRowLG = idx < 4;
-  const isFirstColLG = idx % 4 === 0;
-
+const Feature = ({ title, description, Icon, idx, total }: FeatureProps) => {
   return (
     <li
       className={cn(
         "group/feature relative flex flex-col py-10 lg:border-r dark:border-neutral-800",
-        isFirstColLG && "lg:border-l dark:border-neutral-800",
-        isFirstRowLG && "lg:border-b dark:border-neutral-800"
+        "lg:border dark:border-neutral-800"
       )}
     >
       {/* Hover gradient overlay (direction depends on row) */}
       <div
         className={cn(
           "pointer-events-none absolute inset-0 h-full w-full opacity-0 transition duration-200 group-hover/feature:opacity-100",
-          isFirstRowLG
-            ? "bg-gradient-to-t from-neutral-100 to-transparent dark:from-neutral-800"
-            : "bg-gradient-to-b from-neutral-100 to-transparent dark:from-neutral-800"
+          "bg-gradient-to-b from-neutral-100 to-transparent dark:from-neutral-800"
         )}
         aria-hidden="true"
       />
@@ -68,7 +72,7 @@ const Feature = ({ title, description, Icon, idx }: FeatureProps) => {
         </h3>
       </div>
 
-      <p className="relative z-10 max-w-xs px-10 text-sm text-neutral-600 dark:text-neutral-300">
+      <p className="relative z-10 px-10 text-sm text-neutral-600 dark:text-neutral-300">
         {description}
       </p>
     </li>
