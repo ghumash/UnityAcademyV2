@@ -12,3 +12,4 @@ export * from "./Courses/Courses";
 export * from "./AppBreadcrumbs/AppBreadcrumbs";
 export * from "./AppAutoBreadcrumbs/AppAutoBreadcrumbs";
 export * from "./MissionVisionValuesSection/MissionVisionValuesSection";
+export * from "./AnimatedLinesBadges/AnimatedLinesBadges";

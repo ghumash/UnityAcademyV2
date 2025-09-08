@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
-import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
+import {
+  JsonLd,
+  buildBreadcrumbsJsonLd,
+  buildOrganizationJsonLd,
+  createMetadata,
+} from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { peopleMock } from "@/entities/person";
-import { GlowingGrid, type GridItemData, TeamSection } from "@/widgets";
+import { AnimatedLinesBadges } from "@/widgets";
+import {
+  GlowingGrid,
+  type GridItemData,
+  TeamSection,
+  MissionVisionValuesSection,
+} from "@/widgets";
 import {
   Rocket,
   Briefcase,
@@ -12,24 +23,19 @@ import {
   Mic,
   Users,
   CalendarDays,
-  SparklesIcon,
-  UsersIcon,
-  ShieldCheckIcon,
-  GraduationCapIcon,
 } from "lucide-react";
-import { getPageBySlugLocale } from "@/shared/content/pages";
 import { TextGenerateEffect, TextHoverEffect } from "@/shared/ui/lib";
-import DatabaseWithRestApi from "@/shared/ui/database-with-rest-api";
-import { MissionVisionValuesSection } from "@/widgets";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: { locale: Locale };
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale } = params;
   const t = await getT(locale);
-  const page = await getPageBySlugLocale(locale, "about");
+  const page = await (
+    await import("@/shared/content/pages")
+  ).getPageBySlugLocale(locale, "about");
 
   return createMetadata({
     title: page?.title ?? t("common.navigation.about"),
@@ -53,7 +59,7 @@ const items: GridItemData[] = [
       <>
         AI, Kids Coding, Mobile Development, Web Development, Graphic Design,
         UI/UX Design, SMM, HR, դասընթացների ընթացքում նաև կազմակերպում ենք
-        էքսկուրսիաներ դեպր տարբեր կազմակերպություններ և ոչ միայն
+        էքսկուրսիաներ դեպի տարբեր կազմակերպություններ և ոչ միայն
       </>
     ),
   },
@@ -77,7 +83,7 @@ const items: GridItemData[] = [
     ),
     title: "Պորտֆոլիո և ինքնակենսագրական",
     description:
-      "Դասընթացի ավարտին դուք կունենաք պրոֆեսիոնալ աշատանքներ և կոգնենք ստեղծել գրագետ ինքնակենսագրական (CV) և այս ամենը կոգնի քեզ քո տեղը արագ գտնել աշխատաշուկայում",
+      "Դասընթացի ավարտին դուք կունենաք պրոֆեսիոնալ աշխատանքներ և կօգնենք ստեղծել գրագետ ինքնակենսագրական (CV)՝ արագ մուտք գործելու համար աշխատաշուկա",
   },
   {
     icon: (
@@ -99,7 +105,7 @@ const items: GridItemData[] = [
     ),
     title: "Սեմինարներ",
     description:
-      "Մենք ունենում ենք հյուրեր հայտնի ընկերություններից, որոնք կիսվում են իրենց փորձով և պատասխանում ձեզ հետաքրքրող հարցերին, բարելավելով ձեր գիտելիքները ՏՏ ոլորտում և աշխատանքի հարցում",
+      "Մենք ունենում ենք հյուրեր հայտնի ընկերություններից, որոնք կիսվում են իրենց փորձով և պատասխանում ձեր հարցերին՝ բարելավելով ձեր գիտելիքները ՏՏ ոլորտում ու կարիերայի հարցերում",
   },
   {
     icon: (
@@ -110,9 +116,8 @@ const items: GridItemData[] = [
     ),
     title: "Համայնք",
     description:
-      "Հզոր համայնք, որտեղ ուսանողները կրթվում են ստեղծում են նոր կապեր, միասին ուժերով ստեղծում նոր ստարտափեր և ոչ միայն",
+      "Հզոր համայնք, որտեղ ուսանողները կրթվում են, ստեղծում նոր կապեր, միասին ուժերով ստեղծում ստարտափեր և ոչ միայն",
   },
-
   {
     icon: (
       <CalendarDays
@@ -122,38 +127,35 @@ const items: GridItemData[] = [
     ),
     title: "Dayoff",
     description: (
-      <>
-        <ul>
-          <li>
-            «Dayoff» հանդիպումներ — շաբաթական, անվճար և ոչ ֆորմալ
-            community-հավաքներ։
-          </li>
-          <li>
-            Համայնքային կապ — միավորում ենք բոլոր խմբերի մասնակիցներին՝
-            ծանոթություններ, նեթվորքինգ, թիմային շփումներ։
-          </li>
-          <li>
-            Ներքին ակտիվություններ — ժամանցային խաղեր, մտավոր ծրագրեր ու թիմային
-            մրցույթներ՝ ջերմ ու հարմարավետ միջավայրում։
-          </li>
-          <li>
-            Թեմատիկ քննարկումներ — ՏՏ ոլորտի արդիական թեմաներ, փորձի փոխանակում,
-            գաղափարների ներկայացում։
-          </li>
-          <li>
-            Արժեքներ և ինքնակրթություն — խոսում ենք մարդկային արժեքների մասին և
-            ձևավորում արդյունավետ սովորելու ռազմավարություններ։
-          </li>
-          <li>
-            Նոր նախաձեռնություններ — բրեյնսթորմինգ ու գաղափարների զարգացում
-            նախագծերի շուրջ։
-          </li>
-          <li>
-            Արտաքին ակտիվություններ — արշավներ, ճամբարներ և մասնակցություն
-            ՏՏ-միջոցառումներին։
-          </li>
-        </ul>
-      </>
+      <ul className="list-disc space-y-1 pl-4">
+        <li>
+          «Dayoff» հանդիպումներ — շաբաթական, անվճար և ոչ ֆորմալ
+          community-հավաքներ։
+        </li>
+        <li>
+          Համայնքային կապ — բոլոր խմբերի մասնակիցների միավորում՝
+          ծանոթություններ, նեթվորքինգ, թիմային շփումներ։
+        </li>
+        <li>
+          Ներքին ակտիվություններ — խաղեր, մտավոր ծրագրեր, թիմային մրցույթներ՝
+          ջերմ միջավայրում։
+        </li>
+        <li>
+          Թեմատիկ քննարկումներ — արդիական թեմաներ, փորձի փոխանակում, գաղափարների
+          ներկայացում։
+        </li>
+        <li>
+          Արժեքներ և ինքնակրթություն — խոսում ենք արժեքների մասին և ձևավորում
+          սովորելու ռազմավարություններ։
+        </li>
+        <li>
+          Նոր նախաձեռնություններ — բրեյնսթորմինգ ու գաղափարների զարգացում
+          նախագծերի շուրջ։
+        </li>
+        <li>
+          Արտաքին ակտիվություններ — արշավներ, ճամբարներ, ՏՏ-միջոցառումներ։
+        </li>
+      </ul>
     ),
   },
 ];
@@ -164,80 +166,82 @@ const description = `Մենք տալիս ենք ավելին, քան պարզա�
 Մենք համայնք ենք նրանց համար, ովքեր ձգտում են աճել մասնագիտապես,
 անձնապես և ճիշտ արժեքներով, ովքեր ցանկանում են զարգացնել իրենց հմտությունները և գտնել կարիերայի հնարավորություններ:`;
 
-const description_2 = `Սա այն վայրն է, որտեղ գիտելիքը վերածվում է մասնագիտության,
- պրակտիկան դառնում է հաջողության հիմք, իսկ ամուր համայնքը աջակցում է քեզ ամեն քայլափոխի:`;
+const description_2 = `Սա այն վայրն է, որտեղ գիտելիքը վերափոխվում է մասնագիտության,
+պրակտիկան դառնում է հաջողության հիմք, իսկ ամուր համայնքը աջակցում է քեզ ամեն քայլափոխի:`;
 
 export default async function AboutPage({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: { locale: Locale };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
   const t = await getT(locale);
-  const page = await getPageBySlugLocale(locale, "about");
 
   return (
-    <main id="main" className="sm:mt-20 md:mt-29">
+    <main id="main" className="sm:mt-20 md:mt-28">
+      {/* a11y: реальный h1 + визуальный эффект отдельно */}
+      <h1 className="sr-only">{t("common.navigation.about")}</h1>
+
       <JsonLd
         id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.navigation.home"), href: `/${locale}` },
-          {
-            name: t("common.navigation.about"),
-            href: `/${locale}/about`,
-          },
+          { name: t("common.navigation.about"), href: `/${locale}/about` },
         ])}
       />
-      <div className="flex items-center justify-center h-[200px] bg-neutral-100 dark:bg-neutral-900">
+      <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
+
+      <div className="flex h-[200px] items-center justify-center bg-neutral-100 dark:bg-neutral-900">
         <TextHoverEffect text="Մեր մասին" />
       </div>
-      <TextGenerateEffect as="h2" duration={2} filter={false} words={title} />
-      <TextGenerateEffect
-        as="h2"
-        duration={2}
-        filter={false}
-        words={description}
-      />
-      <TextGenerateEffect
-        as="h2"
-        duration={2}
-        filter={false}
-        words={description_2}
-      />
+
+      <section className="container mx-auto space-y-4 px-4 py-6">
+        <TextGenerateEffect as="h2" duration={2} filter={false} words={title} />
+        <TextGenerateEffect
+          as="p"
+          duration={2}
+          filter={false}
+          words={description}
+        />
+        <TextGenerateEffect
+          as="p"
+          duration={2}
+          filter={false}
+          words={description_2}
+        />
+      </section>
+
       <MissionVisionValuesSection />
-      <DatabaseWithRestApi
-        circleText="Unity"
-        badgeTexts={{
-          first: "ՏՏ-Իվենթներ",
-          second: "Նեթվորքինգ",
-          third: "Ջերմ միջավայր",
-          fourth: "Ինքնակրթություն",
-        }}
-        buttons={{
-          first: {
-            text: "Կրթություն",
-            icon: SparklesIcon,
-          },
-          second: {
-            text: "Համայնք",
-            icon: UsersIcon,
-          },
-          third: {
-            text: "Ճիշտ արժեքներ",
-            icon: ShieldCheckIcon,
-          },
-          fourth: {
-            text: "Զարգացում",
-            icon: GraduationCapIcon,
-          },
-        }}
-        title="Dayoff"
-      />
-      <GlowingGrid
-        items={items}
-        glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
-      />
-      <TeamSection people={peopleMock} />
+
+      <section className="container mx-auto px-4 py-8">
+        <AnimatedLinesBadges
+          circleText="Unity"
+          badgeTexts={{
+            first: "ՏՏ-Իվենթներ",
+            second: "Նեթվորքինգ",
+            third: "Ջերմ միջավայր",
+            fourth: "Ինքնակրթություն",
+          }}
+          buttonTexts={{
+            first: "Կրթություն",
+            second: "Համայնք",
+            third: "Ճիշտ արժեքներ",
+            fourth: "Զարգացում",
+          }}
+          title="Dayoff"
+        />
+      </section>
+
+      <section className="container mx-auto px-4 py-8">
+        <GlowingGrid
+          items={items}
+          glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
+        />
+      </section>
+
+      <section className="container mx-auto px-4 pb-16">
+        <TeamSection people={peopleMock} />
+      </section>
     </main>
   );
 }
