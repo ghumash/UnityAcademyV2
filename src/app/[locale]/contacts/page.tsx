@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getPageBySlugLocale } from "@/shared/content/pages";
-import { MdxRenderer } from "@/shared/mdx";
 import { ContactForm } from "@/features/contact";
-import { AppBreadcrumb } from "@/widgets";
+import { TextHoverEffect } from "@/shared/ui/lib";
+import { ContactTilesSection, ExampleContactTiles } from "@/widgets";
+import { MapPin, Phone } from "lucide-react";
+import Maps from "@/widgets/Maps/Maps";
 
 export async function generateMetadata({
   params,
@@ -47,30 +48,12 @@ export default async function ContactsPage({
           },
         ])}
       />
-      <Section>
-        <Container>
-          <AppBreadcrumb
-            items={[
-              { label: t("common.navigation.home"), href: "/" },
-              { label: t("common.navigation.contacts") },
-            ]}
-          />
-
-          <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {page?.title ?? t("common.navigation.contacts")}
-          </h1>
-
-          {page?.body ? (
-            <div className="mt-6">
-              <MdxRenderer source={page.body} />
-            </div>
-          ) : null}
-
-          <div className="mt-8">
-            <ContactForm />
-          </div>
-        </Container>
-      </Section>
+      <div className="h-[200px] mx-auto">
+        <TextHoverEffect text="Կապ" as="h1" />
+      </div>
+      <ExampleContactTiles />
+      <Maps />
+      <ContactForm />
     </main>
   );
 }

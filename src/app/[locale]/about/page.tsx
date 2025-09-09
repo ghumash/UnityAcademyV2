@@ -193,9 +193,9 @@ export default async function AboutPage({
       />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
 
-      <div className="h-[200px] max-w-[735px] mx-auto">
+      <Container className="h-[200px]">
         <TextHoverEffect text="Մեր մասին" as="h1" />
-      </div>
+      </Container>
 
       <Section>
         <Container className="space-y-4">

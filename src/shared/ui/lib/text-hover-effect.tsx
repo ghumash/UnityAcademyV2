@@ -104,7 +104,7 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
   }, []);
 
   return (
-    <Tag className="relative">
+    <Tag className="relative w-full h-full">
       {/* Визуально скрытый текст для читалок и SEO: сам заголовок в DOM */}
       <span className="sr-only">{text}</span>
 

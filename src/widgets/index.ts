@@ -14,3 +14,5 @@ export * from "./AppAutoBreadcrumbs/AppAutoBreadcrumbs";
 export * from "./MissionVisionValuesSection/MissionVisionValuesSection";
 export * from "./AnimatedLinesBadges/AnimatedLinesBadges";
 export * from "./FaqAccordion/FaqAccordion";
+export * from "./Maps/Maps";
+export * from "./ContactTilesSection/ContactTilesSection";
