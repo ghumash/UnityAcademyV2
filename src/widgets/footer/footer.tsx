@@ -29,7 +29,6 @@ export interface FooterProps {
   description: string;
 }
 
-
 export function Footer({ sections, copyright, description }: FooterProps) {
   return (
     <Section as="footer" role="contentinfo" aria-labelledby="footer-heading">
@@ -45,7 +44,7 @@ export function Footer({ sections, copyright, description }: FooterProps) {
           </h2>
 
           <div className="flex w-full flex-col gap-8 md:flex-row md:justify-between md:gap-8">
-            <AnimatedContainer className="space-y-4 xl:flex-1 max-w-sm md:max-w-md">
+            <AnimatedContainer className="space-y-4 xl:flex-1 max-w-sm md:max-w-xl">
               <div className="space-y-3">
                 <Link
                   href="/"
@@ -70,9 +69,7 @@ export function Footer({ sections, copyright, description }: FooterProps) {
                   {description}
                 </p>
 
-                <p className="text-muted-foreground text-sm">
-                  {copyright}
-                </p>
+                <p className="text-muted-foreground text-sm">{copyright}</p>
               </div>
             </AnimatedContainer>
 

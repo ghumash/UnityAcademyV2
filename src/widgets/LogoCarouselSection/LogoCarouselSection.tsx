@@ -8,16 +8,17 @@ import ArdaLogo from "../../../public/arda.jpg";
 
 type LogoItem = { id: number; name: string; img: any };
 
-const allLogos: LogoItem[] = [
-  { name: "ARDA", id: 1, img: ArdaLogo 
-];
+const allLogos: LogoItem[] = [{ name: "ARDA", id: 1, img: ArdaLogo }];
 
 export interface LogoCarouselSectionProps {
   title: string;
   subtitle: string;
 }
 
-export function LogoCarouselSection({ title, subtitle }: LogoCarouselSectionProps) {
+export function LogoCarouselSection({
+  title,
+  subtitle,
+}: LogoCarouselSectionProps) {
   return (
     <Section id="logo-carousel" aria-labelledby="logo-carousel-title">
       <Container>
@@ -30,7 +31,7 @@ export function LogoCarouselSection({ title, subtitle }: LogoCarouselSectionProp
           </div>
 
           <div role="region" aria-label="Partner and technology logos">
-            <LogoCarousel columnCount={3} logos={allLogos} />
+            <LogoCarousel columnCount={allLogos?.length} logos={allLogos} />
           </div>
         </div>
       </Container>

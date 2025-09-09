@@ -1,22 +1,18 @@
 import type { FooterDict } from "./types";
 
 export const footer: FooterDict = {
-  company: {
+  resources: {
     title: "Компания",
+    home: "Главная",
     about: "О нас",
-    courses: "Курсы", 
-    contacts: "Контакты"
-  },
-  support: {
-    title: "Поддержка",
-    help: "Помощь",
+    courses: "Курсы",
+    contacts: "Контакты",
     faq: "Часто задаваемые вопросы",
-    privacy: "Политика конфиденциальности",
-    terms: "Условия использования"
   },
   social: {
-    title: "Социальные сети"
+    title: "Социальные сети",
   },
   copyright: "© 2025 Unity Academy. Все права защищены.",
-  description: "Образовательная платформа для изучения веб-разработки, AI, дизайна и soft skills. Практические курсы с реальными проектами."
+  description:
+    "Образовательная платформа для изучения веб-разработки, AI, дизайна и soft skills. Практические курсы с реальными проектами.",
 };

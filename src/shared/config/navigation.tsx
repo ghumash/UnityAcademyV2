@@ -45,20 +45,13 @@ export async function getFooterConfig(locale: Locale) {
   return {
     sections: {
       company: {
-        title: t("common.footer.company.title"),
+        title: t("common.footer.resources.title"),
         links: [
-          { name: t("common.footer.company.about"), href: "/about" },
-          { name: t("common.footer.company.courses"), href: "/courses" },
-          { name: t("common.footer.company.contacts"), href: "/contacts" },
-        ]
-      },
-      support: {
-        title: t("common.footer.support.title"),
-        links: [
-          { name: t("common.footer.support.help"), href: "/help" },
-          { name: t("common.footer.support.faq"), href: "/faq" },
-          { name: t("common.footer.support.privacy"), href: "/privacy" },
-          { name: t("common.footer.support.terms"), href: "/terms" },
+          { name: t("common.footer.resources.home"), href: "/" },
+          { name: t("common.footer.resources.about"), href: "/about" },
+          { name: t("common.footer.resources.courses"), href: "/courses" },
+          { name: t("common.footer.resources.contacts"), href: "/contacts" },
+          { name: t("common.footer.resources.faq"), href: "/faq" },
         ]
       },
       social: {

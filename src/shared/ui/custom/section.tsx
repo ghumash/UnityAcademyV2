@@ -8,9 +8,9 @@ type Padding = "none" | "sm" | "md" | "lg";
 
 const paddingClasses: Record<Padding, string> = {
   none: "",
-  sm: "py-6 md:py-8",
-  md: "py-10 md:py-14",
-  lg: "py-14 md:py-20",
+  sm: "my-6 md:my-8",
+  md: "my-10 md:my-14",
+  lg: "my-14 md:my-20",
 };
 
 type Props<T extends ElementType> = {

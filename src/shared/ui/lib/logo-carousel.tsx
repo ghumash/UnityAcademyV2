@@ -2,12 +2,20 @@
 
 import { memo, useEffect, useRef, useState } from "react";
 import type { ComponentType, SVGProps } from "react";
+import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { cn } from "@/shared/lib/utils";
+
+/* === Types =============================================================== */
+
+type SvgComponent = ComponentType<SVGProps<SVGSVGElement>>;
+type RasterLike = StaticImageData | string;
 
 export interface Logo {
   id: number;
   name: string;
-  img: ComponentType<SVGProps<SVGSVGElement>>;
+  /** Может прийти как SVGR-компонент, так и StaticImageData (или URL-строка) */
+  img: SvgComponent | RasterLike;
 }
 
 interface LogoColumnProps {
@@ -53,6 +61,46 @@ function distributeLogos(
   return cols;
 }
 
+/* === Render helpers ====================================================== */
+
+function isSvgComponent(x: Logo["img"]): x is SvgComponent {
+  return typeof x === "function";
+}
+
+function LogoNode({
+  img,
+  className,
+}: {
+  img: Logo["img"];
+  className?: string;
+}) {
+  if (isSvgComponent(img)) {
+    const Svg = img;
+    return (
+      <Svg
+        className={className}
+        focusable="false"
+        aria-hidden="true"
+        role="img"
+      />
+    );
+  }
+
+  // Raster / URL case → next/image
+  return (
+    <Image
+      src={img}
+      alt="" // декоративно
+      width={128}
+      height={128}
+      className={cn("object-contain", className)}
+      // sizes: логотип в пределах контейнера, адаптивность решаем классами
+      sizes="(min-width:768px) 128px, 80px"
+      priority={false}
+    />
+  );
+}
+
 /* === Column ============================================================= */
 
 const LogoColumn = memo(function LogoColumn({
@@ -92,7 +140,6 @@ const LogoColumn = memo(function LogoColumn({
   if (logos.length === 0) return null;
 
   const current = logos[idx % logos.length];
-  const CurrentLogo = current.img;
 
   return (
     <motion.div
@@ -112,10 +159,9 @@ const LogoColumn = memo(function LogoColumn({
     >
       {reduceMotion ? (
         <div className="absolute inset-0 flex items-center justify-center">
-          <CurrentLogo
+          <LogoNode
+            img={current.img}
             className="h-20 w-20 max-h-[80%] max-w-[80%] md:h-32 md:w-32"
-            focusable="false"
-            aria-hidden="true"
           />
         </div>
       ) : (
@@ -143,10 +189,9 @@ const LogoColumn = memo(function LogoColumn({
               duration: 0.5,
             }}
           >
-            <CurrentLogo
+            <LogoNode
+              img={current.img}
               className="h-20 w-20 max-h-[80%] max-w-[80%] md:h-32 md:w-32"
-              focusable="false"
-              aria-hidden="true"
             />
           </motion.div>
         </AnimatePresence>
@@ -180,11 +225,11 @@ export function LogoCarousel({
   if (logoSets.length === 0) {
     // SSR safe fallback
     return (
-      <div className={`flex gap-4 ${className ?? ""}`}>
+      <div className={cn("flex gap-4", className)}>
         {Array.from({ length: columnCount }, (_, i) => (
           <div
             key={i}
-            className="relative h-14 w-24 md:h-24 md:w-48 bg-neutral-100 dark:bg-neutral-800 rounded"
+            className="relative h-14 w-24 md:h-24 md:w-48 rounded bg-neutral-100 dark:bg-neutral-800"
           />
         ))}
       </div>
@@ -192,7 +237,7 @@ export function LogoCarousel({
   }
 
   return (
-    <div className={`flex gap-4 ${className ?? ""}`}>
+    <div className={cn("flex gap-4", className)}>
       {logoSets.map((col, i) => (
         <LogoColumn key={i} logos={col} index={i} cycleMs={cycleMs} />
       ))}
