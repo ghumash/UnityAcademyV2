@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import { Button } from "@/shared/ui";
 import { cn } from "@/shared/lib/utils";
 import { ExternalLink } from "lucide-react";
-import { Container, Section } from "@/shared/ui/custom";
 
 type Props = {
   address?: string;
@@ -29,46 +28,38 @@ export default function Maps({
   const title = `Unity Academy on Yandex Maps${address ? ` — ${address}` : ""}`;
 
   return (
-    <Section>
-      <Container>
-        <div className={cn("space-y-4", className)}>
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-            <Button asChild variant="outline" className="gap-2 rounded-full">
-              <a href={OPEN_LINK} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                <span>Yandex Maps</span>
-              </a>
-            </Button>
+    <div className={cn("space-y-4 w-full", className)}>
+      {/* Actions */}
+      <div className="flex items-center gap-2">
+        <Button asChild variant="outline" className="gap-2 rounded-full">
+          <a href={OPEN_LINK} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            <span>Yandex Maps</span>
+          </a>
+        </Button>
 
-            <Button asChild variant="outline" className="gap-2 rounded-full">
-              <a
-                href={OPEN_LINK_GOOGLE}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                <span>Google Maps</span>
-              </a>
-            </Button>
-          </div>
+        <Button asChild variant="outline" className="gap-2 rounded-full">
+          <a href={OPEN_LINK_GOOGLE} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            <span>Google Maps</span>
+          </a>
+        </Button>
+      </div>
 
-          {/* Map */}
-          <div
-            className="overflow-hidden rounded-2xl border border-border bg-background/50"
-            style={wrapperStyle}
-          >
-            <iframe
-              src={EMBED_SRC}
-              title={title}
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              className="h-full w-full"
-            />
-          </div>
-        </div>
-      </Container>
-    </Section>
+      {/* Map */}
+      <div
+        className="overflow-hidden rounded-2xl border border-border bg-background/50"
+        style={wrapperStyle}
+      >
+        <iframe
+          src={EMBED_SRC}
+          title={title}
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className="h-full w-full"
+        />
+      </div>
+    </div>
   );
 }

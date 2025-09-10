@@ -7,6 +7,7 @@ import { TextHoverEffect } from "@/shared/ui/lib";
 import { ExampleContactTiles } from "@/widgets";
 import Maps from "@/widgets/Maps/Maps";
 import { FeedbackForm } from "@/features/feedback";
+import { Container, Section } from "@/shared/ui/custom";
 
 export async function generateMetadata({
   params,
@@ -51,8 +52,12 @@ export default async function ContactsPage({
         <TextHoverEffect text="Կապ" as="h1" />
       </div>
       <ExampleContactTiles />
-      <Maps />
-      <FeedbackForm />
+      <Section>
+        <Container className="flex flex-col lg:flex-row gap-6">
+          <FeedbackForm />
+          <Maps className=""/>
+        </Container>
+      </Section>
     </main>
   );
 }

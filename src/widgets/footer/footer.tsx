@@ -22,7 +22,6 @@ type FooterSection = {
 export interface FooterProps {
   sections: {
     company: FooterSection;
-    support: FooterSection;
     social: FooterSection;
   };
   copyright: string;

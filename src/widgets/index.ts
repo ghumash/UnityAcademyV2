@@ -16,3 +16,4 @@ export * from "./AnimatedLinesBadges/AnimatedLinesBadges";
 export * from "./FaqAccordion/FaqAccordion";
 export * from "./Maps/Maps";
 export * from "./ContactTilesSection/ContactTilesSection";
+export * from "./SmartForm/SmartForm";
