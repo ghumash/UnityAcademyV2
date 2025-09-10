@@ -54,7 +54,7 @@ export default async function ApplyPage({
         <Container>
           <CallToAction
             title="Միացիր հիմա"
-            subtitle="Հաջողությանը և գիտելիքին մնաց մեկ քայլ!"
+            subtitle="Հաջողությանը և գիտելիքին մնացել է մեկ քայլ!"
           >
             <ApplyForm />
           </CallToAction>

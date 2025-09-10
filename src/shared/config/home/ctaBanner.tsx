@@ -9,7 +9,7 @@ export async function getCtaBannerConfig(locale: Locale) {
     buttons: {
       primary: {
         text: t("home.ctaBanner.buttons.primary"),
-        url: "/contact",
+        url: "/contacts",
       },
     },
   } as const;
