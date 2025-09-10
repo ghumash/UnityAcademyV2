@@ -14,14 +14,12 @@ export const ApplyForm = () => {
           name: "fullname",
           placeholder: "Անուն Ազգանուն",
           autoComplete: "given-name",
-          col: "half",
           type: "text",
         },
         {
           name: "email",
           placeholder: "Էլ. հասցե",
           autoComplete: "email",
-          col: "half",
           type: "email",
         },
         {

@@ -27,17 +27,16 @@ import {
 import { TextGenerateEffect, TextHoverEffect } from "@/shared/ui/lib";
 import { getCtaBannerConfig } from "@/shared/config/home";
 import { Container, Section } from "@/shared/ui/custom";
+import { getPageBySlugLocale } from "@/shared/content/pages";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
-  const { locale } = params;
+  const { locale } = await params;
   const t = await getT(locale);
-  const page = await (
-    await import("@/shared/content/pages")
-  ).getPageBySlugLocale(locale, "about");
+  const page = await getPageBySlugLocale(locale, "about");
 
   return createMetadata({
     title: page?.title ?? t("common.navigation.about"),

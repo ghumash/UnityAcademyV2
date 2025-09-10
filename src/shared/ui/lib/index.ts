@@ -5,3 +5,4 @@ export * from "./gradient-heading";
 export * from "./logo-carousel";
 export * from "./text-generate-effect";
 export * from "./text-hover-effect";
+export * from "./highlighter";
