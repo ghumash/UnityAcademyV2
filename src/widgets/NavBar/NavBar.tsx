@@ -140,11 +140,10 @@ export const NavBar = React.memo(function NavBar({
         <div className="h-6 border-l border-border" />
 
         <div className="flex items-center gap-2">
-          {/* <ModeToggle /> */}
           <LanguageSwitcher locale={locale} />
           <Button
             asChild
-            className="rounded-full h-9 w-9 p-0 md:h-10 md:w-auto md:px-4 gap-2"
+            className="hidden sm:flex rounded-full h-9 w-9 p-0 md:h-10 md:w-auto md:px-4 gap-2"
           >
             <Link
               href={`/${locale}/apply`}

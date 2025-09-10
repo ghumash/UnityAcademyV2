@@ -83,7 +83,7 @@ export default async function CoursesPage({
   };
 
   return (
-    <main id="main" className="sm:mt-20 md:mt-28">
+    <main id="main" className="sm:mt-36 md:mt-40">
       {/* Breadcrumbs JSON-LD c учётом query */}
       <JsonLd
         id="breadcrumbs-courses"

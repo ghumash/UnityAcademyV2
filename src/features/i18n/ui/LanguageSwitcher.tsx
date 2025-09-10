@@ -59,14 +59,14 @@ const LanguageSwitcher = React.memo(function LanguageSwitcher({
           // ≥sm: show text + chevron, normal size
           className={`
             rounded-full
-            md:h-10 md:w-auto
+            h-10 w-auto
             py-2 px-2.5
             flex items-center gap-2 justify-center
             [&_svg]:hidden
           `}
         >
           {/* Text value is hidden on small screens */}
-          <span className="hidden md:inline">
+          <span>
             <SelectValue />
           </span>
         </SelectTrigger>

@@ -8,7 +8,7 @@ import { getT, type Locale, locales } from "@/shared/lib/i18n";
 import { Button } from "@/shared/ui";
 import { getAllSlugs, getCourseBySlugLocale } from "@/shared/content";
 import { getMdxToc, MdxRenderer, MdxTocNav } from "@/shared/mdx";
-import { AppBreadcrumb } from "@/widgets";
+import { AppAutoBreadcrumb } from "@/widgets";
 
 export async function generateMetadata({
   params,
@@ -55,7 +55,7 @@ export default async function CoursePage({
   if (!course) notFound();
 
   return (
-    <main id="main">
+    <main id="main" className="sm:mt-36 md:mt-40">
       <JsonLd
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([
@@ -67,12 +67,7 @@ export default async function CoursePage({
 
       <Section>
         <Container>
-          <AppBreadcrumb
-            items={[
-              { label: t("common.navigation.courses"), href: `/${locale}/courses` },
-              { label: course!.title },
-            ]}
-          />
+          <AppAutoBreadcrumb />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
             {course!.title}
@@ -102,7 +97,9 @@ export default async function CoursePage({
 
           <div className="mt-8">
             <Button asChild>
-              <Link href={`/${locale}/apply`}>{t("common.navigation.apply")}</Link>
+              <Link href={`/${locale}/apply`}>
+                {t("common.navigation.apply")}
+              </Link>
             </Button>
           </div>
         </Container>

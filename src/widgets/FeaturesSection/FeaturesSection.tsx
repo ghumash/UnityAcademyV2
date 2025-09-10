@@ -15,7 +15,7 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
       <Container>
         <h2
           id="features-heading"
-          className="sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white"
+          className="mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white"
         >
           Ինչու՞ ընտրել մեզ
         </h2>

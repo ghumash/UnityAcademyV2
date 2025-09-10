@@ -86,7 +86,7 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
         aria-describedby={subtitle ? subtitleId : undefined}
         title={nativeTitle}
         className={cn(
-          "relative z-0 flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden rounded-md bg-background",
+          "mt-0 relative z-0 flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden rounded-md bg-background",
           className
         )}
         {...props}
