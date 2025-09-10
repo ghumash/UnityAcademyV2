@@ -3,11 +3,10 @@ import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getPageBySlugLocale } from "@/shared/content/pages";
-import { ContactForm } from "@/features/contact";
 import { TextHoverEffect } from "@/shared/ui/lib";
-import { ContactTilesSection, ExampleContactTiles } from "@/widgets";
-import { MapPin, Phone } from "lucide-react";
+import { ExampleContactTiles } from "@/widgets";
 import Maps from "@/widgets/Maps/Maps";
+import { FeedbackForm } from "@/features/feedback";
 
 export async function generateMetadata({
   params,
@@ -53,7 +52,7 @@ export default async function ContactsPage({
       </div>
       <ExampleContactTiles />
       <Maps />
-      <ContactForm />
+      <FeedbackForm />
     </main>
   );
 }

@@ -54,6 +54,11 @@ export function middleware(req: NextRequest) {
   const { nextUrl } = req;
   const pathname = nextUrl.pathname;
 
+  // важно: никогда не локализуем API и Next-внутренности
+  if (pathname.startsWith("/api") || pathname.startsWith("/_next")) {
+    return NextResponse.next();
+  }
+
   // If path looks like a static asset (contains a dot in the last segment),
   // handle specially to avoid locale prefixing breaking URLs from /public
   const isStaticFile = /\.[^/]+$/.test(pathname);
@@ -108,8 +113,7 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    // Include everything except Next internals and root files; static files will be
-    // handled in code (rewrite/skip) instead of excluding by matcher.
-    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+    // всё, кроме API, Next-внутренностей и файлов с расширением
+    "/((?!api|_next|.*\\..*|favicon.ico|robots.txt|sitemap.xml).*)",
   ],
 };
