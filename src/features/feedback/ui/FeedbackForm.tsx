@@ -15,12 +15,14 @@ export const FeedbackForm = () => {
           placeholder: "Անուն",
           autoComplete: "given-name",
           col: "half",
+          type: "text",
         },
         {
           name: "surname",
           placeholder: "Ազգանուն",
           autoComplete: "family-name",
           col: "half",
+          type: "text",
         },
         {
           name: "email",

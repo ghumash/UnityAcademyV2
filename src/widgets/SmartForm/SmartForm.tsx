@@ -1,23 +1,51 @@
 "use client";
 
 import * as React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, type Path } from "react-hook-form";
 import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Input, Textarea, Label } from "@/shared/ui";
+import {
+  Button,
+  Input,
+  Textarea,
+  Label,
+  Checkbox,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Calendar,
+} from "@/shared/ui"; // ⚡️ проверь, что эти компоненты экспортятся из shared/ui
 import { cn } from "@/shared/lib/utils";
 import { toast } from "sonner";
+import { CalendarIcon } from "lucide-react";
 
-type FieldType = "text" | "email" | "textarea" | "hidden";
+type FieldType =
+  | "text"
+  | "email"
+  | "textarea"
+  | "hidden"
+  | "select"
+  | "checkbox"
+  | "multiselect"
+  | "date";
+
+type Option = { label: string; value: string };
 
 type FieldDef<TValues> = {
-  name: keyof TValues & string;
+  name: Path<TValues>;
   label?: string;
   placeholder?: string;
   type?: FieldType;
   autoComplete?: string;
   /** layout hint */
   col?: "full" | "half";
+  /** options для select/multiselect */
+  options?: Option[];
 };
 
 type SmartFormProps<TSchema extends z.ZodTypeAny> = {
@@ -52,9 +80,11 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
     register,
     handleSubmit,
     reset,
+    setValue,
+    watch,
     formState: { isSubmitting, errors },
-  } = useForm<Values | any>({
-    resolver: zodResolver(schema as any),
+  } = useForm<Values>({
+    resolver: zodResolver(schema),
     defaultValues: defaults as Values | undefined,
     mode: "onSubmit",
   });
@@ -86,44 +116,132 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
           className
         )}
       >
-        {/* 2-колоночный адаптив: используем подсказку col=half */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {fields.map((f) => {
-            const id = f.name;
+            const id = f.name as string;
             const isHalf = f.col === "half";
             const colClass = isHalf ? "" : "sm:col-span-2";
             const err = (errors as Record<string, any>)[id]?.message as
               | string
               | undefined;
 
-            const commonInputProps = {
+            const common = {
               id,
               placeholder: f.placeholder,
               autoComplete: f.autoComplete,
               "aria-invalid": !!err,
-              ...register(id as any),
+              ...register(f.name),
             };
 
             return (
               <div
                 key={id}
-                className={cn("grid w-full items-center gap-1.5", colClass)}
+                className={cn("grid w-full items-start gap-1.5", colClass)}
               >
                 {f.label && <Label htmlFor={id}>{f.label}</Label>}
 
-                {f.type === "textarea" ? (
-                  <Textarea className="resize-none" {...(commonInputProps as any)} />
-                ) : (
-                  <Input
-                    type={f.type ?? "text"}
-                    {...(commonInputProps as any)}
+                {/* TEXTAREA */}
+                {f.type === "textarea" && (
+                  <Textarea className="resize-none" {...common} />
+                )}
+
+                {/* INPUT */}
+                {(f.type === "text" ||
+                  f.type === "email" ||
+                  f.type === "hidden") && (
+                  <Input type={f.type ?? "text"} {...common} />
+                )}
+
+                {/* CHECKBOX */}
+                {f.type === "checkbox" && (
+                  <Checkbox
+                    id={id}
+                    checked={watch(f.name) as boolean}
+                    onCheckedChange={(val) => setValue(f.name, val as any)}
                   />
+                )}
+
+                {/* SELECT */}
+                {f.type === "select" && f.options && (
+                  <Select
+                    value={watch(f.name) as string}
+                    onValueChange={(val) => setValue(f.name, val as any)}
+                  >
+                    <SelectTrigger id={id}>
+                      <SelectValue placeholder={f.placeholder} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {f.options.map((opt) => (
+                        <SelectItem key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+
+                {/* MULTISELECT (простой) */}
+                {f.type === "multiselect" && f.options && (
+                  <Select
+                    value={watch(f.name) as string[]}
+                    onValueChange={(val) => setValue(f.name, val as any)}
+                    multiple
+                  >
+                    <SelectTrigger id={id}>
+                      <SelectValue placeholder={f.placeholder} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {f.options.map((opt) => (
+                        <SelectItem key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+
+                {/* DATE */}
+                {f.type === "date" && (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "justify-start text-left font-normal",
+                          !watch(f.name) && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {watch(f.name)
+                          ? new Date(
+                              watch(f.name) as string
+                            ).toLocaleDateString()
+                          : f.placeholder || "Pick a date"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={
+                          watch(f.name)
+                            ? new Date(watch(f.name) as string)
+                            : undefined
+                        }
+                        onSelect={(date) =>
+                          setValue(f.name, date?.toISOString() as any)
+                        }
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
                 )}
 
                 {err && <p className="text-sm text-red-600">{err}</p>}
               </div>
             );
           })}
+
+          {/* Honeypot */}
           <div className="hidden">
             <Label htmlFor="_honeypot">Honeypot</Label>
             <Input
@@ -145,7 +263,6 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
           {isSubmitting ? "Sending…" : buttonLabel}
         </Button>
 
-        {/* Inline a11y alerts */}
         <div aria-live="polite">
           {status === "ok" && (
             <div className="rounded-md border border-green-600/30 bg-green-50 px-4 py-2 text-sm text-green-700 dark:bg-green-950/40 dark:text-green-300">

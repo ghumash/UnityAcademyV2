@@ -11,9 +11,17 @@ export const gforms = {
       email: "entry.741495044",
       message: "entry.839337160",
     },
-    // Необязательно: URL страницы "Спасибо" (если хотите сверять редирект)
-    thanksUrl: process.env.NEXT_PUBLIC_GFORM_FEEDBACK_THANKS_URL || undefined,
+  },
+  apply: {
+    formId: process.env.NEXT_PUBLIC_GFORM_APPLY_ID, // "1FAIpQLS_replace_me"
+    entries: {
+      fullname: "entry.2005620554",
+      phone: "entry.1166974658",
+      email: "entry.1045781291",
+      course: "entry.839337160",
+    },
   },
 } as const;
 
 export type FeedbackEntries = typeof gforms.feedback.entries;
+export type ApplyEntries = typeof gforms.apply.entries;

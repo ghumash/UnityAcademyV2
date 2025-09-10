@@ -55,7 +55,7 @@ export default async function ContactsPage({
       <Section>
         <Container className="flex flex-col lg:flex-row gap-6">
           <FeedbackForm />
-          <Maps className=""/>
+          <Maps />
         </Container>
       </Section>
     </main>
