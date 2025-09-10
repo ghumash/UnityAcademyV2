@@ -5,5 +5,5 @@ export const navigation: NavigationDict = {
   about: "Մեր մասին", 
   courses: "Դասընթացներ",
   contacts: "Կապ",
-  apply: "Գրանցվել"
+  apply: "Սկսե՛լ ուսումը"
 };

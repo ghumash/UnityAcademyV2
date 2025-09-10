@@ -6,7 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/shared/lib/utils";
 import { LanguageSwitcher } from "@/features/i18n";
-import { ModeToggle } from "@/features/theme";
 import { Button } from "@/shared/ui";
 import type { Locale } from "@/shared/lib/i18n";
 import { ChevronRight } from "lucide-react";
@@ -141,7 +140,7 @@ export const NavBar = React.memo(function NavBar({
         <div className="h-6 border-l border-border" />
 
         <div className="flex items-center gap-2">
-          <ModeToggle />
+          {/* <ModeToggle /> */}
           <LanguageSwitcher locale={locale} />
           <Button
             asChild
