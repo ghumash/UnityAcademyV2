@@ -7,3 +7,4 @@ TODO: refactor single course page
 TODO: remove all mdx functionality
 TODO: fix smartform component ts errors
 TODO: add storybook for reusable components
+TODO: add skeletons
