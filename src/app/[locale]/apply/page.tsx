@@ -6,6 +6,7 @@ import { getPageBySlugLocale } from "@/shared/content/pages";
 import { Container, Section } from "@/shared/ui/custom";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { ApplyForm } from "@/features/apply";
+import { CallToAction } from "@/widgets";
 
 export async function generateMetadata({
   params,
@@ -46,12 +47,17 @@ export default async function ApplyPage({
         ])}
       />
       <Container className="h-[200px]">
-        <TextHoverEffect text="Գրանցման հայտ" as="h1" />
+        <TextHoverEffect text="Գրանցում" as="h1" />
       </Container>
 
       <Section>
-        <Container className="flex flex-col lg:flex-row gap-6">
-          <ApplyForm />
+        <Container>
+          <CallToAction
+            title="Միացիր հիմա"
+            subtitle="Հաջողությանը և գիտելիքին մնաց մեկ քայլ!"
+          >
+            <ApplyForm />
+          </CallToAction>
         </Container>
       </Section>
     </main>

@@ -8,7 +8,7 @@ export const ApplyForm = () => {
     <SmartForm
       schema={ApplySchema}
       action="/api/forms/apply"
-      buttonLabel="Ուղարկել"
+      buttonLabel="Գրանցվել"
       fields={[
         {
           name: "fullname",

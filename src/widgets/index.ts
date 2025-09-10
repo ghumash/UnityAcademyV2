@@ -17,3 +17,4 @@ export * from "./FaqAccordion/FaqAccordion";
 export * from "./Maps/Maps";
 export * from "./ContactTilesSection/ContactTilesSection";
 export * from "./SmartForm/SmartForm";
+export * from "./CallToAction/CallToAction";
