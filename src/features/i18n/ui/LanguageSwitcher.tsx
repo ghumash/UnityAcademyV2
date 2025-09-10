@@ -59,10 +59,10 @@ const LanguageSwitcher = React.memo(function LanguageSwitcher({
           // ≥sm: show text + chevron, normal size
           className={`
             rounded-full
-            h-9 w-9 p-0
-            md:h-10 md:w-auto md:px-3
+            md:h-10 md:w-auto
+            py-2 px-2.5
             flex items-center gap-2 justify-center
-            [&>svg:last-child]:hidden md:[&>svg:last-child]:inline
+            [&_svg]:hidden
           `}
         >
           {/* Text value is hidden on small screens */}
