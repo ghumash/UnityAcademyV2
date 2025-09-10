@@ -16,12 +16,27 @@ type TextHoverEffectProps = {
   duration?: number;
   /** Семантический тег-обёртка: можно передать 'h1' для заголовка страницы */
   as?: keyof JSX.IntrinsicElements;
+  /** Абсолютный радиус круга в координатах viewBox (px). Приоритетнее revealRatio. */
+  revealRadius?: number;
+  /** Доля от меньшей стороны текста для расчёта радиуса. По умолчанию 0.7 */
+  revealRatio?: number;
+  /** Минимальный радиус (px в viewBox). По умолчанию 8 */
+  minRevealRadius?: number;
+  /** Мягкость края круга (px в viewBox). 0 — жёсткий край. По умолчанию 12. */
+  feather?: number;
 };
+
+const clamp = (v: number, min: number, max: number) =>
+  Math.min(Math.max(v, min), max);
 
 export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
   text,
   duration = 0,
   as: Tag = "p",
+  revealRadius,
+  revealRatio = 0.7,
+  minRevealRadius = 8,
+  feather = 40,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const textRef = useRef<SVGTextElement>(null);
@@ -29,25 +44,22 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
 
   const uid = useId().replace(/[:]/g, "");
   const gradientId = `textGradient-${uid}`;
-  const revealId = `revealMask-${uid}`;
   const maskId = `textMask-${uid}`;
+  const revealId = `revealMask-${uid}`;
 
   const prefersReducedMotion = useReducedMotion();
 
   const [hovered, setHovered] = useState(false);
 
-  // viewBox numeric size to compute exact user-space coordinates
+  // viewBox size (для точных координат)
   const [box, setBox] = useState<{ w: number; h: number }>({ w: 300, h: 100 });
   const [viewBox, setViewBox] = useState<string>("0 0 300 100");
 
-  // mask center in user-space (pixels of the SVG viewBox)
+  // центр круга маски
   const [maskPos, setMaskPos] = useState<{ cx: number; cy: number }>({
     cx: 150,
     cy: 50,
   });
-
-  // circular radius in user-space (kept proportional to the shortest side)
-  const [radius, setRadius] = useState<number>(20);
 
   const measure = useCallback(() => {
     if (!textRef.current) return;
@@ -58,8 +70,6 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
     const h = Math.max(1, b.height + padY * 2);
     setBox({ w, h });
     setViewBox(`0 0 ${Math.ceil(w)} ${Math.ceil(h)}`);
-    setRadius(Math.max(8, Math.min(w, h) * 0.7)); // ~70% of the shortest side
-    // центр маски — в середину бокса (важно при ресайзе/изменении текста)
     setMaskPos({ cx: w / 2, cy: h / 2 });
   }, []);
 
@@ -76,12 +86,11 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
 
   const updateMaskFromPointer = useCallback(
     (clientX: number, clientY: number) => {
-      if (prefersReducedMotion) return; // не двигаем маску при reduced motion
+      if (prefersReducedMotion) return; // при reduced motion курсором не двигаем
       if (!svgRef.current) return;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
         const rect = svgRef.current!.getBoundingClientRect();
-        // convert to user-space (viewBox) coordinates
         const cx = ((clientX - rect.left) / rect.width) * box.w;
         const cy = ((clientY - rect.top) / rect.height) * box.h;
         setMaskPos({ cx, cy });
@@ -103,14 +112,26 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
     };
   }, []);
 
+  // Радиус круга (всегда круг!)
+  const minSide = Math.min(box.w, box.h);
+  const computedRadius = clamp(
+    revealRadius ?? minSide * revealRatio,
+    minRevealRadius,
+    minSide * 1.5
+  );
+
+  // Позиция «жёсткого» края внутри радиуса для плавного края.
+  // 0..1 (процент радиуса), насколько далеко от центра держать белую область
+  const innerStop = feather > 0 ? Math.max(0, 1 - feather / computedRadius) : 1;
+
   return (
     <Tag className="relative w-full h-full">
-      {/* Визуально скрытый текст для читалок и SEO: сам заголовок в DOM */}
+      {/* Доступный текст для SR и SEO */}
       <span className="sr-only">{text}</span>
 
       <svg
         ref={svgRef}
-        aria-hidden="true" // SVG — чисто декоративный, заголовок уже задан выше
+        aria-hidden="true"
         focusable="false"
         width="100%"
         height="100%"
@@ -123,15 +144,8 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
         className="select-none"
       >
         <defs>
-          {/* Gradient for colored stroke */}
-          <linearGradient
-            id={gradientId}
-            gradientUnits="objectBoundingBox"
-            x1="0"
-            y1="0"
-            x2="1"
-            y2="0"
-          >
+          {/* Цветной градиент для обводки */}
+          <linearGradient id={gradientId} gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
             {hovered && (
               <>
                 <stop offset="0%" stopColor="rgb(234 179 8)" />
@@ -143,43 +157,51 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
             )}
           </linearGradient>
 
-          {/* Circular reveal mask in USER SPACE to avoid ellipse distortion */}
-          <motion.radialGradient
-            id={revealId}
-            gradientUnits="userSpaceOnUse"
-            r={radius}
-            // при reduced motion не анимируем, просто держим центр в текущем состоянии
-            initial={false}
-            animate={
-              prefersReducedMotion
-                ? undefined
-                : { cx: maskPos.cx, cy: maskPos.cy }
-            }
-            transition={
-              prefersReducedMotion
-                ? { duration: 0 }
-                : { duration, ease: "easeOut" }
-            }
-            // дублируем координаты как атрибуты на случай отсутствия анимации
-            cx={maskPos.cx}
-            cy={maskPos.cy}
-          >
-            <stop offset="0%" stopColor="white" />
-            <stop offset="100%" stopColor="black" />
-          </motion.radialGradient>
+          {/* Маска: если feather > 0 — круглый radialGradient (мягкий край); иначе — жёсткий круг */}
+          {feather > 0 ? (
+            <>
+              <motion.radialGradient
+                id={revealId}
+                gradientUnits="userSpaceOnUse"
+                // Радиус градиента — наш целевой радиус
+                r={computedRadius}
+                initial={false}
+                animate={prefersReducedMotion ? undefined : { cx: maskPos.cx, cy: maskPos.cy }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration, ease: "easeOut" }}
+                // дубль координат на случай отключённой анимации
+                cx={maskPos.cx}
+                cy={maskPos.cy}
+              >
+                {/* Белая часть до innerStop — полностью видимо */}
+                <stop offset="0%" stopColor="white" />
+                <stop offset={`${innerStop * 100}%`} stopColor="white" />
+                {/* Плавный спад к чёрному на краю радиуса */}
+                <stop offset="100%" stopColor="black" />
+              </motion.radialGradient>
 
-          <mask id={maskId}>
-            <rect
-              x="0"
-              y="0"
-              width="100%"
-              height="100%"
-              fill={`url(#${revealId})`}
-            />
-          </mask>
+              <mask id={maskId} maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width={box.w} height={box.h}>
+                <rect x="0" y="0" width={box.w} height={box.h} fill={`url(#${revealId})`} />
+              </mask>
+            </>
+          ) : (
+            <mask id={maskId} maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width={box.w} height={box.h}>
+              {/* фон — скрыт */}
+              <rect x="0" y="0" width={box.w} height={box.h} fill="black" />
+              {/* жёсткий круг */}
+              <motion.circle
+                cx={maskPos.cx}
+                cy={maskPos.cy}
+                r={computedRadius}
+                fill="white"
+                initial={false}
+                animate={prefersReducedMotion ? undefined : { cx: maskPos.cx, cy: maskPos.cy }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration, ease: "easeOut" }}
+              />
+            </mask>
+          )}
         </defs>
 
-        {/* Faint baseline (appears only on hover) */}
+        {/* Бледная базовая обводка (только при hover) */}
         <text
           ref={textRef}
           x="50%"
@@ -193,7 +215,7 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
           {text}
         </text>
 
-        {/* Outline drawing animation (respects prefers-reduced-motion) */}
+        {/* Анимация прорисовки контура (уважает reduced motion) */}
         <motion.text
           x="50%"
           y="50%"
@@ -201,26 +223,14 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
           dominantBaseline="middle"
           strokeWidth={0.3}
           className="font-[helvetica] font-bold fill-transparent text-7xl stroke-neutral-200 dark:stroke-neutral-800"
-          initial={
-            prefersReducedMotion
-              ? { strokeDashoffset: 0, strokeDasharray: 0 }
-              : { strokeDashoffset: 1000, strokeDasharray: 1000 }
-          }
-          animate={
-            prefersReducedMotion
-              ? { strokeDashoffset: 0, strokeDasharray: 0 }
-              : { strokeDashoffset: 0, strokeDasharray: 1000 }
-          }
-          transition={
-            prefersReducedMotion
-              ? { duration: 0 }
-              : { duration: 4, ease: "easeInOut" }
-          }
+          initial={prefersReducedMotion ? { strokeDashoffset: 0, strokeDasharray: 0 } : { strokeDashoffset: 1000, strokeDasharray: 1000 }}
+          animate={prefersReducedMotion ? { strokeDashoffset: 0, strokeDasharray: 0 } : { strokeDashoffset: 0, strokeDasharray: 1000 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 4, ease: "easeInOut" }}
         >
           {text}
         </motion.text>
 
-        {/* Color stroke revealed by circular mask */}
+        {/* Цветная обводка, открываемая маской */}
         <text
           x="50%"
           y="50%"

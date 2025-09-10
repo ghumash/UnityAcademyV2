@@ -8,8 +8,8 @@ export default function ContactForm() {
       <Container>
         <GoogleFormEmbed
           id={CONTACT_ID}
-          title="Contact form"
-          openText="Открыть форму в новой вкладке"
+          title="Կապ"
+          openText="Բացել նոր էջում"
           height={500}
         />
       </Container>

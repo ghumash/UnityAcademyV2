@@ -48,7 +48,7 @@ export default async function ContactsPage({
           },
         ])}
       />
-      <div className="h-[200px] mx-auto">
+      <div className="h-[200px] max-w-[400px] mx-auto">
         <TextHoverEffect text="Կապ" as="h1" />
       </div>
       <ExampleContactTiles />

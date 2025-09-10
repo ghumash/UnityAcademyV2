@@ -134,8 +134,7 @@ interface FaqAccordionProps {
 
 export function FaqAccordion({
   data = defaultData,
-  className,
-  timestamp = "Ամեն օր, 10:01",
+  timestamp = "Այսօր, 10:01",
   questionClassName,
   answerClassName,
 }: FaqAccordionProps) {
