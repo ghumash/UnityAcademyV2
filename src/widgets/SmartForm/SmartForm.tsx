@@ -112,7 +112,7 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
                 {f.label && <Label htmlFor={id}>{f.label}</Label>}
 
                 {f.type === "textarea" ? (
-                  <Textarea rows={5} {...(commonInputProps as any)} />
+                  <Textarea className="resize-none" {...(commonInputProps as any)} />
                 ) : (
                   <Input
                     type={f.type ?? "text"}

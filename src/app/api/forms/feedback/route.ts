@@ -20,7 +20,8 @@ export async function POST(req: Request) {
     }
 
     // honeypot: если поле заполнено — делаем вид, что всё ок, но реально не шлём
-    if ((parsed.data._company || "").trim().length > 0) {
+    // @ts-ignore
+    if ((parsed.data._honeypot || "").trim().length > 0) {
       return NextResponse.json({ ok: true, spam: true }, { status: 200 });
     }
 

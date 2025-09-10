@@ -8,33 +8,29 @@ export const FeedbackForm = () => {
     <SmartForm
       schema={FeedbackSchema}
       action="/api/forms/feedback"
-      buttonLabel="Send Message"
+      buttonLabel="Ուղարկել"
       fields={[
         {
           name: "name",
-          label: "First Name",
-          placeholder: "First Name",
+          placeholder: "Անուն",
           autoComplete: "given-name",
           col: "half",
         },
         {
           name: "surname",
-          label: "Last Name",
-          placeholder: "Last Name",
+          placeholder: "Ազգանուն",
           autoComplete: "family-name",
           col: "half",
         },
         {
           name: "email",
-          label: "Email",
-          placeholder: "Email",
+          placeholder: "Էլ. հասցե",
           autoComplete: "email",
           type: "email",
         },
         {
           name: "message",
-          label: "Message",
-          placeholder: "Type your message here.",
+          placeholder: "Հաղորդագրություն",
           type: "textarea",
         },
       ]}
@@ -50,8 +46,8 @@ export const FeedbackForm = () => {
         email: v.email.trim(),
         message: v.message.trim(),
       })}
-      successText="Thank you! Your message has been sent."
-      errorText="Something went wrong. Please try again."
+      successText="Շնորհակալություն! Հաղորդագրությունը ուղարկվել է."
+      errorText="Ինչ-որ բան սխալ գնաց. Խնդրում ենք փորձել կրկին."
     />
   );
 };
