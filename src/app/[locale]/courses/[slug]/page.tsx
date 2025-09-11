@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { AppAutoBreadcrumb } from "@/widgets";
+import { getCoursesConfig } from "@/shared/config/courses";
 
 export async function generateMetadata({
   params,
@@ -29,6 +31,13 @@ export default async function CoursePage({
 }) {
   const { locale, slug } = await params;
   const t = await getT(locale);
+  const courses = await getCoursesConfig(locale);
+
+  // Проверка существования курса по slug
+  const courseExists = courses.courses.some((course) => course.id === slug);
+  if (!courseExists) {
+    notFound();
+  }
 
   return (
     <main id="main" className="sm:mt-36 md:mt-40">
