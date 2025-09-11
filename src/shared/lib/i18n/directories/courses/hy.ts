@@ -1,6 +1,12 @@
-import { graphic_design } from "./graphic_design/hy";
+import { coursesSection } from "./general/coursesSection/hy";
+import { graphic_design } from "./list/graphic_design/hy";
 import type { CoursesDict } from "./types";
 
 export const courses: CoursesDict = {
-  graphic_design,
+  general: {
+    coursesSection,
+  },
+  list: {
+    graphic_design,
+  },
 };

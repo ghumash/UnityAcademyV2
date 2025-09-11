@@ -406,7 +406,7 @@ export function Courses({ title, courses, levels, formats }: CoursesProps) {
   return (
     <Section>
       <Container>
-        <div className="relative py-12 sm:py-16">
+        <div className="relative">
           {/* Heading for SEO/A11y */}
           <h2 className="mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white">
             {title}

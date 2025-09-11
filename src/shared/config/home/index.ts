@@ -3,5 +3,5 @@ export * from "./carousel";
 export * from "./featuresSection";
 export * from "./videoCardsCarousel";
 export * from "./logoCarouselSection";
-export * from "./courses";
+export * from "./coursesSection";
 export * from "./ctaBanner";

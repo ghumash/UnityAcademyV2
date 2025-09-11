@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
+import { AppAutoBreadcrumb, Courses } from "@/widgets";
+import { Container, Section } from "@/shared/ui/custom";
+import { getCoursesConfig } from "@/shared/config/courses";
 
 export async function generateMetadata({
   params,
@@ -27,6 +30,7 @@ export default async function CoursesPage({
 }) {
   const { locale } = await params;
   const t = await getT(locale);
+  const courses = await getCoursesConfig(locale);
 
   return (
     <main id="main" className="sm:mt-36 md:mt-40">
@@ -38,11 +42,17 @@ export default async function CoursesPage({
         ])}
       />
 
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold tracking-tight">
-          {t("common.navigation.courses")}
-        </h1>
-      </div>
+      <Section as="div" className="md:mb-0">
+        <Container>
+          <AppAutoBreadcrumb />
+        </Container>
+      </Section>
+      <Courses
+        title={courses.title}
+        courses={courses.courses}
+        levels={courses.levels}
+        formats={courses.formats}
+      />
     </main>
   );
 }

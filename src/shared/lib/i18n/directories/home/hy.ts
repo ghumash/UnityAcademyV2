@@ -1,6 +1,6 @@
 import type { HomeDict } from "./types";
 import { carousel } from "./carousel/hy";
-import { courses } from "./courses/hy";
+import { coursesSection } from "./coursesSection/hy";
 import { ctaBanner } from "./ctaBanner/hy";
 import { featuresSection } from "./featuresSection/hy";
 import { hero } from "./hero/hy";
@@ -9,7 +9,7 @@ import { videoCardsCarousel } from "./videoCardsCarousel/hy";
 
 export const home: HomeDict = {
   carousel,
-  courses,
+  coursesSection,
   ctaBanner,
   featuresSection,
   hero,

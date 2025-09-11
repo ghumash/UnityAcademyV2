@@ -17,8 +17,8 @@ import {
   getFeaturesSectionConfig,
   getVideoCardsCarouselConfig,
   getLogoCarouselSectionConfig,
-  getCoursesConfig,
   getCtaBannerConfig,
+  getHomeCoursesConfig,
 } from "@/shared/config/home";
 import { getT } from "@/shared/lib/i18n";
 
@@ -48,7 +48,7 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const features = await getFeaturesSectionConfig(locale);
   const videoCards = await getVideoCardsCarouselConfig(locale);
   const logoCarousel = await getLogoCarouselSectionConfig(locale);
-  const courses = await getCoursesConfig(locale);
+  const courses = await getHomeCoursesConfig(locale);
   const ctaBanner = await getCtaBannerConfig(locale);
 
   return (

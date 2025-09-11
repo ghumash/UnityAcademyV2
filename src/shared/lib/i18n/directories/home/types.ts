@@ -34,9 +34,9 @@ export type LogoCarouselSectionDict = {
   subtitle: string;
 };
 
-export type CoursesDict = {
+export type CoursesSectionDict = {
   title: string;
-  courses: Array<{
+  list: Array<{
     title: string;
     description: string;
     duration: string;
@@ -68,6 +68,6 @@ export type HomeDict = {
   featuresSection: FeaturesSectionDict;
   videoCardsCarousel: VideoCardsCarouselDict;
   logoCarouselSection: LogoCarouselSectionDict;
-  courses: CoursesDict;
+  coursesSection: CoursesSectionDict;
   ctaBanner: CtaBannerDict;
 };

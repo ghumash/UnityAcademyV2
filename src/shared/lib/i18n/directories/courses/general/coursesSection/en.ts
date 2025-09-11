@@ -1,8 +1,8 @@
-import type { CoursesDict } from "../types";
+import type { CoursesSectionDict } from "../../types";
 
-export const courses: CoursesDict = {
+export const coursesSection: CoursesSectionDict = {
   title: "Our courses",
-  courses: [
+  list: [
     {
       title: "Web development: HTML, CSS, JavaScript, React",
       description: "From scratch to first projects: layout, components, routing, API work and deployment. Practice on real tasks.",
