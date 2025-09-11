@@ -1,6 +1,6 @@
 import type { CourseDict } from "../../types";
 
 export const graphic_design: CourseDict = {
-  title: "Graphic Design Title",
+  title: "Գրաֆիկ դիզայն: Photoshop, Illustrator, Canva",
   description: "Graphic Design Description",
 };

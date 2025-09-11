@@ -21,7 +21,7 @@ export default function CourseNotFound() {
             </p>
             <div className="mt-4">
               <Button asChild>
-                <Link href="/">
+                <Link href="/courses">
                   ← {dict.common.errors.courseNotFound.backToCourses}
                 </Link>
               </Button>

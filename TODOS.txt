@@ -6,6 +6,7 @@ TODO: refactor courses page
 TODO: refactor single course page
 TODO: remove all mdx functionality
 TODO: add global paths /courses /about etc.
+TODO: remove unused function and files
 
 TODO: fix smartform component ts errors
 TODO: add storybook for reusable components
