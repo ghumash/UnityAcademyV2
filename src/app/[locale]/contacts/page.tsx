@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale } from "@/shared/lib/i18n";
-import { getPageBySlugLocale } from "@/shared/content/pages";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { ExampleContactTiles } from "@/widgets";
 import Maps from "@/widgets/Maps/Maps";
@@ -16,14 +15,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getT(locale);
-  const page = await getPageBySlugLocale(locale, "contacts");
-
   return createMetadata({
-    title: page?.title ?? t("common.navigation.contacts"),
+    title: t("common.navigation.contacts"),
     canonical: absoluteUrl(`/${locale}/contacts`),
     alternatesPath: "/contacts",
     locale,
-    description: page?.description ?? t("common.navigation.contacts"),
+    description: t("common.navigation.contacts"),
   });
 }
 
@@ -34,7 +31,6 @@ export default async function ContactsPage({
 }) {
   const { locale } = await params;
   const t = await getT(locale);
-  const page = await getPageBySlugLocale(locale, "contacts");
 
   return (
     <main id="main" className="sm:mt-20 md:mt-28">
@@ -43,7 +39,7 @@ export default async function ContactsPage({
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
           {
-            name: page?.title ?? t("common.navigation.contacts"),
+            name: t("common.navigation.contacts"),
             href: `/${locale}/contacts`,
           },
         ])}

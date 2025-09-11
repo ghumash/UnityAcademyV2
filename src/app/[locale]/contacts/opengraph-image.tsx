@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og";
-import { getPageBySlugLocale } from "@/shared/content/pages";
 import { siteConfig } from "@/shared/config";
-import type { Locale } from "@/shared/lib/i18n";
+import { getT, type Locale } from "@/shared/lib/i18n";
 
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
@@ -13,10 +12,9 @@ export default async function OG({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  const page = await getPageBySlugLocale(locale, "contacts");
-
-  const title = page?.title ?? "Contacts";
-  const desc = page?.description ?? siteConfig.description;
+  const t = await getT(locale);
+  const title = t("common.navigation.contacts");
+  const desc = siteConfig.description;
 
   return new ImageResponse(
     (

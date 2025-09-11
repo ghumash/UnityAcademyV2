@@ -27,7 +27,6 @@ import {
 import { TextGenerateEffect, TextHoverEffect } from "@/shared/ui/lib";
 import { getCtaBannerConfig } from "@/shared/config/home";
 import { Container, Section } from "@/shared/ui/custom";
-import { getPageBySlugLocale } from "@/shared/content/pages";
 
 export async function generateMetadata({
   params,
@@ -36,14 +35,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getT(locale);
-  const page = await getPageBySlugLocale(locale, "about");
-
   return createMetadata({
-    title: page?.title ?? t("common.navigation.about"),
+    title: t("common.navigation.about"),
     canonical: absoluteUrl(`/${locale}/about`),
     alternatesPath: "/about",
     locale,
-    description: page?.description ?? t("common.navigation.about"),
+    description: t("common.navigation.about"),
   });
 }
 

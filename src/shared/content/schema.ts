@@ -1,6 +1,21 @@
 // src/shared/content/schema.ts
 import { z } from "zod";
 
+/**
+ * Схема метаданных курса из frontmatter
+ * Используется для валидации данных курса перед обработкой
+ * 
+ * @example
+ * const frontmatter = {
+ *   title: "Основы Unity",
+ *   excerpt: "Изучаем базовые концепции",
+ *   tags: ["unity", "gamedev"],
+ *   updatedAt: "2024-01-15",
+ *   draft: false,
+ *   cover: "https://example.com/cover.jpg"
+ * };
+ * const validated = CourseFrontmatter.parse(frontmatter);
+ */
 export const CourseFrontmatter = z.object({
   title: z.string().min(1),
   excerpt: z.string().trim().optional(),
@@ -11,6 +26,23 @@ export const CourseFrontmatter = z.object({
 });
 export type CourseFrontmatter = z.infer<typeof CourseFrontmatter>;
 
+/**
+ * Нормализованная структура курса для использования в приложении
+ * Все даты приведены к ISO строкам, локаль указана явно
+ * 
+ * @example
+ * const course: NormalizedCourse = {
+ *   slug: "unity-basics",
+ *   locale: "ru",
+ *   title: "Основы Unity",
+ *   excerpt: "Изучаем базовые концепции",
+ *   tags: ["unity", "gamedev"],
+ *   updatedAt: "2024-01-15T10:00:00.000Z",
+ *   draft: false,
+ *   cover: "https://example.com/cover.jpg",
+ *   body: "# Содержимое курса\n\nТекст курса..."
+ * };
+ */
 export const NormalizedCourse = z.object({
   slug: z.string().min(1),
   locale: z.union([z.literal("ru"), z.literal("en"), z.literal("hy")]),
@@ -23,22 +55,3 @@ export const NormalizedCourse = z.object({
   body: z.string().optional(),
 });
 export type NormalizedCourse = z.infer<typeof NormalizedCourse>;
-
-export const PageFrontmatter = z.object({
-  title: z.string().min(1),
-  description: z.string().trim().optional(),
-  updatedAt: z.union([z.string(), z.date()]).optional(),
-  draft: z.boolean().optional(),
-});
-export type PageFrontmatter = z.infer<typeof PageFrontmatter>;
-
-export const NormalizedPage = z.object({
-  slug: z.string().min(1),
-  locale: z.union([z.literal("ru"), z.literal("en"), z.literal("hy")]),
-  title: z.string().min(1),
-  description: z.string().optional(),
-  updatedAt: z.string().optional(), // ISO
-  draft: z.boolean().optional(),
-  body: z.string().optional(),
-});
-export type NormalizedPage = z.infer<typeof NormalizedPage>;

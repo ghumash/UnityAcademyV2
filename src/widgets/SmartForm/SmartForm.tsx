@@ -83,8 +83,8 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
     setValue,
     watch,
     formState: { isSubmitting, errors },
-  } = useForm<Values>({
-    resolver: zodResolver(schema),
+  } = useForm<any>({
+    resolver: zodResolver(schema as any),
     defaultValues: defaults as Values | undefined,
     mode: "onSubmit",
   });
@@ -183,9 +183,8 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
                 {/* MULTISELECT (простой) */}
                 {f.type === "multiselect" && f.options && (
                   <Select
-                    value={watch(f.name) as string[]}
-                    onValueChange={(val) => setValue(f.name, val as any)}
-                    multiple
+                    value={watch(f.name) as string}
+                    onValueChange={(val) => setValue(f.name as any, val)}
                   >
                     <SelectTrigger id={id}>
                       <SelectValue placeholder={f.placeholder} />

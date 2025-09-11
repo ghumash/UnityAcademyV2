@@ -63,13 +63,13 @@ export const NavBar = React.memo(function NavBar({
   const reduceMotion = useReducedMotion();
   const pathname = usePathname();
 
-  if (!items?.length) return null;
-
   // Текущий путь без префикса локали и без трейлинг-слеша
   const currentPath = React.useMemo(() => {
     const stripped = stripLocalePrefix(pathname, locale);
     return normalizePath(stripped || "/");
   }, [pathname, locale]);
+
+  if (!items?.length) return null;
 
   const wrapperPosition =
     position === "top"
