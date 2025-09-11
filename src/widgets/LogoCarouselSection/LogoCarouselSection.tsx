@@ -3,7 +3,7 @@
 import { Container, Section } from "@/shared/ui/custom";
 import { GradientHeading } from "@/shared/ui/lib";
 import { LogoCarousel } from "@/shared/ui/lib/logo-carousel";
-import React, { type SVGProps } from "react";
+import React from "react";
 import ArdaLogo from "../../../public/arda.jpg";
 
 type LogoItem = { id: number; name: string; img: any };

@@ -6,8 +6,6 @@ import { getT, type Locale } from "@/shared/lib/i18n";
 import { getPageBySlugLocale } from "@/shared/content/pages";
 import { FaqAccordion } from "@/widgets";
 import { TextHoverEffect } from "@/shared/ui/lib";
-import { Button } from "@/shared/ui";
-import { Link } from "lucide-react";
 
 export async function generateMetadata({
   params,

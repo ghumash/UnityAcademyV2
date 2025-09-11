@@ -11,7 +11,6 @@ import {
   type CourseLite,
 } from "@/shared/content/courses";
 import { paginate } from "@/shared/lib/pagination";
-import { AppAutoBreadcrumb, AppBreadcrumb } from "@/widgets";
 
 const PER_PAGE = 9;
 
@@ -110,7 +109,6 @@ export default async function CoursesPage({
 
       <Section>
         <Container>
-          <AppAutoBreadcrumb />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
             {t("common.navigation.courses")}

@@ -37,9 +37,6 @@ export async function generateStaticParams() {
   );
 }
 
-async function TocSidebar({ source }: { source: string }) {
-  return <div className="text-sm text-muted-foreground">Навигация недоступна</div>;
-}
 
 export default async function CoursePage({
   params,
@@ -76,11 +73,6 @@ export default async function CoursePage({
             </p>
           ) : null}
 
-          <div className="mt-8 rounded-lg border p-6">
-            <p className="text-sm text-muted-foreground">
-              Контент курса недоступен. MDX был удален из проекта.
-            </p>
-          </div>
 
           <div className="mt-8">
             <Button asChild>

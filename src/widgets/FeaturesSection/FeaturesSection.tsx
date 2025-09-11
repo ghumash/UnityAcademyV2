@@ -41,7 +41,7 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
 
 type FeatureProps = FeatureItem & { idx: number; total: number };
 
-const Feature = ({ title, description, Icon, idx, total }: FeatureProps) => {
+const Feature = ({ title, description, Icon }: FeatureProps) => {
   return (
     <li
       className={cn(
