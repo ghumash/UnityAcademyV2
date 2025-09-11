@@ -3,12 +3,14 @@ import type { Dict } from "../types";
 import { common } from "./common/hy";
 import { home } from "./home/hy";
 import { about } from "./about/hy";
+import { courses } from "./courses/hy";
 import { contact } from "./contact/hy";
 
 export const hy: Dict = {
   common,
   home,
   about,
+  courses,
   contact,
 };
 

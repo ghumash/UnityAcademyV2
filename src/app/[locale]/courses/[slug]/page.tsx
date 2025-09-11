@@ -15,10 +15,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getT(locale);
-  const title = `${t("common.navigation.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
   const description = t("common.navigation.courses");
+
   return createMetadata({
-    title,
+    title: "some title",
     canonical: absoluteUrl(`/${locale}/courses/${slug}`),
     alternatesPath: `/courses/${slug}`,
     locale,
@@ -42,31 +42,18 @@ export default async function CoursePage({
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
           { name: t("common.navigation.courses"), href: `/${locale}/courses` },
-          {
-            name: decodeURIComponent(slug).replace(/-/g, " "),
-            href: `/${locale}/courses/${slug}`,
-          },
         ])}
       />
 
       <Section>
         <Container>
           <AppAutoBreadcrumb />
-
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {decodeURIComponent(slug).replace(/-/g, " ")}
+            {t(`courses.${slug}.title`)}
           </h1>
           <p className="mt-3 max-w-prose text-muted-foreground">
-            {t("common.navigation.courses")}
+            {t(`courses.${slug}.description`)}
           </p>
-
-          <div className="mt-8">
-            <Button asChild>
-              <Link href={`/${locale}/apply`}>
-                {t("common.navigation.apply")}
-              </Link>
-            </Button>
-          </div>
         </Container>
       </Section>
     </main>
