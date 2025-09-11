@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/shared/config";
-import { getCourseBySlugLocale } from "@/shared/content";
 import type { Locale } from "@/shared/lib/i18n";
 
 export const runtime = "edge";
@@ -13,12 +12,8 @@ export default async function OG({
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const course = await getCourseBySlugLocale(locale, slug);
-
-  const title = course?.title ?? decodeURIComponent(slug).replace(/-/g, " ");
-  const desc =
-    course?.excerpt ??
-    "Курс Unity Academy: веб, AI, Android, контент и карьера.";
+  const title = decodeURIComponent(slug).replace(/-/g, " ");
+  const desc = "Курс Unity Academy: веб, AI, Android, контент и карьера.";
 
   return new ImageResponse(
     (

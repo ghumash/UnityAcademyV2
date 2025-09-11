@@ -6,7 +6,6 @@ import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
 import { getT, type Locale, locales } from "@/shared/lib/i18n";
 import { Button } from "@/shared/ui";
-import { getAllSlugs, getCourseBySlugLocale } from "@/shared/content";
 import { AppAutoBreadcrumb } from "@/widgets";
 
 export async function generateMetadata({
@@ -16,11 +15,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getT(locale);
-  const course = await getCourseBySlugLocale(locale, slug);
-  const title = course
-    ? course.title
-    : `${t("common.navigation.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
-  const description = course?.excerpt ?? t("common.navigation.courses");
+  const title = `${t("common.navigation.courses")}: ${decodeURIComponent(slug).replace(/-/g, " ")}`;
+  const description = t("common.navigation.courses");
   return createMetadata({
     title,
     canonical: absoluteUrl(`/${locale}/courses/${slug}`),
@@ -30,14 +26,6 @@ export async function generateMetadata({
   });
 }
 
-export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
-  return locales.flatMap((locale) =>
-    slugs.map((slug: string) => ({ locale, slug }))
-  );
-}
-
-
 export default async function CoursePage({
   params,
 }: {
@@ -45,9 +33,7 @@ export default async function CoursePage({
 }) {
   const { locale, slug } = await params;
   const t = await getT(locale);
-  const course = await getCourseBySlugLocale(locale, slug);
-
-  if (!course) notFound();
+  notFound();
 
   return (
     <main id="main" className="sm:mt-36 md:mt-40">
@@ -56,7 +42,10 @@ export default async function CoursePage({
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
           { name: t("common.navigation.courses"), href: `/${locale}/courses` },
-          { name: course!.title, href: `/${locale}/courses/${slug}` },
+          {
+            name: decodeURIComponent(slug).replace(/-/g, " "),
+            href: `/${locale}/courses/${slug}`,
+          },
         ])}
       />
 
@@ -65,14 +54,11 @@ export default async function CoursePage({
           <AppAutoBreadcrumb />
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {course!.title}
+            {decodeURIComponent(slug).replace(/-/g, " ")}
           </h1>
-          {course!.excerpt ? (
-            <p className="mt-3 max-w-prose text-muted-foreground">
-              {course!.excerpt}
-            </p>
-          ) : null}
-
+          <p className="mt-3 max-w-prose text-muted-foreground">
+            {t("common.navigation.courses")}
+          </p>
 
           <div className="mt-8">
             <Button asChild>

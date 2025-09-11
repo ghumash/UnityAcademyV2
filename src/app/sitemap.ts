@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/shared/config";
-import { getAllCoursesForLocale } from "@/shared/content/courses";
 import type { Locale } from "@/shared/lib/i18n";
 
 const LOCALES: Locale[] = ["ru", "en", "hy"];
@@ -56,21 +55,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           priority: 0.6,
         });
       }
-    }
-  }
-
-  // Курсы (без draft), lastModified из фронтматтера
-  for (const locale of LOCALES) {
-    const courses = await getAllCoursesForLocale(locale);
-    for (const c of courses) {
-      const path = `/courses/${c.slug}` as const;
-      entries.push({
-        url: absoluteUrl(pathForLocale(locale, path)),
-        alternates: alternatesForPath(path),
-        lastModified: c.updatedAt ? new Date(c.updatedAt) : undefined,
-        changeFrequency: "weekly",
-        priority: 0.7,
-      });
     }
   }
 
