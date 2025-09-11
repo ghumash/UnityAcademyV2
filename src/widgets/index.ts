@@ -11,7 +11,7 @@ export * from "./CtaBanner/CtaBanner";
 export * from "./Courses/Courses";
 export * from "./AppBreadcrumbs/AppBreadcrumbs";
 export * from "./AppAutoBreadcrumbs/AppAutoBreadcrumbs";
-export * from "./MissionVisionValuesSection/MissionVisionValuesSection";
+export * from "./ContentSection/ContentSection";
 export * from "./AnimatedLinesBadges/AnimatedLinesBadges";
 export * from "./FaqAccordion/FaqAccordion";
 export * from "./Maps/Maps";

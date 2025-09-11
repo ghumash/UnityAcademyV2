@@ -18,7 +18,7 @@ import {
   Users,
   Smartphone,
 } from "lucide-react";
-import type { Course, CoursesProps, Level, Format, Theme } from "./types";
+import type { Course, CoursesProps, Level, Format } from "./types";
 import { THEMES } from "./theme";
 
 const cn = (...classes: Array<string | false | null | undefined>) =>

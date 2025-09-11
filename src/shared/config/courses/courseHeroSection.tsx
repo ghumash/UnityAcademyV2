@@ -14,5 +14,9 @@ export async function getCourseHeroConfig(locale: Locale, slug: string) {
     projectsCount: t(`courses.list.${slug}.courseHeroSection.projectsCount`),
     price: t(`courses.list.${slug}.courseHeroSection.price`),
     originalPrice: t(`courses.list.${slug}.courseHeroSection.originalPrice`),
+    sale: t(`courses.list.${slug}.courseHeroSection.sale`),
+    registerCourseButtonText: t(`courses.list.${slug}.courseHeroSection.registerCourseButtonText`),
+    registerFreeLessonButtonText: t(`courses.list.${slug}.courseHeroSection.registerFreeLessonButtonText`),
+    certificate: t(`courses.list.${slug}.courseHeroSection.certificate`),
   } as const;
 }

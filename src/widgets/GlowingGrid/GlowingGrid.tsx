@@ -9,7 +9,7 @@ import { cn } from "@/shared/lib";
 export type GridItemData = {
   area?: string;
   icon?: React.ReactNode;
-  title: string;
+  title: React.ReactNode;
   description: React.ReactNode;
   key?: React.Key;
 };
@@ -25,6 +25,10 @@ export type GlowingEffectOptions = Partial<{
 }>;
 
 export type GlowingGridProps = {
+  title?: {
+    label: React.ReactNode;
+    className?: string;
+  };
   items: GridItemData[];
   glow?: GlowingEffectOptions;
   className?: string;
@@ -105,6 +109,7 @@ const DEFAULT_AREAS: Record<number, string[]> = {
 };
 
 export function GlowingGrid({
+  title,
   items,
   glow,
   className,
@@ -138,6 +143,17 @@ export function GlowingGrid({
   return (
     <Section>
       <Container>
+        {title?.label && (
+          <h2
+            id="features-heading"
+            className={cn(
+              "mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white",
+              title.className
+            )}
+          >
+            {title.label}
+          </h2>
+        )}
         <ul
           className={cn(
             "grid grid-cols-1 auto-rows-[minmax(14rem,auto)] gap-4 md:grid-cols-12 lg:gap-6",
@@ -166,7 +182,7 @@ export function GlowingGrid({
 type GridItemProps = {
   area: string;
   icon?: React.ReactNode;
-  title: string;
+  title: React.ReactNode;
   description: React.ReactNode;
   glow: Required<GlowingEffectOptions>;
   itemClassName?: string;

@@ -3,55 +3,64 @@
 import { Section, Container } from "@/shared/ui/custom";
 import { AppAutoBreadcrumb } from "@/widgets";
 import { Badge, Button, Card, CardContent, CardHeader } from "@/shared/ui";
-import { GlowingEffect, TextGenerateEffect } from "@/shared/ui/lib";
-import { Award, BookOpen, Clock, Play } from "lucide-react";
+import { TextGenerateEffect } from "@/shared/ui/lib";
+import { Award, BookOpen, Briefcase, Clock, Play, User } from "lucide-react";
 
-type IntroHeroProps = {
-  level: string;
+// Тип для объекта конфигурации
+type IntroHeroConfig = {
+  title: string;
+  description: string;
+  price: string;
+  originalPrice: string;
+  sale: string;
+  registerCourseButtonText: string;
+  registerFreeLessonButtonText: string;
   format: string;
+  level: string;
   duration: string;
   lessonsCount: string;
   projectsCount: string;
-  price: string;
-  originalPrice: string;
-  title: string;
-  description: string;
+  certificate: string;
 };
 
-export const IntroHero = ({
-  level,
-  format,
-  duration,
-  lessonsCount,
-  projectsCount,
-  price,
-  originalPrice,
-  title,
-  description,
-}: IntroHeroProps) => {
+// Тип для пропсов компонента
+type IntroHeroProps = {
+  config: IntroHeroConfig;
+};
+
+// Компонент с использованием единого объекта конфигурации
+export const IntroHero = ({ config }: IntroHeroProps) => {
+  const {
+    title,
+    description,
+    price,
+    originalPrice,
+    sale,
+    registerCourseButtonText,
+    registerFreeLessonButtonText,
+    format,
+    level,
+    duration,
+    lessonsCount,
+    projectsCount,
+    certificate,
+  } = config;
+
+  // Массив с информацией о курсе для отображения в виде бейджей
+  const courseInfo = [
+    { icon: Clock, text: duration },
+    { icon: BookOpen, text: lessonsCount },
+    { icon: Play, text: projectsCount },
+    { icon: Award, text: certificate },
+    { icon: User, text: level },
+    { icon: Briefcase, text: format },
+  ];
   return (
-    <Section className="relative overflow-hidden">
+    <Section>
       <Container>
         <AppAutoBreadcrumb />
-
         <div className="mt-8 grid gap-8 lg:grid-cols-3">
-          {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <Badge
-                variant="secondary"
-                className="bg-blue-50 text-blue-700 border-blue-200"
-              >
-                {level}
-              </Badge>
-              <Badge
-                variant="outline"
-                className="border-green-200 text-green-700"
-              >
-                {format}
-              </Badge>
-            </div>
-
             <TextGenerateEffect
               as="h1"
               words={title}
@@ -59,47 +68,22 @@ export const IntroHero = ({
               duration={0.3}
               staggerDelay={0.08}
             />
-
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
               {description}
             </p>
-
-            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                <span>{duration}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <BookOpen className="h-4 w-4" />
-                <span>{lessonsCount} уроков</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Play className="h-4 w-4" />
-                <span>{projectsCount} проектов</span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Play className="h-4 w-4" />
-                <span>{projectsCount} проектов</span>
-              </div>
-              <Badge>
-                <Award className="h-4 w-4" />
-                Сертификат
-              </Badge>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+              {courseInfo.map((item, index) => (
+                <Badge variant="secondary" key={index}>
+                  <item.icon className="h-4 w-4" />
+                  {item.text}
+                </Badge>
+              ))}
             </div>
           </div>
-
-          {/* Sidebar */}
+          {/* Боковая панель */}
           <div className="lg:col-span-1">
-            <div className="relative">
-              <GlowingEffect
-                glow={true}
-                variant="default"
-                className="rounded-xl"
-                blur={20}
-                spread={40}
-              />
-              <Card className="sticky top-8 relative">
+            <div>
+              <Card>
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-3xl font-bold text-primary">
@@ -110,23 +94,16 @@ export const IntroHero = ({
                     </span>
                   </div>
                   <Badge variant="destructive" className="w-fit">
-                    Скидка 40%
+                    {sale}
                   </Badge>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <Button size="lg" className="w-full">
-                    Записаться на курс
+                    {registerCourseButtonText}
                   </Button>
                   <Button variant="outline" size="lg" className="w-full">
-                    Пробный урок бесплатно
+                    {registerFreeLessonButtonText}
                   </Button>
-
-                  <div className="pt-4 border-t space-y-3">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">Формат:</span>
-                      <span className="font-medium">{format}</span>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             </div>

@@ -13,15 +13,25 @@ import {
   GlowingGrid,
   type GridItemData,
   TeamSection,
-  MissionVisionValuesSection,
+  ContentSection,
 } from "@/widgets";
 import {
+  HeartHandshake,
+  Sparkles,
+  Users,
+  ShieldCheck,
+  GraduationCap,
+  LifeBuoy,
+  Search,
+  TrendingUp,
+  Wrench,
+  Target,
+  Eye,
   Rocket,
   Briefcase,
   FileText,
   BadgeCheck,
   Mic,
-  Users,
   CalendarDays,
 } from "lucide-react";
 import { TextGenerateEffect, TextHoverEffect } from "@/shared/ui/lib";
@@ -158,6 +168,121 @@ const items: GridItemData[] = [
   },
 ];
 
+const defaultContent = [
+  {
+    title: "Մեր առաքելությունը",
+    headerIcon: <Target className="size-4" />,
+    items: [
+      {
+        description: (
+          <>
+            Ստեղծում ենք համայնք, որտեղ երիտասարդները սովորում են ոչ միայն
+            տեխնոլոգիաներ, այլև <strong>ապրել ճիշտ արժեքներով։</strong>
+          </>
+        ),
+      },
+      {
+        description: (
+          <>
+            Օգնում ենք դեռահասներին ու երիտասարդներին{" "}
+            <strong>բացել իրենց ներուժը՝</strong> ՏՏ կրթության, պրակտիկայի և
+            մենթորինգի միջոցով։
+          </>
+        ),
+      },
+      {
+        description: (
+          <>
+            Ուղեկցում ենք ուսանողներին, որպեսզի դառնան{" "}
+            <strong>վստահ մասնագետներ</strong> ու
+            <strong>ուժեղ անձնավորություններ</strong>։
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Մեր տեսլականը",
+    headerIcon: <Eye className="size-4" />,
+    items: [
+      {
+        description: (
+          <>
+            Մենք տեսնում ենք ապագա, որտեղ յուրաքանչյուր երիտասարդը Հայաստանում
+            ու դրա սահմաններից դուրս կարող է՝
+          </>
+        ),
+      },
+      {
+        icon: <GraduationCap className="size-5" />,
+        title: "Սովորել",
+        description: "Արդիական տեխնոլոգիաներ",
+      },
+      {
+        icon: <LifeBuoy className="size-5" />,
+        title: "Ստանալ",
+        description: "Աջակցություն կարիերայի ճանապարհին",
+      },
+      {
+        icon: <Users className="size-5" />,
+        title: "Համայնք",
+        description: "Մենք միասին ենք, և դա մեր ուժն է",
+      },
+      {
+        icon: <Search className="size-5" />,
+        title: "Գտնել",
+        description: "Համախոհներ ու ընկերներ",
+      },
+      {
+        icon: <Sparkles className="size-5" />,
+        title: "Լինել",
+        description: "Ուժեղ և ոգեշնչող համայնքի մաս",
+      },
+      {
+        description: (
+          <>
+            Մենք նպատակ ունենք դառնալ ՏՏ մուտքի կետ և անձնային աճի հարթակ, որը
+            միավորում է գիտելիքը, ճիշտ արժեքները և պրակտիկան։
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Մեր արժեքները",
+    headerIcon: <HeartHandshake className="size-4" />,
+    items: [
+      {
+        icon: <HeartHandshake className="size-5" />,
+        title: "Մարդկայնություն",
+        description:
+          "Ջերմություն, հարգանք ու աջակցություն՝ յուրաքանչյուր շփման մեջ",
+      },
+      {
+        icon: <Wrench className="size-5" />,
+        title: "Պրակտիկա",
+        description:
+          "Սովորեցնում ենք այն, ինչը իրականում աշխատում է և այսօր պահանջված է",
+      },
+      {
+        icon: <TrendingUp className="size-5" />,
+        title: "Զարգացում",
+        description: "Քայլ առ քայլ՝ դեպի պրոֆեսիոնալիզմ ու հասունություն",
+      },
+      {
+        icon: <Users className="size-5" />,
+        title: "Համայնք",
+        description: "Մենք միասին ենք, և դա մեր ուժն է",
+      },
+      {
+        icon: <ShieldCheck className="size-5" />,
+        title: "Ճիշտ արժեքներ",
+        description: "Ներսի ուղենիշներ, որոնք օգնում են մնալ ամբողջական",
+      },
+    ],
+  },
+];
+
 const title = "Ովքե՞ր ենք մենք";
 
 const description = `Մենք տալիս ենք ավելին, քան պարզապես դասընթացներ.
@@ -219,7 +344,14 @@ export default async function AboutPage({
           />
         </Container>
       </Section>
-      <MissionVisionValuesSection />
+      <ContentSection
+        blocks={defaultContent}
+        gridCols={{ sm: 1, lg: 3 }}
+        badge={{
+          icon: <Sparkles className="size-3" />,
+          text: "Նպատակաուղղված կրթություն",
+        }}
+      />
       <GlowingGrid
         items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}

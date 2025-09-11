@@ -1,12 +1,91 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
-import { AppAutoBreadcrumb } from "@/widgets";
 import { getCoursesConfig, getCourseHeroConfig } from "@/shared/config/courses";
 import { IntroHero } from "@/entities/course";
+import { ContentSection, GlowingGrid, type GridItemData } from "@/widgets";
+import { Rocket, Wrench } from "lucide-react";
+
+const items: GridItemData[] = [
+  {
+    icon: (
+      <Rocket
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: (
+      <>
+        Անվճար <strong>HR թրեյնինգ</strong>
+      </>
+    ),
+    description: (
+      <>
+        Թրեյնինգը շրջանավարտներին հնարավորություն կտա ծանոթանալ CV ստեղծելու
+        կարևոր կանոններին, հասկանալ՝ ինչպես ճիշտ պատրաստվել և ներկայանալ
+        հարցազրույցի և իմանալ բոլոր հուզող հարցերի պատասխանները:
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Rocket
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: (
+      <>
+        Անգլերեն դասընթաց <strong>հատուկ պայմաններով</strong>
+      </>
+    ),
+    description:
+      "Լավագույն ուսանողները կստանան աշխատանքի առաջարկ մեր և/կամ գործընկերների կողմից",
+  },
+  {
+    icon: (
+      <Rocket
+        className="h-4 w-4 text-black dark:text-neutral-400"
+        aria-hidden="true"
+      />
+    ),
+    title: "Պորտֆոլիո և ինքնակենսագրական",
+    description:
+      "Դասընթացի ավարտին դուք կունենաք պրոֆեսիոնալ աշխատանքներ և կօգնենք ստեղծել գրագետ ինքնակենսագրական (CV)՝ արագ մուտք գործելու համար աշխատաշուկա",
+  },
+];
+
+const defaultContent = [
+  {
+    items: [
+      {
+        icon: <Wrench className="size-5" />,
+        title: "Լինել",
+        description: "Ուժեղ և ոգեշնչող համայնքի մաս",
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        icon: <Wrench className="size-5" />,
+        title: "Լինել",
+        description: "Ուժեղ և ոգեշնչող համայնքի մաս",
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        icon: <Wrench className="size-5" />,
+        title: "Լինել",
+        description: "Ուժեղ և ոգեշնչող համայնքի մաս",
+      },
+    ],
+  },
+];
 
 export async function generateMetadata({
   params,
@@ -54,16 +133,27 @@ export default async function CoursePage({
         ])}
       />
 
-      <IntroHero
-        title={courseHeroConfig.title}
-        description={courseHeroConfig.description}
-        level={courseHeroConfig.level}
-        format={courseHeroConfig.format}
-        duration={courseHeroConfig.duration}
-        lessonsCount={courseHeroConfig.lessonsCount}
-        projectsCount={courseHeroConfig.projectsCount}
-        price={courseHeroConfig.price}
-        originalPrice={courseHeroConfig.originalPrice}
+      <IntroHero config={courseHeroConfig} />
+
+      <ContentSection
+        blocks={defaultContent}
+        gridCols={{ sm: 1, lg: 3 }}
+        itemsGridCols={{ sm: 1, lg: 1 }}
+        title={{ label: "Դասընթացի պայմանները", className: "text-center" }}
+      />
+
+      <GlowingGrid
+        title={{
+          label: (
+            <>
+              Սովորելով Unity Academy-ում՝
+              <br /> դու կստանաս հետևյալ առավելությունները
+            </>
+          ),
+          className: "text-center",
+        }}
+        items={items}
+        glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
     </main>
   );

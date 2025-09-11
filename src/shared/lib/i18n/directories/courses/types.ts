@@ -19,6 +19,10 @@ export type CourseDict = {
     certificateIncluded: boolean;
     price: string;
     originalPrice: string;
+    sale: string;
+    registerCourseButtonText: string;
+    registerFreeLessonButtonText: string;
+    certificate: string;
   };
 };
 
