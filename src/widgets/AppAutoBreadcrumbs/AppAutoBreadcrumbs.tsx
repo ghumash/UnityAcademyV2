@@ -39,7 +39,6 @@ export function AppAutoBreadcrumb({
 
     const parts = pathname.split("/").filter(Boolean);
 
-    // убираем locale из сегментов
     const segments = parts.slice(1);
 
     return [

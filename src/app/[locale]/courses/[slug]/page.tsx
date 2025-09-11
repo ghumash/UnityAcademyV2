@@ -30,7 +30,6 @@ export default async function CoursePage({
 }) {
   const { locale, slug } = await params;
   const t = await getT(locale);
-  notFound();
 
   return (
     <main id="main" className="sm:mt-36 md:mt-40">

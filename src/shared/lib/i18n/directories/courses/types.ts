@@ -1,5 +1,5 @@
 export type CoursesDict = {
-  graphicDesign: CourseDict;
+  graphic_design: CourseDict;
 };
 
 export type CourseDict = {

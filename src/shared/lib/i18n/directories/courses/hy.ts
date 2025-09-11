@@ -1,6 +1,6 @@
-import { graphicDesign } from "./graphic-design/hy";
+import { graphic_design } from "./graphic_design/hy";
 import type { CoursesDict } from "./types";
 
 export const courses: CoursesDict = {
-  graphicDesign,
+  graphic_design,
 };
