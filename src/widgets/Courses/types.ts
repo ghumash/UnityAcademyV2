@@ -19,7 +19,7 @@ export type Course = {
 
 export interface CoursesProps {
   title: string;
-  courses: readonly Course[];
+  list: readonly Course[];
   levels: {
     beginner: string;
     intermediate: string;

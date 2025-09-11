@@ -206,7 +206,7 @@ function CourseCard({
   );
 }
 
-export function Courses({ title, courses, levels, formats }: CoursesProps) {
+export function Courses({ title, list, levels, formats }: CoursesProps) {
   return (
     <Section>
       <Container>
@@ -223,7 +223,7 @@ export function Courses({ title, courses, levels, formats }: CoursesProps) {
               "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
             )}
           >
-            {courses.map((course) => (
+            {list.map((course) => (
               <CourseCard
                 key={course.id}
                 course={course}

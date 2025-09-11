@@ -70,7 +70,7 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
       />
       <Courses
         title={courses.title}
-        courses={courses.courses}
+        list={courses.list}
         levels={courses.levels}
         formats={courses.formats}
       />

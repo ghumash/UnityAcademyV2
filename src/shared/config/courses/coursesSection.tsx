@@ -7,7 +7,7 @@ export async function getCoursesConfig(locale: Locale) {
 
   return {
     title: t("courses.general.coursesSection.title"),
-    courses: [
+    list: [
       {
         id: "web_development",
         title: t("courses.general.coursesSection.list.0.title"),

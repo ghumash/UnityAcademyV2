@@ -49,7 +49,7 @@ export default async function CoursesPage({
       </Section>
       <Courses
         title={courses.title}
-        courses={courses.courses}
+        list={courses.list}
         levels={courses.levels}
         formats={courses.formats}
       />

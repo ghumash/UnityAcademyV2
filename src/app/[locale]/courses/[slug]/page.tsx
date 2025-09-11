@@ -34,10 +34,11 @@ export default async function CoursePage({
   const courses = await getCoursesConfig(locale);
 
   // Проверка существования курса по slug
-  const courseExists = courses.courses.some((course) => course.id === slug);
+  const courseExists = courses.list.some((course) => course.id === slug);
   if (!courseExists) {
     notFound();
   }
+
 
   return (
     <main id="main" className="sm:mt-36 md:mt-40">
