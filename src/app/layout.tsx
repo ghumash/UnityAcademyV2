@@ -5,7 +5,7 @@ import { Toaster } from "@/shared/ui";
 import { createMetadata } from "@/shared/seo";
 import "./globals.css";
 import { getT, type Locale } from "@/shared/lib/i18n";
-import { absoluteUrl, siteConfig } from "@/shared/config";
+import { absoluteUrl, siteConfig } from "@/shared/config/common";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({

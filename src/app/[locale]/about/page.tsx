@@ -5,7 +5,7 @@ import {
   buildOrganizationJsonLd,
   createMetadata,
 } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config";
+import { absoluteUrl } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { peopleMock } from "@/entities/person";
 import { CtaBanner } from "@/widgets";

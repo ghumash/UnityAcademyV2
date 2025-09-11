@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteConfig, absoluteUrl } from "@/shared/config";
+import { siteConfig, absoluteUrl } from "@/shared/config/common";
 import { locales, type Locale } from "@/shared/lib/i18n";
 
 export function createMetadata(input?: {

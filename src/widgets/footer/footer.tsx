@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Container, Section } from "@/shared/ui/custom";
 import Link from "next/link";
 import Image from "next/image";
-import { siteConfig } from "@/shared/config";
+import { siteConfig } from "@/shared/config/common";
 
 type FooterLink = {
   name: string;

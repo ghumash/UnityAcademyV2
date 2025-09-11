@@ -8,8 +8,18 @@ export type CoursesDict = {
 };
 
 export type CourseDict = {
-  title: string;
-  description: string;
+  courseHeroSection: {
+    title: string;
+    description: string;
+    level: string;
+    format: string;
+    duration: string;
+    lessonsCount: string;
+    projectsCount: string;
+    certificateIncluded: boolean;
+    price: string;
+    originalPrice: string;
+  };
 };
 
 export type CoursesSectionDict = {

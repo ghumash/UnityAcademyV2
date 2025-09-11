@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config";
+import { absoluteUrl } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { FaqAccordion } from "@/widgets";
 import { TextHoverEffect } from "@/shared/ui/lib";

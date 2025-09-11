@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config";
+import { absoluteUrl } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { ExampleContactTiles } from "@/widgets";

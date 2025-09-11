@@ -1,4 +1,4 @@
-import { siteConfig, absoluteUrl } from "@/shared/config";
+import { siteConfig, absoluteUrl } from "@/shared/config/common";
 
 type BreadcrumbItem = { name: string; href: string };
 

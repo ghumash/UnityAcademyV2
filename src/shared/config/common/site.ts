@@ -3,9 +3,6 @@ export type NavItem = { label: string; href: string };
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
 export async function getSiteConfig(locale: Locale) {
   const t = await getT(locale);
 
@@ -62,7 +59,7 @@ export const siteConfig = {
   },
 } as const;
 
-export type SiteConfig = typeof getSiteConfig;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export function absoluteUrl(path = "/") {
   const base = SITE_URL.endsWith("/") ? SITE_URL.slice(0, -1) : SITE_URL;

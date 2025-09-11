@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config";
+import { absoluteUrl } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { AppAutoBreadcrumb } from "@/widgets";
-import { getCoursesConfig } from "@/shared/config/courses";
+import { getCoursesConfig, getCourseHeroConfig } from "@/shared/config/courses";
+import { IntroHero } from "@/entities/course";
 
 export async function generateMetadata({
   params,
@@ -31,14 +32,13 @@ export default async function CoursePage({
 }) {
   const { locale, slug } = await params;
   const t = await getT(locale);
+  const courseHeroConfig = await getCourseHeroConfig(locale, slug);
   const courses = await getCoursesConfig(locale);
 
-  // Проверка существования курса по slug
   const courseExists = courses.list.some((course) => course.id === slug);
   if (!courseExists) {
     notFound();
   }
-
 
   return (
     <main id="main" className="sm:mt-36 md:mt-40">
@@ -54,17 +54,17 @@ export default async function CoursePage({
         ])}
       />
 
-      <Section>
-        <Container>
-          <AppAutoBreadcrumb />
-          <h1 className="mt-4 text-3xl font-bold tracking-tight">
-            {t(`courses.list.${slug}.title`)}
-          </h1>
-          <p className="mt-3 max-w-prose text-muted-foreground">
-            {t(`courses.list.${slug}.description`)}
-          </p>
-        </Container>
-      </Section>
+      <IntroHero
+        title={courseHeroConfig.title}
+        description={courseHeroConfig.description}
+        level={courseHeroConfig.level}
+        format={courseHeroConfig.format}
+        duration={courseHeroConfig.duration}
+        lessonsCount={courseHeroConfig.lessonsCount}
+        projectsCount={courseHeroConfig.projectsCount}
+        price={courseHeroConfig.price}
+        originalPrice={courseHeroConfig.originalPrice}
+      />
     </main>
   );
 }

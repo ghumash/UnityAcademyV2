@@ -4,10 +4,7 @@ import type { Locale } from "@/shared/lib/i18n";
 import { Footer, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
-import {
-  getNavigationConfig,
-  getFooterConfig,
-} from "@/shared/config/navigation";
+import { getNavigationConfig, getFooterConfig } from "@/shared/config/common";
 
 export async function generateMetadata({
   params,

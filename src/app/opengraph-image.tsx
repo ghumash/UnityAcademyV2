@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { siteConfig } from "@/shared/config";
+import { siteConfig } from "@/shared/config/common";
 
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };

@@ -10,7 +10,7 @@ import {
   VideoCardsCarousel,
 } from "@/widgets";
 import { createMetadata } from "@/shared/seo";
-import { absoluteUrl, siteConfig } from "@/shared/config";
+import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import {
   getHeroConfig,
   getCarouselConfig,

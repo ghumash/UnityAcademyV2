@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { absoluteUrl } from "@/shared/config";
+import { absoluteUrl } from "@/shared/config/common";
 import type { Locale } from "@/shared/lib/i18n";
 
 const LOCALES: Locale[] = ["ru", "en", "hy"];
