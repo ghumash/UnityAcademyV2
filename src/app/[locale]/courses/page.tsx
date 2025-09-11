@@ -16,7 +16,7 @@ export async function generateMetadata({
     canonical: absoluteUrl(`/${locale}/courses`),
     alternatesPath: "/courses",
     locale,
-    description: "Курсы Unity Academy",
+    description: t("common.navigation.courses"),
   });
 }
 

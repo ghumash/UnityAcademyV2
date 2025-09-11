@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Section, Container } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config";
-import { getT, type Locale, locales } from "@/shared/lib/i18n";
-import { Button } from "@/shared/ui";
+import { getT, type Locale } from "@/shared/lib/i18n";
 import { AppAutoBreadcrumb } from "@/widgets";
 
 export async function generateMetadata({
@@ -15,14 +13,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getT(locale);
-  const description = t("common.navigation.courses");
 
   return createMetadata({
-    title: "some title",
+    title: t(`courses.${slug}.title`),
     canonical: absoluteUrl(`/${locale}/courses/${slug}`),
     alternatesPath: `/courses/${slug}`,
     locale,
-    description,
+    description: t(`courses.${slug}.description`),
   });
 }
 
@@ -42,6 +39,10 @@ export default async function CoursePage({
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
           { name: t("common.navigation.courses"), href: `/${locale}/courses` },
+          {
+            name: t(`courses.${slug}.title`),
+            href: `/${locale}/courses/${slug}`,
+          },
         ])}
       />
 
