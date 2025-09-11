@@ -35,20 +35,13 @@ export const ApplyForm = () => {
           options: [
             { value: "Վեբ ծրագրավորում", label: "Վեբ ծրագրավորում" },
             { value: "Գրաֆիկ դիզայն", label: "Գրաֆիկ դիզայն" },
-            {
-              value: "SMM / Թվային մարքեթինգ",
-              label: "SMM / Թվային մարքեթինգ",
-            },
-            {
-              value: "Արհեստական բանականություն",
-              label: "Արհեստական բանականություն",
-            },
-            { value: "UI/UX Դիզայն", label: "UI/UX Դիզայն" },
-            {
-              value: "Java / Android Ծրագրավորում",
-              label: "Java / Android Ծրագրավորում",
-            },
-            { value: "Soft Skills / Կարիերա", label: "Soft Skills / Կարիերա" },
+            { value: "Երեխաների ծրագրավորում", label: "Երեխաների ծրագրավորում" },
+            { value: "SMM և Digital Marketing", label: "SMM և Digital Marketing" },
+            { value: "Python ծրագրավորում", label: "Python ծրագրավորում" },
+            { value: "Android ծրագրավորում", label: "Android ծրագրավորում" },
+            { value: "UI/UX դիզայն", label: "UI/UX դիզայն" },
+            { value: "HR", label: "HR" },
+            { value: "Soft Skills", label: "Soft Skills" },
           ],
         },
       ]}

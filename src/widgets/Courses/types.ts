@@ -1,6 +1,6 @@
 export type Level = "beginner" | "intermediate" | "advanced";
 export type Format = "online" | "offline" | "hybrid";
-export type Theme = "indigo" | "purple" | "orange" | "emerald" | "cyan" | "rose";
+export type Theme = "indigo" | "purple" | "orange" | "emerald" | "cyan" | "rose" | "violet" | "teal" | "amber" | "lime" | "fuchsia" | "blue" | "pink";
 
 export type Course = {
   id: string;

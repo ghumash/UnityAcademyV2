@@ -4,51 +4,75 @@ export const courses: CoursesDict = {
   title: "Մեր դասընթացները",
   courses: [
     {
-      title: "Web: HTML, CSS, JavaScript, React",
+      title: "Վեբ ծրագրավորում: HTML, CSS, JavaScript, React",
       description:
-        "Սկսած զրոյից մինչև առաջին նախագծերը: վերստակում, բաղադրիչներ, երթուղավորում, API-ի հետ աշխատանք և տեղակայում: Գործնական աշխատանք իրական առաջադրանքների վրա:",
+        "Սովորի՛ր HTML, CSS, JavaScript ու React՝ ստեղծելու արագ, հուսալի և ադապտիվ կայքեր։",
       duration: "6 ամիս",
       level: "beginner",
       format: "offline",
     },
     {
-      title: "Python: AI, ML",
+      title: "Գրաֆիկ դիզայն: Photoshop, Illustrator, Canva",
       description:
-        "ML/AI հիմունքներ, հուշում-ինժեներություն, պատրաստի մոդելների հետ աշխատանք և նախագծերում ինտեգրում:",
-      duration: "6 ամիս",
-      level: "intermediate",
+        "Բրենդինգ, Կոմպոզիցիա, տիպոգրաֆիա, գույն։ Պոստերների, բանների և բրենդ-գայդների ստեղծում։",
+      duration: "3 ամիս",
+      level: "beginner",
       format: "offline",
     },
     {
-      title: "Kids Coding: Scratch, Python",
+      title: "Երեխաների ծրագրավորում: Scratch, Python",
       description:
-        "Հաղորդակցություն, ժամանակի կառավարում, թիմում աշխատանք, հարցազրույցներ և պորտֆոլիո:",
+        "Երեխաների ծրագրավորում՝ Scratch և Python՝ խաղային նախագծեր, անիմացիաներ, ստեղծագործություն։",
       duration: "4 ամիս",
       level: "beginner",
       format: "offline",
     },
     {
-      title: "Android: Java, Kotlin",
+      title: "SMM և Digital Marketing",
       description:
-        "Ծրագրերի ճարտարապետություն, UI/UX բջջայինի համար, հրապարակում և աջակցություն: Գործնական աշխատանք իրական դեպքերի հետ:",
+        "Ստրատեգիա, կոնտենտ, թարգեթ ու անալիտիկա։ Հավաքիր քեյսեր և գործարկիր արշավներ մենթորի ուղեկցությամբ։",
+      duration: "3 ամիս",
+      level: "beginner",
+      format: "offline",
+    },
+    {
+      title: "Python ծրագրավորում: AI/ML հիմունքներ",
+      description:
+        "Սովորիր Python, ալգորիթմներ ու ML-ի բազային մոդելներ։ Կհասկանաս տվյալների հետ աշխատանքը ու կստեղծես մինի նախագծեր։",
       duration: "6 ամիս",
       level: "intermediate",
       format: "offline",
     },
     {
-      title: "SMM | Digital Marketing: Instagram, Facebook, LinkedIn, Telegram",
+      title: "Android ծրագրավորում: Java, Kotlin",
       description:
-        "Ռազմավարություն, բովանդակության պլան, պատմություն պատմել, մետրիկներ և աճ: Գործնական աշխատանք Instagram, TikTok և YouTube-ի համար:",
-      duration: "3 ամիս",
-      level: "beginner",
+        "Զրոյից՝ մինչև Java/Kotlin հավելվածներ։ UI, տվյալներ, հրապարակում և գործնական մինի նախագծեր, Google Play-ում։",
+      duration: "6 ամիս",
+      level: "intermediate",
       format: "offline",
     },
     {
-      title: "Graphic Design: Photoshop, Illustrator, Figma",
+      title: "UI/UX դիզայն: Figma",
       description:
-        "Կոմպոզիցիա, տիպոգրաֆիա, գույն, Figma/Photoshop-ում աշխատանք: Պոստերների, բանների և բրենդ-գայդների ստեղծում:",
+        "Հետազոտությունից մինչև պրոտոտիպեր։ UX պրոցեսներ, UI համակարգեր, Figma և պորտֆոլիո՝ նախագծերի քեյսերով։",
       duration: "3 ամիս",
-      level: "beginner",
+      level: "intermediate",
+      format: "offline",
+    },
+    {
+      title: "HR: Մարդկային ռեսուրսների կառավորում",
+      description:
+        "Ռեքրութինգ, հարցազրույցներ, ադապտացիա։ Գործնական շաբլոններ, քեյսեր ու HR անալիտիկա։",
+      duration: "3 ամիս",
+      level: "intermediate",
+      format: "offline",
+    },
+    {
+      title: "Soft Skills: Թիմային աշխատանք, Հաղորդակցություն",
+      description:
+        "Կոմունիկացիա, ժամանակի կառավարում, թիմ և առաջնորդություն։ Պրակտիկա, հետադարձ կապ, աճ, ելույթներ։",
+      duration: "2 ամիս",
+      level: "intermediate",
       format: "offline",
     },
   ],
