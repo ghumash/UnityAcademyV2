@@ -41,7 +41,8 @@ export function AppAutoBreadcrumb({
 
     const segments = parts.slice(1);
 
-    return [
+    // Базовые крошки из сегментов URL
+    const base = [
       { name: t("common.navigation.home"), href: `/${locale}` },
       ...segments.map((seg, idx) => {
         const href = "/" + [locale, ...segments.slice(0, idx + 1)].join("/");
@@ -49,6 +50,32 @@ export function AppAutoBreadcrumb({
         return { name, href };
       }),
     ];
+
+    // Спец-обработка страницы курса: /:locale/courses/:slug
+    if (segments[0] === "courses" && segments.length >= 2) {
+      const slug = segments[1];
+      const directPath = `courses.${slug}.title`;
+      const altPath = `courses.${slug.replace(/-/g, "_")}.title`;
+
+      let courseTitle = t(directPath);
+      if (courseTitle === directPath) {
+        const alt = t(altPath);
+        courseTitle =
+          alt !== altPath
+            ? alt
+            : slug
+                .replace(/[-_]/g, " ")
+                .replace(/\b\w/g, (c) => c.toUpperCase());
+      }
+
+      const detailHref = `/${locale}/courses/${slug}`;
+      const targetIndex = base.findIndex((c) => c.href === detailHref);
+      if (targetIndex !== -1) {
+        base[targetIndex] = { ...base[targetIndex], name: courseTitle };
+      }
+    }
+
+    return base;
   }, [pathname, locale, t]);
 
   return (

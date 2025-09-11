@@ -1,6 +1,7 @@
 import type { CourseDict } from "../types";
 
-export const graphicDesign: CourseDict = {
+export const graphic_design: CourseDict = {
   title: "Graphic Design",
-  description: "Learn the fundamentals of graphic design and visual content creation",
+  description:
+    "Learn the fundamentals of graphic design and visual content creation",
 };
