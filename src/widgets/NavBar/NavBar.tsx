@@ -116,21 +116,32 @@ export const NavBar = React.memo(function NavBar({
 
               {active && (
                 <motion.div
-                  layoutId="nav-inkbar"
                   className="absolute inset-0 -z-10 w-full rounded-full bg-primary/5"
-                  initial={false}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
                   transition={
                     reduceMotion
                       ? { duration: 0 }
-                      : { type: "spring", stiffness: 300, damping: 30 }
+                      : { type: "spring", stiffness: 500, damping: 30, duration: 0.3 }
                   }
                 >
-                  {/* Little “lamp” accent on top */}
-                  <div className="absolute -top-2 left-1/2 h-1 w-8 -translate-x-1/2 rounded-t-full bg-primary">
+                  {/* Little "lamp" accent on top */}
+                  <motion.div 
+                    className="absolute -top-2 left-1/2 h-1 w-8 -translate-x-1/2 rounded-t-full bg-primary"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 5 }}
+                    transition={
+                      reduceMotion
+                        ? { duration: 0 }
+                        : { type: "spring", stiffness: 500, damping: 30, delay: 0.1 }
+                    }
+                  >
                     <div className="absolute -top-2 -left-2 h-6 w-12 rounded-full bg-primary/20 blur-md" />
                     <div className="absolute -top-1 h-6 w-8 rounded-full bg-primary/20 blur-md" />
                     <div className="absolute top-0 left-2 h-4 w-4 rounded-full bg-primary/20 blur-sm" />
-                  </div>
+                  </motion.div>
                 </motion.div>
               )}
             </Link>
