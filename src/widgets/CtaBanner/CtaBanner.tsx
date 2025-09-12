@@ -7,7 +7,6 @@ import { Button } from "@/shared/ui";
 import { Container, Section } from "@/shared/ui/custom";
 import { motion } from "motion/react";
 
-type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 interface CtaLink {
   text: string;
@@ -18,15 +17,19 @@ interface CtaLink {
   ariaLabel?: string;
 }
 
-export interface CtaBannerProps {
+interface CtaButton extends CtaLink {}
+
+export type CtaBannerConfig = {
   heading: string;
-  /** Heading tag for proper page hierarchy */
-  as?: HeadingTag;
-  className?: string;
-  buttons?: {
-    primary?: CtaLink;
-    secondary?: CtaLink;
+  buttons: {
+    primary?: CtaButton;
+    secondary?: CtaButton;
   };
+};
+
+export interface CtaBannerProps {
+  config: CtaBannerConfig;
+  className?: string;
 }
 
 const isExternal = (href: string) => /^https?:\/\//i.test(href);
@@ -48,15 +51,12 @@ function SmartLink({ href, newTab, ...rest }: SmartLinkProps) {
 }
 
 const CtaBanner = memo(function CtaBanner({
-  heading = "Call to Action",
-  as = "h3",
+  config,
   className,
-  buttons = {
-    primary: { text: "Buy Now", url: "https://www.shadcnblocks.com" },
-  },
 }: CtaBannerProps) {
+  const { heading, buttons } = config;
   const headingId = useId();
-  const HeadingTag = as;
+  const HeadingTag = "h3";
 
   return (
     <Section style={{ paddingBottom: "0" }}>

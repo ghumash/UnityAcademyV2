@@ -357,7 +357,7 @@ export default async function AboutPage({
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
       <TeamSection people={peopleMock} />
-      <CtaBanner heading={ctaBanner.heading} buttons={ctaBanner.buttons} />
+      <CtaBanner config={ctaBanner} />
     </main>
   );
 }

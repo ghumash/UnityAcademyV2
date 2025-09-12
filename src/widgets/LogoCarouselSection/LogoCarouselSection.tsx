@@ -10,15 +10,19 @@ type LogoItem = { id: number; name: string; img: any };
 
 const allLogos: LogoItem[] = [{ name: "ARDA", id: 1, img: ArdaLogo }];
 
-export interface LogoCarouselSectionProps {
+export type LogoCarouselSectionConfig = {
   title: string;
   subtitle: string;
+};
+
+export interface LogoCarouselSectionProps {
+  config: LogoCarouselSectionConfig;
 }
 
 export function LogoCarouselSection({
-  title,
-  subtitle,
+  config,
 }: LogoCarouselSectionProps) {
+  const { title, subtitle } = config;
   return (
     <Section id="logo-carousel" aria-labelledby="logo-carousel-title">
       <Container>

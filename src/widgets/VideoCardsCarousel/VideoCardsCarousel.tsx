@@ -6,15 +6,19 @@ import { Container, Section } from "@/shared/ui/custom";
 import { Card, Carousel } from "@/shared/ui/lib";
 import type { StudentPromo } from "@/shared/config/home";
 
-export interface VideoCardsCarouselProps {
+export type VideoCardsCarouselConfig = {
   title: string;
   students: readonly StudentPromo[];
+};
+
+export interface VideoCardsCarouselProps {
+  config: VideoCardsCarouselConfig;
 }
 
 export const VideoCardsCarousel = React.memo(function VideoCardsCarousel({
-  title,
-  students,
+  config,
 }: VideoCardsCarouselProps) {
+  const { title, students } = config;
   const items = React.useMemo(
     () =>
       students.map((promo, index) => (

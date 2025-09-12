@@ -16,12 +16,11 @@ import {
   GraduationCap,
   Clock,
   ArrowRight,
-  Code,
   Share2,
   Globe,
   MapPin,
 } from "lucide-react";
-import type { Course, CoursesProps, Level, Format } from "./types";
+import type { Course, Level, Format } from "./types";
 import { THEMES } from "./theme";
 
 const cn = (...classes: Array<string | false | null | undefined>) =>
@@ -206,7 +205,29 @@ function CourseCard({
   );
 }
 
-export function Courses({ title, list, levels, formats }: CoursesProps) {
+export type CoursesConfig = {
+  title: string;
+  list: readonly Course[];
+  levels: {
+    beginner: string;
+    intermediate: string;
+    advanced: string;
+  };
+  formats: {
+    online: string;
+    offline: string;
+    hybrid: string;
+  };
+};
+
+export interface CoursesPropsNew {
+  config: CoursesConfig;
+}
+
+export function Courses({
+  config,
+}: CoursesPropsNew) {
+  const { title, list, levels, formats } = config;
   return (
     <Section>
       <Container>
@@ -223,7 +244,7 @@ export function Courses({ title, list, levels, formats }: CoursesProps) {
               "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
             )}
           >
-            {list.map((course) => (
+            {list.map((course: Course) => (
               <CourseCard
                 key={course.id}
                 course={course}

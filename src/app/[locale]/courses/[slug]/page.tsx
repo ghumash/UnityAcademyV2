@@ -255,7 +255,7 @@ export default async function CoursePage({
           </CallToAction>
         </Container>
       </Section>
-      <CtaBanner heading={ctaBanner.heading} buttons={ctaBanner.buttons} />
+      <CtaBanner config={ctaBanner} />
     </main>
   );
 }

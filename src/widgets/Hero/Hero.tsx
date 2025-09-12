@@ -26,7 +26,8 @@ type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 /** Native <section> props without the conflicting 'title' attribute */
 type SectionProps = Omit<React.ComponentPropsWithoutRef<"section">, "title">;
 
-export interface HeroProps extends SectionProps {
+// Тип для объекта конфигурации Hero
+export type HeroConfig = {
   /** Main title content (rendered inside the heading) */
   title: React.ReactNode;
   /** Optional subtitle content */
@@ -49,6 +50,10 @@ export interface HeroProps extends SectionProps {
   blur?: boolean;
   /** Animation repeat */
   once?: boolean;
+};
+
+export interface HeroProps extends SectionProps {
+  config: HeroConfig;
 }
 
 const TRANSITION = { ease: "easeInOut" as const, delay: 0.3, duration: 0.8 };
@@ -57,8 +62,12 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
   (
     {
       className,
-      gradient = true,
-      blur = true,
+      config,
+      ...props
+    },
+    ref
+  ) => {
+    const {
       title,
       subtitle,
       actions,
@@ -67,11 +76,10 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
       actionsClassName = "mt-8",
       as = "h1",
       nativeTitle,
+      gradient = true,
+      blur = true,
       once = false,
-      ...props
-    },
-    ref
-  ) => {
+    } = config;
     const reduceMotion = useReducedMotion();
     const shouldAnimate = !reduceMotion;
     const titleId = React.useId();

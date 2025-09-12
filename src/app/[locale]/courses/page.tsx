@@ -47,12 +47,7 @@ export default async function CoursesPage({
           <AppAutoBreadcrumb />
         </Container>
       </Section>
-      <Courses
-        title={courses.title}
-        list={courses.list}
-        levels={courses.levels}
-        formats={courses.formats}
-      />
+      <Courses config={courses} />
     </main>
   );
 }

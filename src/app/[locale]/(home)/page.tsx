@@ -53,28 +53,13 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
 
   return (
     <main className="sm:mt-20 md:mt-22">
-      <Hero
-        title={hero.title}
-        subtitle={hero.subtitle}
-        actions={hero.actions}
-      />
+      <Hero config={hero} />
       <Carousel items={carousel.items} hideFooter={true} indicatorVariant="bars" />
-      <FeaturesSection features={features.features} />
-      <VideoCardsCarousel
-        title={videoCards.title}
-        students={videoCards.students}
-      />
-      <LogoCarouselSection
-        title={logoCarousel.title}
-        subtitle={logoCarousel.subtitle}
-      />
-      <Courses
-        title={courses.title}
-        list={courses.list}
-        levels={courses.levels}
-        formats={courses.formats}
-      />
-      <CtaBanner heading={ctaBanner.heading} buttons={ctaBanner.buttons} />
+      <FeaturesSection config={features} />
+      <VideoCardsCarousel config={videoCards} />
+      <LogoCarouselSection config={logoCarousel} />
+      <Courses config={courses} />
+      <CtaBanner config={ctaBanner} />
     </main>
   );
 }

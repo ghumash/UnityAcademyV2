@@ -3,11 +3,16 @@ import { cn } from "@/shared/lib/utils";
 import { Container, Section } from "@/shared/ui/custom";
 import type { FeatureItem } from "@/shared/config/home";
 
-export interface FeaturesSectionProps {
+export type FeaturesSectionConfig = {
   features: readonly FeatureItem[];
+};
+
+export interface FeaturesSectionProps {
+  config: FeaturesSectionConfig;
 }
 
-export function FeaturesSection({ features }: FeaturesSectionProps) {
+export function FeaturesSection({ config }: FeaturesSectionProps) {
+  const { features } = config;
   const total = features.length;
 
   return (
