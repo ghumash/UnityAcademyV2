@@ -1,6 +1,19 @@
 export type Level = "beginner" | "intermediate" | "advanced";
 export type Format = "online" | "offline" | "hybrid";
-export type Theme = "indigo" | "purple" | "orange" | "emerald" | "cyan" | "rose" | "violet" | "teal" | "amber" | "lime" | "fuchsia" | "blue" | "pink";
+export type Theme =
+  | "indigo"
+  | "purple"
+  | "orange"
+  | "emerald"
+  | "cyan"
+  | "rose"
+  | "violet"
+  | "teal"
+  | "amber"
+  | "lime"
+  | "fuchsia"
+  | "blue"
+  | "pink";
 
 export type Course = {
   id: string;
@@ -10,7 +23,16 @@ export type Course = {
   level: Level;
   format: Format;
   /** lucide icon name to render on the card header */
-  icon?: "Code" | "Brain" | "Palette" | "Bot" | "Globe" | "MapPin" | "Share2" | "Clock" | "GraduationCap" | "Megaphone" | "Users" | "Smartphone";
+  icon?:
+    | "Code2"
+    | "Palette"
+    | "Puzzle"
+    | "Megaphone"
+    | "Workflow"
+    | "Smartphone"
+    | "LayoutDashboard"
+    | "UsersRound"
+    | "MessageSquareText";
   /** visual theme color */
   theme?: Theme;
   /** optional link to course page */

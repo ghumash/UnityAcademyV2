@@ -25,7 +25,6 @@ export type CourseDict = {
     registerCourseButtonText: string;
     registerFreeLessonButtonText: string;
     certificate: string;
-    registerCourseButtonLink: string;
     theme: Theme;
   };
 };

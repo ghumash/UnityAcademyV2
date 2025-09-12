@@ -17,9 +17,13 @@ type CourseValue =
 
 interface ApplyFormProps {
   defaultCourse?: CourseValue;
+  hideCourseSelect?: boolean;
 }
 
-export const ApplyForm = ({ defaultCourse }: ApplyFormProps) => {
+export const ApplyForm = ({
+  defaultCourse,
+  hideCourseSelect = false,
+}: ApplyFormProps) => {
   return (
     <SmartForm
       schema={ApplySchema}
@@ -46,7 +50,27 @@ export const ApplyForm = ({ defaultCourse }: ApplyFormProps) => {
         },
         {
           name: "course",
-          type: "invisible",
+          placeholder: "Դասընթաց",
+          type: hideCourseSelect ? "invisible" : "select",
+          ...(!hideCourseSelect && {
+            options: [
+              { value: "Վեբ ծրագրավորում", label: "Վեբ ծրագրավորում" },
+              { value: "Գրաֆիկ դիզայն", label: "Գրաֆիկ դիզայն" },
+              {
+                value: "Երեխաների ծրագրավորում",
+                label: "Երեխաների ծրագրավորում",
+              },
+              {
+                value: "SMM և Digital Marketing",
+                label: "SMM և Digital Marketing",
+              },
+              { value: "Python ծրագրավորում", label: "Python ծրագրավորում" },
+              { value: "Android ծրագրավորում", label: "Android ծրագրավորում" },
+              { value: "UI/UX դիզայն", label: "UI/UX դիզայն" },
+              { value: "HR", label: "HR" },
+              { value: "Soft Skills", label: "Soft Skills" },
+            ],
+          }),
         },
       ]}
       defaults={{

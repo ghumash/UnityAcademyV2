@@ -23,9 +23,6 @@ export async function getCourseHeroConfig(locale: Locale, slug: string) {
       `courses.list.${slug}.courseHeroSection.registerFreeLessonButtonText`
     ),
     certificate: t(`courses.list.${slug}.courseHeroSection.certificate`),
-    registerCourseButtonLink: t(
-      `courses.list.${slug}.courseHeroSection.registerCourseButtonLink`
-    ),
     theme: t(`courses.list.${slug}.courseHeroSection.theme`) as Theme,
   } as const;
 }

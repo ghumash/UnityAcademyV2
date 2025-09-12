@@ -4,19 +4,22 @@ import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Container, Section } from "@/shared/ui/custom";
 import {
+  Code2,
+  Palette,
+  Puzzle,
+  Megaphone,
+  Workflow,
+  Smartphone,
+  LayoutDashboard,
+  UsersRound,
+  MessageSquareText,
+  GraduationCap,
+  Clock,
   ArrowRight,
   Code,
-  Brain,
-  Palette,
-  Bot,
+  Share2,
   Globe,
   MapPin,
-  Share2,
-  Clock,
-  GraduationCap,
-  Megaphone,
-  Users,
-  Smartphone,
 } from "lucide-react";
 import type { Course, CoursesProps, Level, Format } from "./types";
 import { THEMES } from "./theme";
@@ -25,18 +28,15 @@ const cn = (...classes: Array<string | false | null | undefined>) =>
   twMerge(clsx(classes));
 
 const ICONS = {
-  Code,
-  Brain,
+  Code2,
   Palette,
-  Bot,
-  Globe,
-  MapPin,
-  Share2,
-  Clock,
-  GraduationCap,
+  Puzzle,
   Megaphone,
-  Users,
+  Workflow,
   Smartphone,
+  LayoutDashboard,
+  UsersRound,
+  MessageSquareText,
 };
 
 function formatIconByMode(mode: Format) {
@@ -78,13 +78,13 @@ function CourseCard({
     duration,
     level,
     format,
-    icon = "Code",
+    icon = "Code2",
     theme = "indigo",
     href,
   } = course;
 
   const t = THEMES[theme];
-  const Icon = ICONS[icon] ?? Code;
+  const Icon = ICONS[icon] ?? Code2;
   const FormatIcon = formatIconByMode(format);
 
   const CardTag = href ? "a" : ("article" as const);

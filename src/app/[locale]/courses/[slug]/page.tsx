@@ -244,14 +244,14 @@ export default async function CoursePage({
         items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
-      <Section id="graphic-design-form">
+      <Section id="form">
         <Container>
           <CallToAction
             title="Գրաֆիկ դիզայն: Գրանցման հայտ"
             subtitle="Միացիր ապագա ստեղծագործների խմբին"
             activeTagId="graphic"
           >
-            <ApplyForm defaultCourse="Գրաֆիկ դիզայն" />
+            <ApplyForm defaultCourse="Գրաֆիկ դիզայն" hideCourseSelect />
           </CallToAction>
         </Container>
       </Section>

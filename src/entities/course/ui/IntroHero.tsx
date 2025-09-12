@@ -24,7 +24,6 @@ type IntroHeroConfig = {
   lessonsCount: string;
   projectsCount: string;
   certificate: string;
-  registerCourseButtonLink: string;
   theme: Theme;
 };
 
@@ -49,7 +48,6 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
     lessonsCount,
     projectsCount,
     certificate,
-    registerCourseButtonLink,
     theme,
   } = config;
 
@@ -154,7 +152,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Button size="lg" className="w-full">
-                  <Link href={registerCourseButtonLink}>{registerCourseButtonText}</Link>
+                  <Link href="#form">{registerCourseButtonText}</Link>
                 </Button>
                 <Button variant="outline" size="lg" className="w-full">
                   {registerFreeLessonButtonText}

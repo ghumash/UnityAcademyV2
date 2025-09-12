@@ -16,7 +16,6 @@ export const graphic_design: CourseDict = {
     registerCourseButtonText: "Enroll in Course",
     registerFreeLessonButtonText: "Register for Free Lesson",
     certificate: "Certificate",
-    registerCourseButtonLink: "#graphic-design-form",
     theme: "rose",
   },
 };
