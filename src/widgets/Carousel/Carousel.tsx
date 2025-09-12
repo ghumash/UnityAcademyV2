@@ -13,8 +13,12 @@ import { Container, Section } from "@/shared/ui/custom";
 import type { CarouselItem } from "@/shared/config/home";
 import { cn } from "@/shared/lib/utils";
 
-export interface CarouselProps {
+export type CarouselConfig = {
   items: readonly CarouselItem[];
+};
+
+export interface CarouselProps {
+  config: CarouselConfig;
   hideFooter?: boolean;
   /** Стиль индикатора, когда footer скрыт */
   indicatorVariant?: "bars" | "pills";
@@ -23,11 +27,12 @@ export interface CarouselProps {
 }
 
 export function Carousel({
-  items,
-  hideFooter,
+  config,
+  hideFooter = true,
   indicatorVariant = "bars",
   indicatorPosition = "overlay",
 }: CarouselProps) {
+  const { items } = config;
   if (!items?.length) return null;
 
   const baseGroupPos =
@@ -45,7 +50,7 @@ export function Carousel({
           aria-label="Featured photos"
         >
           <SliderContent>
-            {items.map((item, index) => {
+            {items.map((item: CarouselItem, index: number) => {
               const captionId = `${item.sliderName}-caption`;
               return (
                 <SliderWrapper
@@ -80,7 +85,7 @@ export function Carousel({
                 "flex items-center gap-2 pointer-events-auto select-none"
               )}
             >
-              {items.map((item) => {
+              {items.map((item: CarouselItem) => {
                 if (indicatorVariant === "bars") {
                   // ▬ Чуть больше и с круглыми краями, без бордера
                   return (
@@ -125,7 +130,7 @@ export function Carousel({
             </SliderBtnGroup>
           ) : (
             <SliderBtnGroup className="absolute bottom-0 h-fit text-black dark:text-white bg-white/40 dark:bg-black/40 backdrop-blur-md overflow-hidden grid grid-cols-2 md:grid-cols-4 rounded-md">
-              {items.map((item) => (
+              {items.map((item: CarouselItem) => (
                 <SliderBtn
                   key={item.sliderName}
                   value={item.sliderName}

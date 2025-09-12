@@ -54,7 +54,7 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   return (
     <main className="sm:mt-20 md:mt-22">
       <Hero config={hero} />
-      <Carousel items={carousel.items} hideFooter={true} indicatorVariant="bars" />
+      <Carousel config={carousel} />
       <FeaturesSection config={features} />
       <VideoCardsCarousel config={videoCards} />
       <LogoCarouselSection config={logoCarousel} />
