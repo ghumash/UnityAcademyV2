@@ -1,3 +1,5 @@
+import type { Theme } from "@/widgets/Courses";
+
 export type CoursesDict = {
   general: {
     coursesSection: CoursesSectionDict;
@@ -23,6 +25,8 @@ export type CourseDict = {
     registerCourseButtonText: string;
     registerFreeLessonButtonText: string;
     certificate: string;
+    registerCourseButtonLink: string;
+    theme: Theme;
   };
 };
 

@@ -14,6 +14,7 @@ interface CallToActionProps {
   title: string;
   subtitle: string;
   children: React.ReactNode;
+  activeTagId?: TagId;
 }
 
 const TAG_IDS = [
@@ -27,13 +28,16 @@ const TAG_IDS = [
 
 type TagId = (typeof TAG_IDS)[number];
 
-export function CallToAction({ title, subtitle, children }: CallToActionProps) {
+export function CallToAction({ title, subtitle, children, activeTagId }: CallToActionProps) {
   const [scope, animate] = useAnimate();
   const controlsRef = React.useRef<AnimationPlaybackControls | null>(null);
 
   const buildSequence = React.useCallback((): AnimationSequence => {
     const root = scope.current as HTMLElement | null;
     if (!root) return [];
+
+    // Если задан activeTagId, не создаем анимацию
+    if (activeTagId) return [];
 
     const rootRect = root.getBoundingClientRect();
 
@@ -96,7 +100,7 @@ export function CallToAction({ title, subtitle, children }: CallToActionProps) {
     seq.push([`#${last.id}`, { opacity: 0.5 }, { at: "-0.3", duration: 0.1 }]);
 
     return seq;
-  }, [scope]);
+  }, [scope, activeTagId]);
 
   const startAnimation = React.useCallback(() => {
     const seq = buildSequence();
@@ -106,8 +110,38 @@ export function CallToAction({ title, subtitle, children }: CallToActionProps) {
     controlsRef.current = animate(seq, { repeat: Infinity });
   }, [animate, buildSequence]);
 
+  // Эффект для установки активного тега при наличии activeTagId
   React.useEffect(() => {
-    // дождаться layout
+    if (activeTagId) {
+      const root = scope.current as HTMLElement | null;
+      if (!root) return;
+
+      const rootRect = root.getBoundingClientRect();
+      const activeEl = root.querySelector<HTMLElement>(`#${activeTagId}`);
+      
+      if (activeEl) {
+        const r = activeEl.getBoundingClientRect();
+        const cx = ((r.left + r.width / 2 - rootRect.left) / rootRect.width) * 100;
+        const cy = ((r.top + r.height / 2 - rootRect.top) / rootRect.height) * 100;
+        const clamp = (v: number) => Math.max(0, Math.min(100, v));
+        
+        // Позиционируем курсор на активный тег
+        animate("#pointer", {
+          left: `${clamp(cx)}%`,
+          top: `${clamp(cy)}%`
+        }, { duration: 0 });
+        
+        // Устанавливаем opacity для всех тегов
+        TAG_IDS.forEach(tagId => {
+          animate(`#${tagId}`, {
+            opacity: tagId === activeTagId ? 1 : 0.4
+          }, { duration: 0 });
+        });
+      }
+      return;
+    }
+
+    // Обычная анимация, если activeTagId не задан
     const raf = requestAnimationFrame(startAnimation);
 
     // адаптация при ресайзе
@@ -129,7 +163,7 @@ export function CallToAction({ title, subtitle, children }: CallToActionProps) {
       ro?.disconnect();
       controlsRef.current?.stop?.();
     };
-  }, [startAnimation, scope]);
+  }, [startAnimation, scope, activeTagId, animate]);
 
   return (
     <section className="relative mx-auto mb-20 mt-6">

@@ -3,7 +3,23 @@
 import { ApplySchema } from "@/features/apply";
 import { SmartForm } from "@/widgets";
 
-export const ApplyForm = () => {
+// Типы курсов на основе существующих значений
+type CourseValue =
+  | "Վեբ ծրագրավորում"
+  | "Գրաֆիկ դիզայն"
+  | "Երեխաների ծրագրավորում"
+  | "SMM և Digital Marketing"
+  | "Python ծրագրավորում"
+  | "Android ծրագրավորում"
+  | "UI/UX դիզայն"
+  | "HR"
+  | "Soft Skills";
+
+interface ApplyFormProps {
+  defaultCourse?: CourseValue;
+}
+
+export const ApplyForm = ({ defaultCourse }: ApplyFormProps) => {
   return (
     <SmartForm
       schema={ApplySchema}
@@ -30,26 +46,14 @@ export const ApplyForm = () => {
         },
         {
           name: "course",
-          placeholder: "Դասընթաց",
-          type: "select",
-          options: [
-            { value: "Վեբ ծրագրավորում", label: "Վեբ ծրագրավորում" },
-            { value: "Գրաֆիկ դիզայն", label: "Գրաֆիկ դիզայն" },
-            { value: "Երեխաների ծրագրավորում", label: "Երեխաների ծրագրավորում" },
-            { value: "SMM և Digital Marketing", label: "SMM և Digital Marketing" },
-            { value: "Python ծրագրավորում", label: "Python ծրագրավորում" },
-            { value: "Android ծրագրավորում", label: "Android ծրագրավորում" },
-            { value: "UI/UX դիզայն", label: "UI/UX դիզայն" },
-            { value: "HR", label: "HR" },
-            { value: "Soft Skills", label: "Soft Skills" },
-          ],
+          type: "invisible",
         },
       ]}
       defaults={{
         fullname: "",
         email: "",
         phone: "",
-        course: "",
+        course: defaultCourse || "",
       }}
       transform={(v) => ({
         fullname: v.fullname.trim(),

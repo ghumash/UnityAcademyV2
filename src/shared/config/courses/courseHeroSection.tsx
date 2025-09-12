@@ -1,5 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
+import type { Theme } from "@/widgets/Courses";
 
 export async function getCourseHeroConfig(locale: Locale, slug: string) {
   const t = await getT(locale);
@@ -15,8 +16,16 @@ export async function getCourseHeroConfig(locale: Locale, slug: string) {
     price: t(`courses.list.${slug}.courseHeroSection.price`),
     originalPrice: t(`courses.list.${slug}.courseHeroSection.originalPrice`),
     sale: t(`courses.list.${slug}.courseHeroSection.sale`),
-    registerCourseButtonText: t(`courses.list.${slug}.courseHeroSection.registerCourseButtonText`),
-    registerFreeLessonButtonText: t(`courses.list.${slug}.courseHeroSection.registerFreeLessonButtonText`),
+    registerCourseButtonText: t(
+      `courses.list.${slug}.courseHeroSection.registerCourseButtonText`
+    ),
+    registerFreeLessonButtonText: t(
+      `courses.list.${slug}.courseHeroSection.registerFreeLessonButtonText`
+    ),
     certificate: t(`courses.list.${slug}.courseHeroSection.certificate`),
+    registerCourseButtonLink: t(
+      `courses.list.${slug}.courseHeroSection.registerCourseButtonLink`
+    ),
+    theme: t(`courses.list.${slug}.courseHeroSection.theme`) as Theme,
   } as const;
 }

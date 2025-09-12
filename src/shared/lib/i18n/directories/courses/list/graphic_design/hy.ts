@@ -3,7 +3,8 @@ import type { CourseDict } from "../../types";
 export const graphic_design: CourseDict = {
   courseHeroSection: {
     title: "Գրաֆիկ դիզայն: Photoshop, Illustrator, Canva",
-    description: "Բրենդինգ, Կոմպոզիցիա, տիպոգրաֆիա, գույն։ Պոստերների, բանների և բրենդ-գայդների ստեղծում։",
+    description:
+      "Բրենդինգ, Կոմպոզիցիա, տիպոգրաֆիա, գույն։ Պոստերների, բանների և բրենդ-գայդների ստեղծում։",
     level: "beginner",
     format: "offline",
     duration: "2 months",
@@ -16,5 +17,7 @@ export const graphic_design: CourseDict = {
     registerCourseButtonText: "Գրանցվել դասընթացին",
     registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
     certificate: "Սերտիֆիկատ",
+    registerCourseButtonLink: "#graphic-design-form",
+    theme: "rose",
   },
 };

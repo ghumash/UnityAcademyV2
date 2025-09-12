@@ -6,6 +6,7 @@ import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCourseHeroConfig } from "@/shared/config/courses";
 import { IntroHero } from "@/entities/course";
 import {
+  CallToAction,
   ContentSection,
   CourseTopics,
   CtaBanner,
@@ -19,6 +20,7 @@ import {
 import { Rocket, Wrench } from "lucide-react";
 import { Container, Section } from "@/shared/ui/custom";
 import { cn } from "@/shared/lib";
+import { ApplyForm } from "@/features/apply";
 
 const items: GridItemData[] = [
   {
@@ -242,7 +244,17 @@ export default async function CoursePage({
         items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
-
+      <Section id="graphic-design-form">
+        <Container>
+          <CallToAction
+            title="Գրաֆիկ դիզայն: Գրանցման հայտ"
+            subtitle="Միացիր ապագա ստեղծագործների խմբին"
+            activeTagId="graphic"
+          >
+            <ApplyForm defaultCourse="Գրաֆիկ դիզայն" />
+          </CallToAction>
+        </Container>
+      </Section>
       <CtaBanner heading={ctaBanner.heading} buttons={ctaBanner.buttons} />
     </main>
   );

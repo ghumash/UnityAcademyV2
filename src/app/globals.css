@@ -121,6 +121,9 @@
   }
 }
 
+* {
+  scroll-behavior: smooth;
+}
 
 /* Our Values */
 .database {

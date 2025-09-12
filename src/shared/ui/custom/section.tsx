@@ -4,7 +4,7 @@ import * as React from "react";
 import type { ReactNode, ElementType } from "react";
 import { cn } from "@/shared/lib/utils";
 
-type Padding = "none" | "sm" | "md" | "lg";
+export type Padding = "none" | "sm" | "md" | "lg";
 
 const paddingClasses: Record<Padding, string> = {
   none: "",
@@ -13,7 +13,7 @@ const paddingClasses: Record<Padding, string> = {
   lg: "py-14 md:py-20",
 };
 
-type Props<T extends ElementType> = {
+export type SectionProps<T extends ElementType = "section"> = {
   children?: ReactNode;
   className?: string;
   as?: T;
@@ -28,7 +28,7 @@ type Props<T extends ElementType> = {
 /**
  * Универсальная секция с поддержкой ref и семантического тега
  */
-const Section = React.forwardRef<HTMLElement, Props<ElementType>>(
+const Section = React.forwardRef<HTMLElement, SectionProps<ElementType>>(
   (
     { children, className, as: Tag = "section", id, padding = "md", ...rest },
     ref

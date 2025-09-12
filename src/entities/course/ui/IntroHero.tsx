@@ -6,7 +6,8 @@ import { Badge, Button, Card, CardContent, CardHeader } from "@/shared/ui";
 import { TextGenerateEffect } from "@/shared/ui/lib";
 import { Award, BookOpen, Briefcase, Clock, Play, User } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
-import { THEMES } from "@/widgets/Courses";
+import { THEMES, type Theme } from "@/widgets/Courses";
+import Link from "next/link";
 
 // Тип для объекта конфигурации
 type IntroHeroConfig = {
@@ -23,7 +24,8 @@ type IntroHeroConfig = {
   lessonsCount: string;
   projectsCount: string;
   certificate: string;
-  theme?: "indigo" | "purple" | "orange" | "emerald" | "cyan" | "rose";
+  registerCourseButtonLink: string;
+  theme: Theme;
 };
 
 // Тип для пропсов компонента
@@ -47,7 +49,8 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
     lessonsCount,
     projectsCount,
     certificate,
-    theme = "indigo",
+    registerCourseButtonLink,
+    theme,
   } = config;
 
   const themeStyles = THEMES[theme];
@@ -128,7 +131,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
           </div>
           {/* Боковая панель */}
           <div className="relative z-10 lg:col-span-1">
-            <Card className="border-0 bg-black/20 backdrop-blur-sm">
+            <Card className="border-0 bg-black/80 backdrop-blur-sm">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <span
@@ -151,7 +154,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <Button size="lg" className="w-full">
-                  {registerCourseButtonText}
+                  <Link href={registerCourseButtonLink}>{registerCourseButtonText}</Link>
                 </Button>
                 <Button variant="outline" size="lg" className="w-full">
                   {registerFreeLessonButtonText}

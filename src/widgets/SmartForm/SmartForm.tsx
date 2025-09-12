@@ -29,6 +29,7 @@ type FieldType =
   | "email"
   | "textarea"
   | "hidden"
+  | "invisible"
   | "select"
   | "checkbox"
   | "multiselect"
@@ -117,28 +118,30 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
         )}
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {fields.map((f) => {
-            const id = f.name as string;
-            const isHalf = f.col === "half";
-            const colClass = isHalf ? "" : "sm:col-span-2";
-            const err = (errors as Record<string, any>)[id]?.message as
-              | string
-              | undefined;
+          {fields
+            .filter((f) => f.type !== "invisible")
+            .map((f) => {
+              const id = f.name as string;
+              const isHalf = f.col === "half";
+              const colClass = isHalf ? "" : "sm:col-span-2";
+              const err = (errors as Record<string, any>)[id]?.message as
+                | string
+                | undefined;
 
-            const common = {
-              id,
-              placeholder: f.placeholder,
-              autoComplete: f.autoComplete,
-              "aria-invalid": !!err,
-              ...register(f.name),
-            };
+              const common = {
+                id,
+                placeholder: f.placeholder,
+                autoComplete: f.autoComplete,
+                "aria-invalid": !!err,
+                ...register(f.name),
+              };
 
-            return (
-              <div
-                key={id}
-                className={cn("grid w-full items-start gap-1.5", colClass)}
-              >
-                {f.label && <Label htmlFor={id}>{f.label}</Label>}
+              return (
+                <div
+                  key={id}
+                  className={cn("grid w-full items-start gap-1.5", colClass)}
+                >
+                  {f.label && <Label htmlFor={id}>{f.label}</Label>}
 
                 {/* TEXTAREA */}
                 {f.type === "textarea" && (
@@ -239,6 +242,17 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
               </div>
             );
           })}
+
+          {/* Invisible fields - регистрируем но не отображаем */}
+          {fields
+            .filter((f) => f.type === "invisible")
+            .map((f) => (
+              <input
+                key={f.name as string}
+                type="hidden"
+                {...register(f.name)}
+              />
+            ))}
 
           {/* Honeypot */}
           <div className="hidden">
