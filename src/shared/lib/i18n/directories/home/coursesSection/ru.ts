@@ -4,45 +4,75 @@ export const coursesSection: CoursesSectionDict = {
   title: "Наши курсы",
   list: [
     {
-      title: "Веб-разработка: HTML, CSS, JavaScript, React",
-      description: "С нуля до первых проектов: верстка, компоненты, роутинг, работа с API и деплой. Практика на реальных задачах.",
+      title: "Веб-программирование: HTML, CSS, JavaScript, React",
+      description:
+        "Изучи HTML, CSS, JavaScript и React для создания быстрых, надежных и адаптивных сайтов.",
+      duration: "6 месяцев",
+      level: "beginner",
+      format: "offline",
+    },
+    {
+      title: "Графический дизайн: Photoshop, Illustrator, Canva",
+      description:
+        "Брендинг, композиция, типографика, цвет. Создание постеров, баннеров и бренд-гайдов.",
       duration: "3 месяца",
       level: "beginner",
       format: "offline",
     },
     {
-      title: "Искусственный интеллект: основы и практики",
-      description: "Основы ML/AI, промпт-инжиниринг, работа с готовыми моделями и интеграции в проекты.",
-      duration: "2 месяца",
-      level: "intermediate",
-      format: "hybrid",
-    },
-    {
-      title: "Графический дизайн",
-      description: "Композиция, типографика, цвет, работа в Figma/Photoshop. Создание постеров, баннеров и бренд-гайдов.",
-      duration: "2 месяца",
+      title: "Детское программирование: Scratch, Python",
+      description:
+        "Программирование для детей с Scratch и Python — игровые проекты, анимации, творчество.",
+      duration: "4 месяца",
       level: "beginner",
       format: "offline",
     },
     {
-      title: "Android разработка",
-      description: "Архитектура приложений, UI/UX для мобильных, публикация и поддержка. Практика с реальными кейсами.",
+      title: "SMM и Digital Marketing",
+      description:
+        "Стратегия, контент, таргетинг и аналитика. Собирай кейсы и запускай кампании с сопровождением ментора.",
+      duration: "3 месяца",
+      level: "beginner",
+      format: "offline",
+    },
+    {
+      title: "Python программирование: основы AI/ML",
+      description:
+        "Изучи Python, алгоритмы и базовые ML модели. Поймешь работу с данными и создашь мини-проекты.",
+      duration: "6 месяцев",
+      level: "intermediate",
+      format: "offline",
+    },
+    {
+      title: "Android программирование: Java, Kotlin",
+      description:
+        "С нуля до Java/Kotlin приложений. UI, данные, публикация и практические мини-проекты в Google Play.",
+      duration: "6 месяцев",
+      level: "intermediate",
+      format: "offline",
+    },
+    {
+      title: "UI/UX дизайн: Figma",
+      description:
+        "От исследований до прототипов. UX процессы, UI системы, Figma и портфолио с кейсами проектов.",
       duration: "3 месяца",
       level: "intermediate",
-      format: "online",
+      format: "offline",
     },
     {
-      title: "SMM и создание контента",
-      description: "Стратегия, контент-план, сторителлинг, метрики и рост. Практика для Instagram, TikTok и YouTube.",
-      duration: "1.5 месяца",
-      level: "beginner",
-      format: "hybrid",
+      title: "HR: Управление человеческими ресурсами",
+      description:
+        "Рекрутинг, интервью, адаптация. Практические шаблоны, кейсы и HR аналитика.",
+      duration: "3 месяца",
+      level: "intermediate",
+      format: "offline",
     },
     {
-      title: "Soft Skills и карьера",
-      description: "Коммуникация, тайм-менеджмент, работа в команде, собеседования и портфолио.",
-      duration: "1 месяц",
-      level: "beginner",
+      title: "Soft Skills: Командная работа, Коммуникация",
+      description:
+        "Коммуникация, управление временем, команда и лидерство. Практика, обратная связь, рост, презентации.",
+      duration: "2 месяца",
+      level: "intermediate",
       format: "offline",
     },
   ],

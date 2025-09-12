@@ -1,48 +1,78 @@
 import type { CoursesSectionDict } from "../types";
 
 export const coursesSection: CoursesSectionDict = {
-  title: "Our courses",
+  title: "Our Courses",
   list: [
     {
-      title: "Web development: HTML, CSS, JavaScript, React",
-      description: "From scratch to first projects: layout, components, routing, API work and deployment. Practice on real tasks.",
+      title: "Web Programming: HTML, CSS, JavaScript, React",
+      description:
+        "Learn HTML, CSS, JavaScript and React to create fast, reliable and adaptive websites.",
+      duration: "6 months",
+      level: "beginner",
+      format: "offline",
+    },
+    {
+      title: "Graphic Design: Photoshop, Illustrator, Canva",
+      description:
+        "Branding, composition, typography, color. Creating posters, banners and brand guides.",
       duration: "3 months",
       level: "beginner",
       format: "offline",
     },
     {
-      title: "Artificial Intelligence: fundamentals and practices",
-      description: "ML/AI basics, prompt engineering, working with ready-made models and integrations into projects.",
-      duration: "2 months",
-      level: "intermediate",
-      format: "hybrid",
-    },
-    {
-      title: "Graphic Design",
-      description: "Composition, typography, color, working in Figma/Photoshop. Creating posters, banners and brand guides.",
-      duration: "2 months",
+      title: "Kids Programming: Scratch, Python",
+      description:
+        "Kids programming with Scratch and Python — game projects, animations, creativity.",
+      duration: "4 months",
       level: "beginner",
       format: "offline",
     },
     {
-      title: "Android development",
-      description: "Application architecture, UI/UX for mobile, publishing and support. Practice with real cases.",
+      title: "SMM and Digital Marketing",
+      description:
+        "Strategy, content, targeting and analytics. Build cases and launch campaigns with mentor guidance.",
+      duration: "3 months",
+      level: "beginner",
+      format: "offline",
+    },
+    {
+      title: "Python Programming: AI/ML Fundamentals",
+      description:
+        "Learn Python, algorithms and basic ML models. Understand data work and create mini projects.",
+      duration: "6 months",
+      level: "intermediate",
+      format: "offline",
+    },
+    {
+      title: "Android Programming: Java, Kotlin",
+      description:
+        "From zero to Java/Kotlin applications. UI, data, publishing and practical mini projects on Google Play.",
+      duration: "6 months",
+      level: "intermediate",
+      format: "offline",
+    },
+    {
+      title: "UI/UX Design: Figma",
+      description:
+        "From research to prototypes. UX processes, UI systems, Figma and portfolio with project cases.",
       duration: "3 months",
       level: "intermediate",
-      format: "online",
+      format: "offline",
     },
     {
-      title: "SMM and content creation",
-      description: "Strategy, content plan, storytelling, metrics and growth. Practice for Instagram, TikTok and YouTube.",
-      duration: "1.5 months",
-      level: "beginner",
-      format: "hybrid",
+      title: "HR: Human Resources Management",
+      description:
+        "Recruiting, interviews, adaptation. Practical templates, cases and HR analytics.",
+      duration: "3 months",
+      level: "intermediate",
+      format: "offline",
     },
     {
-      title: "Soft Skills and career",
-      description: "Communication, time management, teamwork, interviews and portfolio.",
-      duration: "1 month",
-      level: "beginner",
+      title: "Soft Skills: Teamwork, Communication",
+      description:
+        "Communication, time management, team and leadership. Practice, feedback, growth, presentations.",
+      duration: "2 months",
+      level: "intermediate",
       format: "offline",
     },
   ],

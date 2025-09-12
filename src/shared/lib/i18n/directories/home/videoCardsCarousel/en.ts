@@ -4,11 +4,11 @@ export const videoCardsCarousel: VideoCardsCarouselDict = {
   title: "Students about us",
   students: [
     {
-      student: "Անի Մկրտչյան",
+      student: "Ani Mkrtchyan",
       group: "JavaScript",
     },
     {
-      student: "Գուրո Ղազարյան",
+      student: "Guro Ghazaryan",
       group: "Graphic Design",
     },
     {
@@ -24,7 +24,7 @@ export const videoCardsCarousel: VideoCardsCarouselDict = {
       group: "SMM",
     },
     {
-      student: "Լիլիթ Հարությունյան",
+      student: "Lilit Harutyunyan",
       group: "Scratch (Kids)",
     },
   ],

@@ -4,27 +4,27 @@ export const videoCardsCarousel: VideoCardsCarouselDict = {
   title: "Студенты про нас",
   students: [
     {
-      student: "Անի Մկրտչյան",
+      student: "Ани Мкртчян",
       group: "JavaScript",
     },
     {
-      student: "Գուրո Ղազարյան",
+      student: "Гуро Газарян",
       group: "Графический дизайн",
     },
     {
-      student: "Narek Petrosyan",
+      student: "Нарек Петросян",
       group: "Android",
     },
     {
-      student: "Mariam Sargsyan",
+      student: "Мариам Саргсян",
       group: "Основы AI",
     },
     {
-      student: "Arman Hovhannisyan",
+      student: "Арман Ованнисян",
       group: "SMM",
     },
     {
-      student: "Լիլիթ Հարությունյան",
+      student: "Лилит Арутюнян",
       group: "Scratch (Дети)",
     },
   ],
