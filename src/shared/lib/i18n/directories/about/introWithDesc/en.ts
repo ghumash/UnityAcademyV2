@@ -2,10 +2,9 @@ import type { IntroWithDescDict } from "../types";
 
 export const introWithDesc: IntroWithDescDict = {
   title: "About Us",
-  description:
-    "Unity Academy is a leading educational institution specializing in modern technology education.",
+  description: "Who are we?",
   description_2:
-    "We believe that quality education should be accessible to everyone, which is why we have developed comprehensive programs that meet industry requirements.",
+    "We provide more than just courses. We are a community for those who strive to grow professionally, personally, and with the right values, who want to develop their skills and find career opportunities.",
   description_3:
-    "Our mission is to provide high-quality education in modern technology to prepare students for successful careers.",
+    "This is the place where knowledge transforms into professionalism, practice becomes the foundation of success, and a strong community supports you at every step.",
 } as const;
