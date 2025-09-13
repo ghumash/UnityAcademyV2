@@ -121,7 +121,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   };
 
   const courseTopicsConfig = {
-    title: t("courses.topics.title"),
+    title: t("courses.single.topics.title"),
     topics: [
       "HTML5 semantic markup",
       "CSS3 advanced styling",
