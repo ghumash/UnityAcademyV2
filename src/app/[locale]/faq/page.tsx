@@ -37,7 +37,7 @@ export default async function FAQPage({
       <JsonLd
         id="breadcrumbs-faq"
         data={buildBreadcrumbsJsonLd([
-          { name: t("common.home"), href: `/${locale}` },
+          { name: t("common.navigation.home"), href: `/${locale}` },
           {
             name: faqConfig.page.title,
             href: `/${locale}${siteConfig.routes.faq}`,

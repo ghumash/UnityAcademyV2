@@ -1,13 +1,3 @@
-TODO: refactor siteConfig
-TODO: use default language for application HY
-TODO: refactor seo, jsonld.tsx, createMetadata.tsx
 TODO: add documentation for all app and reusable components
-TODO: refactor courses page
-TODO: refactor single course page
-TODO: remove all mdx functionality
-TODO: add global paths /courses /about etc.
-TODO: remove unused function and files
-
-TODO: fix smartform component ts errors
 TODO: add storybook for reusable components
 TODO: add skeletons

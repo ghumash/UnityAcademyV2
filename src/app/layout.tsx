@@ -23,7 +23,7 @@ export async function generateMetadata({
   return createMetadata({
     title: siteConfig.name,
     canonical: absoluteUrl(`/${locale}`),
-    alternatesPath: "/",
+    alternatesPath: siteConfig.routes.home,
     locale,
     description: t("home.hero.subtitle"),
   });

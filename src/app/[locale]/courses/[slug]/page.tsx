@@ -53,7 +53,7 @@ export default async function CoursePage({
       <JsonLd
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([
-          { name: t("common.home"), href: `/${locale}` },
+          { name: t("common.navigation.home"), href: `/${locale}` },
           { name: t("common.navigation.courses"), href: `/${locale}${siteConfig.routes.courses}` },
           {
             name: t(`courses.list.${slug}.title`),

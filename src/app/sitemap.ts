@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Статические страницы с конфигурацией
   const staticPages = [
-    { path: "/", changeFrequency: "weekly" as const, priority: 1.0 },
+    { path: siteConfig.routes.home, changeFrequency: "weekly" as const, priority: 1.0 },
     {
       path: siteConfig.routes.courses,
       changeFrequency: "daily" as const,

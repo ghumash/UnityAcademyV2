@@ -40,7 +40,7 @@ export default async function ContactsPage({
       <JsonLd
         id="breadcrumbs-contacts"
         data={buildBreadcrumbsJsonLd([
-          { name: t("common.home"), href: `/${locale}` },
+          { name: t("common.navigation.home"), href: `/${locale}` },
           {
             name: t("common.navigation.contacts"),
             href: `/${locale}${siteConfig.routes.contacts}`,
