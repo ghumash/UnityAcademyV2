@@ -1,2 +1,3 @@
-export * from "./coursesSection"
-export * from "./courseHeroSection"
+export * from "./courseHeroSection";
+export * from "./coursesSection";
+export * from "./coursePageConfig";

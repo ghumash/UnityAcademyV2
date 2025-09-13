@@ -4,7 +4,7 @@ import { ApplySchema } from "@/features/apply";
 import { SmartForm } from "@/widgets";
 
 // Типы курсов на основе существующих значений
-type CourseValue =
+export type CourseValue =
   | "Վեբ ծրագրավորում"
   | "Գրաֆիկ դիզայն"
   | "Երեխաների ծրագրավորում"

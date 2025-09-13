@@ -18,4 +18,8 @@ export const graphic_design: CourseDict = {
     certificate: "Сертификат",
     theme: "rose",
   },
+  cta: {
+    title: "Графический дизайн: Заявка",
+    subtitle: "Присоединяйтесь к группе будущих творцов",
+  },
 };

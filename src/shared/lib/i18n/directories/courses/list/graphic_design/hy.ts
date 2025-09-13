@@ -19,4 +19,8 @@ export const graphic_design: CourseDict = {
     certificate: "Սերտիֆիկատ",
     theme: "rose",
   },
+  cta: {
+    title: "Գրաֆիկ դիզայն: Գրանցման հայտ",
+    subtitle: "Միացիր ապագա ստեղծագործների խմբին",
+  },
 };
