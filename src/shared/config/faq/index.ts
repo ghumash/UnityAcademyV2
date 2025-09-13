@@ -1,0 +1,1 @@
+export { getFaqConfig } from "./faqPageConfig";

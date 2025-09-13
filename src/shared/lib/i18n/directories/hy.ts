@@ -6,6 +6,7 @@ import { about } from "./about/hy";
 import { courses } from "./courses/hy";
 import { contacts } from "./contacts/hy";
 import { apply } from "./apply/hy";
+import { faq } from "./faq/hy";
 
 export const hy: Dict = {
   common,
@@ -14,4 +15,5 @@ export const hy: Dict = {
   courses,
   contacts,
   apply,
+  faq,
 };
