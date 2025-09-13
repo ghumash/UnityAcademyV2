@@ -18,6 +18,41 @@ export const graphic_design: CourseDict = {
     certificate: "Certificate",
     theme: "rose",
   },
+  instructor: {
+    name: "Anna Petrova",
+    role: "Senior Frontend Developer",
+    bio: "Experienced frontend developer with 5+ years of experience in creating modern web applications. I specialize in React, TypeScript and performance optimization.",
+    experience: {
+      senior: {
+        title: "Senior Frontend Developer",
+        company: "TechCorp Inc.",
+        period: "2022 - present",
+        summary: "Leading a team of 4 developers, architecture and development of large-scale React applications, implementation of best practices and code review.",
+      },
+      mid: {
+        title: "Frontend Developer",
+        company: "StartupXYZ",
+        period: "2020 - 2022",
+        summary: "Development of user interfaces for SaaS platform, performance optimization, integration with REST API and GraphQL.",
+      },
+      junior: {
+        title: "Junior Frontend Developer",
+        company: "WebStudio",
+        period: "2019 - 2020",
+        summary: "Creating responsive websites, learning modern frameworks, participating in team development and code review processes.",
+      },
+    },
+  },
+  topics: {
+    title: "Course topics",
+  },
+  conditions: {
+    badge: "Course conditions",
+    community: {
+      title: "Being",
+      description: "Part of a strong and inspiring community",
+    },
+  },
   cta: {
     title: "Graphic Design: Application",
     subtitle: "Join the group of future creators",
