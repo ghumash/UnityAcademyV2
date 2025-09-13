@@ -6,52 +6,52 @@ export async function getFormConfig(locale: Locale) {
 
   return {
     applyForm: {
+      buttonLabel: t("common.forms.applyForm.buttonLabel"),
+      successText: t("common.forms.applyForm.successText"),
+      errorText: t("common.forms.applyForm.errorText"),
       fullname: t("common.forms.applyForm.fullname"),
       email: t("common.forms.applyForm.email"),
       phone: t("common.forms.applyForm.phone"),
       course: {
         label: t("common.forms.applyForm.course.label"),
-        list: [
-          {
-            label: t("common.forms.applyForm.course.list.web_development"),
+        list: {
+          web_development: {
             value: "Վեբ ծրագրավորում",
+            label: t("common.forms.applyForm.course.list.web_development"),
           },
-          {
-            label: t("common.forms.applyForm.course.list.graphic_design"),
+          graphic_design: {
             value: "Գրաֆիկ դիզայն",
+            label: t("common.forms.applyForm.course.list.graphic_design"),
           },
-          {
-            label: t("common.forms.applyForm.course.list.scratch"),
+          scratch: {
             value: "Երեխաների ծրագրավորում",
+            label: t("common.forms.applyForm.course.list.scratch"),
           },
-          {
-            label: t("common.forms.applyForm.course.list.smm"),
+          smm: {
             value: "SMM և Digital Marketing",
+            label: t("common.forms.applyForm.course.list.smm"),
           },
-          {
-            label: t("common.forms.applyForm.course.list.python"),
+          python: {
             value: "Python ծրագրավորում",
+            label: t("common.forms.applyForm.course.list.python"),
           },
-          {
-            label: t("common.forms.applyForm.course.list.android"),
+          android: {
             value: "Android ծրագրավորում",
+            label: t("common.forms.applyForm.course.list.android"),
           },
-          {
-            label: t("common.forms.applyForm.course.list.ui_ux"),
+          ui_ux: {
             value: "UI/UX դիզայն",
+            label: t("common.forms.applyForm.course.list.ui_ux"),
           },
-          {
-            label: t("common.forms.applyForm.course.list.hr"),
+          hr: {
             value: "HR",
+            label: t("common.forms.applyForm.course.list.hr"),
           },
-          {
-            label: t("common.forms.applyForm.course.list.soft_skills"),
+          soft_skills: {
             value: "Soft Skills",
+            label: t("common.forms.applyForm.course.list.soft_skills"),
           },
-        ],
-      },
-      button: {
-        label: t("common.forms.applyForm.button.label"),
+        },
       },
     },
     feedbackForm: {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config/common";
+import { absoluteUrl, getFormConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { Container, Section } from "@/shared/ui/custom";
 import { TextHoverEffect } from "@/shared/ui/lib";
@@ -32,6 +32,7 @@ export default async function ApplyPage({
   const { locale } = await params;
   const t = await getT(locale);
   const config = await getApplyConfig(locale);
+  const formConfig = await getFormConfig(locale);
 
   return (
     <main id="main" className="sm:mt-20 md:mt-28">
@@ -55,7 +56,7 @@ export default async function ApplyPage({
             title={config.callToAction.title}
             subtitle={config.callToAction.subtitle}
           >
-            <ApplyForm />
+            <ApplyForm config={formConfig} />
           </CallToAction>
         </Container>
       </Section>

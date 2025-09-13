@@ -18,57 +18,93 @@ type CourseValue =
 interface ApplyFormProps {
   defaultCourse?: CourseValue;
   hideCourseSelect?: boolean;
+  config?: any;
 }
 
 export const ApplyForm = ({
   defaultCourse,
   hideCourseSelect = false,
+  config,
 }: ApplyFormProps) => {
+  const {
+    fullname,
+    email,
+    phone,
+    course,
+    button,
+    successText,
+    errorText,
+    buttonLabel,
+  } = config.applyForm;
+
   return (
     <SmartForm
-      schema={ApplySchema}
       action="/api/forms/apply"
-      buttonLabel="Գրանցվել"
+      schema={ApplySchema}
+      buttonLabel={buttonLabel}
+      successText={successText}
+      errorText={errorText}
       fields={[
         {
           name: "fullname",
-          placeholder: "Անուն Ազգանուն",
+          placeholder: fullname,
           autoComplete: "given-name",
           type: "text",
         },
         {
           name: "email",
-          placeholder: "Էլ. հասցե",
+          placeholder: email,
           autoComplete: "email",
           type: "email",
         },
         {
           name: "phone",
-          placeholder: "Հեռախոսահամար",
+          placeholder: phone,
           autoComplete: "tel",
           type: "text",
         },
         {
           name: "course",
-          placeholder: "Դասընթաց",
+          placeholder: course.label,
           type: hideCourseSelect ? "invisible" : "select",
           ...(!hideCourseSelect && {
             options: [
-              { value: "Վեբ ծրագրավորում", label: "Վեբ ծրագրավորում" },
-              { value: "Գրաֆիկ դիզայն", label: "Գրաֆիկ դիզայն" },
               {
-                value: "Երեխաների ծրագրավորում",
-                label: "Երեխաների ծրագրավորում",
+                value: course.list.web_development.value,
+                label: course.list.web_development.label,
               },
               {
-                value: "SMM և Digital Marketing",
-                label: "SMM և Digital Marketing",
+                value: course.list.graphic_design.value,
+                label: course.list.graphic_design.label,
               },
-              { value: "Python ծրագրավորում", label: "Python ծրագրավորում" },
-              { value: "Android ծրագրավորում", label: "Android ծրագրավորում" },
-              { value: "UI/UX դիզայն", label: "UI/UX դիզայն" },
-              { value: "HR", label: "HR" },
-              { value: "Soft Skills", label: "Soft Skills" },
+              {
+                value: course.list.scratch.value,
+                label: course.list.scratch.label,
+              },
+              {
+                value: course.list.smm.value,
+                label: course.list.smm.label,
+              },
+              {
+                value: course.list.python.value,
+                label: course.list.python.label,
+              },
+              {
+                value: course.list.android.value,
+                label: course.list.android.label,
+              },
+              {
+                value: course.list.ui_ux.value,
+                label: course.list.ui_ux.label,
+              },
+              {
+                value: course.list.hr.value,
+                label: course.list.hr.label,
+              },
+              {
+                value: course.list.soft_skills.value,
+                label: course.list.soft_skills.label,
+              },
             ],
           }),
         },
@@ -85,8 +121,6 @@ export const ApplyForm = ({
         phone: v.phone.trim(),
         course: v.course.trim(),
       })}
-      successText="Շնորհակալություն! Հաղորդագրությունը ուղարկվել է."
-      errorText="Ինչ-որ բան սխալ գնաց. Խնդրում ենք փորձել կրկին."
     />
   );
 };

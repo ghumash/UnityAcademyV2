@@ -2,25 +2,25 @@ import type { FormsDict } from "./types";
 
 export const forms: FormsDict = {
   applyForm: {
+    buttonLabel: "Подать заявку",
+    successText: "Спасибо! Ваша заявка отправлена.",
+    errorText: "Произошла ошибка. Попробуйте еще раз.",
     fullname: "Имя Фамилия",
     email: "Эл. адрес",
     phone: "Номер телефона",
     course: {
       label: "Курс",
-      list: [
-        { label: "Веб-разработка" },
-        { label: "Графический дизайн" },
-        { label: "Программирование для детей" },
-        { label: "SMM и Digital Marketing" },
-        { label: "Программирование Python" },
-        { label: "Android разработка" },
-        { label: "UI/UX дизайн" },
-        { label: "HR" },
-        { label: "Soft Skills" },
-      ],
-    },
-    button: {
-      label: "Подать заявку",
+      list: {
+        web_development: "Веб-разработка",
+        graphic_design: "Графический дизайн",
+        scratch: "Программирование для детей",
+        smm: "SMM и Digital Marketing",
+        python: "Программирование Python",
+        android: "Android разработка",
+        ui_ux: "UI/UX дизайн",
+        hr: "HR",
+        soft_skills: "Soft Skills",
+      },
     },
   },
   feedbackForm: {
