@@ -18,17 +18,22 @@ interface CallToActionProps {
 }
 
 const TAG_IDS = [
-  "ai",
-  "web-dev",
-  "java-android",
-  "graphic",
-  "uiux",
-  "soft-skills",
+  "python",
+  "web_development",
+  "android",
+  "graphic_design",
+  "ui_ux",
+  "soft_skills",
 ] as const;
 
-type TagId = (typeof TAG_IDS)[number];
+export type TagId = (typeof TAG_IDS)[number];
 
-export function CallToAction({ title, subtitle, children, activeTagId }: CallToActionProps) {
+export function CallToAction({
+  title,
+  subtitle,
+  children,
+  activeTagId,
+}: CallToActionProps) {
   const [scope, animate] = useAnimate();
   const controlsRef = React.useRef<AnimationPlaybackControls | null>(null);
 
@@ -118,24 +123,34 @@ export function CallToAction({ title, subtitle, children, activeTagId }: CallToA
 
       const rootRect = root.getBoundingClientRect();
       const activeEl = root.querySelector<HTMLElement>(`#${activeTagId}`);
-      
+
       if (activeEl) {
         const r = activeEl.getBoundingClientRect();
-        const cx = ((r.left + r.width / 2 - rootRect.left) / rootRect.width) * 100;
-        const cy = ((r.top + r.height / 2 - rootRect.top) / rootRect.height) * 100;
+        const cx =
+          ((r.left + r.width / 2 - rootRect.left) / rootRect.width) * 100;
+        const cy =
+          ((r.top + r.height / 2 - rootRect.top) / rootRect.height) * 100;
         const clamp = (v: number) => Math.max(0, Math.min(100, v));
-        
+
         // Позиционируем курсор на активный тег
-        animate("#pointer", {
-          left: `${clamp(cx)}%`,
-          top: `${clamp(cy)}%`
-        }, { duration: 0 });
-        
+        animate(
+          "#pointer",
+          {
+            left: `${clamp(cx)}%`,
+            top: `${clamp(cy)}%`,
+          },
+          { duration: 0 }
+        );
+
         // Устанавливаем opacity для всех тегов
-        TAG_IDS.forEach(tagId => {
-          animate(`#${tagId}`, {
-            opacity: tagId === activeTagId ? 1 : 0.4
-          }, { duration: 0 });
+        TAG_IDS.forEach((tagId) => {
+          animate(
+            `#${tagId}`,
+            {
+              opacity: tagId === activeTagId ? 1 : 0.4,
+            },
+            { duration: 0 }
+          );
         });
       }
       return;
@@ -166,81 +181,79 @@ export function CallToAction({ title, subtitle, children, activeTagId }: CallToA
   }, [startAnimation, scope, activeTagId, animate]);
 
   return (
-    <section className="relative mx-auto mb-20 mt-6">
-      <HighlightGroup className="group h-full">
-        <div
-          className="group/item h-full md:col-span-6 lg:col-span-12"
-          data-aos="fade-down"
-        >
-          <HighlighterItem className="rounded-3xl p-6">
-            <div className="relative z-20 overflow-hidden rounded-3xl border border-foreground-200 bg-white dark:border-foreground-800 dark:bg-black">
-              <Particles
-                className="absolute inset-0 -z-10 opacity-10 transition-opacity duration-1000 group-hover/item:opacity-100"
-                quantity={200}
-                color="#555555"
-                vy={-0.2}
-              />
+    <HighlightGroup className="group h-full">
+      <div
+        className="group/item h-full md:col-span-6 lg:col-span-12"
+        data-aos="fade-down"
+      >
+        <HighlighterItem className="rounded-3xl p-6">
+          <div className="relative z-20 overflow-hidden rounded-3xl border border-foreground-200 bg-white dark:border-foreground-800 dark:bg-black">
+            <Particles
+              className="absolute inset-0 -z-10 opacity-10 transition-opacity duration-1000 group-hover/item:opacity-100"
+              quantity={200}
+              color="#555555"
+              vy={-0.2}
+            />
 
-              <div className="flex flex-col items-center gap-10 p-14 md:flex-row">
-                {/* Левая часть с pointer-анимацией */}
-                <div
-                  className="relative mx-auto w-full"
-                  style={{ height: "min(55vw, 360px)" }} // адаптивная высота
-                  ref={scope}
-                >
-                  {/* Теги: позиции через style в %; центрируем translate(-50%,-50%) */}
-                  <Tag
-                    id="ai"
-                    label="Artificial Intelligence"
-                    style={{ top: "10%", left: "75%" }}
-                  />
-                  <Tag
-                    id="web-dev"
-                    label="Web Development"
-                    style={{ top: "28%", left: "25%" }}
-                  />
-                  <Tag
-                    id="java-android"
-                    label="Java & Android"
-                    style={{ top: "46%", left: "65%" }}
-                  />
-                  <Tag
-                    id="graphic"
-                    label="Graphic Design"
-                    style={{ top: "64%", left: "35%" }}
-                  />
-                  <Tag
-                    id="uiux"
-                    label="UI/UX Design"
-                    style={{ top: "82%", left: "75%" }}
-                  />
-                  <Tag
-                    id="soft-skills"
-                    label="Soft Skills"
-                    style={{ top: "100%", left: "25%" }}
-                  />
+            <div className="flex flex-col items-center gap-10 p-14 md:flex-row">
+              {/* Левая часть с pointer-анимацией */}
+              <div
+                className="relative mx-auto w-full"
+                style={{ height: "min(55vw, 360px)" }} // адаптивная высота
+                ref={scope}
+              >
+                {/* Теги: позиции через style в %; центрируем translate(-50%,-50%) */}
+                <Tag
+                  id="python"
+                  label="Artificial Intelligence"
+                  style={{ top: "10%", left: "75%" }}
+                />
+                <Tag
+                  id="web_development"
+                  label="Web Development"
+                  style={{ top: "28%", left: "25%" }}
+                />
+                <Tag
+                  id="android"
+                  label="Java & Android"
+                  style={{ top: "46%", left: "65%" }}
+                />
+                <Tag
+                  id="graphic_design"
+                  label="Graphic Design"
+                  style={{ top: "64%", left: "35%" }}
+                />
+                <Tag
+                  id="ui_ux"
+                  label="UI/UX Design"
+                  style={{ top: "82%", left: "75%" }}
+                />
+                <Tag
+                  id="soft_skills"
+                  label="Soft Skills"
+                  style={{ top: "100%", left: "25%" }}
+                />
 
-                  {/* Курсор — центрируем, чтобы совпадал с центрами тегов */}
-                  <Pointer />
+                {/* Курсор — центрируем, чтобы совпадал с центрами тегов */}
+                <Pointer />
+              </div>
+
+              {/* Правая часть с текстом */}
+              <div className="flex w-full flex-col items-center justify-center space-y-4">
+                <div className="w-full">
+                  <h3 className="pb-1 font-bold">
+                    <span className="text-2xl md:text-4xl">{title}</span>
+                  </h3>
+                  <p className="text-foreground-400">{subtitle}</p>
                 </div>
 
-                {/* Правая часть с текстом */}
-                <div className="flex w-full flex-col items-center justify-center space-y-4">
-                  <div className="w-full">
-                    <h3 className="pb-1 font-bold">
-                      <span className="text-2xl md:text-4xl">{title}</span>
-                    </h3>
-                    <p className="text-foreground-400">{subtitle}</p>
-                  </div>
-
-                  {children}
-                </div>
+                {children}
               </div>
             </div>
-          </HighlighterItem>
-        </div>
-      </HighlightGroup>
-    </section>
+          </div>
+        </HighlighterItem>
+      </div>
+    </HighlightGroup>
   );
 }
 

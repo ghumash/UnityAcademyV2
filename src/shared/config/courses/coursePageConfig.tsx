@@ -1,10 +1,32 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 import { Rocket, Wrench } from "lucide-react";
-import type { GridItemData, UserCardData } from "@/widgets";
+import type { GridItemData, TagId, UserCardData } from "@/widgets";
+import type { Theme } from "@/widgets/Courses";
 
 export async function getCoursePageConfig(locale: Locale, slug: string) {
   const t = await getT(locale);
+
+  const courseHeroSection = {
+    title: t(`courses.list.${slug}.courseHeroSection.title`),
+    description: t(`courses.list.${slug}.courseHeroSection.description`),
+    level: t(`courses.list.${slug}.courseHeroSection.level`),
+    format: t(`courses.list.${slug}.courseHeroSection.format`),
+    duration: t(`courses.list.${slug}.courseHeroSection.duration`),
+    lessonsCount: t(`courses.list.${slug}.courseHeroSection.lessonsCount`),
+    projectsCount: t(`courses.list.${slug}.courseHeroSection.projectsCount`),
+    price: t(`courses.list.${slug}.courseHeroSection.price`),
+    originalPrice: t(`courses.list.${slug}.courseHeroSection.originalPrice`),
+    sale: t(`courses.list.${slug}.courseHeroSection.sale`),
+    registerCourseButtonText: t(
+      `courses.list.${slug}.courseHeroSection.registerCourseButtonText`
+    ),
+    registerFreeLessonButtonText: t(
+      `courses.list.${slug}.courseHeroSection.registerFreeLessonButtonText`
+    ),
+    certificate: t(`courses.list.${slug}.courseHeroSection.certificate`),
+    theme: t(`courses.list.${slug}.courseHeroSection.theme`) as Theme,
+  } as const;
 
   const items: GridItemData[] = [
     {
@@ -54,14 +76,16 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   ];
 
   const contentSectionConfig = {
-    badge: { text: t(`courses.single.conditions.badge`) },
+    badge: { text: t(`courses.list.${slug}.conditions.badge`) },
     blocks: [
       {
         items: [
           {
             icon: <Wrench className="size-5" />,
-            title: t(`courses.single.conditions.community.title`),
-            description: t(`courses.single.conditions.community.description`),
+            title: t(`courses.list.${slug}.conditions.community.title`),
+            description: t(
+              `courses.list.${slug}.conditions.community.description`
+            ),
           },
         ],
       },
@@ -69,8 +93,10 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
         items: [
           {
             icon: <Wrench className="size-5" />,
-            title: t(`courses.single.conditions.community.title`),
-            description: t(`courses.single.conditions.community.description`),
+            title: t(`courses.list.${slug}.conditions.community.title`),
+            description: t(
+              `courses.list.${slug}.conditions.community.description`
+            ),
           },
         ],
       },
@@ -78,8 +104,10 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
         items: [
           {
             icon: <Wrench className="size-5" />,
-            title: t(`courses.single.conditions.community.title`),
-            description: t(`courses.single.conditions.community.description`),
+            title: t(`courses.list.${slug}.conditions.community.title`),
+            description: t(
+              `courses.list.${slug}.conditions.community.description`
+            ),
           },
         ],
       },
@@ -87,29 +115,29 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   };
 
   const mockUserData: UserCardData = {
-    name: t(`courses.single.instructor.name`),
-    role: t(`courses.single.instructor.role`),
+    name: t(`courses.list.${slug}.instructor.name`),
+    role: t(`courses.list.${slug}.instructor.role`),
     avatarUrl:
       "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    bio: t(`courses.single.instructor.bio`),
+    bio: t(`courses.list.${slug}.instructor.bio`),
     experience: [
       {
-        title: t(`courses.single.instructor.experience.senior.title`),
-        company: t(`courses.single.instructor.experience.senior.company`),
-        period: t(`courses.single.instructor.experience.senior.period`),
-        summary: t(`courses.single.instructor.experience.senior.summary`),
+        title: t(`courses.list.${slug}.instructor.experience.senior.title`),
+        company: t(`courses.list.${slug}.instructor.experience.senior.company`),
+        period: t(`courses.list.${slug}.instructor.experience.senior.period`),
+        summary: t(`courses.list.${slug}.instructor.experience.senior.summary`),
       },
       {
-        title: t(`courses.single.instructor.experience.mid.title`),
-        company: t(`courses.single.instructor.experience.mid.company`),
-        period: t(`courses.single.instructor.experience.mid.period`),
-        summary: t(`courses.single.instructor.experience.mid.summary`),
+        title: t(`courses.list.${slug}.instructor.experience.mid.title`),
+        company: t(`courses.list.${slug}.instructor.experience.mid.company`),
+        period: t(`courses.list.${slug}.instructor.experience.mid.period`),
+        summary: t(`courses.list.${slug}.instructor.experience.mid.summary`),
       },
       {
-        title: t(`courses.single.instructor.experience.junior.title`),
-        company: t(`courses.single.instructor.experience.junior.company`),
-        period: t(`courses.single.instructor.experience.junior.period`),
-        summary: t(`courses.single.instructor.experience.junior.summary`),
+        title: t(`courses.list.${slug}.instructor.experience.junior.title`),
+        company: t(`courses.list.${slug}.instructor.experience.junior.company`),
+        period: t(`courses.list.${slug}.instructor.experience.junior.period`),
+        summary: t(`courses.list.${slug}.instructor.experience.junior.summary`),
       },
     ],
     socials: {
@@ -121,7 +149,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   };
 
   const courseTopicsConfig = {
-    title: t("courses.single.topics.title"),
+    title: t(`courses.list.${slug}.topics.title`),
     topics: [
       "HTML5 semantic markup",
       "CSS3 advanced styling",
@@ -154,20 +182,21 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   const callToActionConfig = {
     title: t(`courses.list.${slug}.cta.title`),
     subtitle: t(`courses.list.${slug}.cta.subtitle`),
-    activeTagId: slug,
+    activeTagId: slug as TagId,
   };
 
   const ctaBannerConfig = {
-    heading: t("courses.faq_banner.heading"),
+    heading: t("courses.single.faq_banner.heading"),
     buttons: {
       primary: {
-        text: t("courses.faq_banner.button_text"),
+        text: t("courses.single.faq_banner.button_text"),
         url: "/faq",
       },
     },
   };
 
   return {
+    courseHeroSection,
     contentSection: contentSectionConfig,
     instructor: mockUserData,
     courseTopics: courseTopicsConfig,

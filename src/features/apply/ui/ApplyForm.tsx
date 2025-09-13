@@ -6,7 +6,7 @@ import { SmartForm } from "@/widgets";
 // Типы курсов на основе существующих значений
 export type CourseValue =
   | "Վեբ ծրագրավորում"
-  | "Գրաֆիկ դիզայն"
+  | "Գրաֆիկ դիզայն: Photoshop, Illustrator, Canva"
   | "Երեխաների ծրագրավորում"
   | "SMM և Digital Marketing"
   | "Python ծրագրավորում"

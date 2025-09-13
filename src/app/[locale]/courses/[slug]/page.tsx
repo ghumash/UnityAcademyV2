@@ -3,11 +3,7 @@ import { notFound } from "next/navigation";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, getFormConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
-import {
-  getCoursesConfig,
-  getCourseHeroConfig,
-  getCoursePageConfig,
-} from "@/shared/config/courses";
+import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
 import { IntroHero } from "@/entities/course";
 import {
   CallToAction,
@@ -44,7 +40,6 @@ export default async function CoursePage({
 }) {
   const { locale, slug } = await params;
   const t = await getT(locale);
-  const courseHeroConfig = await getCourseHeroConfig(locale, slug);
   const courses = await getCoursesConfig(locale);
   const formConfig = await getFormConfig(locale);
   const coursePageConfig = await getCoursePageConfig(locale, slug);
@@ -67,7 +62,7 @@ export default async function CoursePage({
         ])}
       />
 
-      <IntroHero config={courseHeroConfig} />
+      <IntroHero config={coursePageConfig.courseHeroSection} />
 
       <Section>
         <Container className="flex flex-row gap-8">
@@ -93,12 +88,12 @@ export default async function CoursePage({
           <CallToAction
             title={coursePageConfig.callToAction.title}
             subtitle={coursePageConfig.callToAction.subtitle}
-            activeTagId={coursePageConfig.callToAction.activeTagId as "graphic"}
+            activeTagId={coursePageConfig.callToAction.activeTagId}
           >
             <ApplyForm
               config={formConfig}
               defaultCourse={
-                t(`courses.list.${slug}.courseHeroSection.title`) as CourseValue
+                coursePageConfig.courseHeroSection.title as CourseValue
               }
               hideCourseSelect
             />
