@@ -10,16 +10,13 @@ import {
   ContentSection,
   CourseTopics,
   CtaBanner,
-  FaqAccordion,
   GlowingGrid,
   UserCard,
-  type FAQItem,
   type GridItemData,
   type UserCardData,
 } from "@/widgets";
 import { Rocket, Wrench } from "lucide-react";
 import { Container, Section } from "@/shared/ui/custom";
-import { cn } from "@/shared/lib";
 import { ApplyForm } from "@/features/apply";
 
 const items: GridItemData[] = [

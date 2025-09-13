@@ -5,7 +5,6 @@ import { absoluteUrl } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { FaqAccordion, type FAQItem } from "@/widgets";
 import { TextHoverEffect } from "@/shared/ui/lib";
-import { cn } from "@/shared/lib";
 
 const defaultData: FAQItem[] = [
   {

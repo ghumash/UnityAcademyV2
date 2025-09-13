@@ -11,7 +11,7 @@ export default async function OG({
 }: {
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
-  const { locale, slug } = await params;
+  const { slug } = await params;
   const title = decodeURIComponent(slug).replace(/-/g, " ");
   const desc = "Курс Unity Academy: веб, AI, Android, контент и карьера.";
 
