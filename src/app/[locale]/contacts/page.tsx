@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl, getFormConfig } from "@/shared/config/common";
+import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { ContactTilesSection } from "@/widgets";
@@ -43,10 +43,11 @@ export default async function ContactsPage({
           { name: t("common.home"), href: `/${locale}` },
           {
             name: t("common.navigation.contacts"),
-            href: `/${locale}/contacts`,
+            href: `/${locale}${siteConfig.routes.contacts}`,
           },
         ])}
       />
+      <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
       <div className="h-[200px] max-w-[400px] mx-auto">
         <TextHoverEffect text={contactsConfig.pageTitle} as="h1" />
       </div>

@@ -46,7 +46,7 @@ export function Footer({ sections, copyright, description }: FooterProps) {
             <AnimatedContainer className="space-y-4 xl:flex-1 max-w-sm md:max-w-xl">
               <div className="space-y-3">
                 <Link
-                  href="/"
+                  href={siteConfig.routes.home}
                   prefetch={false}
                   className="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   aria-label={`${siteConfig?.name} — home`}

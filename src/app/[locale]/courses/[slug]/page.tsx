@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl, getFormConfig } from "@/shared/config/common";
+import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
 import { IntroHero } from "@/entities/course";
@@ -54,13 +54,14 @@ export default async function CoursePage({
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
-          { name: t("common.navigation.courses"), href: `/${locale}/courses` },
+          { name: t("common.navigation.courses"), href: `/${locale}${siteConfig.routes.courses}` },
           {
             name: t(`courses.list.${slug}.title`),
-            href: `/${locale}/courses/${slug}`,
+            href: `/${locale}${siteConfig.routes.courses}/${slug}`,
           },
         ])}
       />
+      <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
 
       <IntroHero config={coursePageConfig.courseHeroSection} />
 

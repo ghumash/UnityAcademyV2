@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/shared/ui";
 import { useDictionary } from "@/shared/lib/i18n";
+import { siteConfig } from "@/shared/config/common";
 
 export default function NotFound() {
   const { dict } = useDictionary();
@@ -18,10 +19,10 @@ export default function NotFound() {
         </p>
         <div className="mt-6 flex flex-wrap gap-2">
           <Button asChild>
-            <Link href="/">{dict.common.errors.notFound.goHome}</Link>
+            <Link href={siteConfig.routes.home}>{dict.common.errors.notFound.goHome}</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/courses">{dict.common.errors.notFound.courses}</Link>
+            <Link href={siteConfig.routes.courses}>{dict.common.errors.notFound.courses}</Link>
           </Button>
         </div>
       </div>

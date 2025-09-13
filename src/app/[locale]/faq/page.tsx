@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container, Section } from "@/shared/ui/custom";
-import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config/common";
+import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { FaqAccordion } from "@/widgets";
 import { TextHoverEffect } from "@/shared/ui/lib";
@@ -35,15 +35,16 @@ export default async function FAQPage({
   return (
     <main id="main" className="sm:mt-20 md:mt-28">
       <JsonLd
-        id="breadcrumbs-contacts"
+        id="breadcrumbs-faq"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
           {
             name: faqConfig.page.title,
-            href: `/${locale}/faq`,
+            href: `/${locale}${siteConfig.routes.faq}`,
           },
         ])}
       />
+      <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
       <Container>
         <TextHoverEffect text={faqConfig.page.title} as="h1" />
       </Container>

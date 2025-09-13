@@ -5,14 +5,17 @@ import {
   buildOrganizationJsonLd,
   createMetadata,
 } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config/common";
+import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { CtaBanner, IntroWithDesc } from "@/widgets";
 import { GlowingGrid, TeamSection, ContentSection } from "@/widgets";
 import { getCtaBannerConfig } from "@/shared/config/home";
 import { getGlowingGridConfig } from "@/shared/config/about/glowingGrid";
 import { getContentSectionConfig } from "@/shared/config/about/contentSection";
-import { getIntroWithDescConfig, getTeamSectionConfig } from "@/shared/config/about";
+import {
+  getIntroWithDescConfig,
+  getTeamSectionConfig,
+} from "@/shared/config/about";
 
 export async function generateMetadata({
   params,
@@ -23,8 +26,8 @@ export async function generateMetadata({
   const t = await getT(locale);
   return createMetadata({
     title: t("common.navigation.about"),
-    canonical: absoluteUrl(`/${locale}/about`),
-    alternatesPath: "/about",
+    canonical: absoluteUrl(`/${locale}${siteConfig.routes.about}`),
+    alternatesPath: siteConfig.routes.about,
     locale,
     description: t("common.navigation.about"),
   });
@@ -50,7 +53,10 @@ export default async function AboutPage({
         id="breadcrumbs-about"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.navigation.home"), href: `/${locale}` },
-          { name: t("common.navigation.about"), href: `/${locale}/about` },
+          {
+            name: t("common.navigation.about"),
+            href: `/${locale}${siteConfig.routes.about}`,
+          },
         ])}
       />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />

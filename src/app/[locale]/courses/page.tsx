@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config/common";
+import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { AppAutoBreadcrumb, Courses } from "@/widgets";
 import { Container, Section } from "@/shared/ui/custom";
@@ -38,9 +38,10 @@ export default async function CoursesPage({
         id="breadcrumbs-courses"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.home"), href: `/${locale}` },
-          { name: t("common.navigation.courses"), href: `/${locale}/courses` },
+          { name: t("common.navigation.courses"), href: `/${locale}${siteConfig.routes.courses}` },
         ])}
       />
+      <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
 
       <Section as="div" className="md:mb-0">
         <Container>

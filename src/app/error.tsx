@@ -3,8 +3,9 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/shared/ui";
-import { AlertTriangle, RotateCcw, Home } from "lucide-react";
 import { useDictionary } from "@/shared/lib/i18n";
+import { siteConfig } from "@/shared/config/common";
+import { AlertTriangle, RotateCcw, Home } from "lucide-react";
 
 export default function Error({
   error,
@@ -49,7 +50,7 @@ export default function Error({
             {dict.common.errors.error.tryAgain}
           </Button>
           <Button asChild variant="outline" className="gap-2">
-            <Link href="/">
+            <Link href={siteConfig.routes.home}>
               <Home className="size-4" aria-hidden="true" />
               {dict.common.errors.error.goHome}
             </Link>

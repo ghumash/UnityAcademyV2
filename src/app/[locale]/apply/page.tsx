@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl, getFormConfig } from "@/shared/config/common";
+import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { Container, Section } from "@/shared/ui/custom";
 import { TextHoverEffect } from "@/shared/ui/lib";
@@ -42,10 +42,11 @@ export default async function ApplyPage({
           { name: t("common.navigation.home"), href: `/${locale}` },
           {
             name: t("common.navigation.apply"),
-            href: `/${locale}/apply`,
+            href: `/${locale}${siteConfig.routes.apply}`,
           },
         ])}
       />
+      <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
       <Container className="h-[200px]">
         <TextHoverEffect text={config.hero.title} as="h1" />
       </Container>

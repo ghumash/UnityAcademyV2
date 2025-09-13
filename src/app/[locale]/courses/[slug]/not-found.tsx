@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Section, Container } from "@/shared/ui/custom";
 import { Button } from "@/shared/ui";
 import { useDictionary } from "@/shared/lib/i18n";
+import { siteConfig } from "@/shared/config/common";
 
 export default function CourseNotFound() {
   const { dict } = useDictionary();
@@ -21,7 +22,7 @@ export default function CourseNotFound() {
             </p>
             <div className="mt-4">
               <Button asChild>
-                <Link href="/courses">
+                <Link href={siteConfig.routes.courses}>
                   ← {dict.common.errors.courseNotFound.backToCourses}
                 </Link>
               </Button>

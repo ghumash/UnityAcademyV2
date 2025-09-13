@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/shared/lib/utils";
 import { LanguageSwitcher } from "@/features/i18n";
+import { siteConfig } from "@/shared/config/common";
 import { Button } from "@/shared/ui";
 import type { Locale } from "@/shared/lib/i18n";
 import { ChevronRight } from "lucide-react";
@@ -157,7 +158,7 @@ export const NavBar = React.memo(function NavBar({
             className="hidden sm:flex rounded-full h-9 w-9 p-0 md:h-10 md:w-auto md:px-4 gap-2"
           >
             <Link
-              href={`/${locale}/apply`}
+              href={`/${locale}${siteConfig.routes.apply}`}
               aria-label={applyButtonLabel}
               title={applyButtonLabel}
             >
