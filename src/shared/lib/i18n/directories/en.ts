@@ -3,7 +3,7 @@ import type { Dict } from "../types";
 import { common } from "./common/en";
 import { home } from "./home/en";
 import { about } from "./about/en";
-import { contact } from "./contact/en";
+import { contacts } from "./contacts/en";
 import { courses } from "./courses/en";
 
 export const en: Dict = {
@@ -11,5 +11,5 @@ export const en: Dict = {
   home,
   about,
   courses,
-  contact,
+  contacts,
 };

@@ -1,6 +1,6 @@
 import type { CommonDict } from "./directories/common/types";
 import type { AboutDict } from "./directories/about/types";
-import type { ContactDict } from "./directories/contact/types";
+import type { ContactDict } from "./directories/contacts/types";
 import type { HomeDict } from "./directories/home/types";
 import type { CoursesDict } from "./directories/courses/types";
 
@@ -12,5 +12,5 @@ export type Dict = {
   home: HomeDict;
   about: AboutDict;
   courses: CoursesDict;
-  contact: ContactDict;
+  contacts: ContactDict;
 };

@@ -4,13 +4,13 @@ import { common } from "./common/hy";
 import { home } from "./home/hy";
 import { about } from "./about/hy";
 import { courses } from "./courses/hy";
-import { contact } from "./contact/hy";
+import { contacts } from "./contacts/hy";
 
 export const hy: Dict = {
   common,
   home,
   about,
   courses,
-  contact,
+  contacts,
 };
 
