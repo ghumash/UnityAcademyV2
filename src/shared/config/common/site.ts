@@ -4,6 +4,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const siteConfig = {
   name: "Unity Academy",
+  shortName: "Unity",
   description:
     "Unity Academy-ն Վանաձորում գործող ժամանակակից կենտրոն է, որտեղ կարող ես սովորել պահանջված մասնագիտություններ նոր մեթոդներով և հնարավորություններով։",
   url: SITE_URL,
@@ -12,8 +13,9 @@ export const siteConfig = {
   defaultTheme: "dark",
   contacts: {
     email: "unityacademyarmenia@gmail.com",
-    phone: "+37499951915",
-    location: "Վանաձոր, Վարդանանցի փողոց, 116Ա",
+    phone: "+374 99 951 915",
+    emailHref: "mailto:unityacademyarmenia@gmail.com",
+    phoneHref: "tel:+37499951915",
   },
   socials: {
     instagram: "https://www.instagram.com/unity_academy",

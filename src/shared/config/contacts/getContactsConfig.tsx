@@ -1,5 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
+import { siteConfig } from "@/shared/config/common";
 import {
   Send,
   Mail,
@@ -47,7 +48,7 @@ export async function getContactsConfig(locale: Locale) {
         description: t("contacts.tiles.0.description"),
         action: {
           label: t("contacts.tiles.0.action.label"),
-          href: "https://t.me/unity_academy",
+          href: siteConfig.socials.telegram,
           external: true,
         },
         variant: "social" as const,
@@ -63,7 +64,7 @@ export async function getContactsConfig(locale: Locale) {
         description: t("contacts.tiles.1.description"),
         action: {
           label: t("contacts.tiles.1.action.label"),
-          href: "mailto:unityacademyarmenia@gmail.com",
+          href: siteConfig.contacts.emailHref,
           external: true,
         },
         variant: "social" as const,
@@ -79,7 +80,7 @@ export async function getContactsConfig(locale: Locale) {
         description: t("contacts.tiles.2.description"),
         action: {
           label: t("contacts.tiles.2.action.label"),
-          href: "https://www.instagram.com/unity_academy",
+          href: siteConfig.socials.instagram,
           external: true,
         },
         variant: "social" as const,
@@ -95,7 +96,7 @@ export async function getContactsConfig(locale: Locale) {
         description: t("contacts.tiles.3.description"),
         action: {
           label: t("contacts.tiles.3.action.label"),
-          href: "https://www.facebook.com/UnityAcademyArmenia",
+          href: siteConfig.socials.facebook,
           external: true,
         },
         variant: "social" as const,
@@ -123,7 +124,7 @@ export async function getContactsConfig(locale: Locale) {
         ),
         label: t("contacts.longItems.1.label"),
         value: t("contacts.longItems.1.value"),
-        href: "tel:+37499951915",
+        href: siteConfig.contacts.phoneHref,
         external: true,
       },
     ] as const satisfies readonly LongInfoItemConfig[],

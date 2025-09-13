@@ -1,5 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
+import { siteConfig } from "@/shared/config/common";
 import type { Course } from "@/widgets/Courses/types";
 
 export async function getCoursesConfig(locale: Locale) {
@@ -17,7 +18,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Code2",
         theme: "blue",
-        href: "/courses/web_development",
+        href: `${siteConfig.routes.courses}/web_development`,
       },
       {
         id: "graphic_design",
@@ -28,7 +29,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Palette",
         theme: "rose",
-        href: "/courses/graphic_design",
+        href: `${siteConfig.routes.courses}/graphic_design`,
       },
       {
         id: "scratch",
@@ -39,7 +40,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Puzzle",
         theme: "orange",
-        href: "/courses/scratch",
+        href: `${siteConfig.routes.courses}/scratch`,
       },
       {
         id: "smm",
@@ -50,7 +51,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Megaphone",
         theme: "cyan",
-        href: "/courses/smm",
+        href: `${siteConfig.routes.courses}/smm`,
       },
       {
         id: "python",
@@ -61,7 +62,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Workflow",
         theme: "lime",
-        href: "/courses/python",
+        href: `${siteConfig.routes.courses}/python`,
       },
       {
         id: "android",
@@ -72,7 +73,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Smartphone",
         theme: "emerald",
-        href: "/courses/android",
+        href: `${siteConfig.routes.courses}/android`,
       },
       {
         id: "ui_ux",
@@ -83,7 +84,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "LayoutDashboard",
         theme: "fuchsia",
-        href: "/courses/ui_ux",
+        href: `${siteConfig.routes.courses}/ui_ux`,
       },
       {
         id: "hr",
@@ -94,7 +95,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "UsersRound",
         theme: "amber",
-        href: "/courses/hr",
+        href: `${siteConfig.routes.courses}/hr`,
       },
       {
         id: "soft_skills",
@@ -105,7 +106,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "MessageSquareText",
         theme: "pink",
-        href: "/courses/soft_skills",
+        href: `${siteConfig.routes.courses}/soft_skills`,
       },
     ] as const satisfies readonly Course[],
     levels: {

@@ -1,5 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
+import { siteConfig } from "./site";
 
 export async function getFooterConfig(locale: Locale) {
   const t = await getT(locale);
@@ -9,23 +10,20 @@ export async function getFooterConfig(locale: Locale) {
       company: {
         title: t("common.footer.resources.title"),
         links: [
-          { name: t("common.footer.resources.home"), href: "/" },
-          { name: t("common.footer.resources.about"), href: "/about" },
-          { name: t("common.footer.resources.courses"), href: "/courses" },
-          { name: t("common.footer.resources.contacts"), href: "/contacts" },
-          { name: t("common.footer.resources.faq"), href: "/faq" },
+          { name: t("common.footer.resources.home"), href: siteConfig.routes.home },
+          { name: t("common.footer.resources.about"), href: siteConfig.routes.about },
+          { name: t("common.footer.resources.courses"), href: siteConfig.routes.courses },
+          { name: t("common.footer.resources.contacts"), href: siteConfig.routes.contacts },
+          { name: t("common.footer.resources.faq"), href: siteConfig.routes.faq },
         ],
       },
       social: {
         title: t("common.footer.social.title"),
         links: [
-          { name: "Instagram", href: "https://instagram.com/unityacademy" },
-          { name: "Facebook", href: "https://facebook.com/unityacademy" },
-          {
-            name: "LinkedIn",
-            href: "https://linkedin.com/company/unityacademy",
-          },
-          { name: "YouTube", href: "https://youtube.com/@unityacademy" },
+          { name: "Instagram", href: siteConfig.socials.instagram },
+          { name: "Facebook", href: siteConfig.socials.facebook },
+          { name: "LinkedIn", href: siteConfig.socials.linkedin },
+          { name: "Telegram", href: siteConfig.socials.telegram },
         ],
       },
     },

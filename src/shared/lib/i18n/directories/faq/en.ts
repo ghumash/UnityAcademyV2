@@ -70,7 +70,7 @@ export const faq = {
     },
     {
       question: "How to become an instructor or mentor?",
-      answer: "We're open to collaboration. Send your resume and portfolio to unityacademyarmenia@gmail.com",
+      answer: "We're open to collaboration. Send your resume and portfolio to {{email}}",
     },
     {
       question: "Is this a religious academy?",

@@ -4,7 +4,7 @@ import type { Locale } from "@/shared/lib/i18n";
 import { Footer, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
-import { getNavigationConfig, getFooterConfig } from "@/shared/config/common";
+import { getNavigationConfig, getFooterConfig, siteConfig, absoluteUrl } from "@/shared/config/common";
 
 export async function generateMetadata({
   params,
@@ -13,12 +13,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return createMetadata({
-    title: "Unity Academy",
+    title: siteConfig.name,
     alternatesPath: "/",
-    canonical: `https://unityacademy.am/${locale}`,
+    canonical: absoluteUrl(`/${locale}`),
     locale,
-    description:
-      "Стартовый каркас Unity Academy. Веб, AI, Android, контент и карьера.",
+    description: siteConfig.description,
   });
 }
 
@@ -40,7 +39,7 @@ export default async function LocaleLayout({
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
       <ThemeProvider
         attribute="class"
-        defaultTheme="dark"
+        defaultTheme={siteConfig.defaultTheme}
         enableSystem
         disableTransitionOnChange
       >
