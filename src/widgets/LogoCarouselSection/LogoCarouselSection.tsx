@@ -4,9 +4,10 @@ import { Container, Section } from "@/shared/ui/custom";
 import { GradientHeading } from "@/shared/ui/lib";
 import { LogoCarousel } from "@/shared/ui/lib/logo-carousel";
 import React from "react";
+import type { StaticImageData } from "next/image";
 import ArdaLogo from "../../../public/arda.jpg";
 
-type LogoItem = { id: number; name: string; img: any };
+type LogoItem = { id: number; name: string; img: string | StaticImageData };
 
 const allLogos: LogoItem[] = [{ name: "ARDA", id: 1, img: ArdaLogo }];
 

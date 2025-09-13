@@ -150,20 +150,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
 
   const courseTopicsConfig = {
     title: t(`courses.list.${slug}.topics.title`),
-    topics: [
-      "HTML5 semantic markup",
-      "CSS3 advanced styling",
-      "JavaScript ES6+ features",
-      "React component architecture",
-      "TypeScript fundamentals",
-      "Node.js backend development",
-      "Express.js API creation",
-      "MongoDB database design",
-      "Authentication & authorization",
-      "Deployment strategies",
-      "Testing methodologies",
-      "Performance optimization",
-    ],
+    topics: t(`courses.list.${slug}.topics.list`),
   };
 
   const glowingGridConfig = {

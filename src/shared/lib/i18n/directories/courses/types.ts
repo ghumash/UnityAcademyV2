@@ -80,6 +80,7 @@ export type CourseDict = {
   };
   topics: {
     title: string;
+    list: string[];
   };
   conditions: {
     badge: string;

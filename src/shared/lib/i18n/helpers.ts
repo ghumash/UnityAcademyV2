@@ -25,9 +25,9 @@ function getByPath(obj: any, path: string) {
     .reduce((acc, key) => (acc ? acc[key] : undefined), obj);
 }
 
-export function t(dict: Dict, path: string): string {
+export function t(dict: Dict, path: string): any {
   const v = getByPath(dict, path);
-  return typeof v === "string" ? v : path;
+  return v !== undefined ? v : path;
 }
 
 export async function getT(locale: Locale) {

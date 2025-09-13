@@ -45,6 +45,24 @@ export const graphic_design: CourseDict = {
   },
   topics: {
     title: "Course topics",
+    list: [
+      "Adobe Photoshop fundamentals",
+      "Working with layers",
+      "Filters and effects",
+      "Adobe Illustrator introduction",
+      "Vector graphics",
+      "Logo design",
+      "Canva platform usage",
+      "Social media posts",
+      "Typography fundamentals",
+      "Color theory",
+      "Composition principles",
+      "Branding basics",
+      "Print design",
+      "Digital media design",
+      "Portfolio creation",
+      "Client work"
+    ],
   },
   conditions: {
     badge: "Course conditions",

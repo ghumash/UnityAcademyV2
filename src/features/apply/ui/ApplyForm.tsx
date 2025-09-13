@@ -15,10 +15,42 @@ export type CourseValue =
   | "HR"
   | "Soft Skills";
 
+interface CourseOption {
+  value: string;
+  label: string;
+}
+
+interface CourseConfig {
+  label: string;
+  list: {
+    web_development: CourseOption;
+    graphic_design: CourseOption;
+    scratch: CourseOption;
+    smm: CourseOption;
+    python: CourseOption;
+    android: CourseOption;
+    ui_ux: CourseOption;
+    hr: CourseOption;
+    soft_skills: CourseOption;
+  };
+}
+
+interface ApplyFormConfig {
+  applyForm: {
+    fullname: string;
+    email: string;
+    phone: string;
+    course: CourseConfig;
+    buttonLabel: string;
+    successText: string;
+    errorText: string;
+  };
+}
+
 interface ApplyFormProps {
   defaultCourse?: CourseValue;
   hideCourseSelect?: boolean;
-  config?: any;
+  config: ApplyFormConfig;
 }
 
 export const ApplyForm = ({

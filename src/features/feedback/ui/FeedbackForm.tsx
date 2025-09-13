@@ -3,8 +3,20 @@
 import { FeedbackSchema } from "@/features/feedback";
 import { SmartForm } from "@/widgets";
 
+interface FeedbackFormConfig {
+  feedbackForm: {
+    name: string;
+    surname: string;
+    email: string;
+    message: string;
+    buttonLabel: string;
+    successText: string;
+    errorText: string;
+  };
+}
+
 interface FeedbackFormProps {
-  config?: any;
+  config: FeedbackFormConfig;
 }
 
 export const FeedbackForm = ({ config }: FeedbackFormProps) => {
