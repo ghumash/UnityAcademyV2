@@ -26,8 +26,8 @@ export async function generateMetadata({
 
   return createMetadata({
     title: t(`courses.list.${slug}.title`),
-    canonical: absoluteUrl(`/${locale}/courses/${slug}`),
-    alternatesPath: `/courses/${slug}`,
+    canonical: absoluteUrl(`/${locale}${siteConfig.routes.courses}/${slug}`),
+    alternatesPath: `${siteConfig.routes.courses}/${slug}`,
     locale,
     description: t(`courses.list.${slug}.description`),
   });
@@ -66,7 +66,7 @@ export default async function CoursePage({
       <IntroHero config={coursePageConfig.courseHeroSection} />
 
       <Section>
-        <Container className="flex flex-row gap-8">
+        <Container className="flex lg:flex-row flex-col gap-8">
           <CourseTopics
             title={coursePageConfig.courseTopics.title}
             topics={coursePageConfig.courseTopics.topics}

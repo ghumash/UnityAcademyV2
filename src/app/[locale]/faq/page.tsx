@@ -16,8 +16,8 @@ export async function generateMetadata({
   const faqConfig = await getFaqConfig(locale);
   return createMetadata({
     title: faqConfig.page.title,
-    canonical: absoluteUrl(`/${locale}/faq`),
-    alternatesPath: "/faq",
+    canonical: absoluteUrl(`/${locale}${siteConfig.routes.faq}`),
+    alternatesPath: siteConfig.routes.faq,
     locale,
     description: faqConfig.page.description,
   });

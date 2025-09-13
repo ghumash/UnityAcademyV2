@@ -1,5 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
+import { siteConfig } from "@/shared/config/common";
 
 export async function getCtaBannerConfig(locale: Locale) {
   const t = await getT(locale);
@@ -9,7 +10,7 @@ export async function getCtaBannerConfig(locale: Locale) {
     buttons: {
       primary: {
         text: t("about.ctaBanner.buttons.primary"),
-        url: "/contact",
+        url: siteConfig.routes.contacts,
       },
     },
   } as const;

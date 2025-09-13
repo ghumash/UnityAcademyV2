@@ -3,6 +3,7 @@ import type { Locale } from "@/shared/lib/i18n";
 import { Rocket, Wrench } from "lucide-react";
 import type { GridItemData, TagId, UserCardData } from "@/widgets";
 import type { Theme } from "@/widgets/Courses";
+import { siteConfig } from "@/shared/config/common";
 
 export async function getCoursePageConfig(locale: Locale, slug: string) {
   const t = await getT(locale);
@@ -184,7 +185,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     buttons: {
       primary: {
         text: t("courses.single.faq_banner.button_text"),
-        url: "/faq",
+        url: siteConfig.routes.faq,
       },
     },
   };

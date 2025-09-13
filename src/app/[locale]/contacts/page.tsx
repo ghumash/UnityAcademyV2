@@ -18,8 +18,8 @@ export async function generateMetadata({
   const t = await getT(locale);
   return createMetadata({
     title: t("common.navigation.contacts"),
-    canonical: absoluteUrl(`/${locale}/contacts`),
-    alternatesPath: "/contacts",
+    canonical: absoluteUrl(`/${locale}${siteConfig.routes.contacts}`),
+    alternatesPath: siteConfig.routes.contacts,
     locale,
     description: t("common.navigation.contacts"),
   });

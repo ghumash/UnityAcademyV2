@@ -16,8 +16,8 @@ export async function generateMetadata({
 
   return createMetadata({
     title: t("common.navigation.courses"),
-    canonical: absoluteUrl(`/${locale}/courses`),
-    alternatesPath: "/courses",
+    canonical: absoluteUrl(`/${locale}${siteConfig.routes.courses}`),
+    alternatesPath: siteConfig.routes.courses,
     locale,
     description: t("common.navigation.courses"),
   });
