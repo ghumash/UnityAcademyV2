@@ -24,12 +24,12 @@ export const forms: FormsDict = {
     },
   },
   feedbackForm: {
+    buttonLabel: "Send",
+    successText: "Thank you! Your message has been sent.",
+    errorText: "An error occurred. Please try again.",
     name: "Name",
     surname: "Surname",
     email: "Email Address",
     message: "Message",
-    button: {
-      label: "Send",
-    },
   },
 };

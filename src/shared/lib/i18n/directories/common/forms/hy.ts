@@ -24,12 +24,12 @@ export const forms: FormsDict = {
     },
   },
   feedbackForm: {
+    buttonLabel: "Ուղարկել",
+    successText: "Շնորհակալություն! Հաղորդագրությունը ուղարկվել է:",
+    errorText: "Ինչ-որ բան սխալ գնաց: Խնդրում ենք փորձել կրկին:",
     name: "Անուն",
     surname: "Ազգանուն",
     email: "Էլ. հասցե",
     message: "Հաղորդագրություն",
-    button: {
-      label: "Ուղարկել",
-    },
   },
 };

@@ -55,13 +55,13 @@ export async function getFormConfig(locale: Locale) {
       },
     },
     feedbackForm: {
+      buttonLabel: t("common.forms.feedbackForm.buttonLabel"),
+      successText: t("common.forms.feedbackForm.successText"),
+      errorText: t("common.forms.feedbackForm.errorText"),
       name: t("common.forms.feedbackForm.name"),
       surname: t("common.forms.feedbackForm.surname"),
       email: t("common.forms.feedbackForm.email"),
       message: t("common.forms.feedbackForm.message"),
-      button: {
-        label: t("common.forms.feedbackForm.button.label"),
-      },
     },
   } as const;
 }

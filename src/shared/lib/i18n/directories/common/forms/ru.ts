@@ -24,12 +24,12 @@ export const forms: FormsDict = {
     },
   },
   feedbackForm: {
+    buttonLabel: "Отправить",
+    successText: "Спасибо! Ваше сообщение отправлено.",
+    errorText: "Произошла ошибка. Попробуйте еще раз.",
     name: "Имя",
     surname: "Фамилия",
     email: "Эл. адрес",
     message: "Сообщение",
-    button: {
-      label: "Отправить",
-    },
   },
 };

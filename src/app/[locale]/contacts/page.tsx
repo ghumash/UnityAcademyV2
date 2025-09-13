@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
-import { absoluteUrl } from "@/shared/config/common";
+import { absoluteUrl, getFormConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { ContactTilesSection } from "@/widgets";
@@ -33,6 +33,7 @@ export default async function ContactsPage({
   const { locale } = await params;
   const t = await getT(locale);
   const contactsConfig = await getContactsConfig(locale);
+  const formConfig = await getFormConfig(locale);
 
   return (
     <main id="main" className="sm:mt-20 md:mt-28">
@@ -55,7 +56,7 @@ export default async function ContactsPage({
       />
       <Section>
         <Container className="flex flex-col lg:flex-row gap-6">
-          <FeedbackForm />
+          <FeedbackForm config={formConfig} />
           <Maps />
         </Container>
       </Section>

@@ -3,36 +3,51 @@
 import { FeedbackSchema } from "@/features/feedback";
 import { SmartForm } from "@/widgets";
 
-export const FeedbackForm = () => {
+interface FeedbackFormProps {
+  config?: any;
+}
+
+export const FeedbackForm = ({ config }: FeedbackFormProps) => {
+  const {
+    name,
+    surname,
+    email,
+    message,
+    buttonLabel,
+    successText,
+    errorText,
+  } = config.feedbackForm;
   return (
     <SmartForm
       schema={FeedbackSchema}
       action="/api/forms/feedback"
-      buttonLabel="Ուղարկել"
+      buttonLabel={buttonLabel}
+      successText={successText}
+      errorText={errorText}
       fields={[
         {
           name: "name",
-          placeholder: "Անուն",
+          placeholder: name,
           autoComplete: "given-name",
           col: "half",
           type: "text",
         },
         {
           name: "surname",
-          placeholder: "Ազգանուն",
+          placeholder: surname,
           autoComplete: "family-name",
           col: "half",
           type: "text",
         },
         {
           name: "email",
-          placeholder: "Էլ. հասցե",
+          placeholder: email,
           autoComplete: "email",
           type: "email",
         },
         {
           name: "message",
-          placeholder: "Հաղորդագրություն",
+          placeholder: message,
           type: "textarea",
         },
       ]}
@@ -48,8 +63,6 @@ export const FeedbackForm = () => {
         email: v.email.trim(),
         message: v.message.trim(),
       })}
-      successText="Շնորհակալություն! Հաղորդագրությունը ուղարկվել է."
-      errorText="Ինչ-որ բան սխալ գնաց. Խնդրում ենք փորձել կրկին."
     />
   );
 };

@@ -31,7 +31,6 @@ export const ApplyForm = ({
     email,
     phone,
     course,
-    button,
     successText,
     errorText,
     buttonLabel,

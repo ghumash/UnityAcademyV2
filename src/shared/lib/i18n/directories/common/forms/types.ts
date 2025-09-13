@@ -22,12 +22,12 @@ export type FormsDict = {
     };
   };
   feedbackForm: {
+    buttonLabel: string;
+    successText: string;
+    errorText: string;
     name: string;
     surname: string;
     email: string;
     message: string;
-    button: {
-      label: string;
-    };
   };
 };
