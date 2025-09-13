@@ -5,6 +5,7 @@ import { home } from "./home/en";
 import { about } from "./about/en";
 import { contacts } from "./contacts/en";
 import { courses } from "./courses/en";
+import { apply } from "./apply/en";
 
 export const en: Dict = {
   common,
@@ -12,4 +13,5 @@ export const en: Dict = {
   about,
   courses,
   contacts,
+  apply,
 };

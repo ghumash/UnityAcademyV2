@@ -6,6 +6,7 @@ import { Container, Section } from "@/shared/ui/custom";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { ApplyForm } from "@/features/apply";
 import { CallToAction } from "@/widgets";
+import { getApplyConfig } from "@/shared/config/apply";
 
 export async function generateMetadata({
   params,
@@ -30,6 +31,7 @@ export default async function ApplyPage({
 }) {
   const { locale } = await params;
   const t = await getT(locale);
+  const config = await getApplyConfig(locale);
 
   return (
     <main id="main" className="sm:mt-20 md:mt-28">
@@ -44,14 +46,14 @@ export default async function ApplyPage({
         ])}
       />
       <Container className="h-[200px]">
-        <TextHoverEffect text="Գրանցում" as="h1" />
+        <TextHoverEffect text={config.hero.title} as="h1" />
       </Container>
 
       <Section>
         <Container>
           <CallToAction
-            title="Միացիր հիմա"
-            subtitle="Հաջողությանը և գիտելիքին մնացել է մեկ քայլ!"
+            title={config.callToAction.title}
+            subtitle={config.callToAction.subtitle}
           >
             <ApplyForm />
           </CallToAction>
