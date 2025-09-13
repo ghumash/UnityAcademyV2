@@ -39,9 +39,9 @@ const LanguageSwitcher = React.memo(function LanguageSwitcher({
   );
 
   const flags: Record<Locale, string> = {
-    ru: "🇷🇺",
-    en: "🇬🇧",
     hy: "🇦🇲",
+    en: "🇺🇸",
+    ru: "🇷🇺",
   };
 
   return (
