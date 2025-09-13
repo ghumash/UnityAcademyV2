@@ -1,2 +1,1 @@
-TODO: add documentation for all app and reusable components
 TODO: add storybook for reusable components
