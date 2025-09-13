@@ -1,11 +1,12 @@
 import type { ContactDict } from "./types";
 
-export const ru = {
+export const contacts: ContactDict = {
   pageTitle: "Контакты",
   tiles: [
     {
       title: "Присоединяйтесь к нашему сообществу",
-      description: "Присоединяйтесь к нашему Telegram каналу, где вы найдете объявления о работе, интересные события и информацию о других программах",
+      description:
+        "Присоединяйтесь к нашему Telegram каналу, где вы найдете объявления о работе, интересные события и информацию о других программах",
       action: {
         label: "Перейти",
       },

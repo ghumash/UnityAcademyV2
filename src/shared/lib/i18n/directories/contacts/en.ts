@@ -1,6 +1,6 @@
 import type { ContactDict } from "./types";
 
-export const en = {
+export const contacts: ContactDict = {
   pageTitle: "Contacts",
   tiles: [
     {
