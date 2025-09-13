@@ -7,13 +7,12 @@ import {
 } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
-import { peopleMock } from "@/entities/person";
 import { CtaBanner, IntroWithDesc } from "@/widgets";
 import { GlowingGrid, TeamSection, ContentSection } from "@/widgets";
 import { getCtaBannerConfig } from "@/shared/config/home";
 import { getGlowingGridConfig } from "@/shared/config/about/glowingGrid";
 import { getContentSectionConfig } from "@/shared/config/about/contentSection";
-import { getIntroWithDescConfig } from "@/shared/config/about";
+import { getIntroWithDescConfig, getTeamSectionConfig } from "@/shared/config/about";
 
 export async function generateMetadata({
   params,
@@ -43,6 +42,7 @@ export default async function AboutPage({
   const glowingGrid = await getGlowingGridConfig(locale);
   const contentSection = await getContentSectionConfig(locale);
   const introWithDesc = await getIntroWithDescConfig(locale);
+  const teamSection = await getTeamSectionConfig(locale);
 
   return (
     <main id="main" className="sm:mt-20 md:mt-28">
@@ -57,7 +57,7 @@ export default async function AboutPage({
       <IntroWithDesc config={introWithDesc} />
       <ContentSection config={contentSection} />
       <GlowingGrid config={glowingGrid} />
-      <TeamSection people={peopleMock} />
+      <TeamSection config={teamSection} />
       <CtaBanner config={ctaBanner} />
     </main>
   );

@@ -3,9 +3,23 @@ export type OurStoryDict = {
   content: string;
 };
 
+export type TeamMember = {
+  name: string;
+  role: string;
+  avatarUrl?: string;
+  bio?: string;
+  socials?: {
+    instagram?: string;
+    facebook?: string;
+    linkedin?: string;
+    github?: string;
+  };
+};
+
 export type TeamSectionDict = {
   title: string;
   emptyState: string;
+  members: readonly TeamMember[];
 };
 
 export type SubscribeSectionDict = {
