@@ -148,6 +148,13 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     },
   };
 
+  const instructorLabels = {
+    experienceLabel: t(`courses.list.${slug}.instructor.experienceLabel`),
+    socialNetworksLabel: t(`courses.list.${slug}.instructor.socialNetworksLabel`),
+    showDetails: t(`courses.list.${slug}.instructor.showDetails`),
+    hideDetails: t(`courses.list.${slug}.instructor.hideDetails`),
+  };
+
   const courseTopicsConfig = {
     title: t(`courses.list.${slug}.topics.title`),
     topics: t(`courses.list.${slug}.topics.list`),
@@ -186,6 +193,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     courseHeroSection,
     contentSection: contentSectionConfig,
     instructor: mockUserData,
+    instructorLabels,
     courseTopics: courseTopicsConfig,
     glowingGrid: glowingGridConfig,
     callToAction: callToActionConfig,

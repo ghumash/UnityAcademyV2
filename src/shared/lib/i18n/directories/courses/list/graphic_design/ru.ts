@@ -42,6 +42,10 @@ export const graphic_design: CourseDict = {
         summary: "Создание адаптивных веб-сайтов, изучение современных фреймворков, участие в командной разработке и code review процессах.",
       },
     },
+    experienceLabel: "Рабочий опыт",
+    socialNetworksLabel: "Социальные сети",
+    showDetails: "Показать подробности",
+    hideDetails: "Скрыть подробности",
   },
   topics: {
     title: "Темы курса",

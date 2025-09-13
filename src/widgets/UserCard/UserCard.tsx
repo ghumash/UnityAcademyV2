@@ -43,8 +43,16 @@ export type UserCardData = {
   socials: SocialLinks;
 };
 
+export type UserCardLabels = {
+  experienceLabel: string;
+  socialNetworksLabel: string;
+  showDetails: string;
+  hideDetails: string;
+};
+
 export type UserCardProps = {
   data: UserCardData;
+  labels: UserCardLabels;
   className?: string;
 };
 
@@ -80,8 +88,12 @@ const itemVariants: Variants = {
 };
 
 // Компонент временной шкалы опыта
-const ExperienceTimeline: React.FC<{ experience: ExperienceItem[] }> = ({ 
-  experience 
+const ExperienceTimeline: React.FC<{ 
+  experience: ExperienceItem[];
+  labels: Pick<UserCardLabels, 'experienceLabel' | 'showDetails' | 'hideDetails'>;
+}> = ({ 
+  experience,
+  labels
 }) => {
   const [openItems, setOpenItems] = React.useState<Set<number>>(new Set());
 
@@ -98,7 +110,7 @@ const ExperienceTimeline: React.FC<{ experience: ExperienceItem[] }> = ({
   return (
     <motion.div variants={itemVariants} className="space-y-4">
       <h3 className="text-sm font-medium text-muted-foreground mb-3">
-        Опыт работы
+        {labels.experienceLabel}
       </h3>
       <div className="relative">
         {/* Вертикальная линия */}
@@ -134,18 +146,18 @@ const ExperienceTimeline: React.FC<{ experience: ExperienceItem[] }> = ({
                     size="sm"
                     className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
                     onClick={() => toggleItem(index)}
-                    aria-label={`${isOpen ? 'Скрыть' : 'Показать'} детали для ${item.title}`}
+                    aria-label={`${isOpen ? labels.hideDetails : labels.showDetails} для ${item.title}`}
                     aria-expanded={isOpen}
                   >
                     {isOpen ? (
                       <>
                         <ChevronUp className="h-3 w-3 mr-1" />
-                        Скрыть детали
+                        {labels.hideDetails}
                       </>
                     ) : (
                       <>
                         <ChevronDown className="h-3 w-3 mr-1" />
-                        Показать детали
+                        {labels.showDetails}
                       </>
                     )}
                   </Button>
@@ -168,7 +180,10 @@ const ExperienceTimeline: React.FC<{ experience: ExperienceItem[] }> = ({
 };
 
 // Компонент социальных ссылок
-const SocialLinks: React.FC<{ socials: SocialLinks }> = ({ socials }) => {
+const SocialLinks: React.FC<{ 
+  socials: SocialLinks;
+  labels: Pick<UserCardLabels, 'socialNetworksLabel'>;
+}> = ({ socials, labels }) => {
   const socialEntries = Object.entries(socials).filter(([, url]) => url);
 
   if (socialEntries.length === 0) return null;
@@ -176,7 +191,7 @@ const SocialLinks: React.FC<{ socials: SocialLinks }> = ({ socials }) => {
   return (
     <motion.div variants={itemVariants}>
       <h3 className="text-sm font-medium text-muted-foreground mb-3">
-        Социальные сети
+        {labels.socialNetworksLabel}
       </h3>
       <div className="flex gap-2">
         {socialEntries.map(([platform, url]) => {
@@ -214,7 +229,7 @@ const SocialLinks: React.FC<{ socials: SocialLinks }> = ({ socials }) => {
 };
 
 // Основной компонент UserCard
-export const UserCard: React.FC<UserCardProps> = ({ data, className }) => {
+export const UserCard: React.FC<UserCardProps> = ({ data, labels, className }) => {
   const shouldReduceMotion = useReducedMotion();
   const { name, role, avatarUrl, bio, experience, socials } = data;
 
@@ -254,7 +269,7 @@ export const UserCard: React.FC<UserCardProps> = ({ data, className }) => {
         <Avatar className="h-16 w-16 sm:h-20 sm:w-20 mx-auto sm:mx-0 shrink-0">
           <AvatarImage 
             src={avatarUrl} 
-            alt={`Аватар пользователя ${name}`}
+            alt={name}
           />
           <AvatarFallback className="text-lg font-medium">
             {getInitials(name)}
@@ -281,12 +296,22 @@ export const UserCard: React.FC<UserCardProps> = ({ data, className }) => {
       {/* Опыт работы */}
       {experience.length > 0 && (
         <div className="mb-6">
-          <ExperienceTimeline experience={experience} />
+          <ExperienceTimeline 
+            experience={experience} 
+            labels={{
+              experienceLabel: labels.experienceLabel,
+              showDetails: labels.showDetails,
+              hideDetails: labels.hideDetails
+            }}
+          />
         </div>
       )}
 
       {/* Социальные сети */}
-      <SocialLinks socials={socials} />
+      <SocialLinks 
+        socials={socials} 
+        labels={{ socialNetworksLabel: labels.socialNetworksLabel }}
+      />
     </motion.div>
   );
 };

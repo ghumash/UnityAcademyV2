@@ -77,6 +77,10 @@ export type CourseDict = {
         summary: string;
       };
     };
+    experienceLabel: string;
+    socialNetworksLabel: string;
+    showDetails: string;
+    hideDetails: string;
   };
   topics: {
     title: string;

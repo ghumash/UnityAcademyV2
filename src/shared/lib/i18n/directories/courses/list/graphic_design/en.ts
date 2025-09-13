@@ -42,6 +42,10 @@ export const graphic_design: CourseDict = {
         summary: "Creating responsive websites, learning modern frameworks, participating in team development and code review processes.",
       },
     },
+    experienceLabel: "Work Experience",
+    socialNetworksLabel: "Social Networks",
+    showDetails: "Show Details",
+    hideDetails: "Hide Details",
   },
   topics: {
     title: "Course topics",

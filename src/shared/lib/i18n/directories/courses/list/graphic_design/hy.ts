@@ -50,8 +50,6 @@ export const graphic_design: CourseDict = {
     socialNetworksLabel: "Սոցիալական ցանցեր",
     showDetails: "Ցույց տալ մանրամասները",
     hideDetails: "Թաքցնել մանրամասները",
-    openProfile: "Բացել {platform} պրոֆիլը",
-    avatarAlt: "Օգտատիրոջ {name} ավատարը",
   },
   topics: {
     title: "Դասընթացի թեմաները",
