@@ -68,13 +68,13 @@ src/
   </CardContent>
 </Card>
 
-// Композиция хуков
+// Пример композиции хуков (концептуальный)
 function usePageData() {
   const { locale } = useI18n()
-  const config = useConfig(locale)
-  const data = useApiData(config.endpoint)
+  const config = getPageConfig(locale)
+  const data = useCustomData(config.endpoint)
   
-  return { config, data }
+  return { locale, config, data }
 }
 ```
 

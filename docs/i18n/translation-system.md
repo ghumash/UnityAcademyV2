@@ -366,69 +366,48 @@ export async function generateMetadata({
 
 ## Добавление новых переводов
 
-### 1. Создание структуры
+### Пример добавления нового раздела переводов
+
+Если вам нужно добавить новый раздел переводов (например, для новой функциональности), следуйте этому образцу:
 
 ```typescript
-// Новый раздел: src/shared/lib/i18n/directories/blog/
-mkdir src/shared/lib/i18n/directories/blog
-touch src/shared/lib/i18n/directories/blog/{hy,en,ru}.ts
-touch src/shared/lib/i18n/directories/blog/index.ts
-```
+// 1. Создание структуры
+mkdir src/shared/lib/i18n/directories/newSection
+touch src/shared/lib/i18n/directories/newSection/{hy,en,ru}.ts
+touch src/shared/lib/i18n/directories/newSection/index.ts
 
-### 2. Определение типов
-
-```typescript
-// blog/hy.ts
-export const blog = {
-  title: 'Բլոգ',
-  posts: {
-    readMore: 'Կարդալ ավելին',
-    publishedOn: 'Հրապարակված՝',
-    author: 'Հեղինակ՝'
-  },
-  categories: {
-    programming: 'Ծրագրավորում',
-    design: 'Դիզայն',
-    career: 'Կարիերա'
+// 2. Определение типов (newSection/hy.ts)
+export const newSection = {
+  title: 'Նոր բաժին',
+  items: {
+    action: 'Գործողություն',
+    description: 'Նկարագրություն'
   }
 } as const
 
-export type BlogDict = typeof blog
-```
+export type NewSectionDict = typeof newSection
 
-### 3. Переводы на другие языки
+// 3. Переводы на другие языки (newSection/en.ts)
+import type { NewSectionDict } from './hy'
 
-```typescript
-// blog/en.ts
-import type { BlogDict } from './hy'
-
-export const blog: BlogDict = {
-  title: 'Blog',
-  posts: {
-    readMore: 'Read more',
-    publishedOn: 'Published on',
-    author: 'Author:'
-  },
-  categories: {
-    programming: 'Programming',
-    design: 'Design',
-    career: 'Career'
+export const newSection: NewSectionDict = {
+  title: 'New Section',
+  items: {
+    action: 'Action',
+    description: 'Description'
   }
 }
-```
 
-### 4. Интеграция в основной словарь
-
-```typescript
+// 4. Интеграция в основные файлы
 // i18n/hy.ts
-import { blog } from './directories/blog/hy'
+import { newSection } from './directories/newSection/hy'
 
 export default {
   common,
   pages,
   courses,
   faq,
-  blog // Добавляем новый раздел
+  newSection // Добавляем новый раздел
 } as const
 ```
 

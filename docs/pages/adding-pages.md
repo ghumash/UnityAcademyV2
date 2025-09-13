@@ -403,8 +403,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     siteConfig.routes.courses,
     siteConfig.routes.contacts,
     siteConfig.routes.apply,
-    siteConfig.routes.faq,
-    siteConfig.routes.newPage // Добавляем в sitemap
+    siteConfig.routes.faq
+    // Добавьте новые страницы здесь
   ]
   
   // ...остальная логика
@@ -467,37 +467,149 @@ export default async function BlogPost({
 }
 ```
 
+```typescript
+// src/app/[locale]/courses/[slug]/page.tsx (новый пример динамической страницы)
+interface CoursePageProps {
+  params: {
+    locale: Locale
+    slug: string
+  }
+}
+
+export async function generateStaticParams() {
+  // Генерируем статические параметры для всех курсов
+  const courses = await getCourses()
+  
+  return courses.map((course) => ({
+    slug: course.slug
+  }))
+}
+
+export async function generateMetadata({
+  params: { locale, slug }
+}: CoursePageProps): Promise<Metadata> {
+  const course = await getCourse(slug)
+  
+  if (!course) {
+    return {}
+  }
+
+  return createMetadata({
+    title: course.title,
+    description: course.description,
+    alternatesPath: `/courses/${slug}`,
+    locale
+  })
+}
+
+export default async function CoursePage({
+  params: { locale, slug }
+}: CoursePageProps) {
+  const course = await getCourse(slug)
+  
+  if (!course) {
+    notFound()
+  }
+
+  return (
+    <Section>
+      <Container>
+        <h1>{course.title}</h1>
+        <p>{course.description}</p>
+      </Container>
+    </Section>
+  )
+}
+```
+
+```typescript
+// Пример динамической страницы (по аналогии с существующими)
+interface DynamicPageProps {
+  params: {
+    locale: Locale
+    slug: string
+  }
+}
+
+export async function generateStaticParams() {
+  // Генерируем статические параметры для контента
+  const items = await getContentItems()
+  
+  return items.map((item) => ({
+    slug: item.slug
+  }))
+}
+
+export async function generateMetadata({
+  params: { locale, slug }
+}: DynamicPageProps): Promise<Metadata> {
+  const item = await getContentItem(slug)
+  
+  if (!item) {
+    return {}
+  }
+
+  return createMetadata({
+    title: item.title,
+    description: item.description,
+    alternatesPath: `/content/${slug}`,
+    locale
+  })
+}
+
+export default async function DynamicPage({
+  params: { locale, slug }
+}: DynamicPageProps) {
+  const item = await getContentItem(slug)
+  
+  if (!item) {
+    notFound()
+  }
+
+  return (
+    <Section>
+      <Container>
+        <h1>{item.title}</h1>
+        <p>{item.description}</p>
+      </Container>
+    </Section>
+  )
+}
+```
+
 ## Группы маршрутов
 
 ### Использование групп
 
 ```typescript
-// Группа для админ панели
-src/app/[locale]/(admin)/
-├── dashboard/
-├── users/
-└── settings/
+// Пример группировки маршрутов (не реализовано в проекте)
+src/app/[locale]/(group)/
+├── page1/
+├── page2/
+└── page3/
 
-// Группа для публичных страниц
-src/app/[locale]/(public)/
-├── blog/
-├── news/
-└── events/
+// Текущая структура проекта:
+src/app/[locale]/
+├── about/
+├── apply/
+├── contacts/
+├── courses/
+└── faq/
 ```
 
 ### Layout для группы
 
 ```typescript
-// src/app/[locale]/(admin)/layout.tsx
-export default function AdminLayout({
+// Пример layout для группы (при необходимости)
+export default function GroupLayout({
   children
 }: {
   children: React.ReactNode
 }) {
   return (
-    <div className="admin-layout">
-      <AdminSidebar />
-      <main className="admin-content">
+    <div className="group-layout">
+      <GroupNavigation />
+      <main className="group-content">
         {children}
       </main>
     </div>
