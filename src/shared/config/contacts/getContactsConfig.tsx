@@ -8,7 +8,6 @@ import {
   Facebook,
   MapPin,
   Phone,
-  type LucideIcon,
 } from "lucide-react";
 
 export type ContactTileConfig = {
