@@ -21,3 +21,4 @@ export * from "./CourseTopics";
 export * from "./ContactTilesSection/ContactTilesSection";
 export * from "./SmartForm/SmartForm";
 export * from "./CallToAction/CallToAction";
+export * from "./IntroWithDesc/IntroWithDesc";

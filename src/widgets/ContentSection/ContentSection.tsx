@@ -21,18 +21,19 @@ export type ContentBlock = {
   key?: React.Key;
 };
 
-// Основные пропсы компонента
-export type ContentSectionProps = {
-  className?: string;
-  blocks: ContentBlock[];
-  title?: {
-    label: string;
-    className?: string;
-  };
+// Config для ContentSection
+export type ContentSectionConfig = {
+  blocks: readonly ContentBlock[];
   badge?: {
     icon?: React.ReactNode;
     text: string;
   };
+};
+
+// Основные пропсы компонента
+export type ContentSectionProps = {
+  config: ContentSectionConfig;
+  className?: string;
   gridCols?: {
     sm?: number;
     lg?: number;
@@ -138,14 +139,12 @@ function ItemList({
 
 // Основной переиспользуемый компонент
 export const ContentSection = ({
+  config,
   className,
-  blocks,
-  title,
-  badge,
-  gridCols,
+  gridCols = { sm: 1, lg: 3 },
   itemsGridCols,
 }: ContentSectionProps) => {
-  const { sm, lg } = getGridCols(blocks?.length || 0, gridCols);
+  const { sm, lg } = getGridCols(config.blocks?.length || 0, gridCols);
 
   // Генерируем классы для сетки динамически
   const gridClasses = cn("grid gap-8 p-6 sm:p-8 lg:gap-10", {
@@ -161,34 +160,33 @@ export const ContentSection = ({
   return (
     <Section as="section" aria-label="Content Section" className={className}>
       <Container>
-        {/* Опциональный заголовок */}
-        {title?.label && (
+        {/* {config.title?.label && (
           <h2
             id="features-heading"
             className={cn(
               "mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white",
-              title.className
+              config.title?.className
             )}
           >
-            {title.label}
+            {config.title?.label}
           </h2>
-        )}
+        )} */}
 
         <div className="relative z-10 rounded-2xl border bg-background/80 shadow-md backdrop-blur supports-[backdrop-filter]:bg-background/60">
           {/* Опциональный бейдж */}
-          {badge && (
+          {config.badge && (
             <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2 rounded-md border bg-card px-2.5 py-1 text-[10px] text-card-foreground shadow-sm sm:text-xs">
               <div className="flex items-center gap-1.5">
-                {badge.icon || (
+                {config.badge.icon || (
                   <Sparkles className="size-3" aria-hidden="true" />
                 )}
-                <span>{badge.text}</span>
+                <span>{config.badge.text}</span>
               </div>
             </div>
           )}
 
           <div className={gridClasses}>
-            {blocks?.map((block, index) => (
+            {config.blocks?.map((block: ContentBlock, index: number) => (
               <article
                 key={block.key || index}
                 aria-labelledby={`content-block-${index}`}

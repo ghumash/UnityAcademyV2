@@ -225,23 +225,26 @@ export default async function CoursePage({
       </Section>
 
       <ContentSection
-        blocks={defaultContent}
-        gridCols={{ sm: 1, lg: 3 }}
+        config={{
+          badge: { text: "Դասընթացի պայմանները" },
+          blocks: defaultContent,
+        }}
         itemsGridCols={{ sm: 1, lg: 1 }}
-        title={{ label: "Դասընթացի պայմանները", className: "text-center" }}
       />
 
       <GlowingGrid
-        title={{
-          label: (
-            <>
-              Սովորելով Unity Academy-ում՝
-              <br /> դու կստանաս հետևյալ առավելությունները
-            </>
-          ),
-          className: "text-center",
+        config={{
+          title: {
+            label: (
+              <>
+                Սովորելով Unity Academy-ում՝
+                <br /> դու կստանաս հետևյալ առավելությունները
+              </>
+            ),
+            className: "text-center",
+          },
+          items: items,
         }}
-        items={items}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
       <Section id="form">

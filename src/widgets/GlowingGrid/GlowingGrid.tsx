@@ -24,12 +24,16 @@ export type GlowingEffectOptions = Partial<{
   inactiveZone: number;
 }>;
 
-export type GlowingGridProps = {
+export type GlowingGridConfig = {
   title?: {
     label: React.ReactNode;
     className?: string;
   };
-  items: GridItemData[];
+  items: readonly GridItemData[];
+};
+
+export type GlowingGridProps = {
+  config: GlowingGridConfig;
   glow?: GlowingEffectOptions;
   className?: string;
   itemClassName?: string;
@@ -109,8 +113,7 @@ const DEFAULT_AREAS: Record<number, string[]> = {
 };
 
 export function GlowingGrid({
-  title,
-  items,
+  config,
   glow,
   className,
   itemClassName,
@@ -125,17 +128,17 @@ export function GlowingGrid({
   }, [glow, reduceMotion]);
 
   const layout = React.useMemo(
-    () => DEFAULT_AREAS[items.length] ?? [],
-    [items.length]
+    () => DEFAULT_AREAS[config.items.length] ?? [],
+    [config.items.length]
   );
 
   const withAreas = React.useMemo(
     () =>
-      items.map((it, i) => ({
+      config.items.map((it: GridItemData, i: number) => ({
         ...it,
         area: it.area ?? layout[i] ?? "md:col-span-6 xl:col-span-4",
       })),
-    [items, layout]
+    [config.items, layout]
   );
 
   if (!withAreas.length) return null;
@@ -143,15 +146,15 @@ export function GlowingGrid({
   return (
     <Section>
       <Container>
-        {title?.label && (
+        {config.title?.label && (
           <h2
             id="features-heading"
             className={cn(
               "mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white",
-              title.className
+              config.title.className
             )}
           >
-            {title.label}
+            {config.title.label}
           </h2>
         )}
         <ul
@@ -160,7 +163,7 @@ export function GlowingGrid({
             className
           )}
         >
-          {withAreas.map((it, idx) => (
+          {withAreas.map((it: GridItemData, idx: number) => (
             <GridItem
               key={it.key ?? `${it.title}-${idx}`}
               area={it.area ?? ""}
