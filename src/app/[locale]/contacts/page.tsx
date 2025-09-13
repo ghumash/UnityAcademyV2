@@ -3,10 +3,11 @@ import { JsonLd, buildBreadcrumbsJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { TextHoverEffect } from "@/shared/ui/lib";
-import { ExampleContactTiles } from "@/widgets";
+import { ContactTilesSection } from "@/widgets";
 import Maps from "@/widgets/Maps/Maps";
 import { FeedbackForm } from "@/features/feedback";
 import { Container, Section } from "@/shared/ui/custom";
+import { getContactsConfig } from "@/shared/config/contacts";
 
 export async function generateMetadata({
   params,
@@ -31,6 +32,7 @@ export default async function ContactsPage({
 }) {
   const { locale } = await params;
   const t = await getT(locale);
+  const contactsConfig = await getContactsConfig(locale);
 
   return (
     <main id="main" className="sm:mt-20 md:mt-28">
@@ -45,9 +47,12 @@ export default async function ContactsPage({
         ])}
       />
       <div className="h-[200px] max-w-[400px] mx-auto">
-        <TextHoverEffect text="Կապ" as="h1" />
+        <TextHoverEffect text={contactsConfig.pageTitle} as="h1" />
       </div>
-      <ExampleContactTiles />
+      <ContactTilesSection 
+        items={contactsConfig.tiles} 
+        longItems={contactsConfig.longItems} 
+      />
       <Section>
         <Container className="flex flex-col lg:flex-row gap-6">
           <FeedbackForm />

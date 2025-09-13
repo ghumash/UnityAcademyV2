@@ -1,1 +1,1 @@
-export * from "./getContactsConfig"
+export * from "./getContactsConfig";

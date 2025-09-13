@@ -1,26 +1,16 @@
-// apps/web/src/widgets/contact/ContactTilesSection.tsx
 "use client";
 
 import Link from "next/link";
 import { cn } from "@/shared/lib/utils";
 import { Container, Section } from "@/shared/ui/custom";
 import { Button } from "@/shared/ui";
-import {
-  Send,
-  Mail,
-  Instagram,
-  Facebook,
-  MapPin,
-  Phone,
-  type LucideIcon,
-} from "lucide-react";
 
 type Action = { label: string; href: string; external?: boolean } | null;
 
 type TileBase = {
   title: string;
   description: string;
-  icon: LucideIcon;
+  icon: React.ReactNode;
   action: Action;
   className?: string;
 };
@@ -30,7 +20,7 @@ export type ContactTile = TileBase & {
 };
 
 export type LongInfoItem = {
-  icon: LucideIcon;
+  icon: React.ReactNode;
   label: string;
   value: string;
   href?: string;
@@ -47,7 +37,7 @@ export interface ContactTilesSectionProps {
 function Tile({
   title,
   description,
-  icon: Icon,
+  icon,
   action,
   variant = "social",
   className,
@@ -69,7 +59,7 @@ function Tile({
           aria-hidden
           className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/12 text-primary"
         >
-          <Icon className="h-5 w-5" />
+          {icon}
         </div>
         <div>
           <h3 className="text-base md:text-lg font-semibold tracking-tight text-foreground">
@@ -124,13 +114,13 @@ function LongInfoCard({ items }: { items: ReadonlyArray<LongInfoItem> }) {
         )}
       >
         <ul role="list" className="grid grid-cols-1 gap-6">
-          {items.map(({ icon: Icon, label, value, href, external }, i) => (
+          {items.map(({ icon, label, value, href, external }, i) => (
             <li key={`${label}-${i}`} className="flex items-center gap-4">
               <div
                 aria-hidden
                 className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-primary/12 text-primary"
               >
-                <Icon className="h-5 w-5" />
+                {icon}
               </div>
               <div className="min-w-0">
                 <div className="text-sm font-medium text-foreground/80">
@@ -194,74 +184,4 @@ export function ContactTilesSection({
       </Container>
     </Section>
   );
-}
-
-/* — Опциональный пример для быстрой проверки на странице — */
-export function ExampleContactTiles() {
-  const tiles: ContactTile[] = [
-    {
-      icon: Send,
-      title: "Միացեք մեր համայնքին",
-      description:
-        "Միացեք Telegram ալիքին՝ նորություններին ու օգտակար նյութերին հետևելու համար։",
-      action: {
-        label: "Join Telegram",
-        href: "https://t.me/unity_academy",
-        external: true,
-      },
-      variant: "social",
-    },
-    {
-      icon: Mail,
-      title: "Ուղարկեք էլ. նամակ",
-      description: "Պատասխանում ենք աշխատանքային ժամերին։",
-      action: {
-        label: "Send email",
-        href: "mailto:unityacademyarmenia@gmail.com",
-        external: true,
-      },
-      variant: "social",
-    },
-    {
-      icon: Instagram,
-      title: "Instagram",
-      description: "Stories, reels ու թարմացումներ ամեն օր։",
-      action: {
-        label: "Follow us",
-        href: "https://www.instagram.com/unity_academy",
-        external: true,
-      },
-      variant: "social",
-    },
-    {
-      icon: Facebook,
-      title: "Facebook",
-      description: "Միջոցառումներ, նկարներ և համայնքային նորություններ։",
-      action: {
-        label: "Like us",
-        href: "https://www.facebook.com/UnityAcademyArmenia",
-        external: true,
-      },
-      variant: "social",
-    },
-  ];
-
-  const long: LongInfoItem[] = [
-    {
-      icon: MapPin,
-      label: "Հասցե",
-      value: "Vanadzor, Vardanants Street, 116A",
-      href: "https://maps.app.goo.gl/saMHAc8tjFqtZo3H9",
-      external: true,
-    },
-    {
-      icon: Phone,
-      label: "Հեռախոս",
-      value: "+374 99 951 915",
-      href: "tel:+37499951915",
-      external: true,
-    },
-  ];
-
-  return <ContactTilesSection items={tiles} longItems={long} />;
 }
