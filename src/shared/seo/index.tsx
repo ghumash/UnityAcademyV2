@@ -28,13 +28,13 @@ export function buildOrganizationJsonLd() {
     name: siteConfig.name,
     url: siteConfig.url,
     logo: absoluteUrl(siteConfig.assets.logo),
-    sameAs: sameAs.length ? sameAs : undefined,
+    ...(sameAs.length && { sameAs }),
     contactPoint: {
       "@type": "ContactPoint",
       email: siteConfig.contacts.email,
       telephone: siteConfig.contacts.phone,
       contactType: "customer support",
-      availableLanguage: ["ru", "en", "hy"],
+      availableLanguage: ["hy", "ru", "en"],
     },
   };
 }
@@ -71,7 +71,9 @@ export function createMetadata(input?: {
     : undefined;
 
   return {
-    title: { default: siteConfig.name, template: `%s — ${siteConfig.name}` },
+    title: input?.title
+      ? { default: input.title, template: `%s — ${siteConfig.name}` }
+      : siteConfig.name,
     description,
     metadataBase: new URL(siteConfig.url),
     alternates: {
@@ -88,7 +90,7 @@ export function createMetadata(input?: {
         ? `${input.locale}-${input.locale.toUpperCase()}`
         : siteConfig.locale,
       images: siteConfig.assets.ogImage
-        ? [siteConfig.assets.ogImage]
+        ? [absoluteUrl(siteConfig.assets.ogImage)]
         : undefined,
     },
     twitter: { card: "summary_large_image", title, description },
