@@ -49,7 +49,7 @@ export function Footer({ sections, copyright, description }: FooterProps) {
                   href="/"
                   prefetch={false}
                   className="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  aria-label={`${siteConfig?.name ?? "Unity Academy"} — home`}
+                  aria-label={`${siteConfig?.name} — home`}
                 >
                   <Image
                     src={siteConfig.assets.logo}
