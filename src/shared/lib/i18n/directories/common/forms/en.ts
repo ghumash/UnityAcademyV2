@@ -33,4 +33,15 @@ export const forms: FormsDict = {
     email: "Email Address",
     message: "Message",
   },
+  validation: {
+    fullnameRequired: "Please enter your full name",
+    emailInvalid: "Invalid email address",
+    phoneRequired: "Please enter your phone number",
+    telegramRequired: "Please enter your Telegram username",
+    telegramInvalid: "Telegram username must start with @ and be 5-32 characters long",
+    courseRequired: "Please select a course",
+    nameRequired: "Please enter your name",
+    surnameRequired: "Please enter your surname",
+    messageRequired: "Please enter your message",
+  },
 };

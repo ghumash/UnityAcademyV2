@@ -27,4 +27,15 @@ export type FormsDict = {
     email: string;
     message: string;
   };
+  validation: {
+    fullnameRequired: string;
+    emailInvalid: string;
+    phoneRequired: string;
+    telegramRequired: string;
+    telegramInvalid: string;
+    courseRequired: string;
+    nameRequired: string;
+    surnameRequired: string;
+    messageRequired: string;
+  };
 };

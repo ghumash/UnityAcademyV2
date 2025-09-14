@@ -65,5 +65,16 @@ export async function getFormConfig(locale: Locale) {
       email: t("common.forms.feedbackForm.email"),
       message: t("common.forms.feedbackForm.message"),
     },
+    validation: {
+      fullnameRequired: t("common.forms.validation.fullnameRequired"),
+      emailInvalid: t("common.forms.validation.emailInvalid"),
+      phoneRequired: t("common.forms.validation.phoneRequired"),
+      telegramRequired: t("common.forms.validation.telegramRequired"),
+      telegramInvalid: t("common.forms.validation.telegramInvalid"),
+      courseRequired: t("common.forms.validation.courseRequired"),
+      nameRequired: t("common.forms.validation.nameRequired"),
+      surnameRequired: t("common.forms.validation.surnameRequired"),
+      messageRequired: t("common.forms.validation.messageRequired"),
+    },
   } as const;
 }

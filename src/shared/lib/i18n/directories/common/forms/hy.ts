@@ -33,4 +33,15 @@ export const forms: FormsDict = {
     email: "Էլ. հասցե",
     message: "Հաղորդագրություն",
   },
+  validation: {
+    fullnameRequired: "Մուտքագրեք անուն ազգանունը",
+    emailInvalid: "Սխալ email",
+    phoneRequired: "Մուտքագրեք հեռախոսահամարը",
+    telegramRequired: "Մուտքագրեք Telegram username",
+    telegramInvalid: "Telegram username-ը պետք է սկսվի @ նշանով և լինի 5-32 նիշ",
+    courseRequired: "Սխալ դասընթաց",
+    nameRequired: "Մուտքագրեք անունը",
+    surnameRequired: "Մուտքագրեք ազգանունը",
+    messageRequired: "Մուտքագրեք հաղորդագրությունը",
+  },
 };

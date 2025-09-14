@@ -33,4 +33,15 @@ export const forms: FormsDict = {
     email: "Эл. адрес",
     message: "Сообщение",
   },
+  validation: {
+    fullnameRequired: "Введите имя и фамилию",
+    emailInvalid: "Неверный email адрес",
+    phoneRequired: "Введите номер телефона",
+    telegramRequired: "Введите Telegram username",
+    telegramInvalid: "Telegram username должен начинаться с @ и быть длиной 5-32 символа",
+    courseRequired: "Выберите курс",
+    nameRequired: "Введите имя",
+    surnameRequired: "Введите фамилию",
+    messageRequired: "Введите сообщение",
+  },
 };
