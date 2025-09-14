@@ -4,7 +4,7 @@ import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { ContactTilesSection } from "@/widgets";
-import Maps from "@/widgets/Maps/Maps";
+import { Maps } from "@/widgets";
 import { FeedbackForm } from "@/features/feedback";
 import { Container, Section } from "@/shared/ui/custom";
 import { getContactsConfig } from "@/shared/config/contacts";

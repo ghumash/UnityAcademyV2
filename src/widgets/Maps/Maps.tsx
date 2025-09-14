@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import React, { useMemo, type CSSProperties } from "react";
 import { Button } from "@/shared/ui";
 import { cn } from "@/shared/lib/utils";
 import { ExternalLink } from "lucide-react";
@@ -10,7 +10,7 @@ type Props = {
   className?: string;
 };
 
-export const Maps = ({
+export const Maps = React.memo(({
   height = 400,
   zoom = 19,
   address,
@@ -21,11 +21,17 @@ export const Maps = ({
   const OPEN_LINK = "https://yandex.com/maps/-/CHxSQTkF";
   const OPEN_LINK_GOOGLE = "https://maps.app.goo.gl/saMHAc8tjFqtZo3H9";
 
-  const EMBED_SRC = `https://yandex.com/map-widget/v1/?ol=biz&oid=${ORG_ID}&z=${zoom}`;
+  const EMBED_SRC = useMemo(
+    () => `https://yandex.com/map-widget/v1/?ol=biz&oid=${ORG_ID}&z=${zoom}`,
+    [zoom]
+  );
 
-  const wrapperStyle: CSSProperties = { height };
+  const wrapperStyle: CSSProperties = useMemo(() => ({ height }), [height]);
 
-  const title = `Unity Academy on Yandex Maps${address ? ` — ${address}` : ""}`;
+  const title = useMemo(
+    () => `Unity Academy on Yandex Maps${address ? ` — ${address}` : ""}`,
+    [address]
+  );
 
   return (
     <div className={cn("space-y-4 w-full", className)}>
@@ -62,4 +68,6 @@ export const Maps = ({
       </div>
     </div>
   );
-};
+});
+
+Maps.displayName = "Maps";

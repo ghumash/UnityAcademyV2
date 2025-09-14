@@ -1,19 +1,8 @@
 "use client";
 
-import { ApplySchema } from "@/features/apply";
+import { ApplySchema } from "../model/schema";
+import type { CourseValue } from "../model/schema";
 import { SmartForm } from "@/widgets";
-
-// Типы курсов на основе существующих значений
-export type CourseValue =
-  | "Վեբ ծրագրավորում"
-  | "Գրաֆիկ դիզայն: Photoshop, Illustrator, Canva"
-  | "Երեխաների ծրագրավորում"
-  | "SMM և Digital Marketing"
-  | "Python ծրագրավորում"
-  | "Android ծրագրավորում"
-  | "UI/UX դիզայն"
-  | "HR"
-  | "Soft Skills";
 
 interface CourseOption {
   value: string;

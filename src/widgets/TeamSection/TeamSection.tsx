@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { PersonCard } from "@/entities/person";
 import { Section, Container } from "@/shared/ui/custom";
 import type { TeamMember } from "@/shared/lib/i18n/directories/about/types";
@@ -14,7 +15,7 @@ export type TeamSectionProps = {
   config: TeamSectionConfig;
 };
 
-export function TeamSection({ config }: TeamSectionProps) {
+export const TeamSection = React.memo(({ config }: TeamSectionProps) => {
   const { title, emptyState, members } = config;
 
   return (
@@ -40,4 +41,6 @@ export function TeamSection({ config }: TeamSectionProps) {
       </Container>
     </Section>
   );
-}
+});
+
+TeamSection.displayName = "TeamSection";

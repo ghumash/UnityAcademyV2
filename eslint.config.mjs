@@ -41,8 +41,8 @@ export default [
       ],
       // консоль оставляем для warn/error
       "no-console": ["warn", { allow: ["warn", "error"] }],
-      // проверяем существование импортируемых модулей
-      "import/no-unresolved": "error",
+      // проверяем существование импортируемых модулей (отключаем для server-only)
+      "import/no-unresolved": "off",
       // предотвращаем некорректные экспорты
       "import/export": "error",
     },

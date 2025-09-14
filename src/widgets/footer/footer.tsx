@@ -28,7 +28,7 @@ export interface FooterProps {
   description: string;
 }
 
-export const Footer = ({ sections, copyright, description }: FooterProps) => {
+export const Footer = React.memo(({ sections, copyright, description }: FooterProps) => {
   return (
     <Section as="footer" role="contentinfo" aria-labelledby="footer-heading">
       <Container>
@@ -108,7 +108,9 @@ export const Footer = ({ sections, copyright, description }: FooterProps) => {
       </Container>
     </Section>
   );
-};
+});
+
+Footer.displayName = "Footer";
 
 /** Renders a single footer link with correct component (Link vs <a>) and a11y */
 function FooterItem({ link }: { link: FooterLink }) {

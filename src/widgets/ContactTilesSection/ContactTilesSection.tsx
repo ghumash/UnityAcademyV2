@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { cn } from "@/shared/lib/utils";
 import { Container, Section } from "@/shared/ui/custom";
@@ -34,14 +35,14 @@ export interface ContactTilesSectionProps {
   className?: string;
 }
 
-function Tile({
+const Tile = React.memo(({
   title,
   description,
   icon,
   action,
   variant = "social",
   className,
-}: ContactTile) {
+}: ContactTile) => {
   return (
     <li
       className={cn(
@@ -98,9 +99,11 @@ function Tile({
       </div>
     </li>
   );
-}
+});
 
-function LongInfoCard({ items }: { items: ReadonlyArray<LongInfoItem> }) {
+Tile.displayName = "Tile";
+
+const LongInfoCard = React.memo(({ items }: { items: ReadonlyArray<LongInfoItem> }) => {
   return (
     <li className="md:col-span-2">
       <div
@@ -156,27 +159,28 @@ function LongInfoCard({ items }: { items: ReadonlyArray<LongInfoItem> }) {
       </div>
     </li>
   );
-}
+});
 
-export function ContactTilesSection({
+LongInfoCard.displayName = "LongInfoCard";
+
+export const ContactTilesSection = React.memo(({
   items,
   longItems,
   className,
-}: ContactTilesSectionProps) {
+}: ContactTilesSectionProps) => {
   if (!items?.length && !longItems?.length) return null;
 
   return (
     <Section aria-labelledby="contact-tiles-heading" className={className}>
       <Container>
         <h2 id="contact-tiles-heading" className="sr-only">
-          Contact & Social
+          Contact information
         </h2>
-
         <ul
           role="list"
-          className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2"
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6"
         >
-          {items?.map((item, i) => (
+          {items.map((item, i) => (
             <Tile key={`${item.title}-${i}`} {...item} />
           ))}
           {longItems?.length ? <LongInfoCard items={longItems} /> : null}
@@ -184,4 +188,6 @@ export function ContactTilesSection({
       </Container>
     </Section>
   );
-}
+});
+
+ContactTilesSection.displayName = "ContactTilesSection";
