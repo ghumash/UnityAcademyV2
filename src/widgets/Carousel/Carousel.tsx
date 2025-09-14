@@ -26,12 +26,12 @@ export interface CarouselProps {
   indicatorPosition?: "bottom" | "overlay";
 }
 
-export function Carousel({
+export const Carousel = ({
   config,
   hideFooter = true,
   indicatorVariant = "bars",
   indicatorPosition = "overlay",
-}: CarouselProps) {
+}: CarouselProps) => {
   const { items } = config;
   if (!items?.length) return null;
 
@@ -153,4 +153,4 @@ export function Carousel({
       </Container>
     </Section>
   );
-}
+};

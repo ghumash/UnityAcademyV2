@@ -112,14 +112,14 @@ const DEFAULT_AREAS: Record<number, string[]> = {
   ],
 };
 
-export function GlowingGrid({
+export const GlowingGrid = ({
   config,
   glow,
   className,
   itemClassName,
   cardClassName,
   iconWrapperClassName,
-}: GlowingGridProps) {
+}: GlowingGridProps) => {
   const reduceMotion = useReducedMotion();
 
   const mergedGlow = React.useMemo(() => {

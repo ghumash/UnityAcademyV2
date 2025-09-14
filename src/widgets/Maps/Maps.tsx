@@ -10,12 +10,12 @@ type Props = {
   className?: string;
 };
 
-export default function Maps({
+export const Maps = ({
   height = 400,
   zoom = 19,
   address,
   className,
-}: Props) {
+}: Props) => {
   const ORG_ID = "121360538380";
 
   const OPEN_LINK = "https://yandex.com/maps/-/CHxSQTkF";
@@ -62,4 +62,4 @@ export default function Maps({
       </div>
     </div>
   );
-}
+};

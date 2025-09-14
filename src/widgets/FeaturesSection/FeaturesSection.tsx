@@ -11,7 +11,7 @@ export interface FeaturesSectionProps {
   config: FeaturesSectionConfig;
 }
 
-export function FeaturesSection({ config }: FeaturesSectionProps) {
+export const FeaturesSection = ({ config }: FeaturesSectionProps) => {
   const { features } = config;
   const total = features.length;
 

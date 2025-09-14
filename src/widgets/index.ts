@@ -1,10 +1,9 @@
-export { Footer } from "./Footer/Footer";
-export { TeamSection } from "./TeamSection/TeamSection";
+export * from "./Footer/Footer";
 export * from "./GlowingGrid/GlowingGrid";
 export * from "./Hero/Hero";
 export * from "./NavBar/NavBar";
-export { Carousel } from "./Carousel/Carousel";
-export { FeaturesSection } from "./FeaturesSection/FeaturesSection";
+export * from "./Carousel/Carousel";
+export * from "./FeaturesSection/FeaturesSection";
 export * from "./VideoCardsCarousel/VideoCardsCarousel";
 export * from "./LogoCarouselSection/LogoCarouselSection";
 export * from "./CtaBanner/CtaBanner";
