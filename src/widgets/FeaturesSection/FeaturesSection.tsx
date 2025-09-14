@@ -1,3 +1,5 @@
+"use client"
+
 import { memo } from "react";
 import dynamic from "next/dynamic";
 import { cn } from "@/shared/lib/utils";
@@ -52,7 +54,7 @@ export const FeaturesSection = dynamic(
 
 type FeatureProps = FeatureItem & { idx: number; total: number };
 
-const Feature = ({ title, description, Icon }: FeatureProps) => {
+const Feature = ({ title, description, icon }: FeatureProps) => {
   return (
     <li
       className={cn(
@@ -70,7 +72,7 @@ const Feature = ({ title, description, Icon }: FeatureProps) => {
       />
 
       <div className="relative z-10 mb-4 px-10 text-neutral-600 dark:text-neutral-400">
-        <Icon aria-hidden size={28} />
+        {icon}
       </div>
 
       <div className="relative z-10 mb-2 px-10 text-lg font-bold">

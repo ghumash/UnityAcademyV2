@@ -1,6 +1,6 @@
+import React from "react";
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
-import type { LucideIcon } from "lucide-react";
 import {
   Award,
   Users,
@@ -19,22 +19,22 @@ import {
 export type FeatureItem = {
   title: string;
   description: string;
-  Icon: LucideIcon;
+  icon: React.ReactNode;
 };
 
 const ICONS = [
-  Award, // 0 — Փորձառու մասնագետներ
-  Users, // 1 — Փոքր խմբեր, անհատական մոտեցում
-  Building2, // 2 — Հարմարավետ կահավորված լսարաններ
-  CalendarClock, // 3 — 3 փորձնական դաս
-  Video, // 4 — Դասերի տեսագրություն
-  UserCheck, // 5 — Մենթորական մոտեցում
-  TrendingUp, // 6 — Կարիերային աճ
-  FileText, // 7 — Պորտֆոլիո և ինքնակենսագրական անվճար
-  BadgeCheck, // 8 — Սերտիֆիկացում և թվային վավերացում
-  Briefcase, // 9 — Աշխատանքի առաջարկ
-  CalendarDays, // 10 — «Dayoff» հանդիպումներ
-  Globe2, // 11 — Համայնք
+  <Award key="award" aria-hidden size={28} />, // 0 — Փորձառու մասնագետներ
+  <Users key="users" aria-hidden size={28} />, // 1 — Փոքր խմբեր, անհատական մոտեցում
+  <Building2 key="building2" aria-hidden size={28} />, // 2 — Հարմարավետ կահավորված լսարաններ
+  <CalendarClock key="calendar-clock" aria-hidden size={28} />, // 3 — 3 փորձնական դաս
+  <Video key="video" aria-hidden size={28} />, // 4 — Դասերի տեսագրություն
+  <UserCheck key="user-check" aria-hidden size={28} />, // 5 — Մենթորական մոտեցում
+  <TrendingUp key="trending-up" aria-hidden size={28} />, // 6 — Կարիերային աճ
+  <FileText key="file-text" aria-hidden size={28} />, // 7 — Պորտֆոլիո և ինքնակենսագրական անվճար
+  <BadgeCheck key="badge-check" aria-hidden size={28} />, // 8 — Սերտիֆիկացում և թվային վավերացում
+  <Briefcase key="briefcase" aria-hidden size={28} />, // 9 — Աշխատանքի առաջարկ
+  <CalendarDays key="calendar-days" aria-hidden size={28} />, // 10 — «Dayoff» հանդիպումներ
+  <Globe2 key="globe2" aria-hidden size={28} />, // 11 — Համայնք
 ] as const;
 
 export async function getFeaturesSectionConfig(locale: Locale) {
@@ -45,62 +45,62 @@ export async function getFeaturesSectionConfig(locale: Locale) {
       {
         title: t("home.featuresSection.features.0.title"),
         description: t("home.featuresSection.features.0.description"),
-        Icon: ICONS[0],
+        icon: ICONS[0],
       },
       {
         title: t("home.featuresSection.features.1.title"),
         description: t("home.featuresSection.features.1.description"),
-        Icon: ICONS[1],
+        icon: ICONS[1],
       },
       {
         title: t("home.featuresSection.features.2.title"),
         description: t("home.featuresSection.features.2.description"),
-        Icon: ICONS[2],
+        icon: ICONS[2],
       },
       {
         title: t("home.featuresSection.features.3.title"),
         description: t("home.featuresSection.features.3.description"),
-        Icon: ICONS[3],
+        icon: ICONS[3],
       },
       {
         title: t("home.featuresSection.features.4.title"),
         description: t("home.featuresSection.features.4.description"),
-        Icon: ICONS[4],
+        icon: ICONS[4],
       },
       {
         title: t("home.featuresSection.features.5.title"),
         description: t("home.featuresSection.features.5.description"),
-        Icon: ICONS[5],
+        icon: ICONS[5],
       },
       {
         title: t("home.featuresSection.features.6.title"),
         description: t("home.featuresSection.features.6.description"),
-        Icon: ICONS[6],
+        icon: ICONS[6],
       },
       {
         title: t("home.featuresSection.features.7.title"),
         description: t("home.featuresSection.features.7.description"),
-        Icon: ICONS[7],
+        icon: ICONS[7],
       },
       {
         title: t("home.featuresSection.features.8.title"),
         description: t("home.featuresSection.features.8.description"),
-        Icon: ICONS[8],
+        icon: ICONS[8],
       },
       {
         title: t("home.featuresSection.features.9.title"),
         description: t("home.featuresSection.features.9.description"),
-        Icon: ICONS[9],
+        icon: ICONS[9],
       },
       {
         title: t("home.featuresSection.features.10.title"),
         description: t("home.featuresSection.features.10.description"),
-        Icon: ICONS[10],
+        icon: ICONS[10],
       },
       {
         title: t("home.featuresSection.features.11.title"),
         description: t("home.featuresSection.features.11.description"),
-        Icon: ICONS[11],
+        icon: ICONS[11],
       },
     ] as const satisfies readonly FeatureItem[],
   } as const;

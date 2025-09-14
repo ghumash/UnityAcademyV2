@@ -145,7 +145,6 @@ const ContentSectionComponent = memo(({
   config,
   className,
   gridCols = { sm: 1, lg: 3 },
-  itemClassName,
   itemsGridCols,
 }: ContentSectionProps) => {
   const { sm, lg } = getGridCols(config.blocks?.length || 0, gridCols);

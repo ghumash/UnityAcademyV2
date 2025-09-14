@@ -45,6 +45,8 @@ export default [
       "import/no-unresolved": "off",
       // предотвращаем некорректные экспорты
       "import/export": "error",
+      // отключаем требование displayName для memo компонентов
+      "react/display-name": "off",
     },
   },
 

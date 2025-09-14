@@ -40,16 +40,16 @@ type SmartLinkProps = Omit<React.ComponentPropsWithoutRef<"a">, "href"> & {
   href: string;
   newTab?: boolean;
 };
+
 function SmartLink({ href, newTab, ...rest }: SmartLinkProps) {
   const external = isExternal(href);
   const target = newTab || external ? "_blank" : undefined;
   const rel = target ? "noopener noreferrer" : undefined;
 
-  // Use Next.js Link for internal routes; plain <a> for external
-  if (!external) {
-    return <Link href={href} {...rest} />;
+  if (external) {
+    return <a href={href} target={target} rel={rel} {...rest} />;
   }
-  return <Link href={href} target={target} rel={rel} {...rest} />;
+  return <Link href={href} {...rest} />;
 }
 
 const CtaBannerComponent = memo(({
