@@ -50,6 +50,8 @@ type FieldDef<TValues> = {
   options?: Option[];
 };
 
+type AnySchema = z.ZodTypeAny;
+
 type SmartFormProps<TSchema extends z.ZodTypeAny> = {
   schema: TSchema;
   action: string;
@@ -63,19 +65,23 @@ type SmartFormProps<TSchema extends z.ZodTypeAny> = {
   errorText?: string;
 };
 
-function SmartFormComponent<TSchema extends z.ZodTypeAny>({
-  schema,
-  action,
-  method = "POST",
-  fields,
-  defaults,
-  className,
-  buttonLabel = "Send",
-  transform,
-  successText = "Message sent",
-  errorText = "Something went wrong",
-}: SmartFormProps<TSchema>) {
+function SmartFormInner<TSchema extends AnySchema>(
+  props: SmartFormProps<TSchema>
+) {
   type Values = z.infer<TSchema>;
+  const {
+    schema,
+    action,
+    method = "POST",
+    fields,
+    defaults,
+    className,
+    buttonLabel = "Send",
+    transform,
+    successText = "Message sent",
+    errorText = "Something went wrong",
+  } = props;
+
   const [status, setStatus] = React.useState<"idle" | "ok" | "error">("idle");
 
   const {
@@ -144,105 +150,105 @@ function SmartFormComponent<TSchema extends z.ZodTypeAny>({
                 >
                   {f.label && <Label htmlFor={id}>{f.label}</Label>}
 
-                {/* TEXTAREA */}
-                {f.type === "textarea" && (
-                  <Textarea className="resize-none" {...common} />
-                )}
+                  {/* TEXTAREA */}
+                  {f.type === "textarea" && (
+                    <Textarea className="resize-none" {...common} />
+                  )}
 
-                {/* INPUT */}
-                {(f.type === "text" ||
-                  f.type === "email" ||
-                  f.type === "hidden") && (
-                  <Input type={f.type ?? "text"} {...common} />
-                )}
+                  {/* INPUT */}
+                  {(f.type === "text" ||
+                    f.type === "email" ||
+                    f.type === "hidden") && (
+                    <Input type={f.type ?? "text"} {...common} />
+                  )}
 
-                {/* CHECKBOX */}
-                {f.type === "checkbox" && (
-                  <Checkbox
-                    id={id}
-                    checked={watch(f.name) as boolean}
-                    onCheckedChange={(val) => setValue(f.name, val as any)}
-                  />
-                )}
+                  {/* CHECKBOX */}
+                  {f.type === "checkbox" && (
+                    <Checkbox
+                      id={id}
+                      checked={watch(f.name) as boolean}
+                      onCheckedChange={(val) => setValue(f.name, val as any)}
+                    />
+                  )}
 
-                {/* SELECT */}
-                {f.type === "select" && f.options && (
-                  <Select
-                    value={watch(f.name) as string}
-                    onValueChange={(val) => setValue(f.name, val as any)}
-                  >
-                    <SelectTrigger id={id}>
-                      <SelectValue placeholder={f.placeholder} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {f.options.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
+                  {/* SELECT */}
+                  {f.type === "select" && f.options && (
+                    <Select
+                      value={watch(f.name) as string}
+                      onValueChange={(val) => setValue(f.name, val as any)}
+                    >
+                      <SelectTrigger id={id}>
+                        <SelectValue placeholder={f.placeholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {f.options.map((opt) => (
+                          <SelectItem key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
 
-                {/* MULTISELECT (простой) */}
-                {f.type === "multiselect" && f.options && (
-                  <Select
-                    value={watch(f.name) as string}
-                    onValueChange={(val) => setValue(f.name as any, val)}
-                  >
-                    <SelectTrigger id={id}>
-                      <SelectValue placeholder={f.placeholder} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {f.options.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
+                  {/* MULTISELECT (простой) */}
+                  {f.type === "multiselect" && f.options && (
+                    <Select
+                      value={watch(f.name) as string}
+                      onValueChange={(val) => setValue(f.name as any, val)}
+                    >
+                      <SelectTrigger id={id}>
+                        <SelectValue placeholder={f.placeholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {f.options.map((opt) => (
+                          <SelectItem key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
 
-                {/* DATE */}
-                {f.type === "date" && (
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "justify-start text-left font-normal",
-                          !watch(f.name) && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {watch(f.name)
-                          ? new Date(
-                              watch(f.name) as string
-                            ).toLocaleDateString()
-                          : f.placeholder || "Pick a date"}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={
-                          watch(f.name)
-                            ? new Date(watch(f.name) as string)
-                            : undefined
-                        }
-                        onSelect={(date) =>
-                          setValue(f.name, date?.toISOString() as any)
-                        }
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
-                )}
+                  {/* DATE */}
+                  {f.type === "date" && (
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "justify-start text-left font-normal",
+                            !watch(f.name) && "text-muted-foreground"
+                          )}
+                        >
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {watch(f.name)
+                            ? new Date(
+                                watch(f.name) as string
+                              ).toLocaleDateString()
+                            : f.placeholder || "Pick a date"}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={
+                            watch(f.name)
+                              ? new Date(watch(f.name) as string)
+                              : undefined
+                          }
+                          onSelect={(date) =>
+                            setValue(f.name, date?.toISOString() as any)
+                          }
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  )}
 
-                {err && <p className="text-sm text-red-600">{err}</p>}
-              </div>
-            );
-          })}
+                  {err && <p className="text-sm text-red-600">{err}</p>}
+                </div>
+              );
+            })}
 
           {/* Invisible fields - регистрируем но не отображаем */}
           {fields
@@ -294,8 +300,6 @@ function SmartFormComponent<TSchema extends z.ZodTypeAny>({
   );
 }
 
-// Lazy версия для случаев, когда не нужны дженерики
-export const SmartForm = dynamic(() => 
-  Promise.resolve(SmartFormComponent), 
-  { ssr: false }
-);
+export function SmartForm(props: SmartFormProps<AnySchema>) {
+  return <SmartFormInner {...props} />;
+}
