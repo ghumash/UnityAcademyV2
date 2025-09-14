@@ -2,6 +2,7 @@
 
 import React from "react";
 import type { ComponentProps, ReactNode } from "react";
+import { memo } from "react";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import { Container, Section } from "@/shared/ui/custom";
@@ -29,7 +30,7 @@ export interface FooterProps {
   description: string;
 }
 
-const FooterComponent = ({ sections, copyright, description }: FooterProps) => {
+const FooterComponent = memo(({ sections, copyright, description }: FooterProps) => {
     return (
       <Section as="footer" role="contentinfo" aria-labelledby="footer-heading">
         <Container>
@@ -109,7 +110,7 @@ const FooterComponent = ({ sections, copyright, description }: FooterProps) => {
         </Container>
       </Section>
     );
-};
+});
 
 export const Footer = dynamic(() => 
   Promise.resolve(FooterComponent), 

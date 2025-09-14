@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -10,7 +11,7 @@ import {
   BreadcrumbSeparator,
   BreadcrumbPage,
 } from "@/shared/ui";
-import { Fragment, useMemo } from "react";
+import { Fragment, memo, useMemo } from "react";
 import { cn } from "@/shared/lib/utils";
 import { useI18n } from "@/shared/lib/i18n";
 import { buildBreadcrumbsJsonLd } from "@/shared/seo";
@@ -27,10 +28,10 @@ export interface AppAutoBreadcrumbProps {
  * - подписи берёт из словаря (common.nav.*)
  * - в <head> добавляет JSON-LD для SEO
  */
-export function AppAutoBreadcrumb({
+const AppAutoBreadcrumbComponent = memo(({
   ariaLabel = "Breadcrumb",
   className,
-}: AppAutoBreadcrumbProps) {
+}: AppAutoBreadcrumbProps) => {
   const pathname = usePathname();
   const { locale, t } = useI18n();
 
@@ -106,4 +107,9 @@ export function AppAutoBreadcrumb({
       <JsonLd id="breadcrumbs" data={buildBreadcrumbsJsonLd(crumbs)} />
     </>
   );
-}
+});
+
+export const AppAutoBreadcrumb = dynamic(() => 
+  Promise.resolve(AppAutoBreadcrumbComponent), 
+  { ssr: false }
+);

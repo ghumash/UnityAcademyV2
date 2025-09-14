@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import dynamic from "next/dynamic";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -24,11 +25,11 @@ export interface AppBreadcrumbProps {
   className?: string;
 }
 
-export const AppBreadcrumb = memo(function AppBreadcrumb({
+const AppBreadcrumbComponent = memo(({
   items,
   ariaLabel = "Breadcrumb",
   className,
-}: AppBreadcrumbProps) {
+}: AppBreadcrumbProps) => {
   const { locale: _locale } = useParams<{ locale: string }>();
 
   const crumbs = useMemo(() => items, [items]);
@@ -58,3 +59,8 @@ export const AppBreadcrumb = memo(function AppBreadcrumb({
     </Breadcrumb>
   );
 });
+
+export const AppBreadcrumb = dynamic(() => 
+  Promise.resolve(AppBreadcrumbComponent), 
+  { ssr: false }
+);

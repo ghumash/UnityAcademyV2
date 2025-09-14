@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { memo } from "react";
 import dynamic from "next/dynamic";
 import {
   SliderBtnGroup,
@@ -27,7 +28,7 @@ export interface CarouselProps {
   indicatorPosition?: "bottom" | "overlay";
 }
 
-const CarouselComponent = ({
+const CarouselComponent = memo(({
   config,
   hideFooter = true,
   indicatorVariant = "bars",
@@ -154,7 +155,7 @@ const CarouselComponent = ({
       </Container>
     </Section>
   );
-};
+});
 
 export const Carousel = dynamic(() => 
   Promise.resolve(CarouselComponent), 

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { memo } from "react";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
@@ -55,7 +56,7 @@ const isMatch = (current: string, itemUrl: string): boolean => {
   return current === base || current.startsWith(`${base}/`);
 };
 
-const NavBarComponent = React.memo(function NavBar({
+const NavBarComponent = memo(function NavBar({
   items,
   className,
   position,

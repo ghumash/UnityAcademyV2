@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, type CSSProperties } from "react";
+import { memo } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/shared/ui";
 import { cn } from "@/shared/lib/utils";
@@ -13,7 +14,7 @@ type Props = {
   className?: string;
 };
 
-const MapsComponent = ({
+const MapsComponent = memo(({
   height = 400,
   zoom = 19,
   address,
@@ -71,7 +72,7 @@ const MapsComponent = ({
       </div>
     </div>
   );
-};
+});
 
 export const Maps = dynamic(() => 
   Promise.resolve(MapsComponent), 
