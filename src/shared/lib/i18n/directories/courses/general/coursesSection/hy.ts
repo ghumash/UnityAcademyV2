@@ -20,7 +20,7 @@ export const coursesSection: CoursesSectionDict = {
       format: "offline",
     },
     {
-      title: "Երեխաների ծրագրավորում: Scratch, Python",
+      title: "Scratch: Ծրագրավորման հիմունքներ երեխաների համար",
       description:
         "Երեխաների ծրագրավորում՝ Scratch և Python՝ խաղային նախագծեր, անիմացիաներ, ստեղծագործություն։",
       duration: "4 ամիս",

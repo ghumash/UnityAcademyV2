@@ -55,6 +55,24 @@ const DEFAULT_GLOW: Required<GlowingEffectOptions> = {
 
 /** Устойчивые раскладки для разных количеств карточек */
 const DEFAULT_AREAS: Record<number, string[]> = {
+  1: [
+    "md:col-span-12 xl:col-span-12",
+  ],
+  2: [
+    "md:col-span-6 xl:col-span-6",
+    "md:col-span-6 xl:col-span-6",
+  ],
+  3: [
+    "md:col-span-6 xl:col-span-4",
+    "md:col-span-6 xl:col-span-4",
+    "md:col-span-12 xl:col-span-4",
+  ],
+  4: [
+    "md:col-span-6 xl:col-span-6",
+    "md:col-span-6 xl:col-span-6",
+    "md:col-span-6 xl:col-span-6",
+    "md:col-span-6 xl:col-span-6",
+  ],
   5: [
     "md:col-span-6 xl:col-span-4",
     "md:col-span-6 xl:col-span-4",

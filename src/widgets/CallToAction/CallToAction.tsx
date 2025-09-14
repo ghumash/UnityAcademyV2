@@ -259,7 +259,7 @@ function Tag({
 
 function Pointer() {
   return (
-    <div id="pointer" className="absolute translate-x-1 translate-y-1">
+    <div id="pointer" className="absolute">
       <svg
         width="16.8"
         height="18.2"
