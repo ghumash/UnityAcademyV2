@@ -11,18 +11,14 @@ import {
 
 import { HighlighterItem, HighlightGroup, Particles } from "@/shared/ui/lib";
 import { cn } from "@/shared/lib/utils";
-import { COURSE_KEYS, COURSE_DATA } from "@/entities/course";
-
-const TAG_IDS = COURSE_KEYS;
+import { COURSE_KEYS, COURSE_DATA, type CourseKey } from "@/entities/course";
 
 interface CallToActionProps {
   title: string;
   subtitle: string;
   children: React.ReactNode;
-  activeTagId?: TagId;
+  activeTagId?: CourseKey;
 }
-
-export type TagId = (typeof TAG_IDS)[number];
 
 const CallToActionComponent = memo(
   ({ title, subtitle, children, activeTagId }: CallToActionProps) => {
@@ -39,7 +35,7 @@ const CallToActionComponent = memo(
       const rootRect = root.getBoundingClientRect();
 
       // получить центр элемента тега в процентах относительно контейнера
-      const centerPct = (id: TagId) => {
+      const centerPct = (id: CourseKey) => {
         const el = root.querySelector<HTMLElement>(`#${id}`);
         if (!el) return null;
         const r = el.getBoundingClientRect();
@@ -52,8 +48,8 @@ const CallToActionComponent = memo(
         return { id, left: `${clamp(cx)}%`, top: `${clamp(cy)}%` };
       };
 
-      const points = TAG_IDS.map(centerPct).filter(Boolean) as Array<{
-        id: TagId;
+      const points = COURSE_KEYS.map(centerPct).filter(Boolean) as Array<{
+        id: CourseKey;
         left: string;
         top: string;
       }>;
@@ -139,7 +135,7 @@ const CallToActionComponent = memo(
           );
 
           // Устанавливаем opacity для всех тегов
-          TAG_IDS.forEach((tagId) => {
+          COURSE_KEYS.forEach((tagId: CourseKey) => {
             animate(
               `#${tagId}`,
               {
@@ -243,7 +239,7 @@ function Tag({
   label,
   style,
 }: {
-  id: TagId | string;
+  id: CourseKey | string;
   label: string;
   style: React.CSSProperties;
 }) {

@@ -4,7 +4,7 @@
  */
 export const COURSE_KEYS = [
   "web_development",
-  "graphic_design", 
+  "graphic_design",
   "scratch",
   "smm",
   "python",
@@ -14,7 +14,7 @@ export const COURSE_KEYS = [
   "soft_skills",
 ] as const;
 
-export type CourseKey = typeof COURSE_KEYS[number];
+export type CourseKey = (typeof COURSE_KEYS)[number];
 
 /**
  * Данные курсов с их отображаемыми названиями и позициями для CallToAction
@@ -28,14 +28,14 @@ export const COURSE_DATA = {
   },
   graphic_design: {
     key: "graphic_design" as const,
-    displayName: "Graphic Design", 
-    value: "Գրաֆիկ դիզայն: Photoshop, Illustrator, Canva",
+    displayName: "Graphic Design",
+    value: "Գրաֆիկ դիզայն",
     position: { top: "64%", left: "35%" },
   },
   scratch: {
     key: "scratch" as const,
     displayName: "Scratch Programming",
-    value: "Երեխաների ծրագրավորում", 
+    value: "Երեխաների ծրագրավորում",
     position: { top: "10%", left: "55%" },
   },
   smm: {
@@ -76,4 +76,4 @@ export const COURSE_DATA = {
   },
 } as const;
 
-export type CourseData = typeof COURSE_DATA[CourseKey];
+export type CourseData = (typeof COURSE_DATA)[CourseKey];

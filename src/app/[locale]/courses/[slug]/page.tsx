@@ -4,7 +4,7 @@ import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata
 import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
-import { IntroHero } from "@/entities/course";
+import { COURSE_DATA, IntroHero, type CourseKey } from "@/entities/course";
 import {
   CallToAction,
   ContentSection,
@@ -14,7 +14,7 @@ import {
   UserCard,
 } from "@/widgets";
 import { Container, Section } from "@/shared/ui/custom";
-import { ApplyForm, type CourseValue } from "@/features/apply";
+import { ApplyForm } from "@/features/apply";
 
 export async function generateMetadata({
   params,
@@ -97,7 +97,7 @@ export default async function CoursePage({
             <ApplyForm
               config={formConfig}
               defaultCourse={
-                coursePageConfig.courseHeroSection.title as CourseValue
+                COURSE_DATA[slug as CourseKey].value
               }
               hideCourseSelect
             />

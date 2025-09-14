@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { COURSE_DATA } from "@/entities/course";
+import { COURSE_DATA, type CourseKey } from "@/entities/course";
 
-// Типы курсов на основе существующих значений
-export type CourseValue = typeof COURSE_DATA[keyof typeof COURSE_DATA]["value"];
+// Типы курсов на основе значений курсов
+export type CourseValue = typeof COURSE_DATA[CourseKey]["value"];
 
 export const ApplySchema = z.object({
   fullname: z.string().min(2, "Մուտքագրեք անուն ազգանունը"),

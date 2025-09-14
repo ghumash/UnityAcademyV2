@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useForm, type Path, type FieldValues } from "react-hook-form";
+import { useForm, type Path } from "react-hook-form";
 import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -67,7 +67,6 @@ type SmartFormProps<TSchema extends z.ZodType<any, any, any>> = {
 function SmartFormInner<TSchema extends AnySchema>(
   props: SmartFormProps<TSchema>
 ) {
-  type Values = z.infer<TSchema>;
   const {
     schema,
     action,

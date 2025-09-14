@@ -65,6 +65,8 @@ const socialIcons = {
   website: Globe,
 } as const;
 
+type SocialIconKey = keyof typeof socialIcons;
+
 // Анимационные варианты
 const containerVariants: Variants = {
   hidden: { opacity: 0, y: 12 },
@@ -196,13 +198,13 @@ const SocialLinks: React.FC<{
       </h3>
       <div className="flex gap-2">
         {socialEntries.map(([platform, url]) => {
-          const Icon = socialIcons[platform as keyof typeof socialIcons];
+          const Icon = socialIcons[platform as SocialIconKey];
           const platformName = {
             github: 'GitHub',
             linkedin: 'LinkedIn', 
             x: 'X (Twitter)',
             website: 'Веб-сайт'
-          }[platform as keyof typeof socialIcons];
+          }[platform as SocialIconKey];
 
           return (
             <Button

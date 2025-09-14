@@ -1,7 +1,8 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 import { Rocket, Wrench } from "lucide-react";
-import type { GridItemData, TagId, UserCardData } from "@/widgets";
+import type { GridItemData, UserCardData } from "@/widgets";
+import type { CourseKey } from "@/entities/course";
 import type { Theme } from "@/widgets/Courses";
 import { siteConfig } from "@/shared/config/common";
 
@@ -177,7 +178,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   const callToActionConfig = {
     title: t(`courses.list.${slug}.cta.title`),
     subtitle: t(`courses.list.${slug}.cta.subtitle`),
-    activeTagId: slug as TagId,
+    activeTagId: slug as CourseKey,
   };
 
   const ctaBannerConfig = {

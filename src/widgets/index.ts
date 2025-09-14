@@ -19,5 +19,5 @@ export { UserCard, type UserCardData } from "./UserCard";
 export { CourseTopics } from "./CourseTopics";
 export { ContactTilesSection } from "./ContactTilesSection/ContactTilesSection";
 export { SmartForm } from "./SmartForm/SmartForm";
-export { CallToAction, type TagId } from "./CallToAction/CallToAction";
+export { CallToAction } from "./CallToAction/CallToAction";
 export { IntroWithDesc } from "./IntroWithDesc/IntroWithDesc";
