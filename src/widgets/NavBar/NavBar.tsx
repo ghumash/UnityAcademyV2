@@ -54,7 +54,7 @@ const isMatch = (current: string, itemUrl: string): boolean => {
   return current === base || current.startsWith(`${base}/`);
 };
 
-export const NavBar = React.memo(function NavBar({
+const NavBarComponent = React.memo(function NavBar({
   items,
   className,
   position,
@@ -171,3 +171,12 @@ export const NavBar = React.memo(function NavBar({
     </nav>
   );
 });
+
+// Экспортируем обычную версию для внутреннего использования
+export { NavBarComponent };
+
+// Lazy export для ленивой загрузки
+export const NavBar = React.lazy(() => 
+  Promise.resolve({ default: NavBarComponent })
+);
+

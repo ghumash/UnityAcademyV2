@@ -5,7 +5,7 @@ import {
   useAnimate,
   type AnimationSequence,
   type AnimationPlaybackControls,
-} from "framer-motion";
+} from "motion/react";
 
 import { HighlighterItem, HighlightGroup, Particles } from "@/shared/ui/lib";
 import { cn } from "@/shared/lib/utils";

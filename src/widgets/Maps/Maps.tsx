@@ -10,7 +10,7 @@ type Props = {
   className?: string;
 };
 
-export const Maps = React.memo(({
+const MapsComponent = React.memo(({
   height = 400,
   zoom = 19,
   address,
@@ -70,4 +70,12 @@ export const Maps = React.memo(({
   );
 });
 
-Maps.displayName = "Maps";
+MapsComponent.displayName = "Maps";
+
+// Экспортируем обычную версию для внутреннего использования
+export { MapsComponent };
+
+// Lazy export для ленивой загрузки
+export const Maps = React.lazy(() => 
+  Promise.resolve({ default: MapsComponent })
+);

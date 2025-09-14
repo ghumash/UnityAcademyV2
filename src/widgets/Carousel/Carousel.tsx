@@ -26,7 +26,7 @@ export interface CarouselProps {
   indicatorPosition?: "bottom" | "overlay";
 }
 
-export const Carousel = ({
+const CarouselComponent = ({
   config,
   hideFooter = true,
   indicatorVariant = "bars",
@@ -105,7 +105,11 @@ export const Carousel = ({
                     </SliderBtn>
                   );
                 }
-
+                const CarouselComponent = ({})
+                export const Carousel = lazy(() => 
+                  Promise.resolve({ default: CarouselComponent })
+                );
+                
                 // indicatorVariant === "pills"
                 return (
                   <SliderBtn
@@ -154,3 +158,11 @@ export const Carousel = ({
     </Section>
   );
 };
+
+// Экспортируем обычную версию для внутреннего использования
+export { CarouselComponent };
+
+// Lazy export для ленивой загрузки
+export const Carousel = React.lazy(() => 
+  Promise.resolve({ default: CarouselComponent })
+);

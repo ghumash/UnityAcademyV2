@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useId } from "react";
+import { memo, useId, lazy } from "react";
 import Link from "next/link";
 import { cn } from "@/shared/lib";
 import { Button } from "@/shared/ui";
@@ -50,7 +50,7 @@ function SmartLink({ href, newTab, ...rest }: SmartLinkProps) {
   return <Link href={href} target={target} rel={rel} {...rest} />;
 }
 
-const CtaBanner = memo(function CtaBanner({
+const CtaBannerComponent = memo(function CtaBanner({
   config,
   className,
 }: CtaBannerProps) {
@@ -114,6 +114,12 @@ const CtaBanner = memo(function CtaBanner({
   );
 });
 
-CtaBanner.displayName = "CtaBanner";
+CtaBannerComponent.displayName = "CtaBanner";
 
-export { CtaBanner };
+// Экспортируем обычную версию для внутреннего использования
+export { CtaBannerComponent };
+
+// Lazy export для ленивой загрузки
+export const CtaBanner = lazy(() => 
+  Promise.resolve({ default: CtaBannerComponent })
+);

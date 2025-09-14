@@ -46,6 +46,29 @@ const securityHeaders =
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  
+  // Оптимизация бандла
+  experimental: {
+    optimizePackageImports: [
+      "@tabler/icons-react",
+      "motion/react",
+      "date-fns",
+      "lucide-react"
+    ],
+    turbo: {
+      rules: {
+        "*.svg": {
+          loaders: ["@svgr/webpack"],
+          as: "*.js",
+        },
+      },
+    },
+  },
+
+  // Сжатие и оптимизация
+  compress: true,
+  
+  // Настройки изображений с оптимизацией
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
@@ -53,12 +76,91 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "i.ytimg.com" },
       { protocol: "https", hostname: "img.youtube.com" },
     ],
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1 год
   },
+
+  // Webpack оптимизации
+  webpack: (config, { dev, isServer }) => {
+    // Анализ бандла в development
+    if (dev && !isServer && process.env.ANALYZE === "true") {
+      const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: "server",
+          analyzerPort: 8888,
+          openAnalyzer: true,
+        })
+      );
+    }
+
+    // Оптимизация для production
+    if (!dev) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: "all",
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: "vendors",
+              chunks: "all",
+              priority: 10,
+            },
+            common: {
+              name: "common",
+              minChunks: 2,
+              chunks: "all",
+              priority: 5,
+              reuseExistingChunk: true,
+            },
+            icons: {
+              test: /[\\/]node_modules[\\/]@tabler[\\/]icons-react[\\/]/,
+              name: "icons",
+              chunks: "all",
+              priority: 15,
+            },
+            motion: {
+              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+              name: "motion",
+              chunks: "all",
+              priority: 15,
+            },
+          },
+        },
+      };
+    }
+
+    return config;
+  },
+
   async headers() {
     return [
       {
         source: "/:path*",
         headers: securityHeaders as unknown as { key: string; value: string }[],
+      },
+      // Кэширование статических ресурсов
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Кэширование изображений
+      {
+        source: "/:path*.{jpg,jpeg,png,webp,avif,svg,ico}",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
       },
     ];
   },

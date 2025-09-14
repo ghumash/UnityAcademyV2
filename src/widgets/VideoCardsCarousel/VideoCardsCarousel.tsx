@@ -15,7 +15,7 @@ export interface VideoCardsCarouselProps {
   config: VideoCardsCarouselConfig;
 }
 
-export const VideoCardsCarousel = React.memo(function VideoCardsCarousel({
+const VideoCardsCarouselComponent = React.memo(function VideoCardsCarousel({
   config,
 }: VideoCardsCarouselProps) {
   const { title, students } = config;
@@ -47,3 +47,11 @@ export const VideoCardsCarousel = React.memo(function VideoCardsCarousel({
     </Section>
   );
 });
+
+// Экспортируем обычную версию для внутреннего использования
+export { VideoCardsCarouselComponent };
+
+// Lazy export для ленивой загрузки
+export const VideoCardsCarousel = React.lazy(() => 
+  Promise.resolve({ default: VideoCardsCarouselComponent })
+);

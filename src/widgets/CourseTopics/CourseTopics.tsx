@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Check } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { Card, CardContent } from "@/shared/ui";

@@ -28,7 +28,7 @@ export interface FooterProps {
   description: string;
 }
 
-export const Footer = React.memo(
+const FooterComponent = React.memo(
   ({ sections, copyright, description }: FooterProps) => {
     return (
       <Section as="footer" role="contentinfo" aria-labelledby="footer-heading">
@@ -112,7 +112,15 @@ export const Footer = React.memo(
   }
 );
 
-Footer.displayName = "Footer";
+FooterComponent.displayName = "Footer";
+
+// Экспортируем обычную версию для внутреннего использования
+export { FooterComponent };
+
+// Lazy export для ленивой загрузки
+export const Footer = React.lazy(() => 
+  Promise.resolve({ default: FooterComponent })
+);
 
 /** Renders a single footer link with correct component (Link vs <a>) and a11y */
 function FooterItem({ link }: { link: FooterLink }) {

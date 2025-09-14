@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import * as Accordion from "@radix-ui/react-accordion";
 import { Minus, Plus } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
@@ -122,7 +122,7 @@ const AccordionItemComponent: React.FC<AccordionItemProps> = ({
   </Accordion.Item>
 );
 
-export function FaqAccordion({
+const FaqAccordionComponent = function FaqAccordion({
   data,
   className,
   title,
@@ -196,3 +196,11 @@ export function FaqAccordion({
     </div>
   );
 }
+
+// Экспортируем обычную версию для внутреннего использования
+export { FaqAccordionComponent };
+
+// Lazy export для ленивой загрузки
+export const FaqAccordion = React.lazy(() => 
+  Promise.resolve({ default: FaqAccordionComponent })
+);

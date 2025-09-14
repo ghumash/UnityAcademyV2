@@ -218,5 +218,13 @@ const HeroBase = React.forwardRef<HTMLElement, HeroProps>(
 HeroBase.displayName = "HeroBase";
 
 /** Memoized Hero for fewer re-renders */
-export const Hero = React.memo(HeroBase);
-Hero.displayName = "Hero";
+const HeroComponent = React.memo(HeroBase);
+HeroComponent.displayName = "Hero";
+
+// Экспортируем обычную версию для внутреннего использования
+export { HeroComponent };
+
+// Lazy export для ленивой загрузки
+export const Hero = React.lazy(() => 
+  Promise.resolve({ default: HeroComponent })
+);

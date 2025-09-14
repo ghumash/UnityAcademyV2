@@ -62,7 +62,7 @@ type SmartFormProps<TSchema extends z.ZodTypeAny> = {
   errorText?: string;
 };
 
-export function SmartForm<TSchema extends z.ZodTypeAny>({
+const SmartFormComponent = function SmartForm<TSchema extends z.ZodTypeAny>({
   schema,
   action,
   method = "POST",
@@ -292,3 +292,11 @@ export function SmartForm<TSchema extends z.ZodTypeAny>({
     </form>
   );
 }
+
+// Экспортируем обычную версию для внутреннего использования
+export { SmartFormComponent };
+
+// Lazy export для ленивой загрузки
+export const SmartForm = React.lazy(() => 
+  Promise.resolve({ default: SmartFormComponent })
+);
