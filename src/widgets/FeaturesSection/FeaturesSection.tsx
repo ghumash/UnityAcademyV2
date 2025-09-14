@@ -54,7 +54,7 @@ export const FeaturesSection = dynamic(
 
 type FeatureProps = FeatureItem & { idx: number; total: number };
 
-const Feature = ({ title, description, icon }: FeatureProps) => {
+const Feature = memo(({ title, description, icon }: FeatureProps) => {
   return (
     <li
       className={cn(
@@ -90,6 +90,6 @@ const Feature = ({ title, description, icon }: FeatureProps) => {
       </p>
     </li>
   );
-};
+});
 
-const MemoFeature = memo(Feature);
+const MemoFeature = Feature;
