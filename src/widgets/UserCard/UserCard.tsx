@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { 
   Github, 
@@ -229,7 +230,7 @@ const SocialLinks: React.FC<{
 };
 
 // Основной компонент UserCard
-export const UserCard: React.FC<UserCardProps> = ({ data, labels, className }) => {
+const UserCardComponent = memo(({ data, labels, className }: UserCardProps) => {
   const shouldReduceMotion = useReducedMotion();
   const { name, role, avatarUrl, bio, experience, socials } = data;
 
@@ -314,4 +315,9 @@ export const UserCard: React.FC<UserCardProps> = ({ data, labels, className }) =
       />
     </motion.div>
   );
-};
+});
+
+export const UserCard = dynamic(() => 
+  Promise.resolve(UserCardComponent), 
+  { ssr: false }
+);

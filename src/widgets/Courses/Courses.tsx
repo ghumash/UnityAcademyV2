@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
+import dynamic from "next/dynamic";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Container, Section } from "@/shared/ui/custom";
@@ -224,9 +225,9 @@ export interface CoursesPropsNew {
   config: CoursesConfig;
 }
 
-export function Courses({
+const CoursesComponent = memo(({
   config,
-}: CoursesPropsNew) {
+}: CoursesPropsNew) => {
   const { title, list, levels, formats } = config;
   return (
     <Section>
@@ -257,7 +258,12 @@ export function Courses({
       </Container>
     </Section>
   );
-}
+});
+
+export const Courses = dynamic(() => 
+  Promise.resolve(CoursesComponent), 
+  { ssr: false }
+);
 
 /**
  * Usage:

@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+import dynamic from "next/dynamic";
 import { Container, Section } from "@/shared/ui/custom";
 import { GradientHeading } from "@/shared/ui/lib";
 import { LogoCarousel } from "@/shared/ui/lib/logo-carousel";
@@ -20,9 +22,9 @@ export interface LogoCarouselSectionProps {
   config: LogoCarouselSectionConfig;
 }
 
-export function LogoCarouselSection({
+const LogoCarouselSectionComponent = memo(({
   config,
-}: LogoCarouselSectionProps) {
+}: LogoCarouselSectionProps) => {
   const { title, subtitle } = config;
   return (
     <Section id="logo-carousel" aria-labelledby="logo-carousel-title">
@@ -42,4 +44,9 @@ export function LogoCarouselSection({
       </Container>
     </Section>
   );
-}
+});
+
+export const LogoCarouselSection = dynamic(() => 
+  Promise.resolve(LogoCarouselSectionComponent), 
+  { ssr: false }
+);

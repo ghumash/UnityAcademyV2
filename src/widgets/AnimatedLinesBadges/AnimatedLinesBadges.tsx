@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useId, useMemo, useState } from "react";
+import React, { memo, useEffect, useId, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "motion/react";
 import {
   GraduationCap,
@@ -157,14 +158,14 @@ const BlockItem: React.FC<BlockItemProps> = ({
 );
 
 /* ---------- Main ---------- */
-export const AnimatedLinesBadges: React.FC<AnimatedLinesBadgesProps> = ({
+const AnimatedLinesBadgesComponent = memo(({
   className,
   circleText,
   badgeTexts,
   buttonTexts,
   title,
-  lightColor,
-}) => {
+  lightColor = "#00A6F5",
+}: AnimatedLinesBadgesProps) => {
   const uid = useId();
   const ids = useMemo(
     () => ({
@@ -355,7 +356,12 @@ export const AnimatedLinesBadges: React.FC<AnimatedLinesBadgesProps> = ({
       </Container>
     </Section>
   );
-};
+});
+
+export const AnimatedLinesBadges = dynamic(() => 
+  Promise.resolve(AnimatedLinesBadgesComponent), 
+  { ssr: false }
+);
 
 /* ---------- Bottom circle (SSR-safe) ---------- */
 const AutoCircle: React.FC<{ label: string }> = ({ label }) => {

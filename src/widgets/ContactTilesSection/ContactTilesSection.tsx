@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { cn } from "@/shared/lib/utils";
 import { Container, Section } from "@/shared/ui/custom";
@@ -101,8 +102,6 @@ const Tile = React.memo(({
   );
 });
 
-Tile.displayName = "Tile";
-
 const LongInfoCard = React.memo(({ items }: { items: ReadonlyArray<LongInfoItem> }) => {
   return (
     <li className="md:col-span-2">
@@ -161,9 +160,7 @@ const LongInfoCard = React.memo(({ items }: { items: ReadonlyArray<LongInfoItem>
   );
 });
 
-LongInfoCard.displayName = "LongInfoCard";
-
-export const ContactTilesSection = React.memo(({
+const ContactTilesSectionComponent = memo(({
   items,
   longItems,
   className,
@@ -190,4 +187,7 @@ export const ContactTilesSection = React.memo(({
   );
 });
 
-ContactTilesSection.displayName = "ContactTilesSection";
+export const ContactTilesSection = dynamic(() => 
+  Promise.resolve(ContactTilesSectionComponent), 
+  { ssr: false }
+);

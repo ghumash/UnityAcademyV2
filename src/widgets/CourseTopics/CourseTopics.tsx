@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Check } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
@@ -34,11 +35,11 @@ const itemVariants: Variants = {
   },
 };
 
-export const CourseTopics: React.FC<CourseTopicsProps> = ({
+const CourseTopicsComponent = memo(({
   title,
   topics,
   className,
-}) => {
+}: CourseTopicsProps) => {
   const shouldReduceMotion = useReducedMotion();
   const useGridLayout = topics.length > 8;
   const [scrollProgress, setScrollProgress] = React.useState(0);
@@ -171,4 +172,9 @@ export const CourseTopics: React.FC<CourseTopicsProps> = ({
       </Card>
     </motion.section>
   );
-};
+});
+
+export const CourseTopics = dynamic(() => 
+  Promise.resolve(CourseTopicsComponent), 
+  { ssr: false }
+);

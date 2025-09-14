@@ -1,4 +1,5 @@
 import { memo } from "react";
+import dynamic from "next/dynamic";
 import { cn } from "@/shared/lib/utils";
 import { Container, Section } from "@/shared/ui/custom";
 import type { FeatureItem } from "@/shared/config/home";
@@ -11,7 +12,7 @@ export interface FeaturesSectionProps {
   config: FeaturesSectionConfig;
 }
 
-export const FeaturesSection = ({ config }: FeaturesSectionProps) => {
+const FeaturesSectionComponent = memo(({ config }: FeaturesSectionProps) => {
   const { features } = config;
   const total = features.length;
 
@@ -42,7 +43,12 @@ export const FeaturesSection = ({ config }: FeaturesSectionProps) => {
       </Container>
     </Section>
   );
-}
+});
+
+export const FeaturesSection = dynamic(
+  () => Promise.resolve(FeaturesSectionComponent),
+  { ssr: false }
+);
 
 type FeatureProps = FeatureItem & { idx: number; total: number };
 
@@ -83,7 +89,5 @@ const Feature = ({ title, description, Icon }: FeatureProps) => {
     </li>
   );
 };
-
-Feature.displayName = "Feature";
 
 const MemoFeature = memo(Feature);

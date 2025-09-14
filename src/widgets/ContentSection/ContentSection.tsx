@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+import dynamic from "next/dynamic";
 import { Sparkles } from "lucide-react";
 import { Container, Section } from "@/shared/ui/custom";
 import type { ReactNode } from "react";
@@ -38,6 +40,7 @@ export type ContentSectionProps = {
     sm?: number;
     lg?: number;
   };
+  itemClassName?: string;
   itemsGridCols?: {
     sm?: number;
     lg?: number;
@@ -138,10 +141,11 @@ function ItemList({
 }
 
 // Основной переиспользуемый компонент
-export const ContentSection = ({
+const ContentSectionComponent = memo(({
   config,
   className,
   gridCols = { sm: 1, lg: 3 },
+  itemClassName,
   itemsGridCols,
 }: ContentSectionProps) => {
   const { sm, lg } = getGridCols(config.blocks?.length || 0, gridCols);
@@ -216,4 +220,9 @@ export const ContentSection = ({
       </Container>
     </Section>
   );
-};
+});
+
+export const ContentSection = dynamic(() => 
+  Promise.resolve(ContentSectionComponent), 
+  { ssr: false }
+);

@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+import dynamic from "next/dynamic";
 import { cn } from "@/shared/lib";
 import { Container, Section } from "@/shared/ui/custom";
 import { TextGenerateEffect, TextHoverEffect } from "@/shared/ui/lib";
@@ -16,7 +18,7 @@ export type IntroWithDescProps = {
   className?: string;
 };
 
-export const IntroWithDesc = ({ config, className }: IntroWithDescProps) => {
+const IntroWithDescComponent = memo(({ config, className }: IntroWithDescProps) => {
   const { title, description, description_2, description_3 } = config;
 
   return (
@@ -52,4 +54,9 @@ export const IntroWithDesc = ({ config, className }: IntroWithDescProps) => {
       </Section>
     </div>
   );
-};
+});
+
+export const IntroWithDesc = dynamic(() => 
+  Promise.resolve(IntroWithDescComponent), 
+  { ssr: false }
+);

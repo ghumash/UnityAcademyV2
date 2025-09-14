@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
+import dynamic from "next/dynamic";
 import { PersonCard } from "@/entities/person";
 import { Section, Container } from "@/shared/ui/custom";
 import type { TeamMember } from "@/shared/lib/i18n/directories/about/types";
@@ -15,7 +16,7 @@ export type TeamSectionProps = {
   config: TeamSectionConfig;
 };
 
-export const TeamSection = React.memo(({ config }: TeamSectionProps) => {
+const TeamSectionComponent = memo(({ config }: TeamSectionProps) => {
   const { title, emptyState, members } = config;
 
   return (
@@ -43,4 +44,7 @@ export const TeamSection = React.memo(({ config }: TeamSectionProps) => {
   );
 });
 
-TeamSection.displayName = "TeamSection";
+export const TeamSection = dynamic(() => 
+  Promise.resolve(TeamSectionComponent), 
+  { ssr: false }
+);

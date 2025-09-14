@@ -1,6 +1,8 @@
 "use client";
 
 import * as React from "react";
+import { memo } from "react";
+import dynamic from "next/dynamic";
 import {
   useAnimate,
   type AnimationSequence,
@@ -28,12 +30,12 @@ const TAG_IDS = [
 
 export type TagId = (typeof TAG_IDS)[number];
 
-export function CallToAction({
+const CallToActionComponent = memo(({
   title,
   subtitle,
   children,
   activeTagId,
-}: CallToActionProps) {
+}: CallToActionProps) => {
   const [scope, animate] = useAnimate();
   const controlsRef = React.useRef<AnimationPlaybackControls | null>(null);
 
@@ -255,7 +257,12 @@ export function CallToAction({
       </div>
     </HighlightGroup>
   );
-}
+});
+
+export const CallToAction = dynamic(() => 
+  Promise.resolve(CallToActionComponent), 
+  { ssr: false }
+);
 
 /* Вспомогательные элементы */
 function Tag({
