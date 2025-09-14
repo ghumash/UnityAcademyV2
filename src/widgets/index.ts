@@ -20,4 +20,3 @@ export * from "./ContactTilesSection/ContactTilesSection";
 export * from "./SmartForm/SmartForm";
 export * from "./CallToAction/CallToAction";
 export * from "./IntroWithDesc/IntroWithDesc";
-export * from "./Footer/Footer";
