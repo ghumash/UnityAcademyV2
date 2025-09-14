@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import { useForm, type Path } from "react-hook-form";
 import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -62,7 +63,7 @@ type SmartFormProps<TSchema extends z.ZodTypeAny> = {
   errorText?: string;
 };
 
-const SmartFormComponent = function SmartForm<TSchema extends z.ZodTypeAny>({
+function SmartFormComponent<TSchema extends z.ZodTypeAny>({
   schema,
   action,
   method = "POST",
@@ -293,10 +294,8 @@ const SmartFormComponent = function SmartForm<TSchema extends z.ZodTypeAny>({
   );
 }
 
-// Экспортируем обычную версию для внутреннего использования
-export { SmartFormComponent };
-
-// Lazy export для ленивой загрузки
-export const SmartForm = React.lazy(() => 
-  Promise.resolve({ default: SmartFormComponent })
+// Lazy версия для случаев, когда не нужны дженерики
+export const SmartForm = dynamic(() => 
+  Promise.resolve(SmartFormComponent), 
+  { ssr: false }
 );

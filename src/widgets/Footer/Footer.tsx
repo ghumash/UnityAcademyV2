@@ -2,6 +2,7 @@
 
 import React from "react";
 import type { ComponentProps, ReactNode } from "react";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import { Container, Section } from "@/shared/ui/custom";
 import Link from "next/link";
@@ -28,8 +29,7 @@ export interface FooterProps {
   description: string;
 }
 
-const FooterComponent = React.memo(
-  ({ sections, copyright, description }: FooterProps) => {
+const FooterComponent = ({ sections, copyright, description }: FooterProps) => {
     return (
       <Section as="footer" role="contentinfo" aria-labelledby="footer-heading">
         <Container>
@@ -109,17 +109,11 @@ const FooterComponent = React.memo(
         </Container>
       </Section>
     );
-  }
-);
+};
 
-FooterComponent.displayName = "Footer";
-
-// Экспортируем обычную версию для внутреннего использования
-export { FooterComponent };
-
-// Lazy export для ленивой загрузки
-export const Footer = React.lazy(() => 
-  Promise.resolve({ default: FooterComponent })
+export const Footer = dynamic(() => 
+  Promise.resolve(FooterComponent), 
+  { ssr: false }
 );
 
 /** Renders a single footer link with correct component (Link vs <a>) and a11y */

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import {
   SliderBtnGroup,
   ProgressSlider,
@@ -155,10 +156,7 @@ const CarouselComponent = ({
   );
 };
 
-// Экспортируем обычную версию для внутреннего использования
-export { CarouselComponent };
-
-// Lazy export для ленивой загрузки
-export const Carousel = React.lazy(() => 
-  Promise.resolve({ default: CarouselComponent })
+export const Carousel = dynamic(() => 
+  Promise.resolve(CarouselComponent), 
+  { ssr: false }
 );

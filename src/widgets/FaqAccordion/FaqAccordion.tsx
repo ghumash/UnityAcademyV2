@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import * as Accordion from "@radix-ui/react-accordion";
 import { Minus, Plus } from "lucide-react";
@@ -122,7 +123,7 @@ const AccordionItemComponent: React.FC<AccordionItemProps> = ({
   </Accordion.Item>
 );
 
-const FaqAccordionComponent = function FaqAccordion({
+const FaqAccordionComponent = ({
   data,
   className,
   title,
@@ -131,7 +132,7 @@ const FaqAccordionComponent = function FaqAccordion({
   answerClassName,
   allowMultiple = false,
   showTimestamp = false,
-}: FaqAccordionProps) {
+}: FaqAccordionProps) => {
   const shouldReduceMotion = useReducedMotion();
   const [openItems, setOpenItems] = React.useState<string[]>([]);
 
@@ -195,12 +196,9 @@ const FaqAccordionComponent = function FaqAccordion({
       )}
     </div>
   );
-}
+};
 
-// Экспортируем обычную версию для внутреннего использования
-export { FaqAccordionComponent };
-
-// Lazy export для ленивой загрузки
-export const FaqAccordion = React.lazy(() => 
-  Promise.resolve({ default: FaqAccordionComponent })
+export const FaqAccordion = dynamic(() => 
+  Promise.resolve(FaqAccordionComponent), 
+  { ssr: false }
 );

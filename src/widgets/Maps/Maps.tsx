@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useMemo, type CSSProperties } from "react";
+import dynamic from "next/dynamic";
 import { Button } from "@/shared/ui";
 import { cn } from "@/shared/lib/utils";
 import { ExternalLink } from "lucide-react";
@@ -10,7 +13,7 @@ type Props = {
   className?: string;
 };
 
-const MapsComponent = React.memo(({
+const MapsComponent = ({
   height = 400,
   zoom = 19,
   address,
@@ -68,14 +71,9 @@ const MapsComponent = React.memo(({
       </div>
     </div>
   );
-});
+};
 
-MapsComponent.displayName = "Maps";
-
-// Экспортируем обычную версию для внутреннего использования
-export { MapsComponent };
-
-// Lazy export для ленивой загрузки
-export const Maps = React.lazy(() => 
-  Promise.resolve({ default: MapsComponent })
+export const Maps = dynamic(() => 
+  Promise.resolve(MapsComponent), 
+  { ssr: false }
 );

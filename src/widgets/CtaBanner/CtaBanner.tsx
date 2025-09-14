@@ -1,6 +1,8 @@
 "use client";
 
-import { memo, useId, lazy } from "react";
+import React from "react";
+import { memo, useId } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { cn } from "@/shared/lib";
 import { Button } from "@/shared/ui";
@@ -114,12 +116,7 @@ const CtaBannerComponent = memo(function CtaBanner({
   );
 });
 
-CtaBannerComponent.displayName = "CtaBanner";
-
-// Экспортируем обычную версию для внутреннего использования
-export { CtaBannerComponent };
-
-// Lazy export для ленивой загрузки
-export const CtaBanner = lazy(() => 
-  Promise.resolve({ default: CtaBannerComponent })
+export const CtaBanner = dynamic(() => 
+  Promise.resolve(CtaBannerComponent), 
+  { ssr: false }
 );

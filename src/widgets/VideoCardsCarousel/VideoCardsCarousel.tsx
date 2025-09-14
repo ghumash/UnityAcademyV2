@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import { Container, Section } from "@/shared/ui/custom";
 import { Card, Carousel } from "@/shared/ui/lib";
 import type { StudentPromo } from "@/shared/config/home";
@@ -48,10 +49,7 @@ const VideoCardsCarouselComponent = React.memo(function VideoCardsCarousel({
   );
 });
 
-// Экспортируем обычную версию для внутреннего использования
-export { VideoCardsCarouselComponent };
-
-// Lazy export для ленивой загрузки
-export const VideoCardsCarousel = React.lazy(() => 
-  Promise.resolve({ default: VideoCardsCarouselComponent })
+export const VideoCardsCarousel = dynamic(() => 
+  Promise.resolve(VideoCardsCarouselComponent), 
+  { ssr: false }
 );

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -172,11 +173,8 @@ const NavBarComponent = React.memo(function NavBar({
   );
 });
 
-// Экспортируем обычную версию для внутреннего использования
-export { NavBarComponent };
-
-// Lazy export для ленивой загрузки
-export const NavBar = React.lazy(() => 
-  Promise.resolve({ default: NavBarComponent })
+export const NavBar = dynamic(() => 
+  Promise.resolve(NavBarComponent), 
+  { ssr: false }
 );
 
