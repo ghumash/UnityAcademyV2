@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
 import type { Locale } from "@/shared/lib/i18n";
-import { Footer, NavBar } from "@/widgets";
+import { NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
 import { getNavigationConfig, getFooterConfig, siteConfig, absoluteUrl } from "@/shared/config/common";
@@ -49,11 +49,7 @@ export default async function LocaleLayout({
           locale={locale as Locale}
           applyButtonLabel={navigation.applyButton.label}
         />
-        <Footer
-          sections={footer.sections}
-          copyright={footer.copyright}
-          description={footer.description}
-        />
+        
       </ThemeProvider>
     </>
   );
