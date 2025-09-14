@@ -6,6 +6,7 @@ export type CoursesDict = {
   };
   list: {
     graphic_design: CourseDict;
+    scratch: CourseDict;
   };
   single: SingleDict;
 };
@@ -52,6 +53,7 @@ export type CourseDict = {
     registerFreeLessonButtonText: string;
     certificate: string;
     theme: Theme;
+    formatLabel: string;
   };
   instructor: {
     name: string;

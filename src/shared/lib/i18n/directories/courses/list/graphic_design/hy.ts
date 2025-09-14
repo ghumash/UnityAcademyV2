@@ -18,6 +18,7 @@ export const graphic_design: CourseDict = {
     registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
     certificate: "Սերտիֆիկատ",
     theme: "rose",
+    formatLabel: "Ֆորմատ",
   },
   instructor: {
     name: "Անա Պետրովա",

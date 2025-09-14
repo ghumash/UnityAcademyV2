@@ -17,6 +17,7 @@ export const graphic_design: CourseDict = {
     registerFreeLessonButtonText: "Register for Free Lesson",
     certificate: "Certificate",
     theme: "rose",
+    formatLabel: "Format",
   },
   instructor: {
     name: "Anna Petrova",

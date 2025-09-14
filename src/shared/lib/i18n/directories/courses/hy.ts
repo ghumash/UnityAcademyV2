@@ -1,5 +1,6 @@
 import { coursesSection } from "./general/coursesSection/hy";
 import { graphic_design } from "./list/graphic_design/hy";
+import { scratch } from "./list/scratch/hy";
 import { single } from "./single/hy";
 import type { CoursesDict } from "./types";
 
@@ -9,6 +10,7 @@ export const courses: CoursesDict = {
   },
   list: {
     graphic_design,
+    scratch,
   },
   single,
 };
