@@ -36,7 +36,7 @@ export async function generateMetadata({
 export default async function AboutPage({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
   const t = await getT(locale);

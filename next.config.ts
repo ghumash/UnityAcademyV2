@@ -1,5 +1,14 @@
 import type { NextConfig } from "next";
 
+// Bundle analyzer
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+  openAnalyzer: true,
+  analyzerMode: "static",
+  reportFilename: "./analyze/client.html",
+  defaultSizes: "gzip",
+});
+
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com",
@@ -46,14 +55,14 @@ const securityHeaders =
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
-  
+
   // Оптимизация бандла
   experimental: {
     optimizePackageImports: [
       "@tabler/icons-react",
       "motion/react",
       "date-fns",
-      "lucide-react"
+      "lucide-react",
     ],
     turbo: {
       rules: {
@@ -67,7 +76,7 @@ const nextConfig: NextConfig = {
 
   // Сжатие и оптимизация
   compress: true,
-  
+
   // Настройки изображений с оптимизацией
   images: {
     remotePatterns: [
@@ -83,19 +92,7 @@ const nextConfig: NextConfig = {
   },
 
   // Webpack оптимизации
-  webpack: (config, { dev, isServer }) => {
-    // Анализ бандла в development
-    if (dev && !isServer && process.env.ANALYZE === "true") {
-      const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-      config.plugins.push(
-        new BundleAnalyzerPlugin({
-          analyzerMode: "server",
-          analyzerPort: 8888,
-          openAnalyzer: true,
-        })
-      );
-    }
-
+  webpack: (config, { dev }) => {
     // Оптимизация для production
     if (!dev) {
       config.optimization = {
@@ -123,7 +120,7 @@ const nextConfig: NextConfig = {
               priority: 15,
             },
             motion: {
-              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+              test: /[\\/]node_modules[\\/]motion[\\/]/,
               name: "motion",
               chunks: "all",
               priority: 15,
@@ -166,4 +163,5 @@ const nextConfig: NextConfig = {
   },
 };
 
+module.exports = withBundleAnalyzer({});
 export default nextConfig;
