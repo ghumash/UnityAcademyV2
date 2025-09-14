@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { locales, type Locale } from "@/shared/lib/i18n";
+import { COURSE_DATA } from "@/entities/course";
 
 function pathForLocale(locale: Locale, path: `/${string}` | "/") {
   return path === "/" ? `/${locale}` : `/${locale}${path}`;
@@ -62,15 +63,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const courseIds = [
-    "web_development",
-    "graphic_design",
-    "scratch",
-    "smm",
-    "python",
-    "android",
-    "ui_ux",
-    "hr",
-    "soft_skills",
+    COURSE_DATA.web_development.key,
+    COURSE_DATA.graphic_design.key,
+    COURSE_DATA.scratch.key,
+    COURSE_DATA.smm.key,
+    COURSE_DATA.python.key,
+    COURSE_DATA.android.key,
+    COURSE_DATA.ui_ux.key,
+    COURSE_DATA.hr.key,
+    COURSE_DATA.soft_skills.key,
   ];
   for (const locale of locales) {
     for (const courseId of courseIds) {

@@ -1,3 +1,12 @@
+import type { CourseKey } from "@/entities/course";
+
+export type CourseOption = string;
+
+export type CourseConfig = {
+  label: string;
+  list: Record<CourseKey, CourseOption>;
+};
+
 export type FormsDict = {
   applyForm: {
     buttonLabel: string;
@@ -6,20 +15,7 @@ export type FormsDict = {
     fullname: string;
     email: string;
     phone: string;
-    course: {
-      label: string;
-      list: {
-        web_development: string;
-        graphic_design: string;
-        scratch: string;
-        smm: string;
-        python: string;
-        android: string;
-        ui_ux: string;
-        hr: string;
-        soft_skills: string;
-      };
-    };
+    course: CourseConfig;
   };
   feedbackForm: {
     buttonLabel: string;

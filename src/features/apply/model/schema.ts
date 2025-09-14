@@ -1,16 +1,8 @@
 import { z } from "zod";
+import { COURSE_DATA } from "@/entities/course";
 
 // Типы курсов на основе существующих значений
-export type CourseValue =
-  | "Վեբ ծրագրավորում"
-  | "Գրաֆիկ դիզայն: Photoshop, Illustrator, Canva"
-  | "Երեխաների ծրագրավորում"
-  | "SMM և Digital Marketing"
-  | "Python ծրագրավորում"
-  | "Android ծրագրավորում"
-  | "UI/UX դիզայն"
-  | "HR"
-  | "Soft Skills";
+export type CourseValue = typeof COURSE_DATA[keyof typeof COURSE_DATA]["value"];
 
 export const ApplySchema = z.object({
   fullname: z.string().min(2, "Մուտքագրեք անուն ազգանունը"),

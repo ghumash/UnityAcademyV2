@@ -2,6 +2,7 @@ import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 import { siteConfig } from "@/shared/config/common";
 import type { Course } from "@/widgets/Courses/types";
+import { COURSE_DATA } from "@/entities/course";
 
 export async function getCoursesConfig(locale: Locale) {
   const t = await getT(locale);
@@ -10,7 +11,7 @@ export async function getCoursesConfig(locale: Locale) {
     title: t("courses.general.coursesSection.title"),
     list: [
       {
-        id: "web_development",
+        id: COURSE_DATA.web_development.key,
         title: t("courses.general.coursesSection.list.0.title"),
         description: t("courses.general.coursesSection.list.0.description"),
         duration: t("courses.general.coursesSection.list.0.duration"),
@@ -18,10 +19,10 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Code2",
         theme: "blue",
-        href: `${siteConfig.routes.courses}/web_development`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.web_development.key}`,
       },
       {
-        id: "graphic_design",
+        id: COURSE_DATA.graphic_design.key,
         title: t("courses.general.coursesSection.list.1.title"),
         description: t("courses.general.coursesSection.list.1.description"),
         duration: t("courses.general.coursesSection.list.1.duration"),
@@ -29,10 +30,10 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Palette",
         theme: "rose",
-        href: `${siteConfig.routes.courses}/graphic_design`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.graphic_design.key}`,
       },
       {
-        id: "scratch",
+        id: COURSE_DATA.scratch.key,
         title: t("courses.general.coursesSection.list.2.title"),
         description: t("courses.general.coursesSection.list.2.description"),
         duration: t("courses.general.coursesSection.list.2.duration"),
@@ -40,10 +41,10 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Puzzle",
         theme: "orange",
-        href: `${siteConfig.routes.courses}/scratch`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.scratch.key}`,
       },
       {
-        id: "smm",
+        id: COURSE_DATA.smm.key,
         title: t("courses.general.coursesSection.list.3.title"),
         description: t("courses.general.coursesSection.list.3.description"),
         duration: t("courses.general.coursesSection.list.3.duration"),
@@ -51,10 +52,10 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Megaphone",
         theme: "cyan",
-        href: `${siteConfig.routes.courses}/smm`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.smm.key}`,
       },
       {
-        id: "python",
+        id: COURSE_DATA.python.key,
         title: t("courses.general.coursesSection.list.4.title"),
         description: t("courses.general.coursesSection.list.4.description"),
         duration: t("courses.general.coursesSection.list.4.duration"),
@@ -62,10 +63,10 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Workflow",
         theme: "lime",
-        href: `${siteConfig.routes.courses}/python`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.python.key}`,
       },
       {
-        id: "android",
+        id: COURSE_DATA.android.key,
         title: t("courses.general.coursesSection.list.5.title"),
         description: t("courses.general.coursesSection.list.5.description"),
         duration: t("courses.general.coursesSection.list.5.duration"),
@@ -73,10 +74,10 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "Smartphone",
         theme: "emerald",
-        href: `${siteConfig.routes.courses}/android`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.android.key}`,
       },
       {
-        id: "ui_ux",
+        id: COURSE_DATA.ui_ux.key,
         title: t("courses.general.coursesSection.list.6.title"),
         description: t("courses.general.coursesSection.list.6.description"),
         duration: t("courses.general.coursesSection.list.6.duration"),
@@ -84,10 +85,10 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "LayoutDashboard",
         theme: "fuchsia",
-        href: `${siteConfig.routes.courses}/ui_ux`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.ui_ux.key}`,
       },
       {
-        id: "hr",
+        id: COURSE_DATA.hr.key,
         title: t("courses.general.coursesSection.list.7.title"),
         description: t("courses.general.coursesSection.list.7.description"),
         duration: t("courses.general.coursesSection.list.7.duration"),
@@ -95,10 +96,10 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "UsersRound",
         theme: "amber",
-        href: `${siteConfig.routes.courses}/hr`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.hr.key}`,
       },
       {
-        id: "soft_skills",
+        id: COURSE_DATA.soft_skills.key,
         title: t("courses.general.coursesSection.list.8.title"),
         description: t("courses.general.coursesSection.list.8.description"),
         duration: t("courses.general.coursesSection.list.8.duration"),
@@ -106,7 +107,7 @@ export async function getCoursesConfig(locale: Locale) {
         format: "offline",
         icon: "MessageSquareText",
         theme: "pink",
-        href: `${siteConfig.routes.courses}/soft_skills`,
+        href: `${siteConfig.routes.courses}/${COURSE_DATA.soft_skills.key}`,
       },
     ] as const satisfies readonly Course[],
     levels: {

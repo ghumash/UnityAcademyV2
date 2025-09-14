@@ -1,5 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
+import { COURSE_DATA } from "@/entities/course";
 
 export async function getFormConfig(locale: Locale) {
   const t = await getT(locale);
@@ -16,39 +17,39 @@ export async function getFormConfig(locale: Locale) {
         label: t("common.forms.applyForm.course.label"),
         list: {
           web_development: {
-            value: "Վեբ ծրագրավորում",
+            value: COURSE_DATA.web_development.value,
             label: t("common.forms.applyForm.course.list.web_development"),
           },
           graphic_design: {
-            value: "Գրաֆիկ դիզայն",
+            value: COURSE_DATA.graphic_design.value,
             label: t("common.forms.applyForm.course.list.graphic_design"),
           },
           scratch: {
-            value: "Երեխաների ծրագրավորում",
+            value: COURSE_DATA.scratch.value,
             label: t("common.forms.applyForm.course.list.scratch"),
           },
           smm: {
-            value: "SMM և Digital Marketing",
+            value: COURSE_DATA.smm.value,
             label: t("common.forms.applyForm.course.list.smm"),
           },
           python: {
-            value: "Python ծրագրավորում",
+            value: COURSE_DATA.python.value,
             label: t("common.forms.applyForm.course.list.python"),
           },
           android: {
-            value: "Android ծրագրավորում",
+            value: COURSE_DATA.android.value,
             label: t("common.forms.applyForm.course.list.android"),
           },
           ui_ux: {
-            value: "UI/UX դիզայն",
+            value: COURSE_DATA.ui_ux.value,
             label: t("common.forms.applyForm.course.list.ui_ux"),
           },
           hr: {
-            value: "HR",
+            value: COURSE_DATA.hr.value,
             label: t("common.forms.applyForm.course.list.hr"),
           },
           soft_skills: {
-            value: "Soft Skills",
+            value: COURSE_DATA.soft_skills.value,
             label: t("common.forms.applyForm.course.list.soft_skills"),
           },
         },
