@@ -1,8 +1,7 @@
 "use client";
 
 import * as React from "react";
-import dynamic from "next/dynamic";
-import { useForm, type Path } from "react-hook-form";
+import { useForm, type Path, type FieldValues } from "react-hook-form";
 import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -50,9 +49,9 @@ type FieldDef<TValues> = {
   options?: Option[];
 };
 
-type AnySchema = z.ZodTypeAny;
+type AnySchema = z.ZodType<any, any, any>;
 
-type SmartFormProps<TSchema extends z.ZodTypeAny> = {
+type SmartFormProps<TSchema extends z.ZodType<any, any, any>> = {
   schema: TSchema;
   action: string;
   method?: "POST" | "PUT";
@@ -93,7 +92,7 @@ function SmartFormInner<TSchema extends AnySchema>(
     formState: { isSubmitting, errors },
   } = useForm<any>({
     resolver: zodResolver(schema as any),
-    defaultValues: defaults as Values | undefined,
+    defaultValues: defaults as any,
     mode: "onSubmit",
   });
 

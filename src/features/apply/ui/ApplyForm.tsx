@@ -135,7 +135,7 @@ export const ApplyForm = ({
         phone: "",
         course: defaultCourse || "",
       }}
-      transform={(v) => ({
+      transform={(v: any) => ({
         fullname: v.fullname.trim(),
         email: v.email.trim(),
         phone: v.phone.trim(),

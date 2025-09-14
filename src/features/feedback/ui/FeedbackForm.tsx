@@ -69,7 +69,7 @@ export const FeedbackForm = ({ config }: FeedbackFormProps) => {
         email: "",
         message: "",
       }}
-      transform={(v) => ({
+      transform={(v: any) => ({
         name: v.name.trim(),
         surname: v.surname.trim(),
         email: v.email.trim(),
