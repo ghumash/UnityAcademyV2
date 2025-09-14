@@ -13,7 +13,7 @@ export const forms: FormsDict = {
       list: {
         web_development: "Վեբ ծրագրավորում",
         graphic_design: "Գրաֆիկ դիզայն",
-        scratch: "Երեխաների ծրագրավորում",
+        scratch: "Ծրագրավորում երեխաների համար",
         smm: "SMM և Digital Marketing",
         python: "Python ծրագրավորում",
         android: "Android ծրագրավորում",

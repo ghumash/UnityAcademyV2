@@ -35,7 +35,7 @@ export const COURSE_DATA = {
   scratch: {
     key: "scratch" as const,
     displayName: "Scratch Programming",
-    value: "Երեխաների ծրագրավորում",
+    value: "Ծրագրավորում երեխաների համար",
     position: { top: "-3%", left: "40%" },
   },
   smm: {
