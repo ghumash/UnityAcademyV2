@@ -7,6 +7,7 @@ export type CoursesDict = {
   list: {
     graphic_design: CourseDict;
     scratch: CourseDict;
+    web_development: CourseDict;
   };
   single: SingleDict;
 };

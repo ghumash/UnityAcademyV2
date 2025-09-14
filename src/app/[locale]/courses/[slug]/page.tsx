@@ -44,6 +44,7 @@ export default async function CoursePage({
   const formConfig = await getFormConfig(locale);
   const coursePageConfig = await getCoursePageConfig(locale, slug);
   const courseExists = courses.list.some((course) => course.id === slug);
+  
   if (!courseExists) {
     notFound();
   }
