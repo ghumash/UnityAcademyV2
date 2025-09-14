@@ -8,6 +8,12 @@ export type CoursesDict = {
     graphic_design: CourseDict;
     scratch: CourseDict;
     web_development: CourseDict;
+    smm: CourseDict;
+    python: CourseDict;
+    android: CourseDict;
+    ui_ux: CourseDict;
+    hr: CourseDict;
+    soft_skills: CourseDict;
   };
   single: SingleDict;
 };

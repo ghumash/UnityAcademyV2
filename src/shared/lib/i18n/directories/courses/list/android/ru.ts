@@ -1,0 +1,95 @@
+import type { CourseDict } from "../../types";
+
+export const android: CourseDict = {
+  courseHeroSection: {
+    title: "Android программирование: Java & Kotlin",
+    description:
+      "Изучи разработку Android приложений на Java и Kotlin. Создавай мобильные приложения, работай с Google Play Store и развивай навыки мобильной разработки.",
+    level: "beginner",
+    format: "offline",
+    duration: "6 месяцев",
+    lessonsCount: "48 Уроков",
+    projectsCount: "12 Проектов",
+    certificateIncluded: true,
+    price: "110000 ֏",
+    originalPrice: "140000 ֏",
+    sale: "21% Скидка",
+    registerCourseButtonText: "Записаться на курс",
+    registerFreeLessonButtonText: "Записаться на бесплатный урок",
+    certificate: "Сертификат",
+    theme: "emerald",
+    formatLabel: "Формат",
+  },
+  instructor: {
+    name: "Артак Григорян",
+    role: "Senior Android Developer & Mobile Architect",
+    bio: "Опытный Android разработчик с 8+ летним опытом в разработке мобильных приложений. Специализируюсь на Java, Kotlin, Android SDK и современной мобильной архитектуре.",
+    experience: {
+      senior: {
+        title: "Senior Android Developer",
+        company: "MobileTech Armenia",
+        period: "2020 - настоящее время",
+        summary:
+          "Архитектура и разработка Android приложений, руководство командой, код-ревью, публикация 30+ приложений.",
+      },
+      mid: {
+        title: "Android Developer",
+        company: "AppStudio Yerevan",
+        period: "2018 - 2020",
+        summary:
+          "Нативные Android приложения, реализация Material Design, интеграция REST API, работа с Google Services.",
+      },
+      junior: {
+        title: "Junior Mobile Developer",
+        company: "DevHub Armenia",
+        period: "2016 - 2018",
+        summary:
+          "Основы Android, программирование на Java, реализация UI/UX, разработка базовых приложений.",
+      },
+    },
+    experienceLabel: "Опыт работы",
+    socialNetworksLabel: "Социальные сети",
+    showDetails: "Показать детали",
+    hideDetails: "Скрыть детали",
+  },
+  topics: {
+    title: "Темы курса",
+    list: [
+      "Тема 1: Введение в Android разработку, Android Studio",
+      "Тема 2: Основы Java для Android",
+      "Тема 3: Введение в язык Kotlin",
+      "Тема 4: Android SDK и API уровни",
+      "Тема 5: Activities и Lifecycle",
+      "Тема 6: Fragments и Navigation",
+      "Тема 7: Layouts и Views",
+      "Тема 8: Material Design и UI/UX",
+      "Тема 9: RecyclerView и Adapters",
+      "Тема 10: Intents и передача данных",
+      "Тема 11: SharedPreferences и хранение данных",
+      "Тема 12: База данных SQLite",
+      "Тема 13: Room Database",
+      "Тема 14: Сетевые запросы и HTTP",
+      "Тема 15: JSON парсинг и Retrofit",
+      "Тема 16: Изображения и Picasso/Glide",
+      "Тема 17: Фоновые задачи и AsyncTask",
+      "Тема 18: Services и Broadcast Receivers",
+      "Тема 19: Уведомления и Push сообщения",
+      "Тема 20: Location Services и карты",
+      "Тема 21: Камера и медиа",
+      "Тема 22: Разрешения и безопасность",
+      "Тема 23: Тестирование и отладка",
+      "Тема 24: Публикация и Google Play Store",
+    ],
+  },
+  conditions: {
+    badge: "Условия курса",
+    community: {
+      title: "Стать частью",
+      description: "Сообщества Android разработчиков",
+    },
+  },
+  cta: {
+    title: "Android программирование: Заявка на регистрацию",
+    subtitle: "Начни свою карьеру в мобильной разработке",
+  },
+};
