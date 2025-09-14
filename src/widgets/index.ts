@@ -1,4 +1,3 @@
-export { Footer } from "./Footer/Footer";
 export * from "./GlowingGrid/GlowingGrid";
 export * from "./Hero/Hero";
 export * from "./NavBar/NavBar";
@@ -21,3 +20,4 @@ export * from "./ContactTilesSection/ContactTilesSection";
 export * from "./SmartForm/SmartForm";
 export * from "./CallToAction/CallToAction";
 export * from "./IntroWithDesc/IntroWithDesc";
+export * from "./Footer/Footer";
