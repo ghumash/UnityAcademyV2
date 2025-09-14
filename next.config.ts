@@ -1,14 +1,5 @@
 import type { NextConfig } from "next";
 
-// Bundle analyzer
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-  openAnalyzer: true,
-  analyzerMode: "static",
-  reportFilename: "./analyze/client.html",
-  defaultSizes: "gzip",
-});
-
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com",
@@ -163,4 +154,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default nextConfig;
