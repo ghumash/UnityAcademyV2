@@ -34,14 +34,37 @@ export const forms: FormsDict = {
     message: "Сообщение",
   },
   validation: {
-    fullnameRequired: "Введите имя и фамилию",
-    emailInvalid: "Неверный email адрес",
-    phoneRequired: "Введите номер телефона",
-    telegramRequired: "Введите Telegram username",
-    telegramInvalid: "Telegram username должен начинаться с @ и быть длиной 5-32 символа",
-    courseRequired: "Выберите курс",
-    nameRequired: "Введите имя",
-    surnameRequired: "Введите фамилию",
-    messageRequired: "Введите сообщение",
+    name: {
+      required: "Введите ваше имя",
+      minLength: "Имя должно содержать минимум 2 символа",
+    },
+    surname: {
+      required: "Введите вашу фамилию", 
+      minLength: "Фамилия должна содержать минимум 2 символа",
+    },
+    fullname: {
+      required: "Введите имя и фамилию",
+      minLength: "Имя и фамилия должны содержать минимум 2 символа",
+    },
+    email: {
+      required: "Введите email адрес",
+      invalid: "Неверный email",
+    },
+    phone: {
+      required: "Введите номер телефона",
+      minLength: "Номер телефона должен содержать минимум 5 символов",
+    },
+    telegram: {
+      required: "Введите Telegram username",
+      invalid: "Telegram username должен начинаться с @ и содержать 5-32 символа",
+    },
+    message: {
+      required: "Напишите сообщение",
+      minLength: "Напишите сообщение (мин. 5 символов)",
+    },
+    course: {
+      required: "Выберите курс",
+      invalid: "Неверный курс",
+    },
   },
 };

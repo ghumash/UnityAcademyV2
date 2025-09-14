@@ -34,14 +34,37 @@ export const forms: FormsDict = {
     message: "Message",
   },
   validation: {
-    fullnameRequired: "Please enter your full name",
-    emailInvalid: "Invalid email address",
-    phoneRequired: "Please enter your phone number",
-    telegramRequired: "Please enter your Telegram username",
-    telegramInvalid: "Telegram username must start with @ and be 5-32 characters long",
-    courseRequired: "Please select a course",
-    nameRequired: "Please enter your name",
-    surnameRequired: "Please enter your surname",
-    messageRequired: "Please enter your message",
+    name: {
+      required: "Enter your name",
+      minLength: "Name must be at least 2 characters",
+    },
+    surname: {
+      required: "Enter your surname", 
+      minLength: "Surname must be at least 2 characters",
+    },
+    fullname: {
+      required: "Enter full name",
+      minLength: "Full name must be at least 2 characters",
+    },
+    email: {
+      required: "Enter email address",
+      invalid: "Invalid email",
+    },
+    phone: {
+      required: "Enter phone number",
+      minLength: "Phone number must be at least 5 characters",
+    },
+    telegram: {
+      required: "Enter Telegram username",
+      invalid: "Telegram username must start with @ and be 5-32 characters",
+    },
+    message: {
+      required: "Write a message",
+      minLength: "Write a message (min. 5 characters)",
+    },
+    course: {
+      required: "Select a course",
+      invalid: "Invalid course",
+    },
   },
 };

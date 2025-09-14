@@ -28,14 +28,37 @@ export type FormsDict = {
     message: string;
   };
   validation: {
-    fullnameRequired: string;
-    emailInvalid: string;
-    phoneRequired: string;
-    telegramRequired: string;
-    telegramInvalid: string;
-    courseRequired: string;
-    nameRequired: string;
-    surnameRequired: string;
-    messageRequired: string;
+    name: {
+      required: string;
+      minLength: string;
+    };
+    surname: {
+      required: string;
+      minLength: string;
+    };
+    fullname: {
+      required: string;
+      minLength: string;
+    };
+    email: {
+      required: string;
+      invalid: string;
+    };
+    phone: {
+      required: string;
+      minLength: string;
+    };
+    telegram: {
+      required: string;
+      invalid: string;
+    };
+    message: {
+      required: string;
+      minLength: string;
+    };
+    course: {
+      required: string;
+      invalid: string;
+    };
   };
 };

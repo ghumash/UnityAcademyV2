@@ -34,14 +34,37 @@ export const forms: FormsDict = {
     message: "Հաղորդագրություն",
   },
   validation: {
-    fullnameRequired: "Մուտքագրեք անուն ազգանունը",
-    emailInvalid: "Սխալ email",
-    phoneRequired: "Մուտքագրեք հեռախոսահամարը",
-    telegramRequired: "Մուտքագրեք Telegram username",
-    telegramInvalid: "Telegram username-ը պետք է սկսվի @ նշանով և լինի 5-32 նիշ",
-    courseRequired: "Սխալ դասընթաց",
-    nameRequired: "Մուտքագրեք անունը",
-    surnameRequired: "Մուտքագրեք ազգանունը",
-    messageRequired: "Մուտքագրեք հաղորդագրությունը",
+    name: {
+      required: "Մուտքագրեք ձեր անունը",
+      minLength: "Անունը պետք է լինի նվազագույնը 2 նիշ",
+    },
+    surname: {
+      required: "Մուտքագրեք ձեր ազգանունը", 
+      minLength: "Ազգանունը պետք է լինի նվազագույնը 2 նիշ",
+    },
+    fullname: {
+      required: "Մուտքագրեք անուն ազգանունը",
+      minLength: "Անուն ազգանունը պետք է լինի նվազագույնը 2 նիշ",
+    },
+    email: {
+      required: "Մուտքագրեք email հասցեն",
+      invalid: "Սխալ email",
+    },
+    phone: {
+      required: "Մուտքագրեք հեռախոսահամարը",
+      minLength: "Հեռախոսահամարը պետք է լինի նվազագույնը 5 նիշ",
+    },
+    telegram: {
+      required: "Մուտքագրեք Telegram username",
+      invalid: "Telegram username-ը պետք է սկսվի @ նշանով և լինի 5-32 նիշ",
+    },
+    message: {
+      required: "Գրեք հաղորդագրություն",
+      minLength: "Գրեք հաղորդագրություն (նվազ. 5 նշան)",
+    },
+    course: {
+      required: "Ընտրեք դասընթաց",
+      invalid: "Սխալ դասընթաց",
+    },
   },
 };
