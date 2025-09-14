@@ -13,6 +13,7 @@ export async function getFormConfig(locale: Locale) {
       fullname: t("common.forms.applyForm.fullname"),
       email: t("common.forms.applyForm.email"),
       phone: t("common.forms.applyForm.phone"),
+      telegram: t("common.forms.applyForm.telegram"),
       course: {
         label: t("common.forms.applyForm.course.label"),
         list: {

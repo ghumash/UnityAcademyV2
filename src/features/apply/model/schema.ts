@@ -8,6 +8,9 @@ export const ApplySchema = z.object({
   fullname: z.string().min(2, "Մուտքագրեք անուն ազգանունը"),
   email: z.string().email("Սխալ email"),
   phone: z.string().min(5, "Մուտքագրեք հեռախոսահամարը"),
+  telegram: z.string()
+    .min(1, "Մուտքագրեք Telegram username")
+    .regex(/^@[a-zA-Z0-9_]{5,32}$/, "Telegram username-ը պետք է սկսվի @ նշանով և լինի 5-32 նիշ"),
   course: z.string().min(2, "Սխալ դասընթաց"),
 });
 

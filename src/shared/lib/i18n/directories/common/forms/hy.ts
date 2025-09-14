@@ -8,6 +8,7 @@ export const forms: FormsDict = {
     fullname: "Անուն Ազգանուն",
     email: "Էլ. հասցե",
     phone: "Հեռախոսահամար",
+    telegram: "Telegram @username",
     course: {
       label: "Դասընթաց",
       list: {

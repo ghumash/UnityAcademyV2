@@ -15,6 +15,7 @@ export type FormsDict = {
     fullname: string;
     email: string;
     phone: string;
+    telegram: string;
     course: CourseConfig;
   };
   feedbackForm: {

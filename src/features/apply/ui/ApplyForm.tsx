@@ -29,6 +29,7 @@ interface ApplyFormConfig {
     fullname: string;
     email: string;
     phone: string;
+    telegram: string;
     course: CourseConfig;
     buttonLabel: string;
     successText: string;
@@ -51,6 +52,7 @@ export const ApplyForm = ({
     fullname,
     email,
     phone,
+    telegram,
     course,
     successText,
     errorText,
@@ -81,6 +83,12 @@ export const ApplyForm = ({
           name: "phone",
           placeholder: phone,
           autoComplete: "tel",
+          type: "text",
+        },
+        {
+          name: "telegram",
+          placeholder: telegram,
+          autoComplete: "username",
           type: "text",
         },
         {
@@ -133,12 +141,14 @@ export const ApplyForm = ({
         fullname: "",
         email: "",
         phone: "",
+        telegram: "",
         course: defaultCourse || "",
       }}
       transform={(v: any) => ({
         fullname: v.fullname.trim(),
         email: v.email.trim(),
         phone: v.phone.trim(),
+        telegram: v.telegram.trim(),
         course: v.course.trim(),
       })}
     />

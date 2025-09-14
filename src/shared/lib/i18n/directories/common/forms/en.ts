@@ -8,6 +8,7 @@ export const forms: FormsDict = {
     fullname: "Full Name",
     email: "Email Address",
     phone: "Phone Number",
+    telegram: "Telegram @username",
     course: {
       label: "Course",
       list: {
