@@ -1,17 +1,21 @@
 import { z } from "zod";
 import { COURSE_DATA, type CourseKey } from "@/entities/course";
+import type { FormsDict } from "@/shared/lib/i18n";
 
 // Типы курсов на основе значений курсов
 export type CourseValue = typeof COURSE_DATA[CourseKey]["value"];
 
-export const ApplySchema = z.object({
-  fullname: z.string().min(2, "Մուտքագրեք անուն ազգանունը"),
-  email: z.string().email("Սխալ email"),
-  phone: z.string().min(5, "Մուտքագրեք հեռախոսահամարը"),
-  telegram: z.string()
-    .min(1, "Մուտքագրեք Telegram username")
-    .regex(/^@[a-zA-Z0-9_]{5,32}$/, "Telegram username-ը պետք է սկսվի @ նշանով և լինի 5-32 նիշ"),
-  course: z.string().min(2, "Սխալ դասընթաց"),
-});
+// Функция для создания схемы с локализованными сообщениями
+export const createApplySchema = (validation: FormsDict["validation"]) => {
+  return z.object({
+    fullname: z.string().min(2, validation.fullname.minLength),
+    email: z.string().email(validation.email.invalid),
+    phone: z.string().min(5, validation.phone.minLength),
+    telegram: z.string()
+      .min(1, validation.telegram.required)
+      .regex(/^@[a-zA-Z0-9_]{5,32}$/, validation.telegram.invalid),
+    course: z.string().min(2, validation.course.invalid),
+  });
+};
 
-export type ApplyValues = z.infer<typeof ApplySchema>;
+export type ApplyValues = z.infer<ReturnType<typeof createApplySchema>>;

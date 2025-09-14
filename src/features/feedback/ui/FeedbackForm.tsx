@@ -1,65 +1,47 @@
 "use client";
 
-import { FeedbackSchema } from "@/features/feedback";
+import { createFeedbackSchema } from "@/features/feedback";
 import { SmartForm } from "@/widgets";
-
-interface FeedbackFormConfig {
-  feedbackForm: {
-    name: string;
-    surname: string;
-    email: string;
-    message: string;
-    buttonLabel: string;
-    successText: string;
-    errorText: string;
-  };
-}
+import type { FormsDict } from "@/shared/lib/i18n";
 
 interface FeedbackFormProps {
-  config: FeedbackFormConfig;
+  config: FormsDict;
 }
 
 export const FeedbackForm = ({ config }: FeedbackFormProps) => {
-  const {
-    name,
-    surname,
-    email,
-    message,
-    buttonLabel,
-    successText,
-    errorText,
-  } = config.feedbackForm;
+  const { feedbackForm, validation } = config;
+  const schema = createFeedbackSchema(validation);
   return (
     <SmartForm
-      schema={FeedbackSchema}
+      schema={schema}
       action="/api/forms/feedback"
-      buttonLabel={buttonLabel}
-      successText={successText}
-      errorText={errorText}
+      buttonLabel={feedbackForm.buttonLabel}
+      successText={feedbackForm.successText}
+      errorText={feedbackForm.errorText}
       fields={[
         {
           name: "name",
-          placeholder: name,
+          placeholder: feedbackForm.name,
           autoComplete: "given-name",
           col: "half",
           type: "text",
         },
         {
           name: "surname",
-          placeholder: surname,
+          placeholder: feedbackForm.surname,
           autoComplete: "family-name",
           col: "half",
           type: "text",
         },
         {
           name: "email",
-          placeholder: email,
+          placeholder: feedbackForm.email,
           autoComplete: "email",
           type: "email",
         },
         {
           name: "message",
-          placeholder: message,
+          placeholder: feedbackForm.message,
           type: "textarea",
         },
       ]}

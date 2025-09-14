@@ -1,10 +1,14 @@
 import { z } from "zod";
+import type { FormsDict } from "@/shared/lib/i18n";
 
-export const FeedbackSchema = z.object({
-  name: z.string().min(2, "Մուտքագրեք ձեր անունը"),
-  surname: z.string().min(2, "Մուտքագրեք ձեր ազգանունը"),
-  email: z.string().email("Սխալ email"),
-  message: z.string().min(5, "Գրեք հաղորդագրություն (նվազ. 5 նշան)"),
-});
+// Функция для создания схемы с локализованными сообщениями
+export const createFeedbackSchema = (validation: FormsDict["validation"]) => {
+  return z.object({
+    name: z.string().min(2, validation.name.minLength),
+    surname: z.string().min(2, validation.surname.minLength),
+    email: z.string().email(validation.email.invalid),
+    message: z.string().min(5, validation.message.minLength),
+  });
+};
 
-export type FeedbackValues = z.infer<typeof FeedbackSchema>;
+export type FeedbackValues = z.infer<ReturnType<typeof createFeedbackSchema>>;

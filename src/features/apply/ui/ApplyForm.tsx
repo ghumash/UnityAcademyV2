@@ -1,46 +1,15 @@
 "use client";
 
-import { ApplySchema } from "../model/schema";
+import { createApplySchema } from "../model/schema";
 import type { CourseValue } from "../model/schema";
 import { SmartForm } from "@/widgets";
-
-interface CourseOption {
-  value: string;
-  label: string;
-}
-
-interface CourseConfig {
-  label: string;
-  list: {
-    web_development: CourseOption;
-    graphic_design: CourseOption;
-    scratch: CourseOption;
-    smm: CourseOption;
-    python: CourseOption;
-    android: CourseOption;
-    ui_ux: CourseOption;
-    hr: CourseOption;
-    soft_skills: CourseOption;
-  };
-}
-
-interface ApplyFormConfig {
-  applyForm: {
-    fullname: string;
-    email: string;
-    phone: string;
-    telegram: string;
-    course: CourseConfig;
-    buttonLabel: string;
-    successText: string;
-    errorText: string;
-  };
-}
+import type { FormsDict } from "@/shared/lib/i18n";
+import { COURSE_DATA, COURSE_KEYS } from "@/entities/course";
 
 interface ApplyFormProps {
   defaultCourse?: CourseValue;
   hideCourseSelect?: boolean;
-  config: ApplyFormConfig;
+  config: FormsDict;
 }
 
 export const ApplyForm = ({
@@ -48,92 +17,50 @@ export const ApplyForm = ({
   hideCourseSelect = false,
   config,
 }: ApplyFormProps) => {
-  const {
-    fullname,
-    email,
-    phone,
-    telegram,
-    course,
-    successText,
-    errorText,
-    buttonLabel,
-  } = config.applyForm;
+  const { applyForm, validation } = config;
+  const schema = createApplySchema(validation);
 
   return (
     <SmartForm
       action="/api/forms/apply"
-      schema={ApplySchema}
-      buttonLabel={buttonLabel}
-      successText={successText}
-      errorText={errorText}
+      schema={schema}
+      buttonLabel={applyForm.buttonLabel}
+      successText={applyForm.successText}
+      errorText={applyForm.errorText}
       fields={[
         {
           name: "fullname",
-          placeholder: fullname,
+          placeholder: applyForm.fullname,
           autoComplete: "given-name",
           type: "text",
         },
         {
           name: "email",
-          placeholder: email,
+          placeholder: applyForm.email,
           autoComplete: "email",
           type: "email",
         },
         {
           name: "phone",
-          placeholder: phone,
+          placeholder: applyForm.phone,
           autoComplete: "tel",
           type: "text",
         },
         {
           name: "telegram",
-          placeholder: telegram,
+          placeholder: applyForm.telegram,
           autoComplete: "username",
           type: "text",
         },
         {
           name: "course",
-          placeholder: course.label,
+          placeholder: applyForm.course.label,
           type: hideCourseSelect ? "invisible" : "select",
           ...(!hideCourseSelect && {
-            options: [
-              {
-                value: course.list.web_development.value,
-                label: course.list.web_development.label,
-              },
-              {
-                value: course.list.graphic_design.value,
-                label: course.list.graphic_design.label,
-              },
-              {
-                value: course.list.scratch.value,
-                label: course.list.scratch.label,
-              },
-              {
-                value: course.list.smm.value,
-                label: course.list.smm.label,
-              },
-              {
-                value: course.list.python.value,
-                label: course.list.python.label,
-              },
-              {
-                value: course.list.android.value,
-                label: course.list.android.label,
-              },
-              {
-                value: course.list.ui_ux.value,
-                label: course.list.ui_ux.label,
-              },
-              {
-                value: course.list.hr.value,
-                label: course.list.hr.label,
-              },
-              {
-                value: course.list.soft_skills.value,
-                label: course.list.soft_skills.label,
-              },
-            ],
+            options: COURSE_KEYS.map((key) => ({
+              value: COURSE_DATA[key].value,
+              label: applyForm.course.list[key],
+            })),
           }),
         },
       ]}

@@ -1,9 +1,18 @@
 import { handleForm, gforms } from "@/shared/lib/google";
-import { ApplySchema } from "@/features/apply";
+import { createApplySchema } from "@/features/apply";
+import { getDictionarySync, resolveLocaleFromPath } from "@/shared/lib/i18n/helpers";
 
 export async function POST(req: Request) {
+  // Определяем локаль из заголовков или URL
+  const referer = req.headers.get("referer") || "";
+  const locale = resolveLocaleFromPath(new URL(referer).pathname);
+  
+  // Получаем словарь для текущей локали
+  const dict = getDictionarySync(locale);
+  const schema = createApplySchema(dict.common.forms.validation);
+
   return handleForm(req, {
-    schema: ApplySchema,
+    schema,
     formId: gforms.apply.formId,
     entries: gforms.apply.entries,
   });
