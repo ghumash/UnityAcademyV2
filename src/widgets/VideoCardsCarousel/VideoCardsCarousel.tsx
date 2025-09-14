@@ -16,9 +16,9 @@ export interface VideoCardsCarouselProps {
   config: VideoCardsCarouselConfig;
 }
 
-const VideoCardsCarouselComponent = React.memo(function VideoCardsCarousel({
+const VideoCardsCarouselComponent = React.memo(({
   config,
-}: VideoCardsCarouselProps) {
+}: VideoCardsCarouselProps) => {
   const { title, students } = config;
   const items = React.useMemo(
     () =>

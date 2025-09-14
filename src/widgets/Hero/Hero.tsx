@@ -60,15 +60,11 @@ export interface HeroProps extends SectionProps {
 const TRANSITION = { ease: "easeInOut" as const, delay: 0.3, duration: 0.8 };
 
 
-const HeroComponent = React.memo(React.forwardRef<HTMLElement, HeroProps>(
-  (
-    {
-      className,
-      config,
-      ...props
-    },
-    ref
-  ) => {
+const HeroComponent = React.memo(({
+  className,
+  config,
+  ...props
+}: HeroProps) => {
     const {
       title,
       subtitle,
@@ -90,7 +86,6 @@ const HeroComponent = React.memo(React.forwardRef<HTMLElement, HeroProps>(
 
     return (
       <Section
-        ref={ref}
         role="region"
         aria-labelledby={titleId}
         aria-describedby={subtitle ? subtitleId : undefined}
@@ -214,8 +209,7 @@ const HeroComponent = React.memo(React.forwardRef<HTMLElement, HeroProps>(
         </Container>
       </Section>
     );
-  }
-));
+});
 
 export const Hero = dynamic(() => 
   Promise.resolve(HeroComponent), 

@@ -52,10 +52,10 @@ function SmartLink({ href, newTab, ...rest }: SmartLinkProps) {
   return <Link href={href} target={target} rel={rel} {...rest} />;
 }
 
-const CtaBannerComponent = memo(function CtaBanner({
+const CtaBannerComponent = memo(({
   config,
   className,
-}: CtaBannerProps) {
+}: CtaBannerProps) => {
   const { heading, buttons } = config;
   const headingId = useId();
   const HeadingTag = "h3";

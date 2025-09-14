@@ -200,7 +200,7 @@ type GridItemProps = {
   iconWrapperClassName?: string;
 };
 
-const GridItem = React.memo(function GridItem({
+const GridItem = React.memo(({
   area,
   icon,
   title,
@@ -209,7 +209,7 @@ const GridItem = React.memo(function GridItem({
   itemClassName,
   cardClassName,
   iconWrapperClassName,
-}: GridItemProps) {
+}: GridItemProps) => {
   const titleId = React.useId();
   const descId = React.useId();
 

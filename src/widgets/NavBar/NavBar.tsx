@@ -56,13 +56,13 @@ const isMatch = (current: string, itemUrl: string): boolean => {
   return current === base || current.startsWith(`${base}/`);
 };
 
-const NavBarComponent = memo(function NavBar({
+const NavBarComponent = memo(({
   items,
   className,
   position,
   locale,
   applyButtonLabel,
-}: NavBarProps) {
+}: NavBarProps) => {
   const reduceMotion = useReducedMotion();
   const pathname = usePathname();
 
