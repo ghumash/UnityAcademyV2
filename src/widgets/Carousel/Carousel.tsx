@@ -105,11 +105,7 @@ const CarouselComponent = ({
                     </SliderBtn>
                   );
                 }
-                const CarouselComponent = ({})
-                export const Carousel = lazy(() => 
-                  Promise.resolve({ default: CarouselComponent })
-                );
-                
+              
                 // indicatorVariant === "pills"
                 return (
                   <SliderBtn
