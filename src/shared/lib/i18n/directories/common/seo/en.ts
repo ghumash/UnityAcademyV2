@@ -21,5 +21,9 @@ export const seo: SeoDict = {
   apply: {
     title: "Apply",
     description: `Apply for IT courses at ${siteConfig.name} in Vanadzor: Fill out the application and start your IT career with us.`
+  },
+  faq: {
+    title: "Frequently Asked Questions",
+    description: `Find answers to the most frequently asked questions about ${siteConfig.name}: courses, enrollment, payment and more.`
   }
 } as const;

@@ -21,5 +21,9 @@ export const seo: SeoDict = {
   apply: {
     title: "Դիմել",
     description: `Դիմեք ${siteConfig.name}-ի IT դասընթացներին Վանաձորում. լրացրեք դիմումը և սկսեք ձեր IT կարիերան մեզ հետ:`
+  },
+  faq: {
+    title: "Հաճախ տրվող հարցեր",
+    description: `Գտեք պատասխաններ ${siteConfig.name}-ի մասին ամենահաճախ տրվող հարցերին. դասընթացներ, գրանցում, վճարում և այլն:`
   }
 } as const;
