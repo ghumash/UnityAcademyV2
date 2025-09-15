@@ -82,18 +82,20 @@ export const android: CourseDict = {
     ],
   },
   conditions: {
-    badge: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "4 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "Android developers community",
+    title: "Course Conditions",
+    blocks: {
+      first: {
+        title: "Duration",
+        description: "4 months, 2 classes per week",
+      },
+      second: {
+        title: "Beginner",
+        description: "No prior experience required",
+      },
+      third: {
+        title: "Be part of",
+        description: "Android developers community",
+      },
     },
   },
   cta: {

@@ -74,18 +74,20 @@ export const soft_skills: CourseDict = {
     ],
   },
   conditions: {
-    badge: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "4 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "Professional development community",
+    title: "Course Conditions",
+    blocks: {
+      first: {
+        title: "Duration",
+        description: "3 months, 2 classes per week",
+      },
+      second: {
+        title: "Beginner",
+        description: "No prior experience required",
+      },
+      third: {
+        title: "Be part of",
+        description: "Soft skills community",
+      },
     },
   },
   cta: {

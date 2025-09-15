@@ -74,18 +74,20 @@ export const soft_skills: CourseDict = {
     ],
   },
   conditions: {
-    badge: "Դասընթացի պայմանները",
-    duration: {
-      title: "Տևողություն",
-      description: "4 ամիս, շաբաթական 2 դաս",
-    },
-    level: {
-      title: "Սկսնակ",
-      description: "Նախնական փորձ չի պահանջվում",
-    },
-    community: {
-      title: "Լինել",
-      description: "Մասնագիտական զարգացման համայնքի մաս",
+    title: "Դասընթացի պայմանները",
+    blocks: {
+      first: {
+        title: "Տևողություն",
+        description: "3 ամիս, շաբաթական 2 դաս",
+      },
+      second: {
+        title: "Սկսնակ",
+        description: "Նախնական փորձ չի պահանջվում",
+      },
+      third: {
+        title: "Լինել",
+        description: "Soft skills համայնքի մաս",
+      },
     },
   },
   cta: {

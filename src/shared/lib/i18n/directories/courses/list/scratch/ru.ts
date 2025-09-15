@@ -74,18 +74,20 @@ export const scratch: CourseDict = {
     ],
   },
   conditions: {
-    badge: "Условия курса",
-    duration: {
-      title: "Длительность",
-      description: "4 месяца, 2 занятия в неделю",
-    },
-    level: {
-      title: "Начинающий",
-      description: "Предварительный опыт не требуется",
-    },
-    community: {
-      title: "Стать частью",
-      description: "Сообщества креативных программистов",
+    title: "Условия курса",
+    blocks: {
+      first: {
+        title: "Длительность",
+        description: "2 месяца, 2 занятия в неделю",
+      },
+      second: {
+        title: "Начинающий",
+        description: "Предварительный опыт не требуется",
+      },
+      third: {
+        title: "Стать частью",
+        description: "Сообщества юных программистов",
+      },
     },
   },
   cta: {

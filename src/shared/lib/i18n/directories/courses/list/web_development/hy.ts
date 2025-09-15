@@ -82,18 +82,20 @@ export const web_development: CourseDict = {
     ],
   },
   conditions: {
-    badge: "Դասընթացի պայմանները",
-    duration: {
-      title: "Տևողություն",
-      description: "4 ամիս, շաբաթական 2 դաս",
-    },
-    level: {
-      title: "Սկսնակ",
-      description: "Նախնական փորձ չի պահանջվում",
-    },
-    community: {
-      title: "Լինել",
-      description: "Պրոֆեսիոնալ վեբ մշակողների համայնքի մաս",
+    title: "Դասընթացի պայմանները",
+    blocks: {
+      first: {
+        title: "Длительность",
+        description: "5 месяцев, 2 занятия в неделю",
+      },
+      second: {
+        title: "Начинающий",
+        description: "Предварительный опыт не требуется",
+      },
+      third: {
+        title: "Стать частью",
+        description: "Сообщества SMM специалистов",
+      },
     },
   },
   cta: {

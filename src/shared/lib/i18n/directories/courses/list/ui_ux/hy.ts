@@ -82,18 +82,20 @@ export const ui_ux: CourseDict = {
     ],
   },
   conditions: {
-    badge: "Դասընթացի պայմանները",
-    duration: {
-      title: "Տևողություն",
-      description: "4 ամիս, շաբաթական 2 դաս",
-    },
-    level: {
-      title: "Սկսնակ",
-      description: "Նախնական փորձ չի պահանջվում",
-    },
-    community: {
-      title: "Լինել",
-      description: "UI/UX դիզայներների համայնքի մաս",
+    title: "Դասընթացի պայմանները",
+    blocks: {
+      first: {
+        title: "Տևողություն",
+        description: "5 ամիս, շաբաթական 2 դաս",
+      },
+      second: {
+        title: "Սկսնակ",
+        description: "Նախնական փորձ չի պահանջվում",
+      },
+      third: {
+        title: "Լինել",
+        description: "UI/UX դիզայներների համայնքի մաս",
+      },
     },
   },
   cta: {

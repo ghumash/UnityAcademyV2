@@ -82,18 +82,20 @@ export const web_development: CourseDict = {
     ],
   },
   conditions: {
-    badge: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "4 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "Professional web developers community",
+    title: "Course Conditions",
+    blocks: {
+      first: {
+        title: "Длительность",
+        description: "5 месяцев, 2 занятия в неделю",
+      },
+      second: {
+        title: "Начинающий",
+        description: "Предварительный опыт не требуется",
+      },
+      third: {
+        title: "Стать частью",
+        description: "Сообщества SMM специалистов",
+      },
     },
   },
   cta: {

@@ -64,16 +64,14 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   ];
 
   const contentSectionConfig = {
-    badge: { text: t(`courses.list.${slug}.conditions.badge`) },
+    badge: { text: t(`courses.list.${slug}.conditions.title`) },
     blocks: [
       {
         items: [
           {
             icon: <Wrench className="size-5" />,
-            title: t(`courses.list.${slug}.conditions.duration.title`),
-            description: t(
-              `courses.list.${slug}.conditions.duration.description`
-            ),
+            title: t(`courses.list.${slug}.conditions.blocks.first.title`),
+            description: t(`courses.list.${slug}.conditions.blocks.first.description`),
           },
         ],
       },
@@ -81,10 +79,8 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
         items: [
           {
             icon: <Wrench className="size-5" />,
-            title: t(`courses.list.${slug}.conditions.level.title`),
-            description: t(
-              `courses.list.${slug}.conditions.level.description`
-            ),
+            title: t(`courses.list.${slug}.conditions.blocks.second.title`),
+            description: t(`courses.list.${slug}.conditions.blocks.second.description`),
           },
         ],
       },
@@ -92,14 +88,12 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
         items: [
           {
             icon: <Wrench className="size-5" />,
-            title: t(`courses.list.${slug}.conditions.community.title`),
-            description: t(
-              `courses.list.${slug}.conditions.community.description`
-            ),
+            title: t(`courses.list.${slug}.conditions.blocks.third.title`),
+            description: t(`courses.list.${slug}.conditions.blocks.third.description`),
           },
         ],
       },
-    ],
+    ].filter(Boolean),
   };
 
   const mockUserData: UserCardData = {
