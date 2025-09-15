@@ -21,30 +21,23 @@ export const web_development: CourseDict = {
     formatLabel: "Ֆորմատ",
   },
   instructor: {
-    name: "Արման Հակոբյան",
-    role: "Senior Full-Stack Developer & Mentor",
-    bio: "Փորձառու վեբ մշակող 8+ տարվա փորձով ֆրոնտ-էնդ և բեկ-էնդ տեխնոլոգիաների ոլորտում: Մասնագիտանում եմ React, Node.js, TypeScript և ժամանակակից վեբ տեխնոլոգիաների ոլորտում:",
+    name: "Վաղարշակ Գասպարյան",
+    role: "Senior Full-Stack Developer",
+    bio: "Փորձառու համակարգչային ծրագրավորող 9+ տարվա աշխատանքային փորձով, հմտորեն զբաղվում է ամբողջական փաթեթի մշակման, վեբ ծրագրավորման, ծրագրային ապահովման ճարտարագիտության և տվյալների բազայի նախագծման մեջ:",
     experience: {
       senior: {
-        title: "Senior Full-Stack Developer",
-        company: "TechCorp Armenia",
-        period: "2020 - ներկայումս",
+        title: "Full-Stack Developer",
+        company: "WebTop",
+        period: "2022 - ներկայումս",
         summary:
           "Վեբ հավելվածների ճարտարապետություն և մշակում, թիմի ղեկավարություն, կոդի գրախոսություն, 50+ նախագծերի իրականացում:",
       },
       mid: {
-        title: "Frontend Developer",
-        company: "WebStudio Pro",
-        period: "2018 - 2020",
+        title: "Full-Stack Developer",
+        company: "OmniCode",
+        period: "2016 - 2022",
         summary:
-          "Ռեսպոնսիվ վեբ կայքերի մշակում, React և Vue.js նախագծեր, UI/UX դիզայնի իրականացում, կլիենտների հետ ուղղակի աշխատանք:",
-      },
-      junior: {
-        title: "Junior Web Developer",
-        company: "StartupHub Yerevan",
-        period: "2016 - 2018",
-        summary:
-          "HTML/CSS/JavaScript հիմունքներ, WordPress թեմաների մշակում, բազային վեբ հավելվածներ, տեխնիկական փաստաթղթավորում:",
+          "Ծրագրավորող-մշակող OmniCode-ում (Հայաստան, Լոռի, Վանաձոր): Բարելավել եմ առկա կայքերը: Գտել եմ թույլ կողմերը և շտկել դրանք: Մշակել եմ կայքեր զրոյից՝ օգտագործելով տվյալների բազա, գրել եմ backend և frontend: Գրել եմ Node js-ի վրա հիմնված socket-ներ, մշակել եմ միկրոսերվիսներ: Աշխատել եմ Google ծառայություններով, Amazon ծառայություններով, տարբեր վճարային համակարգերով և այլն:",
       },
     },
     experienceLabel: "Աշխատանքային փորձ",
@@ -86,15 +79,18 @@ export const web_development: CourseDict = {
     list: [
       {
         title: "Ամբողջական ստեկ",
-        description: "Սովորում ենք ինչպես frontend, այնպես էլ backend տեխնոլոգիաներ՝ HTML, CSS, JavaScript, React, Node.js:",
+        description:
+          "Սովորում ենք ինչպես frontend, այնպես էլ backend տեխնոլոգիաներ՝ HTML, CSS, JavaScript, React, Node.js:",
       },
       {
         title: "Ժամանակակից գործիքներ",
-        description: "Աշխատում ենք Git, VS Code, Chrome DevTools և այլ արդիական մշակման գործիքներով:",
+        description:
+          "Աշխատում ենք Git, VS Code, Chrome DevTools և այլ արդիական մշակման գործիքներով:",
       },
       {
         title: "Պրակտիկ նախագծեր",
-        description: "Ստեղծում ենք իրական վեբ կայքեր և հավելվածներ՝ սկսած landing page-ից մինչև ամբողջական e-commerce:",
+        description:
+          "Ստեղծում ենք իրական վեբ կայքեր և հավելվածներ՝ սկսած landing page-ից մինչև ամբողջական e-commerce:",
       },
     ],
   },

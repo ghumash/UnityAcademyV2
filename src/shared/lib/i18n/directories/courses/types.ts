@@ -71,13 +71,13 @@ export type CourseDict = {
         period: string;
         summary: string;
       };
-      mid: {
+      mid?: {
         title: string;
         company: string;
         period: string;
         summary: string;
       };
-      junior: {
+      junior?: {
         title: string;
         company: string;
         period: string;

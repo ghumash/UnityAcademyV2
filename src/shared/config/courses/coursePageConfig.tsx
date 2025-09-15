@@ -87,32 +87,46 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     })),
   };
 
+  // Получаем данные инструктора из переводов
+  const instructorData = t(`courses.list.${slug}.instructor`) as any;
+  
+  // Фильтруем опыт работы - показываем только доступные уровни
+  const experienceEntries = [];
+  
+  if (instructorData.experience?.senior) {
+    experienceEntries.push({
+      title: t(`courses.list.${slug}.instructor.experience.senior.title`),
+      company: t(`courses.list.${slug}.instructor.experience.senior.company`),
+      period: t(`courses.list.${slug}.instructor.experience.senior.period`),
+      summary: t(`courses.list.${slug}.instructor.experience.senior.summary`),
+    });
+  }
+  
+  if (instructorData.experience?.mid) {
+    experienceEntries.push({
+      title: t(`courses.list.${slug}.instructor.experience.mid.title`),
+      company: t(`courses.list.${slug}.instructor.experience.mid.company`),
+      period: t(`courses.list.${slug}.instructor.experience.mid.period`),
+      summary: t(`courses.list.${slug}.instructor.experience.mid.summary`),
+    });
+  }
+  
+  if (instructorData.experience?.junior) {
+    experienceEntries.push({
+      title: t(`courses.list.${slug}.instructor.experience.junior.title`),
+      company: t(`courses.list.${slug}.instructor.experience.junior.company`),
+      period: t(`courses.list.${slug}.instructor.experience.junior.period`),
+      summary: t(`courses.list.${slug}.instructor.experience.junior.summary`),
+    });
+  }
+
   const mockUserData: UserCardData = {
     name: t(`courses.list.${slug}.instructor.name`),
     role: t(`courses.list.${slug}.instructor.role`),
     avatarUrl:
       "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
     bio: t(`courses.list.${slug}.instructor.bio`),
-    experience: [
-      {
-        title: t(`courses.list.${slug}.instructor.experience.senior.title`),
-        company: t(`courses.list.${slug}.instructor.experience.senior.company`),
-        period: t(`courses.list.${slug}.instructor.experience.senior.period`),
-        summary: t(`courses.list.${slug}.instructor.experience.senior.summary`),
-      },
-      {
-        title: t(`courses.list.${slug}.instructor.experience.mid.title`),
-        company: t(`courses.list.${slug}.instructor.experience.mid.company`),
-        period: t(`courses.list.${slug}.instructor.experience.mid.period`),
-        summary: t(`courses.list.${slug}.instructor.experience.mid.summary`),
-      },
-      {
-        title: t(`courses.list.${slug}.instructor.experience.junior.title`),
-        company: t(`courses.list.${slug}.instructor.experience.junior.company`),
-        period: t(`courses.list.${slug}.instructor.experience.junior.period`),
-        summary: t(`courses.list.${slug}.instructor.experience.junior.summary`),
-      },
-    ],
+    experience: experienceEntries,
     socials: {
       github: "https://github.com/annapetrov",
       linkedin: "https://linkedin.com/in/annapetrov",
