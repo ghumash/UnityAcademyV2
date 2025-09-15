@@ -75,6 +75,14 @@ export const scratch: CourseDict = {
   },
   conditions: {
     badge: "Course Conditions",
+    duration: {
+      title: "Duration",
+      description: "4 months, 2 classes per week",
+    },
+    level: {
+      title: "Beginner",
+      description: "No prior experience required",
+    },
     community: {
       title: "Be Part Of",
       description: "Creative programmers community",

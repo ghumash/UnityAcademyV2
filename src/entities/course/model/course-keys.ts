@@ -24,7 +24,7 @@ export const COURSE_DATA = {
     key: "web_development" as const,
     displayName: "Web Development",
     value: "Վեբ ծրագրավորում",
-    position: { top: "10%", left: "10%" },
+    position: { top: "10%", left: "15%" },
   },
   graphic_design: {
     key: "graphic_design" as const,

@@ -8,17 +8,15 @@ export const single: SingleDict = {
   benefits: {
     title_part1: "Learning at Unity Academy",
     title_part2: "you will get the following benefits",
-    hr_training: {
-      title_part1: "Free",
-      title_part2: "HR training",
+    career: {
+      title: "Career",
       description:
-        "The training will give graduates the opportunity to learn the important rules of CV creation, understand how to properly prepare and present themselves in an interview and know the answers to all exciting questions.",
+        "The best students will remain in our database of top students and will later receive job offers from us or our partners",
     },
-    english_course: {
-      title_part1: "English course",
-      title_part2: "with special conditions",
+    certification: {
+      title: "Certification and digital verification",
       description:
-        "The best students will receive job offers from us and/or our partners",
+        "After successfully completing the course, you receive a Unity Academy Armenia personalized certificate with digital verification (QR/link). You can add it to LinkedIn and attach it to your CV. The assessment is based on attendance, homework, and the final project.",
     },
     portfolio: {
       title: "Portfolio and resume",

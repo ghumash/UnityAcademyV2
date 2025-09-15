@@ -83,6 +83,14 @@ export const web_development: CourseDict = {
   },
   conditions: {
     badge: "Условия курса",
+    duration: {
+      title: "Длительность",
+      description: "4 месяца, 2 занятия в неделю",
+    },
+    level: {
+      title: "Начинающий",
+      description: "Предварительный опыт не требуется",
+    },
     community: {
       title: "Стать частью",
       description: "Сообщества профессиональных веб-разработчиков",

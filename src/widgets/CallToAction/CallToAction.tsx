@@ -187,7 +187,7 @@ const CallToActionComponent = memo(
                 vy={-0.2}
               />
 
-              <div className="flex flex-col items-center gap-10 p-14 md:flex-row">
+              <div className="flex flex-col items-center gap-10 p-8 md:14 md:flex-row">
                 {/* Левая часть с pointer-анимацией */}
                 <div
                   className="relative mx-auto w-full"

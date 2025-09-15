@@ -83,6 +83,14 @@ export const smm: CourseDict = {
   },
   conditions: {
     badge: "Դասընթացի պայմանները",
+    duration: {
+      title: "Տևողություն",
+      description: "4 ամիս, շաբաթական 2 դաս",
+    },
+    level: {
+      title: "Սկսնակ",
+      description: "Նախնական փորձ չի պահանջվում",
+    },
     community: {
       title: "Լինել",
       description: "Դիջիթալ մարքեթինգ մասնագետների համայնքի մաս",

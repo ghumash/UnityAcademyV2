@@ -26,14 +26,12 @@ export type SingleDict = {
   benefits: {
     title_part1: string;
     title_part2: string;
-    hr_training: {
-      title_part1: string;
-      title_part2: string;
+    career: {
+      title: string;
       description: string;
     };
-    english_course: {
-      title_part1: string;
-      title_part2: string;
+    certification: {
+      title: string;
       description: string;
     };
     portfolio: {
@@ -97,6 +95,14 @@ export type CourseDict = {
   };
   conditions: {
     badge: string;
+    duration: {
+      title: string;
+      description: string;
+    };
+    level: {
+      title: string;
+      description: string;
+    };
     community: {
       title: string;
       description: string;

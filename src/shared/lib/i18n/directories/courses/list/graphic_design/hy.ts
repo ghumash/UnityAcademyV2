@@ -4,10 +4,10 @@ export const graphic_design: CourseDict = {
   courseHeroSection: {
     title: "Գրաֆիկ դիզայն: Photoshop, Illustrator, Canva",
     description:
-      "Սովորիր գրաֆիկական դիզայն՝ օգտագործելով ոլորտի ստանդարտ գործիքները՝ Photoshop, Illustrator և Canva։ Ստեղծիր տպավորիչ վիզուալներ տպագրության և թվային մեդիայի համար։",
-    level: "beginner",
-    format: "offline",
-    duration: "3 months",
+      "Սովորիր գրաֆիկական դիզայն՝ օգտագործելով ոլորտի հիմնական գործիքները՝ Photoshop, Illustrator և Canva։ Ստեղծիր տպավորիչ վիզուալներ տպագրության և թվային մեդիայի համար։",
+    level: "Սկսնակ",
+    format: "Օֆլայն",
+    duration: "3 Ամիս",
     lessonsCount: "24 Դաս",
     projectsCount: "4 Պրոեկտ",
     certificateIncluded: true,
@@ -76,9 +76,17 @@ export const graphic_design: CourseDict = {
   },
   conditions: {
     badge: "Դասընթացի պայմանները",
+    duration: {
+      title: "Տևողություն",
+      description: "4 ամիս, շաբաթական 2 դաս",
+    },
+    level: {
+      title: "Սկսնակ",
+      description: "4 ամիս, շաբաթական 2 դաս",
+    },
     community: {
-      title: "Լինել",
-      description: "Ուժեղ և ոգեշնչող համայնքի մաս",
+      title: "Համայնք",
+      description: "Մասնակցություն Unity Academy համայնքին և networking հնարավորություններ",
     },
   },
   cta: {

@@ -71,6 +71,14 @@ export const graphic_design: CourseDict = {
   },
   conditions: {
     badge: "Course conditions",
+    duration: {
+      title: "Duration",
+      description: "4 months, 2 classes per week",
+    },
+    level: {
+      title: "Beginner",
+      description: "No prior experience required",
+    },
     community: {
       title: "Being",
       description: "Part of a strong and inspiring community",

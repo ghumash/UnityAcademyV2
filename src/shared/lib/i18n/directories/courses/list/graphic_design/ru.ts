@@ -71,6 +71,14 @@ export const graphic_design: CourseDict = {
   },
   conditions: {
     badge: "Условия курса",
+    duration: {
+      title: "Длительность",
+      description: "4 месяца, 2 занятия в неделю",
+    },
+    level: {
+      title: "Начинающий",
+      description: "Предварительный опыт не требуется",
+    },
     community: {
       title: "Быть",
       description: "Частью сильного и вдохновляющего сообщества",

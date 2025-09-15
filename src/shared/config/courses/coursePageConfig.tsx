@@ -38,15 +38,8 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
           aria-hidden="true"
         />
       ),
-      title: (
-        <>
-          {t(`courses.single.benefits.hr_training.title_part1`)}{" "}
-          <strong>
-            {t(`courses.single.benefits.hr_training.title_part2`)}
-          </strong>
-        </>
-      ),
-      description: <>{t(`courses.single.benefits.hr_training.description`)}</>,
+      title: t(`courses.single.benefits.career.title`),
+      description: <>{t(`courses.single.benefits.career.description`)}</>,
     },
     {
       icon: (
@@ -55,15 +48,8 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
           aria-hidden="true"
         />
       ),
-      title: (
-        <>
-          {t(`courses.single.benefits.english_course.title_part1`)}{" "}
-          <strong>
-            {t(`courses.single.benefits.english_course.title_part2`)}
-          </strong>
-        </>
-      ),
-      description: t(`courses.single.benefits.english_course.description`),
+      title: t(`courses.single.benefits.certification.title`),
+      description: t(`courses.single.benefits.certification.description`),
     },
     {
       icon: (
@@ -84,9 +70,9 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
         items: [
           {
             icon: <Wrench className="size-5" />,
-            title: t(`courses.list.${slug}.conditions.community.title`),
+            title: t(`courses.list.${slug}.conditions.duration.title`),
             description: t(
-              `courses.list.${slug}.conditions.community.description`
+              `courses.list.${slug}.conditions.duration.description`
             ),
           },
         ],
@@ -95,9 +81,9 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
         items: [
           {
             icon: <Wrench className="size-5" />,
-            title: t(`courses.list.${slug}.conditions.community.title`),
+            title: t(`courses.list.${slug}.conditions.level.title`),
             description: t(
-              `courses.list.${slug}.conditions.community.description`
+              `courses.list.${slug}.conditions.level.description`
             ),
           },
         ],
