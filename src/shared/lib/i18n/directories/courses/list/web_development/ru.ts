@@ -82,19 +82,21 @@ export const web_development: CourseDict = {
     ],
   },
   conditions: {
-    title: "Условия курса",
-    duration: {
-      title: "Длительность",
-      description: "5 месяцев, 2 занятия в неделю",
-    },
-    level: {
-      title: "Начинающий",
-      description: "Предварительный опыт не требуется",
-    },
-    community: {
-      title: "Стать частью",
-      description: "Сообщества SMM специалистов",
-    },
+    title: "Особые преимущества курса",
+    list: [
+      {
+        title: "Полный стек",
+        description: "Изучаем как frontend, так и backend технологии: HTML, CSS, JavaScript, React, Node.js.",
+      },
+      {
+        title: "Современные инструменты",
+        description: "Работаем с Git, VS Code, Chrome DevTools и другими современными инструментами разработки.",
+      },
+      {
+        title: "Практические проекты",
+        description: "Создаем реальные веб-сайты и приложения от лендингов до полноценного e-commerce.",
+      },
+    ],
   },
   cta: {
     title: "Веб-разработка: Заявка на регистрацию",

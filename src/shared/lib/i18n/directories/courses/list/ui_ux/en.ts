@@ -82,19 +82,21 @@ export const ui_ux: CourseDict = {
     ],
   },
   conditions: {
-    title: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "5 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "UI/UX designers community",
-    },
+    title: "Course Special Advantages",
+    list: [
+      {
+        title: "Interactive Prototypes",
+        description: "Create live prototypes with Figma and learn user experience design principles.",
+      },
+      {
+        title: "Real Projects",
+        description: "Work on real business challenges and create comprehensive UI/UX solutions.",
+      },
+      {
+        title: "Industry Standards",
+        description: "Learn Design Systems, Accessibility, and modern design best practices.",
+      },
+    ],
   },
   cta: {
     title: "UI/UX Design: Registration Application",

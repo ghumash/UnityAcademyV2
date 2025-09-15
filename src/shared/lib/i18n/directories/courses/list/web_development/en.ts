@@ -82,19 +82,21 @@ export const web_development: CourseDict = {
     ],
   },
   conditions: {
-    title: "Course Conditions",
-    duration: {
-      title: "Длительность",
-      description: "5 месяцев, 2 занятия в неделю",
-    },
-    level: {
-      title: "Начинающий",
-      description: "Предварительный опыт не требуется",
-    },
-    community: {
-      title: "Стать частью",
-      description: "Сообщества SMM специалистов",
-    },
+    title: "Course Special Advantages",
+    list: [
+      {
+        title: "Full Stack",
+        description: "Learn both frontend and backend technologies: HTML, CSS, JavaScript, React, Node.js.",
+      },
+      {
+        title: "Modern Tools",
+        description: "Work with Git, VS Code, Chrome DevTools, and other modern development tools.",
+      },
+      {
+        title: "Practical Projects",
+        description: "Create real websites and applications from landing pages to full e-commerce.",
+      },
+    ],
   },
   cta: {
     title: "Web Development: Registration Application",

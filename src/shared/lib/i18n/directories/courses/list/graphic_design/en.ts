@@ -71,11 +71,23 @@ export const graphic_design: CourseDict = {
   },
   conditions: {
     title: "Course Special Advantages",
-    duration: {
-      title: "Print Shop Visit",
-      description:
-        "During the course, students also visit a print shop, get acquainted with materials, equipment and rules of working with the print shop.",
-    },
+    list: [
+      {
+        title: "Print Shop Visit",
+        description:
+          "During the course, students also visit a print shop, getting acquainted with materials, equipment, and rules for working with printing facilities.",
+      },
+      {
+        title: "Individual Projects",
+        description:
+          "Each student creates their individual portfolio including logos, branding, and print materials.",
+      },
+      {
+        title: "Mentoring and Feedback",
+        description:
+          "Individual guidance from experienced designers and detailed evaluation for each work.",
+      },
+    ],
   },
   cta: {
     title: "Graphic Design: Registration Application",

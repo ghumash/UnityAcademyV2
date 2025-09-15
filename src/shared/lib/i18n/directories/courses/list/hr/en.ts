@@ -82,19 +82,21 @@ export const hr: CourseDict = {
     ],
   },
   conditions: {
-    title: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "4 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "HR professionals community",
-    },
+    title: "Course Special Advantages",
+    list: [
+      {
+        title: "Practical Case Studies",
+        description: "Work on real HR challenges and learn to solve complex personnel issues.",
+      },
+      {
+        title: "Modern HR Technologies",
+        description: "Learn to work with ATS systems, HR analytics, and recruiting tools.",
+      },
+      {
+        title: "Mentoring by Experienced HR Professionals",
+        description: "Individual guidance and career counseling from industry leaders.",
+      },
+    ],
   },
   cta: {
     title: "HR Management: Registration Application",

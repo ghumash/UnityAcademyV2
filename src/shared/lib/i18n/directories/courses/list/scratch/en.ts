@@ -74,19 +74,21 @@ export const scratch: CourseDict = {
     ],
   },
   conditions: {
-    title: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "2 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "Young programmers community",
-    },
+    title: "Course Special Advantages",
+    list: [
+      {
+        title: "Creative Approach",
+        description: "Children create their own animations, games, and interactive stories.",
+      },
+      {
+        title: "Logical Thinking",
+        description: "Learn algorithmic thinking, sequencing, and problem-solving skills.",
+      },
+      {
+        title: "Friendly Atmosphere",
+        description: "Work in a friendly environment and learn to collaborate on projects.",
+      },
+    ],
   },
   cta: {
     title: "Scratch: Registration Application",

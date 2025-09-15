@@ -82,19 +82,21 @@ export const smm: CourseDict = {
     ],
   },
   conditions: {
-    title: "Условия курса",
-    duration: {
-      title: "Длительность",
-      description: "5 месяцев, 2 занятия в неделю",
-    },
-    level: {
-      title: "Начинающий",
-      description: "Предварительный опыт не требуется",
-    },
-    community: {
-      title: "Стать частью",
-      description: "Сообщества SMM специалистов",
-    },
+    title: "Особые преимущества курса",
+    list: [
+      {
+        title: "Реальные кампании",
+        description: "Работаем с реальными брендами и создаем живые кампании в соцсетях.",
+      },
+      {
+        title: "Множественные платформы",
+        description: "Изучаем работу с Instagram, Facebook, TikTok, LinkedIn и другими платформами.",
+      },
+      {
+        title: "Аналитика и ROI",
+        description: "Учимся измерять результаты, анализировать данные и оптимизировать кампании.",
+      },
+    ],
   },
   cta: {
     title: "SMM и Digital Marketing: Заявка на регистрацию",

@@ -82,19 +82,21 @@ export const web_development: CourseDict = {
     ],
   },
   conditions: {
-    title: "Դասընթացի պայմանները",
-    duration: {
-      title: "Длительность",
-      description: "5 месяцев, 2 занятия в неделю",
-    },
-    level: {
-      title: "Начинающий",
-      description: "Предварительный опыт не требуется",
-    },
-    community: {
-      title: "Стать частью",
-      description: "Сообщества SMM специалистов",
-    },
+    title: "Դասընթացի հատուկ առավելությունները",
+    list: [
+      {
+        title: "Ամբողջական ստեկ",
+        description: "Սովորում ենք ինչպես frontend, այնպես էլ backend տեխնոլոգիաներ՝ HTML, CSS, JavaScript, React, Node.js:",
+      },
+      {
+        title: "Ժամանակակից գործիքներ",
+        description: "Աշխատում ենք Git, VS Code, Chrome DevTools և այլ արդիական մշակման գործիքներով:",
+      },
+      {
+        title: "Պրակտիկ նախագծեր",
+        description: "Ստեղծում ենք իրական վեբ կայքեր և հավելվածներ՝ սկսած landing page-ից մինչև ամբողջական e-commerce:",
+      },
+    ],
   },
   cta: {
     title: "Վեբ ծրագրավորում: Գրանցման հայտ",

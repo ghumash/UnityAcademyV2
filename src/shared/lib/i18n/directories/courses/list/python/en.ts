@@ -82,19 +82,21 @@ export const python: CourseDict = {
     ],
   },
   conditions: {
-    title: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "6 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "Python developers community",
-    },
+    title: "Course Special Advantages",
+    list: [
+      {
+        title: "Comprehensive Projects",
+        description: "Create real web applications, APIs, and data analysis tools.",
+      },
+      {
+        title: "Modern Technologies",
+        description: "Learn Django, Flask, pandas, numpy, and other popular Python libraries.",
+      },
+      {
+        title: "Mentoring Support",
+        description: "Individual guidance from experienced Python developers and career counseling.",
+      },
+    ],
   },
   cta: {
     title: "Python Programming: Registration Application",

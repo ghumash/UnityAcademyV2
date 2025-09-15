@@ -82,19 +82,21 @@ export const smm: CourseDict = {
     ],
   },
   conditions: {
-    title: "Դասընթացի պայմանները",
-    duration: {
-      title: "Տևողություն",
-      description: "5 ամիս, շաբաթական 2 դաս",
-    },
-    level: {
-      title: "Սկսնակ",
-      description: "Նախնական փորձ չի պահանջվում",
-    },
-    community: {
-      title: "Լինել",
-      description: "SMM մասնագիտների համայնքի մաս",
-    },
+    title: "Դասընթացի հատուկ առավելությունները",
+    list: [
+      {
+        title: "Իրական կամպանիաներ",
+        description: "Աշխատում ենք իրական բրենդների հետ և ստեղծում ենք կենդանի սոցիալական մեդիա կամպանիաներ:",
+      },
+      {
+        title: "Բազմակի պլատֆորմներ",
+        description: "Սովորում ենք աշխատել Instagram, Facebook, TikTok, LinkedIn և այլ հարթակների հետ:",
+      },
+      {
+        title: "Անալիտիկա և ROI",
+        description: "Սովորում ենք չափել արդյունքները, վերլուծել տվյալները և օպտիմիզացնել կամպանիաները:",
+      },
+    ],
   },
   cta: {
     title: "SMM և Digital Marketing: Գրանցման հայտ",

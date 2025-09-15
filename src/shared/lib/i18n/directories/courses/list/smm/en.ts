@@ -82,19 +82,21 @@ export const smm: CourseDict = {
     ],
   },
   conditions: {
-    title: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "5 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "SMM specialists community",
-    },
+    title: "Course Special Advantages",
+    list: [
+      {
+        title: "Real Campaigns",
+        description: "Work with real brands and create live social media campaigns.",
+      },
+      {
+        title: "Multiple Platforms",
+        description: "Learn to work with Instagram, Facebook, TikTok, LinkedIn, and other platforms.",
+      },
+      {
+        title: "Analytics and ROI",
+        description: "Learn to measure results, analyze data, and optimize campaigns.",
+      },
+    ],
   },
   cta: {
     title: "SMM & Digital Marketing: Registration Application",

@@ -95,18 +95,7 @@ export type CourseDict = {
   };
   conditions: {
     title: string;
-    duration: {
-      title: string;
-      description: string;
-    };
-    level?: {
-      title: string;
-      description: string;
-    };
-    community?: {
-      title: string;
-      description: string;
-    };
+    list: Array<{ title: string; description: string }>;
   };
   cta: {
     title: string;

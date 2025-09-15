@@ -1,10 +1,18 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
-import { Rocket, Wrench } from "lucide-react";
+import { BadgeCheck, Rocket } from "lucide-react";
 import type { GridItemData, UserCardData } from "@/widgets";
 import type { CourseKey } from "@/entities/course";
 import type { Theme } from "@/widgets/Courses";
 import { siteConfig } from "@/shared/config/common";
+
+// Простая фильтрация - убирает элементы с пустыми полями или ключами переводов
+const filterItems = (items: any[]) => items.filter(item => 
+  item.title && 
+  item.description && 
+  !item.title.startsWith('courses.list.') && 
+  !item.description.startsWith('courses.list.')
+);
 
 export async function getCoursePageConfig(locale: Locale, slug: string) {
   const t = await getT(locale);
@@ -63,43 +71,20 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     },
   ];
 
+  // Получаем массив условий из переводов
+  const conditionsList = t(`courses.list.${slug}.conditions.list`) as Array<{title: string; description: string}>;
+  
+  const allItems = conditionsList.map((_, index) => ({
+    icon: <BadgeCheck className="size-5" />,
+    title: t(`courses.list.${slug}.conditions.list.${index}.title`),
+    description: t(`courses.list.${slug}.conditions.list.${index}.description`),
+  }));
+
   const contentSectionConfig = {
     title: t(`courses.list.${slug}.conditions.title`),
-    blocks: [
-      {
-        items: [
-          {
-            icon: <Wrench className="size-5" />,
-            title: t(`courses.list.${slug}.conditions.duration.title`),
-            description: t(
-              `courses.list.${slug}.conditions.duration.description`
-            ),
-          },
-        ],
-      },
-      {
-        items: [
-          {
-            icon: <Wrench className="size-5" />,
-            title: t(`courses.list.${slug}.conditions.level.title`),
-            description: t(
-              `courses.list.${slug}.conditions.level.description`
-            ),
-          },
-        ],
-      },
-      {
-        items: [
-          {
-            icon: <Wrench className="size-5" />,
-            title: t(`courses.list.${slug}.conditions.community.title`),
-            description: t(
-              `courses.list.${slug}.conditions.community.description`
-            ),
-          },
-        ],
-      },
-    ],
+    blocks: filterItems(allItems).map(item => ({
+      items: [item],
+    })),
   };
 
   const mockUserData: UserCardData = {

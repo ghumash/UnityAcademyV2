@@ -74,19 +74,21 @@ export const soft_skills: CourseDict = {
     ],
   },
   conditions: {
-    title: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "3 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "Soft skills community",
-    },
+    title: "Course Special Advantages",
+    list: [
+      {
+        title: "Interactive Exercises",
+        description: "Learn effective communication, presentation, and teamwork skills.",
+      },
+      {
+        title: "Role-Playing and Simulations",
+        description: "Practical exercises with real workplace situations and skill development.",
+      },
+      {
+        title: "Individual Development",
+        description: "Each participant receives individual feedback and a personal development plan.",
+      },
+    ],
   },
   cta: {
     title: "Soft Skills: Registration Application",

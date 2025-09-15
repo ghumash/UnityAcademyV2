@@ -82,19 +82,21 @@ export const android: CourseDict = {
     ],
   },
   conditions: {
-    title: "Course Conditions",
-    duration: {
-      title: "Duration",
-      description: "4 months, 2 classes per week",
-    },
-    level: {
-      title: "Beginner",
-      description: "No prior experience required",
-    },
-    community: {
-      title: "Be part of",
-      description: "Android developers community",
-    },
+    title: "Course Special Advantages",
+    list: [
+      {
+        title: "Practical Projects",
+        description: "Create real Android applications from simple tools to complex programs.",
+      },
+      {
+        title: "Industry Standards",
+        description: "Learn Google's best practices and Material Design principles.",
+      },
+      {
+        title: "Career Support",
+        description: "Help with CV creation and technical interview preparation.",
+      },
+    ],
   },
   cta: {
     title: "Android Programming: Registration Application",
