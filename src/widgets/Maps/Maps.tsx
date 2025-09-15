@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useMemo, type CSSProperties } from "react";
-import { memo } from "react";
+import React, { memo, useMemo, type CSSProperties } from "react";
 import dynamic from "next/dynamic";
-import { Button } from "@/shared/ui";
-import { cn } from "@/shared/lib/utils";
 import { ExternalLink } from "lucide-react";
+import { cn } from "@/shared/lib/utils";
+import { Button } from "@/shared/ui";
+import { siteConfig } from "@/shared/config/common";
 
 type Props = {
   address?: string;
@@ -33,7 +33,7 @@ const MapsComponent = memo(({
   const wrapperStyle: CSSProperties = useMemo(() => ({ height }), [height]);
 
   const title = useMemo(
-    () => `Unity Academy on Yandex Maps${address ? ` — ${address}` : ""}`,
+    () => `${siteConfig.name} on Yandex Maps${address ? ` — ${address}` : ""}`,
     [address]
   );
 

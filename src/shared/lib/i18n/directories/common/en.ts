@@ -4,6 +4,7 @@ import { navigation } from "./navigation/en";
 import { footer } from "./footer/en";
 import { site } from "./site/en";
 import { forms } from "./forms/en";
+import { seo } from "./seo/en";
 
 export const common: CommonDict = {
   site,
@@ -11,4 +12,5 @@ export const common: CommonDict = {
   navigation,
   footer,
   forms,
+  seo,
 };

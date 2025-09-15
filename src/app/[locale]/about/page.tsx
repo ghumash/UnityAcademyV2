@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  JsonLd,
-  buildBreadcrumbsJsonLd,
-  buildOrganizationJsonLd,
-  createMetadata,
-} from "@/shared/seo";
+import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { CtaBanner, IntroWithDesc } from "@/widgets";
@@ -25,11 +20,11 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getT(locale);
   return createMetadata({
-    title: t("common.navigation.about"),
+    title: t("common.seo.about.title"),
     canonical: absoluteUrl(`/${locale}${siteConfig.routes.about}`),
     alternatesPath: siteConfig.routes.about,
     locale,
-    description: t("about.introWithDesc.description_2"),
+    description: t("common.seo.about.description"),
   });
 }
 

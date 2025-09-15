@@ -72,7 +72,7 @@ export function createMetadata(input?: {
 
   return {
     title: input?.title
-      ? { default: input.title, template: `%s — ${siteConfig.name}` }
+      ? { default: input.title, template: `%s - ${siteConfig.name}` }
       : siteConfig.name,
     description,
     metadataBase: new URL(siteConfig.url),

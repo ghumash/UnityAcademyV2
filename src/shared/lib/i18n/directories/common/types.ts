@@ -3,6 +3,7 @@ import type { NavigationDict } from "./navigation/types";
 import type { FooterDict } from "./footer/types";
 import type { SiteDict } from "./site/types";
 import type { FormsDict } from "./forms/types";
+import type { SeoDict } from "./seo/types";
 
 export type CommonDict = {
   site: SiteDict;
@@ -10,4 +11,5 @@ export type CommonDict = {
   navigation: NavigationDict;
   footer: FooterDict;
   forms: FormsDict;
+  seo: SeoDict;
 };

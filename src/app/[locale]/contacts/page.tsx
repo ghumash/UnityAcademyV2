@@ -17,11 +17,11 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getT(locale);
   return createMetadata({
-    title: t("common.navigation.contacts"),
+    title: t("common.seo.contacts.title"),
     canonical: absoluteUrl(`/${locale}${siteConfig.routes.contacts}`),
     alternatesPath: siteConfig.routes.contacts,
     locale,
-    description: t("common.navigation.contacts"),
+    description: t("common.seo.contacts.description"),
   });
 }
 

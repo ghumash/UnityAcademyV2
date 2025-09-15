@@ -55,7 +55,7 @@ const FooterComponent = memo(({ sections, copyright, description }: FooterProps)
                   >
                     <Image
                       src={siteConfig.assets.logo}
-                      alt="Unity Academy logo"
+                      alt={`${siteConfig.name} logo`}
                       width={28}
                       height={28}
                       loading="lazy"

@@ -31,11 +31,11 @@ export async function generateMetadata({
   const t = await getT(locale);
 
   return createMetadata({
-    title: t("common.navigation.home"),
+    title: t("common.seo.home.title"),
     canonical: absoluteUrl(`/${locale}`),
     alternatesPath: siteConfig.routes.home,
     locale,
-    description: t("home.hero.title"),
+    description: t("common.seo.home.description"),
   });
 }
 
