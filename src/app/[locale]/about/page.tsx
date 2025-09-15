@@ -29,7 +29,7 @@ export async function generateMetadata({
     canonical: absoluteUrl(`/${locale}${siteConfig.routes.about}`),
     alternatesPath: siteConfig.routes.about,
     locale,
-    description: t("common.navigation.about"),
+    description: t("about.introWithDesc.description_2"),
   });
 }
 

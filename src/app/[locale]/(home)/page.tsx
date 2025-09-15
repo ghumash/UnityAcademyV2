@@ -31,7 +31,7 @@ export async function generateMetadata({
   const t = await getT(locale);
 
   return createMetadata({
-    title: siteConfig.name,
+    title: t("common.navigation.home"),
     canonical: absoluteUrl(`/${locale}`),
     alternatesPath: siteConfig.routes.home,
     locale,

@@ -76,6 +76,23 @@ export function createMetadata(input?: {
       : siteConfig.name,
     description,
     metadataBase: new URL(siteConfig.url),
+    icons: {
+      icon: [
+        { url: "/images/logos/logo.svg", type: "image/svg+xml" },
+        {
+          url: "/images/logos/logo.svg",
+          sizes: "32x32",
+          type: "image/svg+xml",
+        },
+        {
+          url: "/images/logos/logo.svg",
+          sizes: "16x16",
+          type: "image/svg+xml",
+        },
+      ],
+      shortcut: "/images/logos/logo.svg",
+      apple: "/images/logos/logo.svg",
+    },
     alternates: {
       canonical: input?.canonical ?? absoluteUrl("/"),
       languages,

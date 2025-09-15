@@ -32,7 +32,7 @@ export const siteConfig = {
     faq: "/faq",
   },
   assets: {
-    logo: "/logo.svg",
+    logo: "/images/logos/logo.svg",
     ogImage: "/og.png",
   },
 } as const;

@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import {
+  JsonLd,
+  buildBreadcrumbsJsonLd,
+  buildOrganizationJsonLd,
+  createMetadata,
+} from "@/shared/seo";
 import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
@@ -25,11 +30,11 @@ export async function generateMetadata({
   const t = await getT(locale);
 
   return createMetadata({
-    title: t(`courses.list.${slug}.title`),
+    title: t(`courses.list.${slug}.courseHeroSection.title`),
     canonical: absoluteUrl(`/${locale}${siteConfig.routes.courses}/${slug}`),
     alternatesPath: `${siteConfig.routes.courses}/${slug}`,
     locale,
-    description: t(`courses.list.${slug}.description`),
+    description: t(`courses.list.${slug}.courseHeroSection.description`),
   });
 }
 
@@ -44,7 +49,7 @@ export default async function CoursePage({
   const formConfig = await getFormConfig(locale);
   const coursePageConfig = await getCoursePageConfig(locale, slug);
   const courseExists = courses.list.some((course) => course.id === slug);
-  
+
   if (!courseExists) {
     notFound();
   }
@@ -55,7 +60,10 @@ export default async function CoursePage({
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([
           { name: t("common.navigation.home"), href: `/${locale}` },
-          { name: t("common.navigation.courses"), href: `/${locale}${siteConfig.routes.courses}` },
+          {
+            name: t("common.navigation.courses"),
+            href: `/${locale}${siteConfig.routes.courses}`,
+          },
           {
             name: t(`courses.list.${slug}.title`),
             href: `/${locale}${siteConfig.routes.courses}/${slug}`,
@@ -72,8 +80,8 @@ export default async function CoursePage({
             title={coursePageConfig.courseTopics.title}
             topics={coursePageConfig.courseTopics.topics}
           />
-          <UserCard 
-            data={coursePageConfig.instructor} 
+          <UserCard
+            data={coursePageConfig.instructor}
             labels={coursePageConfig.instructorLabels}
           />
         </Container>
@@ -97,9 +105,7 @@ export default async function CoursePage({
           >
             <ApplyForm
               config={formConfig}
-              defaultCourse={
-                COURSE_DATA[slug as CourseKey].value
-              }
+              defaultCourse={COURSE_DATA[slug as CourseKey].value}
               hideCourseSelect
             />
           </CallToAction>
