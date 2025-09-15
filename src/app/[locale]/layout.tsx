@@ -12,12 +12,15 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { getT } = await import("@/shared/lib/i18n");
+  const t = await getT(locale);
+  
   return createMetadata({
-    title: siteConfig.name,
+    title: t("common.seo.home.title"),
     alternatesPath: siteConfig.routes.home,
     canonical: absoluteUrl(`/${locale}`),
     locale,
-    description: siteConfig.description,
+    description: t("common.seo.home.description"),
   });
 }
 

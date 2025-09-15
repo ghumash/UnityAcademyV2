@@ -1,14 +1,23 @@
-import { siteConfig } from "@/shared/config/common";
+import { getT, type Locale } from "@/shared/lib/i18n";
 import { createOpenGraphImage } from "@/shared/seo/createOpenGraphImage";
 
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default async function OG() {
+export default async function OG({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const t = await getT(locale);
+  const title = t("common.seo.home.title");
+  const description = t("common.seo.home.description");
+
   return createOpenGraphImage({
-    title: siteConfig.name,
-    description: siteConfig.description,
+    title,
+    description,
     theme: "default",
   });
 }
