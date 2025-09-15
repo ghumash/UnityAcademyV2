@@ -8,16 +8,16 @@ export const contentType = "image/png";
 export default async function OG({
   params,
 }: {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: Locale }>;
 }) {
-  const { locale, slug } = await params;
+  const { locale } = await params;
   const t = await getT(locale);
-  const title = decodeURIComponent(slug).replace(/-/g, " ");
-  const description = t("common.seo.courses.description");
+  const title = t("common.navigation.faq");
+  const description = t("common.seo.faq.description");
 
   return createOpenGraphImage({
     title,
     description,
-    theme: "courses",
+    theme: "default",
   });
 }
