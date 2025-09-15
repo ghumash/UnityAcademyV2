@@ -5,9 +5,9 @@ export const scratch: CourseDict = {
     title: "Scratch: Programming Basics for Kids",
     description:
       "Learn programming fundamentals through Scratch. Create your own games, animations, and interactive stories. Perfect for beginners and children.",
-    level: "beginner",
-    format: "offline",
-    duration: "2 months",
+    level: "Beginner",
+    format: "Offline",
+    duration: "2 Months",
     lessonsCount: "16 Lessons",
     projectsCount: "6 Projects",
     certificateIncluded: true,
@@ -23,7 +23,12 @@ export const scratch: CourseDict = {
   instructor: {
     name: "Mariam Avagyan",
     role: "Scratch Instructor & Game Developer",
-    bio: "Experienced teacher and game developer with 4+ years of experience in teaching programming to children. Specializing in Scratch, Blockly, and creative programming.",
+    bio: "Experienced teacher and game developer with 4+ years of experience in teaching programming to children. Specializes in Scratch, Blockly, and creative programming.",
+    avatarUrl: "/users/mariam.jpg",
+    socials: {
+      instagram: "https://instagram.com/mariam_scratch_teacher",
+      linkedin: "https://linkedin.com/in/mariam-avagyan",
+    },
     experience: {
       senior: {
         title: "Senior Scratch Instructor",

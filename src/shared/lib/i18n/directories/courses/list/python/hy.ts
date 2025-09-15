@@ -5,14 +5,14 @@ export const python: CourseDict = {
     title: "Python ծրագրավորում",
     description:
       "Սովորիր Python ծրագրավորումը զրոյից։ Ստեղծիր վեբ հավելվածներ, տվյալների վերլուծություն, արհեստական բանականություն և ավտոմատացման գործիքներ։",
-    level: "beginner",
-    format: "offline",
-    duration: "5 months",
+    level: "Սկսնակ",
+    format: "Օֆլայն",
+    duration: "5 Ամիս",
     lessonsCount: "40 Դաս",
     projectsCount: "10 Պրոեկտ",
     certificateIncluded: true,
-    price: "100000 ֏",
-    originalPrice: "125000 ֏",
+    price: "60000 ֏",
+    originalPrice: "75000 ֏",
     sale: "20% Զեղչ",
     registerCourseButtonText: "Գրանցվել դասընթացին",
     registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
@@ -24,6 +24,11 @@ export const python: CourseDict = {
     name: "Դավիթ Ավետիսյան",
     role: "Senior Python Developer & Data Scientist",
     bio: "Փորձառու Python մշակող 7+ տարվա փորձով վեբ մշակման, տվյալների գիտության և մեքենայական ուսուցման ոլորտում: Մասնագիտանում եմ Django, Flask, pandas և scikit-learn-ում:",
+    avatarUrl: "/users/david.jpg",
+    socials: {
+      github: "https://github.com/david-avetisyan",
+      linkedin: "https://linkedin.com/in/david-avetisyan",
+    },
     experience: {
       senior: {
         title: "Senior Python Developer",

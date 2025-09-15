@@ -5,9 +5,9 @@ export const scratch: CourseDict = {
     title: "Scratch: Основы программирования для детей",
     description:
       "Изучи основы программирования через Scratch. Создавай собственные игры, анимации и интерактивные истории. Идеально подходит для начинающих и детей.",
-    level: "beginner",
-    format: "offline",
-    duration: "2 months",
+    level: "Начинающий",
+    format: "Офлайн",
+    duration: "2 Месяца",
     lessonsCount: "16 Уроков",
     projectsCount: "6 Проектов",
     certificateIncluded: true,
@@ -22,8 +22,13 @@ export const scratch: CourseDict = {
   },
   instructor: {
     name: "Мариам Авагян",
-    role: "Преподаватель Scratch и разработчик игр",
-    bio: "Опытный преподаватель и разработчик игр с 4+ летним опытом обучения детей программированию. Специализируюсь на Scratch, Blockly и креативном программировании.",
+    role: "Scratch Instructor & Game Developer",
+    bio: "Опытный преподаватель и разработчик игр с 4+ годами опыта обучения детей программированию. Специализируется на Scratch, Blockly и креативном программировании.",
+    avatarUrl: "/users/mariam.jpg",
+    socials: {
+      instagram: "https://instagram.com/mariam_scratch_teacher",
+      linkedin: "https://linkedin.com/in/mariam-avagyan",
+    },
     experience: {
       senior: {
         title: "Старший преподаватель Scratch",

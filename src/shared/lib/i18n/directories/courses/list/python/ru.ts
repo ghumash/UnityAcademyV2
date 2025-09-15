@@ -5,14 +5,14 @@ export const python: CourseDict = {
     title: "Python программирование",
     description:
       "Изучи программирование на Python с нуля. Создавай веб-приложения, анализируй данные, изучай искусственный интеллект и инструменты автоматизации.",
-    level: "beginner",
-    format: "offline",
-    duration: "5 месяцев",
+    level: "Начинающий",
+    format: "Офлайн",
+    duration: "5 Месяцев",
     lessonsCount: "40 Уроков",
     projectsCount: "10 Проектов",
     certificateIncluded: true,
-    price: "100000 ֏",
-    originalPrice: "125000 ֏",
+    price: "60000 ֏",
+    originalPrice: "75000 ֏",
     sale: "20% Скидка",
     registerCourseButtonText: "Записаться на курс",
     registerFreeLessonButtonText: "Записаться на бесплатный урок",
@@ -23,7 +23,12 @@ export const python: CourseDict = {
   instructor: {
     name: "Давид Аветисян",
     role: "Senior Python Developer & Data Scientist",
-    bio: "Опытный Python разработчик с 7+ летним опытом в веб-разработке, науке о данных и машинном обучении. Специализируюсь на Django, Flask, pandas и scikit-learn.",
+    bio: "Опытный Python разработчик с 7+ годами опыта в веб-разработке, науке о данных и машинном обучении. Специализируется на Django, Flask, pandas и scikit-learn.",
+    avatarUrl: "/users/david.jpg",
+    socials: {
+      github: "https://github.com/david-avetisyan",
+      linkedin: "https://linkedin.com/in/david-avetisyan",
+    },
     experience: {
       senior: {
         title: "Senior Python Developer",

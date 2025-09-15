@@ -5,14 +5,14 @@ export const web_development: CourseDict = {
     title: "Web Development: HTML, CSS, JavaScript",
     description:
       "Learn modern web development from scratch. Create responsive websites, interactive web applications, and professional portfolios. Perfect for beginners and intermediate specialists.",
-    level: "beginner",
-    format: "offline",
-    duration: "6 months",
+    level: "Beginner",
+    format: "Offline",
+    duration: "6 Months",
     lessonsCount: "48 Lessons",
     projectsCount: "12 Projects",
     certificateIncluded: true,
-    price: "120000 ֏",
-    originalPrice: "150000 ֏",
+    price: "40000 ֏",
+    originalPrice: "50000 ֏",
     sale: "20% Discount",
     registerCourseButtonText: "Register for Course",
     registerFreeLessonButtonText: "Register for Free Lesson",
@@ -27,8 +27,7 @@ export const web_development: CourseDict = {
     avatarUrl: "/users/vagharshak.jpg",
     socials: {
       github: "https://github.com/vagharshakgasparyan",
-      linkedin: "https://linkedin.com/in/vagharshakgasparyan",
-      instagram: "https://instagram.com/vagharshak_dev",
+      linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",
     },
     experience: {
       senior: {
@@ -91,19 +90,19 @@ export const web_development: CourseDict = {
     title: "Course Special Advantages",
     list: [
       {
-        title: "Full Stack",
+        title: "Modern Technologies",
         description:
-          "Learn both frontend and backend technologies: HTML, CSS, JavaScript, React, Node.js.",
+          "Work with HTML, CSS, JavaScript, ReactJS, Git and other modern frontend technologies",
       },
       {
-        title: "Modern Tools",
+        title: "Task Manager Application",
         description:
-          "Work with Git, VS Code, Chrome DevTools, and other modern development tools.",
+          "As the main project of the course, you will create your personal Task Manager application with full functionality",
       },
       {
         title: "Practical Projects",
         description:
-          "Create real websites and applications from landing pages to full e-commerce.",
+          "During the course you will create various projects that you will showcase on your GitHub platform to help with job applications",
       },
     ],
   },

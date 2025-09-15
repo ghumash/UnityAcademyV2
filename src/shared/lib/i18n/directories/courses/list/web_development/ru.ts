@@ -5,14 +5,14 @@ export const web_development: CourseDict = {
     title: "Веб-разработка: HTML, CSS, JavaScript",
     description:
       "Изучи современную веб-разработку с нуля. Создавай адаптивные сайты, интерактивные веб-приложения и профессиональное портфолио. Идеально для начинающих и специалистов среднего уровня.",
-    level: "beginner",
-    format: "offline",
-    duration: "6 месяцев",
+    level: "Начинающий",
+    format: "Офлайн",
+    duration: "6 Месяцев",
     lessonsCount: "48 Уроков",
     projectsCount: "12 Проектов",
     certificateIncluded: true,
-    price: "120000 ֏",
-    originalPrice: "150000 ֏",
+    price: "40000 ֏",
+    originalPrice: "50000 ֏",
     sale: "20% Скидка",
     registerCourseButtonText: "Записаться на курс",
     registerFreeLessonButtonText: "Записаться на бесплатный урок",
@@ -27,8 +27,7 @@ export const web_development: CourseDict = {
     avatarUrl: "/users/vagharshak.jpg",
     socials: {
       github: "https://github.com/vagharshakgasparyan",
-      linkedin: "https://linkedin.com/in/vagharshakgasparyan",
-      instagram: "https://instagram.com/vagharshak_dev",
+      linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",
     },
     experience: {
       senior: {
@@ -91,19 +90,19 @@ export const web_development: CourseDict = {
     title: "Особые преимущества курса",
     list: [
       {
-        title: "Полный стек",
+        title: "Современные технологии",
         description:
-          "Изучаем как frontend, так и backend технологии: HTML, CSS, JavaScript, React, Node.js.",
+          "Работаем с HTML, CSS, JavaScript, ReactJS, Git и другими современными frontend технологиями",
       },
       {
-        title: "Современные инструменты",
+        title: "Приложение Task Manager",
         description:
-          "Работаем с Git, VS Code, Chrome DevTools и другими современными инструментами разработки.",
+          "В качестве главного проекта курса вы создадите свое персональное приложение Task Manager с полным функционалом",
       },
       {
         title: "Практические проекты",
         description:
-          "Создаем реальные веб-сайты и приложения от лендингов до полноценного e-commerce.",
+          "В течение курса вы создадите различные проекты, которые разместите на своей GitHub платформе для помощи в трудоустройстве",
       },
     ],
   },

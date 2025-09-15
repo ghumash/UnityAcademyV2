@@ -5,14 +5,14 @@ export const python: CourseDict = {
     title: "Python Programming",
     description:
       "Learn Python programming from scratch. Create web applications, data analysis, artificial intelligence, and automation tools.",
-    level: "beginner",
-    format: "offline",
-    duration: "5 months",
+    level: "Beginner",
+    format: "Offline",
+    duration: "5 Months",
     lessonsCount: "40 Lessons",
     projectsCount: "10 Projects",
     certificateIncluded: true,
-    price: "100000 ֏",
-    originalPrice: "125000 ֏",
+    price: "60000 ֏",
+    originalPrice: "75000 ֏",
     sale: "20% Discount",
     registerCourseButtonText: "Register for Course",
     registerFreeLessonButtonText: "Register for Free Lesson",
@@ -23,7 +23,12 @@ export const python: CourseDict = {
   instructor: {
     name: "David Avetisyan",
     role: "Senior Python Developer & Data Scientist",
-    bio: "Experienced Python developer with 7+ years of experience in web development, data science, and machine learning. Specializing in Django, Flask, pandas, and scikit-learn.",
+    bio: "Experienced Python developer with 7+ years in web development, data science, and machine learning. Specializes in Django, Flask, pandas, and scikit-learn.",
+    avatarUrl: "/users/david.jpg",
+    socials: {
+      github: "https://github.com/david-avetisyan",
+      linkedin: "https://linkedin.com/in/david-avetisyan",
+    },
     experience: {
       senior: {
         title: "Senior Python Developer",

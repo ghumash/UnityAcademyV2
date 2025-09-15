@@ -5,15 +5,15 @@ export const scratch: CourseDict = {
     title: "Scratch: Ծրագրավորման հիմունքներ երեխաների համար",
     description:
       "Սովորիր ծրագրավորման հիմունքները Scratch-ի միջոցով։ Ստեղծիր սեփական խաղեր, անիմացիաներ և ինտերակտիվ պատմություններ։ Կատարյալ է սկսնակների և երեխաների համար։",
-    level: "beginner",
-    format: "offline",
-    duration: "2 months",
+    level: "Սկսնակ",
+    format: "Օֆլայն",
+    duration: "2 Ամիս",
     lessonsCount: "16 Դաս",
     projectsCount: "6 Պրոեկտ",
     certificateIncluded: true,
-    price: "25000 ֏",
-    originalPrice: "30000 ֏",
-    sale: "17% Զեղչ",
+    price: "20000 ֏",
+    originalPrice: "50000 ֏",
+    sale: "40% Զեղչ",
     registerCourseButtonText: "Գրանցվել դասընթացին",
     registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
     certificate: "Սերտիֆիկատ",
@@ -24,6 +24,11 @@ export const scratch: CourseDict = {
     name: "Մարիամ Ավագյան",
     role: "Scratch Instructor & Game Developer",
     bio: "Փորձառու ուսուցիչ և խաղային մշակող 4+ տարվա փորձով երեխաների ծրագրավորման ուսուցման գործում: Մասնագիտանում եմ Scratch, Blockly և ստեղծագործական ծրագրավորման ոլորտում:",
+    avatarUrl: "/users/mariam.jpg",
+    socials: {
+      instagram: "https://instagram.com/mariam_scratch_teacher",
+      linkedin: "https://linkedin.com/in/mariam-avagyan",
+    },
     experience: {
       senior: {
         title: "Senior Scratch Instructor",
