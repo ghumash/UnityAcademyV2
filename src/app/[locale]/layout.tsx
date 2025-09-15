@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
-import type { Locale } from "@/shared/lib/i18n";
+import { getT, type Locale } from "@/shared/lib/i18n";
 import { Footer, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";
 import { ThemeProvider } from "@/features/theme";
-import { getNavigationConfig, getFooterConfig, siteConfig, absoluteUrl } from "@/shared/config/common";
+import {
+  getNavigationConfig,
+  getFooterConfig,
+  siteConfig,
+  absoluteUrl,
+} from "@/shared/config/common";
 
 export async function generateMetadata({
   params,
@@ -12,9 +17,8 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const { getT } = await import("@/shared/lib/i18n");
   const t = await getT(locale);
-  
+
   return createMetadata({
     title: t("common.seo.home.title"),
     alternatesPath: siteConfig.routes.home,
