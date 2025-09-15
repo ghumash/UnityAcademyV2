@@ -21,9 +21,15 @@ export const web_development: CourseDict = {
     formatLabel: "Формат",
   },
   instructor: {
-    name: "Арман Акопян",
-    role: "Senior Full-Stack Developer & Mentor",
-    bio: "Опытный веб-разработчик с 8+ летним опытом работы с фронтенд и бэкенд технологиями. Специализируюсь на React, Node.js, TypeScript и современных веб-технологиях.",
+    name: "Вагаршак Гаспарян",
+    role: "Senior Full-Stack Developer",
+    bio: "Опытный программист с 9+ годами опыта работы, специализируется на полнофункциональной разработке, веб-программировании, программной инженерии и проектировании баз данных.",
+    avatarUrl: "/users/vagharshak.jpg",
+    socials: {
+      github: "https://github.com/vagharshakgasparyan",
+      linkedin: "https://linkedin.com/in/vagharshakgasparyan",
+      instagram: "https://instagram.com/vagharshak_dev",
+    },
     experience: {
       senior: {
         title: "Senior Full-Stack Developer",
@@ -86,15 +92,18 @@ export const web_development: CourseDict = {
     list: [
       {
         title: "Полный стек",
-        description: "Изучаем как frontend, так и backend технологии: HTML, CSS, JavaScript, React, Node.js.",
+        description:
+          "Изучаем как frontend, так и backend технологии: HTML, CSS, JavaScript, React, Node.js.",
       },
       {
         title: "Современные инструменты",
-        description: "Работаем с Git, VS Code, Chrome DevTools и другими современными инструментами разработки.",
+        description:
+          "Работаем с Git, VS Code, Chrome DevTools и другими современными инструментами разработки.",
       },
       {
         title: "Практические проекты",
-        description: "Создаем реальные веб-сайты и приложения от лендингов до полноценного e-commerce.",
+        description:
+          "Создаем реальные веб-сайты и приложения от лендингов до полноценного e-commerce.",
       },
     ],
   },

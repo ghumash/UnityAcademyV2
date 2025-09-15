@@ -64,6 +64,16 @@ export type CourseDict = {
     name: string;
     role: string;
     bio: string;
+    avatarUrl?: string;
+    socials?: {
+      instagram?: string;
+      facebook?: string;
+      linkedin?: string;
+      behance?: string;
+      github?: string;
+      x?: string;
+      website?: string;
+    };
     experience: {
       senior: {
         title: string;

@@ -21,9 +21,15 @@ export const web_development: CourseDict = {
     formatLabel: "Format",
   },
   instructor: {
-    name: "Arman Hakobyan",
-    role: "Senior Full-Stack Developer & Mentor",
-    bio: "Experienced web developer with 8+ years of experience in front-end and back-end technologies. Specializing in React, Node.js, TypeScript, and modern web technologies.",
+    name: "Vagharshak Gasparyan",
+    role: "Senior Full-Stack Developer",
+    bio: "Experienced computer programmer with 9+ years of work experience, skilled in full-stack development, web programming, software engineering, and database design.",
+    avatarUrl: "/users/vagharshak.jpg",
+    socials: {
+      github: "https://github.com/vagharshakgasparyan",
+      linkedin: "https://linkedin.com/in/vagharshakgasparyan",
+      instagram: "https://instagram.com/vagharshak_dev",
+    },
     experience: {
       senior: {
         title: "Senior Full-Stack Developer",
@@ -86,15 +92,18 @@ export const web_development: CourseDict = {
     list: [
       {
         title: "Full Stack",
-        description: "Learn both frontend and backend technologies: HTML, CSS, JavaScript, React, Node.js.",
+        description:
+          "Learn both frontend and backend technologies: HTML, CSS, JavaScript, React, Node.js.",
       },
       {
         title: "Modern Tools",
-        description: "Work with Git, VS Code, Chrome DevTools, and other modern development tools.",
+        description:
+          "Work with Git, VS Code, Chrome DevTools, and other modern development tools.",
       },
       {
         title: "Practical Projects",
-        description: "Create real websites and applications from landing pages to full e-commerce.",
+        description:
+          "Create real websites and applications from landing pages to full e-commerce.",
       },
     ],
   },

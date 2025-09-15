@@ -7,12 +7,14 @@ import type { Theme } from "@/widgets/Courses";
 import { siteConfig } from "@/shared/config/common";
 
 // Простая фильтрация - убирает элементы с пустыми полями или ключами переводов
-const filterItems = (items: any[]) => items.filter(item => 
-  item.title && 
-  item.description && 
-  !item.title.startsWith('courses.list.') && 
-  !item.description.startsWith('courses.list.')
-);
+const filterItems = (items: any[]) =>
+  items.filter(
+    (item) =>
+      item.title &&
+      item.description &&
+      !item.title.startsWith("courses.list.") &&
+      !item.description.startsWith("courses.list.")
+  );
 
 export async function getCoursePageConfig(locale: Locale, slug: string) {
   const t = await getT(locale);
@@ -72,8 +74,11 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   ];
 
   // Получаем массив условий из переводов
-  const conditionsList = t(`courses.list.${slug}.conditions.list`) as Array<{title: string; description: string}>;
-  
+  const conditionsList = t(`courses.list.${slug}.conditions.list`) as Array<{
+    title: string;
+    description: string;
+  }>;
+
   const allItems = conditionsList.map((_, index) => ({
     icon: <BadgeCheck className="size-5" />,
     title: t(`courses.list.${slug}.conditions.list.${index}.title`),
@@ -82,17 +87,17 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
 
   const contentSectionConfig = {
     title: t(`courses.list.${slug}.conditions.title`),
-    blocks: filterItems(allItems).map(item => ({
+    blocks: filterItems(allItems).map((item) => ({
       items: [item],
     })),
   };
 
   // Получаем данные инструктора из переводов
   const instructorData = t(`courses.list.${slug}.instructor`) as any;
-  
+
   // Фильтруем опыт работы - показываем только доступные уровни
   const experienceEntries = [];
-  
+
   if (instructorData.experience?.senior) {
     experienceEntries.push({
       title: t(`courses.list.${slug}.instructor.experience.senior.title`),
@@ -101,7 +106,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
       summary: t(`courses.list.${slug}.instructor.experience.senior.summary`),
     });
   }
-  
+
   if (instructorData.experience?.mid) {
     experienceEntries.push({
       title: t(`courses.list.${slug}.instructor.experience.mid.title`),
@@ -110,7 +115,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
       summary: t(`courses.list.${slug}.instructor.experience.mid.summary`),
     });
   }
-  
+
   if (instructorData.experience?.junior) {
     experienceEntries.push({
       title: t(`courses.list.${slug}.instructor.experience.junior.title`),
@@ -123,21 +128,17 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   const mockUserData: UserCardData = {
     name: t(`courses.list.${slug}.instructor.name`),
     role: t(`courses.list.${slug}.instructor.role`),
-    avatarUrl:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    avatarUrl: instructorData.avatarUrl,
     bio: t(`courses.list.${slug}.instructor.bio`),
     experience: experienceEntries,
-    socials: {
-      github: "https://github.com/annapetrov",
-      linkedin: "https://linkedin.com/in/annapetrov",
-      x: "https://x.com/annapetrov",
-      website: "https://annapetrov.dev",
-    },
+    socials: instructorData.socials || {},
   };
 
   const instructorLabels = {
     experienceLabel: t(`courses.list.${slug}.instructor.experienceLabel`),
-    socialNetworksLabel: t(`courses.list.${slug}.instructor.socialNetworksLabel`),
+    socialNetworksLabel: t(
+      `courses.list.${slug}.instructor.socialNetworksLabel`
+    ),
     showDetails: t(`courses.list.${slug}.instructor.showDetails`),
     hideDetails: t(`courses.list.${slug}.instructor.hideDetails`),
   };

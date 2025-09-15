@@ -5,14 +5,14 @@ export const web_development: CourseDict = {
     title: "Վեբ ծրագրավորում: HTML, CSS, JavaScript",
     description:
       "Սովորիր ժամանակակից վեբ ծրագրավորումը զրոյից։ Ստեղծիր ռեսպոնսիվ կայքեր, ինտերակտիվ վեբ հավելվածներ և պրոֆեսիոնալ պորտֆոլիո։ Կատարյալ է սկսնակների և միջին մակարդակի մասնագետների համար։",
-    level: "beginner",
-    format: "offline",
-    duration: "6 months",
+    level: "Սկսնակ",
+    format: "Օֆլայն",
+    duration: "6 Ամիս",
     lessonsCount: "48 Դաս",
     projectsCount: "12 Պրոեկտ",
     certificateIncluded: true,
-    price: "120000 ֏",
-    originalPrice: "150000 ֏",
+    price: "40000 ֏",
+    originalPrice: "50000 ֏",
     sale: "20% Զեղչ",
     registerCourseButtonText: "Գրանցվել դասընթացին",
     registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
@@ -24,6 +24,11 @@ export const web_development: CourseDict = {
     name: "Վաղարշակ Գասպարյան",
     role: "Senior Full-Stack Developer",
     bio: "Փորձառու համակարգչային ծրագրավորող 9+ տարվա աշխատանքային փորձով, հմտորեն զբաղվում է ամբողջական փաթեթի մշակման, վեբ ծրագրավորման, ծրագրային ապահովման ճարտարագիտության և տվյալների բազայի նախագծման մեջ:",
+    avatarUrl: "/users/vagharshak.jpg",
+    socials: {
+      github: "https://github.com/vagharshakgasparyan",
+      linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",
+    },
     experience: {
       senior: {
         title: "Full-Stack Developer",
@@ -78,19 +83,19 @@ export const web_development: CourseDict = {
     title: "Դասընթացի հատուկ առավելությունները",
     list: [
       {
-        title: "Ամբողջական ստեկ",
+        title: "Ժամանակակից տեխնոլոգիաներ",
         description:
-          "Սովորում ենք ինչպես frontend, այնպես էլ backend տեխնոլոգիաներ՝ HTML, CSS, JavaScript, React, Node.js:",
+          "Աշխատում ենք HTML, CSS, JavaScript, ReactJS, Git և այլ ժամանակակից ֆրոնտենդ տեխնոլոգիաներով",
       },
       {
-        title: "Ժամանակակից գործիքներ",
+        title: "Task Manager ծրագիր",
         description:
-          "Աշխատում ենք Git, VS Code, Chrome DevTools և այլ արդիական մշակման գործիքներով:",
+          "Դասընթացի որպես գլխավոր պրոեկտ կստեղծեք ձեր անձնական Task Manager ծրագիրը ամբողջական ֆունկցիոնալով",
       },
       {
         title: "Պրակտիկ նախագծեր",
         description:
-          "Ստեղծում ենք իրական վեբ կայքեր և հավելվածներ՝ սկսած landing page-ից մինչև ամբողջական e-commerce:",
+          "Դասընթացի ընթացքում կստեղծեք տարբեր պրոեկտներ որոնք կամրացնեք ձեր GitHub-ի հարթակում որոնք կոգնեն աշխատանքի ընդունման հարցում",
       },
     ],
   },

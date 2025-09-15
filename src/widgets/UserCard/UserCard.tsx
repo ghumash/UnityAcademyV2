@@ -8,6 +8,9 @@ import {
   Linkedin, 
   Twitter, 
   Globe, 
+  Instagram,
+  Facebook,
+  Palette,
   ChevronDown,
   ChevronUp 
 } from "lucide-react";
@@ -29,8 +32,11 @@ export type ExperienceItem = {
 };
 
 export type SocialLinks = {
-  github?: string;
+  instagram?: string;
+  facebook?: string;
   linkedin?: string;
+  behance?: string;
+  github?: string;
   x?: string;
   website?: string;
 };
@@ -59,8 +65,11 @@ export type UserCardProps = {
 
 // Иконки для социальных сетей
 const socialIcons = {
-  github: Github,
+  instagram: Instagram,
+  facebook: Facebook,
   linkedin: Linkedin,
+  behance: Palette,
+  github: Github,
   x: Twitter,
   website: Globe,
 } as const;
@@ -200,8 +209,11 @@ const SocialLinks: React.FC<{
         {socialEntries.map(([platform, url]) => {
           const Icon = socialIcons[platform as SocialIconKey];
           const platformName = {
+            instagram: 'Instagram',
+            facebook: 'Facebook',
+            linkedin: 'LinkedIn',
+            behance: 'Behance',
             github: 'GitHub',
-            linkedin: 'LinkedIn', 
             x: 'X (Twitter)',
             website: 'Веб-сайт'
           }[platform as SocialIconKey];
