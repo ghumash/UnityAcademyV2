@@ -106,9 +106,6 @@ export function createMetadata(input?: {
       locale: input?.locale
         ? `${input.locale}-${input.locale.toUpperCase()}`
         : siteConfig.locale,
-      images: siteConfig.assets.ogImage
-        ? [absoluteUrl(siteConfig.assets.ogImage)]
-        : undefined,
     },
     twitter: { card: "summary_large_image", title, description },
   };
