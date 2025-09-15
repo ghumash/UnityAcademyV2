@@ -24,7 +24,7 @@ export const web_development: CourseDict = {
     name: "Վաղարշակ Գասպարյան",
     role: "Senior Full-Stack Developer",
     bio: "Փորձառու համակարգչային ծրագրավորող 9+ տարվա աշխատանքային փորձով, հմտորեն զբաղվում է ամբողջական փաթեթի մշակման, վեբ ծրագրավորման, ծրագրային ապահովման ճարտարագիտության և տվյալների բազայի նախագծման մեջ:",
-    avatarUrl: "/users/vagharshak.jpg",
+    avatarUrl: "/images/users/vagharshak.jpg",
     socials: {
       github: "https://github.com/vagharshakgasparyan",
       linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",

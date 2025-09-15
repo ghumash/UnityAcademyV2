@@ -7,7 +7,7 @@ import { GradientHeading } from "@/shared/ui/lib";
 import { LogoCarousel } from "@/shared/ui/lib/logo-carousel";
 import React from "react";
 import type { StaticImageData } from "next/image";
-import ArdaLogo from "../../../public/arda.jpg";
+import ArdaLogo from "../../../public/images/logos/arda.jpg";
 
 type LogoItem = { id: number; name: string; img: string | StaticImageData };
 
@@ -22,31 +22,31 @@ export interface LogoCarouselSectionProps {
   config: LogoCarouselSectionConfig;
 }
 
-const LogoCarouselSectionComponent = memo(({
-  config,
-}: LogoCarouselSectionProps) => {
-  const { title, subtitle } = config;
-  return (
-    <Section id="logo-carousel" aria-labelledby="logo-carousel-title">
-      <Container>
-        <div className="flex flex-col items-center gap-8">
-          <div className="text-center">
-            <GradientHeading variant="secondary" id="logo-carousel-title">
-              {title}
-            </GradientHeading>
-            <GradientHeading size="xxl">{subtitle}</GradientHeading>
-          </div>
+const LogoCarouselSectionComponent = memo(
+  ({ config }: LogoCarouselSectionProps) => {
+    const { title, subtitle } = config;
+    return (
+      <Section id="logo-carousel" aria-labelledby="logo-carousel-title">
+        <Container>
+          <div className="flex flex-col items-center gap-8">
+            <div className="text-center">
+              <GradientHeading variant="secondary" id="logo-carousel-title">
+                {title}
+              </GradientHeading>
+              <GradientHeading size="xxl">{subtitle}</GradientHeading>
+            </div>
 
-          <div role="region" aria-label="Partner and technology logos">
-            <LogoCarousel columnCount={allLogos?.length} logos={allLogos} />
+            <div role="region" aria-label="Partner and technology logos">
+              <LogoCarousel columnCount={allLogos?.length} logos={allLogos} />
+            </div>
           </div>
-        </div>
-      </Container>
-    </Section>
-  );
-});
+        </Container>
+      </Section>
+    );
+  }
+);
 
-export const LogoCarouselSection = dynamic(() => 
-  Promise.resolve(LogoCarouselSectionComponent), 
+export const LogoCarouselSection = dynamic(
+  () => Promise.resolve(LogoCarouselSectionComponent),
   { ssr: false }
 );

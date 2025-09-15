@@ -13,12 +13,12 @@ import React, {
   type JSX,
 } from "react";
 import {
-  IconArrowNarrowLeft,
-  IconArrowNarrowRight,
-  IconVolume,
-  IconVolumeOff,
-  IconX,
-} from "@tabler/icons-react";
+  ArrowLeft,
+  ArrowRight,
+  Volume2,
+  VolumeX,
+  X,
+} from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useOutsideClick } from "@/shared/hooks";
@@ -172,7 +172,7 @@ export const Carousel = memo(function Carousel({
             disabled={!canScrollLeft}
             aria-disabled={!canScrollLeft}
           >
-            <IconArrowNarrowLeft
+            <ArrowLeft
               className="h-6 w-6 text-gray-600 dark:text-gray-300"
               aria-hidden="true"
             />
@@ -187,7 +187,7 @@ export const Carousel = memo(function Carousel({
             disabled={!canScrollRight}
             aria-disabled={!canScrollRight}
           >
-            <IconArrowNarrowRight
+            <ArrowRight
               className="h-6 w-6 text-gray-600 dark:text-gray-300"
               aria-hidden="true"
             />
@@ -286,9 +286,9 @@ const PromoVideoPreview = memo(function PromoVideoPreview({
         aria-label={muted ? "Unmute video" : "Mute video"}
       >
         {muted ? (
-          <IconVolumeOff className="h-5 w-5" aria-hidden="true" />
+          <VolumeX />
         ) : (
-          <IconVolume className="h-5 w-5" aria-hidden="true" />
+          <Volume2 />
         )}
       </div>
     </div>
@@ -422,10 +422,7 @@ export const Card = memo(function Card({
                 className="sticky top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
                 onClick={handleClose}
               >
-                <IconX
-                  className="h-6 w-6 text-neutral-100 dark:text-neutral-900"
-                  aria-hidden="true"
-                />
+                <X className="h-6 w-6" />
                 <span className="sr-only">Close</span>
               </button>
 

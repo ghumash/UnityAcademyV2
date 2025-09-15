@@ -50,7 +50,6 @@ const nextConfig: NextConfig = {
   // Оптимизация бандла
   experimental: {
     optimizePackageImports: [
-      "@tabler/icons-react",
       "motion/react",
       "date-fns",
       "lucide-react",

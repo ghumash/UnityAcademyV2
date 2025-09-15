@@ -24,7 +24,7 @@ export const web_development: CourseDict = {
     name: "Вагаршак Гаспарян",
     role: "Senior Full-Stack Developer",
     bio: "Опытный программист с 9+ годами опыта работы, специализируется на полнофункциональной разработке, веб-программировании, программной инженерии и проектировании баз данных.",
-    avatarUrl: "/users/vagharshak.jpg",
+    avatarUrl: "/images/users/vagharshak.jpg",
     socials: {
       github: "https://github.com/vagharshakgasparyan",
       linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",
