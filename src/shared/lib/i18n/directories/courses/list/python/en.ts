@@ -83,19 +83,17 @@ export const python: CourseDict = {
   },
   conditions: {
     title: "Course Conditions",
-    blocks: {
-      first: {
-        title: "Duration",
-        description: "6 months, 2 classes per week",
-      },
-      second: {
-        title: "Beginner",
-        description: "No prior experience required",
-      },
-      third: {
-        title: "Be part of",
-        description: "Python developers community",
-      },
+    duration: {
+      title: "Duration",
+      description: "6 months, 2 classes per week",
+    },
+    level: {
+      title: "Beginner",
+      description: "No prior experience required",
+    },
+    community: {
+      title: "Be part of",
+      description: "Python developers community",
     },
   },
   cta: {

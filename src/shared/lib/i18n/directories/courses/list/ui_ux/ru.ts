@@ -83,19 +83,17 @@ export const ui_ux: CourseDict = {
   },
   conditions: {
     title: "Условия курса",
-    blocks: {
-      first: {
-        title: "Длительность",
-        description: "5 месяцев, 2 занятия в неделю",
-      },
-      second: {
-        title: "Начинающий",
-        description: "Предварительный опыт не требуется",
-      },
-      third: {
-        title: "Стать частью",
-        description: "Сообщества UI/UX дизайнеров",
-      },
+    duration: {
+      title: "Длительность",
+      description: "5 месяцев, 2 занятия в неделю",
+    },
+    level: {
+      title: "Начинающий",
+      description: "Предварительный опыт не требуется",
+    },
+    community: {
+      title: "Стать частью",
+      description: "Сообщества UI/UX дизайнеров",
     },
   },
   cta: {

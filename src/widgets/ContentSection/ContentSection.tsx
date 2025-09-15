@@ -30,6 +30,7 @@ export type ContentSectionConfig = {
     icon?: React.ReactNode;
     text: string;
   };
+  title?: string;
 };
 
 // Основные пропсы компонента
@@ -163,17 +164,16 @@ const ContentSectionComponent = memo(({
   return (
     <Section as="section" aria-label="Content Section" className={className}>
       <Container>
-        {/* {config.title?.label && (
+        {config.title && (
           <h2
             id="features-heading"
             className={cn(
-              "mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white",
-              config.title?.className
+              "mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white text-center",
             )}
           >
-            {config.title?.label}
+            {config.title}
           </h2>
-        )} */}
+        )}
 
         <div className="relative z-10 rounded-2xl border bg-background/80 shadow-md backdrop-blur supports-[backdrop-filter]:bg-background/60">
           {/* Опциональный бейдж */}

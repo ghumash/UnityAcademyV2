@@ -75,19 +75,17 @@ export const soft_skills: CourseDict = {
   },
   conditions: {
     title: "Условия курса",
-    blocks: {
-      first: {
-        title: "Длительность",
-        description: "3 месяца, 2 занятия в неделю",
-      },
-      second: {
-        title: "Начинающий",
-        description: "Предварительный опыт не требуется",
-      },
-      third: {
-        title: "Стать частью",
-        description: "Сообщества soft skills",
-      },
+    duration: {
+      title: "Длительность",
+      description: "3 месяца, 2 занятия в неделю",
+    },
+    level: {
+      title: "Начинающий",
+      description: "Предварительный опыт не требуется",
+    },
+    community: {
+      title: "Стать частью",
+      description: "Сообщества soft skills",
     },
   },
   cta: {

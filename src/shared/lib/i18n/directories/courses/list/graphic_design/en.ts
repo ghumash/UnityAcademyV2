@@ -3,8 +3,7 @@ import type { CourseDict } from "../../types";
 export const graphic_design: CourseDict = {
   courseHeroSection: {
     title: "Graphic Design: Photoshop, Illustrator, Canva",
-    description:
-      "Learn graphic design using industry-standard tools like Photoshop, Illustrator, and Canva. Create stunning visuals for print and digital media.",
+    description: "Learn graphic design using industry-standard tools like Photoshop, Illustrator, and Canva. Create stunning visuals for print and digital media.",
     level: "Beginner",
     format: "Offline",
     duration: "2 months",
@@ -29,22 +28,19 @@ export const graphic_design: CourseDict = {
         title: "Senior Frontend Developer",
         company: "TechCorp Inc.",
         period: "2022 - present",
-        summary:
-          "Leading a team of 4 developers, architecture and development of large-scale React applications, implementation of best practices and code review.",
+        summary: "Leading a team of 4 developers, architecture and development of large-scale React applications, implementation of best practices and code review.",
       },
       mid: {
         title: "Frontend Developer",
         company: "StartupXYZ",
         period: "2020 - 2022",
-        summary:
-          "Development of user interfaces for SaaS platform, performance optimization, integration with REST API and GraphQL.",
+        summary: "Development of user interfaces for SaaS platform, performance optimization, integration with REST API and GraphQL.",
       },
       junior: {
         title: "Junior Frontend Developer",
         company: "WebStudio",
         period: "2019 - 2020",
-        summary:
-          "Creating responsive websites, learning modern frameworks, participating in team development and code review processes.",
+        summary: "Creating responsive websites, learning modern frameworks, participating in team development and code review processes.",
       },
     },
     experienceLabel: "Work Experience",
@@ -70,17 +66,15 @@ export const graphic_design: CourseDict = {
       "Print design",
       "Digital media design",
       "Portfolio creation",
-      "Client work",
+      "Client work"
     ],
   },
   conditions: {
-    title: "Course Special Benefits",
-    blocks: {
-      first: {
-        title: "Print Shop Visit",
-        description:
-          "During the course, students also visit a print shop, get acquainted with materials, equipment and rules for working with the print shop.",
-      },
+    title: "Course Special Advantages",
+    duration: {
+      title: "Print Shop Visit",
+      description:
+        "During the course, students also visit a print shop, get acquainted with materials, equipment and rules of working with the print shop.",
     },
   },
   cta: {

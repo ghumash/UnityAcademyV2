@@ -41,14 +41,6 @@ export type SingleDict = {
   };
 };
 
-/**
- * Универсальный блок условий курса
- */
-export type CourseConditionBlock = {
-  title: string;
-  description: string;
-};
-
 export type CourseDict = {
   courseHeroSection: {
     title: string;
@@ -103,19 +95,17 @@ export type CourseDict = {
   };
   conditions: {
     title: string;
-    blocks: {
-      first?: {
-        title: string;
-        description: string;
-      };
-      second?: {
-        title: string;
-        description: string;
-      };
-      third?: {
-        title: string;
-        description: string;
-      };
+    duration: {
+      title: string;
+      description: string;
+    };
+    level?: {
+      title: string;
+      description: string;
+    };
+    community?: {
+      title: string;
+      description: string;
     };
   };
   cta: {
