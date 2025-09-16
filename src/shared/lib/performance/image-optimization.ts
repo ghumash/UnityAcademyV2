@@ -22,7 +22,7 @@ export const generateSrcSet = (
 };
 
 // Оптимальные форматы изображений
-export const getOptimalImageFormat = (): 'avif' | 'webp' | 'jpg' => {
+export const getOptimalImageFormat2 = (): 'avif' | 'webp' | 'jpg' => {
   if (typeof window === 'undefined') return 'webp';
   
   // Проверяем поддержку AVIF
@@ -113,7 +113,7 @@ export const getImageProps = ({
   className = '',
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
 }: OptimizedImageProps) => {
-  const format = getOptimalImageFormat();
+  const format = getOptimalImageFormat2();
   const optimizedSrc = `${src}?f=${format}&q=80`;
   const srcSet = generateSrcSet(src);
 
