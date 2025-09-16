@@ -47,19 +47,20 @@ const Tile = React.memo(({
   return (
     <li
       className={cn(
-        "relative rounded-2xl border border-border/60 bg-background/30 p-5 md:p-6 transition-colors",
-        "focus-within:ring-2 focus-within:ring-primary/40",
-        "before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl",
-        "transition-all duration-500",
-        "hover:border-border hover:bg-card hover:scale-[1.02]",
-        "focus-within:scale-[1.01]",
+        "relative rounded-2xl border-2 border-border/20 bg-card shadow-sm p-5 md:p-6",
+        "transition-all duration-300 ease-in-out",
+        "hover:border-primary/30 hover:bg-card hover:shadow-md hover:scale-[1.02]",
+        "focus-within:ring-2 focus-within:ring-primary/50 focus-within:border-primary/40 focus-within:scale-[1.01]",
+        "dark:border-white/10 dark:bg-card dark:shadow-lg dark:shadow-black/5",
+        "dark:hover:border-primary/40 dark:hover:shadow-xl dark:hover:shadow-black/10",
+        "dark:focus-within:border-primary/60",
         className
       )}
     >
       <div className="min-w-0 flex-1 space-y-4">
         <div
           aria-hidden
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/12 text-primary"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary border border-primary/20 dark:bg-primary/20 dark:border-primary/30 dark:text-primary"
         >
           {icon}
         </div>
@@ -67,7 +68,7 @@ const Tile = React.memo(({
           <h3 className="text-base md:text-lg font-semibold tracking-tight text-foreground">
             {title}
           </h3>
-          <p className="mt-1 text-sm leading-relaxed text-foreground/70 line-clamp-3">
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
             {description}
           </p>
         </div>
@@ -107,12 +108,13 @@ const LongInfoCard = React.memo(({ items }: { items: ReadonlyArray<LongInfoItem>
     <li className="md:col-span-2">
       <div
         className={cn(
-          "relative overflow-hidden hover:border-border rounded-2xl border border-border/60 bg-background/30 p-5 md:p-7",
-          "before:pointer-events-none before:absolute before:-top-24 before:-left-24 before:h-64 before:w-64 before:rounded-full",
-          "after:pointer-events-none after:absolute after:-bottom-24 after:-right-24 after:h-64 after:w-64 after:rounded-full",
-          "transition-all duration-500",
-          "hover:border-border hover:bg-card hover:scale-[1.02]",
-          "focus-within:scale-[1.01]"
+          "relative overflow-hidden rounded-2xl border-2 border-border/20 bg-card shadow-sm p-5 md:p-7",
+          "transition-all duration-300 ease-in-out",
+          "hover:border-primary/30 hover:bg-card hover:shadow-md hover:scale-[1.02]",
+          "focus-within:ring-2 focus-within:ring-primary/50 focus-within:border-primary/40 focus-within:scale-[1.01]",
+          "dark:border-white/10 dark:bg-card dark:shadow-lg dark:shadow-black/5",
+          "dark:hover:border-primary/40 dark:hover:shadow-xl dark:hover:shadow-black/10",
+          "dark:focus-within:border-primary/60"
         )}
       >
         <ul role="list" className="grid grid-cols-1 gap-6">
@@ -120,12 +122,12 @@ const LongInfoCard = React.memo(({ items }: { items: ReadonlyArray<LongInfoItem>
             <li key={`${label}-${i}`} className="flex items-center gap-4">
               <div
                 aria-hidden
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-primary/12 text-primary"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-primary/15 text-primary border border-primary/20 dark:bg-primary/20 dark:border-primary/30 dark:text-primary"
               >
                 {icon}
               </div>
               <div className="min-w-0">
-                <div className="text-sm font-medium text-foreground/80">
+                <div className="text-sm font-medium text-muted-foreground">
                   {label}
                 </div>
                 {href ? (
