@@ -5,6 +5,8 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 export const siteConfig = {
   name: "Unity Academy",
   shortName: "Unity",
+  description:
+    "Unity Academy-ն Վանաձորում գործող ժամանակակից կենտրոն է, որտեղ կարող ես սովորել պահանջված մասնագիտություններ նոր մեթոդներով և հնարավորություններով։",
   url: SITE_URL,
   locale: "hy-HY",
   defaultLanguage: "hy",
