@@ -14,7 +14,6 @@ type TextHoverEffectProps = {
   text: string;
   /** seconds for mask follow animation */
   duration?: number;
-  /** Семантический тег-обёртка: можно передать 'h1' для заголовка страницы */
   as?: keyof JSX.IntrinsicElements;
   /** Абсолютный радиус круга в координатах viewBox (px). Приоритетнее revealRatio. */
   revealRadius?: number;
@@ -24,6 +23,13 @@ type TextHoverEffectProps = {
   minRevealRadius?: number;
   /** Мягкость края круга (px в viewBox). 0 — жёсткий край. По умолчанию 12. */
   feather?: number;
+
+  /** Включить «сердцебиение» (по умолчанию true) */
+  pulse?: boolean;
+  /** Частота пульса, ударов в минуту (по умолчанию 72) */
+  pulseBpm?: number;
+  /** Амплитуда увеличения радиуса (0.1 = +10%) (по умолчанию 0.1) */
+  pulseScale?: number;
 };
 
 const clamp = (v: number, min: number, max: number) =>
@@ -34,16 +40,20 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
   duration = 0,
   as: Tag = "p",
   revealRadius,
-  revealRatio = 0.7,
+  revealRatio = 0.9,
   minRevealRadius = 8,
   feather = 40,
+  pulse = true,
+  pulseBpm = 72,
+  pulseScale = 0.3,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const textRef = useRef<SVGTextElement>(null);
   const rafRef = useRef<number | null>(null);
 
   const uid = useId().replace(/[:]/g, "");
-  const gradientId = `textGradient-${uid}`;
+  const gradientLightId = `textGradientLight-${uid}`;
+  const gradientDarkId = `textGradientDark-${uid}`;
   const maskId = `textMask-${uid}`;
   const revealId = `revealMask-${uid}`;
 
@@ -51,7 +61,7 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
 
   const [hovered, setHovered] = useState(false);
 
-  // viewBox size (для точных координат)
+  // viewBox size
   const [box, setBox] = useState<{ w: number; h: number }>({ w: 300, h: 100 });
   const [viewBox, setViewBox] = useState<string>("0 0 300 100");
 
@@ -112,21 +122,53 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
     };
   }, []);
 
-  // Радиус круга (всегда круг!)
+  // Базовый радиус
   const minSide = Math.min(box.w, box.h);
-  const computedRadius = clamp(
+  const baseRadius = clamp(
     revealRadius ?? minSide * revealRatio,
     minRevealRadius,
     minSide * 1.5
   );
 
-  // Позиция «жёсткого» края внутри радиуса для плавного края.
-  // 0..1 (процент радиуса), насколько далеко от центра держать белую область
-  const innerStop = feather > 0 ? Math.max(0, 1 - feather / computedRadius) : 1;
+  // «Сердцебиение»: двойной удар в одном цикле
+  const beatSec = 60 / pulseBpm; // секунд на один удар
+  const cycleDuration = beatSec * 2; // два толчка за цикл
+  const r0 = baseRadius;
+  const r1 = baseRadius * (1 + pulseScale); // первый сильный толчок
+  const r2 = baseRadius; // спад
+  const r3 = baseRadius * (1 + pulseScale * 0.7); // второй, слабее
+  const r4 = baseRadius; // возвращение к базе
+  const rKeyframes = [r0, r1, r2, r3, r4];
+  const rTimes = [0, 0.18, 0.32, 0.5, 1]; // распределение по циклу
+
+  // Позиция «жёсткого» края для feather
+  const innerStop =
+    feather > 0 ? Math.max(0, 1 - feather / baseRadius) : 1;
+
+  // Настройки анимации маски
+  const animateMask =
+    prefersReducedMotion || !pulse
+      ? { cx: maskPos.cx, cy: maskPos.cy, r: baseRadius }
+      : { cx: maskPos.cx, cy: maskPos.cy, r: rKeyframes };
+
+  const transitionMask =
+    prefersReducedMotion || !pulse
+      ? { duration: 0 }
+      : {
+          cx: { duration, ease: "easeOut" },
+          cy: { duration, ease: "easeOut" },
+          r: {
+            duration: cycleDuration,
+            times: rTimes,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "loop",
+            repeatDelay: beatSec * 0.35, // короткая «пауза» между двойными ударами
+          },
+        };
 
   return (
-    <Tag className="relative w-full h-full">
-      {/* Доступный текст для SR и SEO */}
+    <Tag className="relative h-full w-full">
       <span className="sr-only">{text}</span>
 
       <svg
@@ -144,64 +186,119 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
         className="select-none"
       >
         <defs>
-          {/* Цветной градиент для обводки */}
-          <linearGradient id={gradientId} gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
-            {hovered && (
-              <>
-                <stop offset="0%" stopColor="rgb(234 179 8)" />
-                <stop offset="25%" stopColor="rgb(239 68 68)" />
-                <stop offset="50%" stopColor="rgb(59 130 246)" />
-                <stop offset="75%" stopColor="rgb(6 182 212)" />
-                <stop offset="100%" stopColor="rgb(139 92 246)" />
-              </>
-            )}
+          {/* Тёплый градиент для светлой темы */}
+          <linearGradient
+            id={gradientLightId}
+            gradientUnits="objectBoundingBox"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="0"
+          >
+            <stop offset="0%" stopColor="rgb(251 191 36)" />
+            <stop offset="25%" stopColor="rgb(244 63 94)" />
+            <stop offset="50%" stopColor="rgb(99 102 241)" />
+            <stop offset="75%" stopColor="rgb(56 189 248)" />
+            <stop offset="100%" stopColor="rgb(139 92 246)" />
           </linearGradient>
 
-          {/* Маска: если feather > 0 — круглый radialGradient (мягкий край); иначе — жёсткий круг */}
+          {/* Брендовый градиент для тёмной темы */}
+          <linearGradient
+            id={gradientDarkId}
+            gradientUnits="objectBoundingBox"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="0"
+          >
+            <stop offset="0%" stopColor="rgb(234 179 8)" />
+            <stop offset="25%" stopColor="rgb(239 68 68)" />
+            <stop offset="50%" stopColor="rgb(59 130 246)" />
+            <stop offset="75%" stopColor="rgb(6 182 212)" />
+            <stop offset="100%" stopColor="rgb(139 92 246)" />
+          </linearGradient>
+
+          {/* Маска: мягкий край через radialGradient, жёсткий — через circle */}
           {feather > 0 ? (
             <>
               <motion.radialGradient
                 id={revealId}
                 gradientUnits="userSpaceOnUse"
-                // Радиус градиента — наш целевой радиус
-                r={computedRadius}
                 initial={false}
-                animate={prefersReducedMotion ? undefined : { cx: maskPos.cx, cy: maskPos.cy }}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration, ease: "easeOut" }}
+                animate={animateMask}
+                transition={transitionMask}
                 // дубль координат на случай отключённой анимации
                 cx={maskPos.cx}
                 cy={maskPos.cy}
+                r={baseRadius}
               >
-                {/* Белая часть до innerStop — полностью видимо */}
                 <stop offset="0%" stopColor="white" />
                 <stop offset={`${innerStop * 100}%`} stopColor="white" />
-                {/* Плавный спад к чёрному на краю радиуса */}
                 <stop offset="100%" stopColor="black" />
               </motion.radialGradient>
 
-              <mask id={maskId} maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width={box.w} height={box.h}>
-                <rect x="0" y="0" width={box.w} height={box.h} fill={`url(#${revealId})`} />
+              <mask
+                id={maskId}
+                maskUnits="userSpaceOnUse"
+                maskContentUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width={box.w}
+                height={box.h}
+              >
+                <rect
+                  x="0"
+                  y="0"
+                  width={box.w}
+                  height={box.h}
+                  fill={`url(#${revealId})`}
+                />
               </mask>
             </>
           ) : (
-            <mask id={maskId} maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width={box.w} height={box.h}>
-              {/* фон — скрыт */}
+            <mask
+              id={maskId}
+              maskUnits="userSpaceOnUse"
+              maskContentUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width={box.w}
+              height={box.h}
+            >
               <rect x="0" y="0" width={box.w} height={box.h} fill="black" />
-              {/* жёсткий круг */}
               <motion.circle
                 cx={maskPos.cx}
                 cy={maskPos.cy}
-                r={computedRadius}
+                r={baseRadius}
                 fill="white"
                 initial={false}
-                animate={prefersReducedMotion ? undefined : { cx: maskPos.cx, cy: maskPos.cy }}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration, ease: "easeOut" }}
+                animate={
+                  prefersReducedMotion || !pulse
+                    ? { cx: maskPos.cx, cy: maskPos.cy, r: baseRadius }
+                    : { cx: maskPos.cx, cy: maskPos.cy, r: rKeyframes }
+                }
+                transition={
+                  prefersReducedMotion || !pulse
+                    ? { duration: 0 }
+                    : {
+                        cx: { duration, ease: "easeOut" },
+                        cy: { duration, ease: "easeOut" },
+                        r: {
+                          duration: cycleDuration,
+                          times: rTimes,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                          repeatType: "loop",
+                          repeatDelay: beatSec * 0.35,
+                        },
+                      }
+                }
               />
             </mask>
           )}
         </defs>
 
-        {/* Бледная базовая обводка (только при hover) */}
+        {/* Бледная базовая обводка */}
         <text
           ref={textRef}
           x="50%"
@@ -209,37 +306,61 @@ export const TextHoverEffect: React.FC<TextHoverEffectProps> = ({
           textAnchor="middle"
           dominantBaseline="middle"
           strokeWidth={0.3}
-          className="font-[helvetica] font-bold stroke-neutral-200 dark:stroke-neutral-800 fill-transparent text-7xl"
+          className="text-7xl font-bold font-[helvetica] fill-transparent stroke-neutral-300 dark:stroke-neutral-800"
           style={{ opacity: hovered ? 0.7 : 0 }}
         >
           {text}
         </text>
 
-        {/* Анимация прорисовки контура (уважает reduced motion) */}
+        {/* Анимация прорисовки контура */}
         <motion.text
           x="50%"
           y="50%"
           textAnchor="middle"
           dominantBaseline="middle"
           strokeWidth={0.3}
-          className="font-[helvetica] font-bold fill-transparent text-7xl stroke-neutral-200 dark:stroke-neutral-800"
-          initial={prefersReducedMotion ? { strokeDashoffset: 0, strokeDasharray: 0 } : { strokeDashoffset: 1000, strokeDasharray: 1000 }}
-          animate={prefersReducedMotion ? { strokeDashoffset: 0, strokeDasharray: 0 } : { strokeDashoffset: 0, strokeDasharray: 1000 }}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 4, ease: "easeInOut" }}
+          className="text-7xl font-bold font-[helvetica] fill-transparent stroke-neutral-300 dark:stroke-neutral-800"
+          initial={
+            prefersReducedMotion
+              ? { strokeDashoffset: 0, strokeDasharray: 0 }
+              : { strokeDashoffset: 1000, strokeDasharray: 1000 }
+          }
+          animate={
+            prefersReducedMotion
+              ? { strokeDashoffset: 0, strokeDasharray: 0 }
+              : { strokeDashoffset: 0, strokeDasharray: 1000 }
+          }
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 4, ease: "easeInOut" }
+          }
         >
           {text}
         </motion.text>
 
-        {/* Цветная обводка, открываемая маской */}
+        {/* Цветная обводка, открываемая маской — разные цвета для light/dark */}
         <text
           x="50%"
           y="50%"
           textAnchor="middle"
           dominantBaseline="middle"
-          stroke={`url(#${gradientId})`}
+          stroke={`url(#${gradientLightId})`}
           strokeWidth={0.3}
           mask={`url(#${maskId})`}
-          className="font-[helvetica] font-bold fill-transparent text-7xl"
+          className="text-7xl font-bold font-[helvetica] fill-transparent dark:hidden"
+        >
+          {text}
+        </text>
+        <text
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          stroke={`url(#${gradientDarkId})`}
+          strokeWidth={0.3}
+          mask={`url(#${maskId})`}
+          className="hidden text-7xl font-bold font-[helvetica] fill-transparent dark:inline"
         >
           {text}
         </text>
