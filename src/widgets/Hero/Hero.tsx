@@ -92,7 +92,7 @@ const HeroComponent = React.memo(({ className, config, ...props }: HeroProps) =>
                 whileInView={{ width: "30rem" }}
                 viewport={{ once, amount: 0.4 }}
                 transition={TRANSITION}
-                className="absolute h-0.5 -translate-y-[10%] bg-amber-400 dark:bg-primary"
+                className="absolute h-0.5 -translate-y-[10%] bg-amber-400 dark:bg-rose-600"
               />
 
               {/* Lamp (warm for light, brand for dark) */}
@@ -101,7 +101,7 @@ const HeroComponent = React.memo(({ className, config, ...props }: HeroProps) =>
                 whileInView={{ width: "25rem" }}
                 viewport={{ once, amount: 0.4 }}
                 transition={TRANSITION}
-                className="absolute top-0 h-36 -translate-y-[40%] rounded-full blur-xl bg-amber-300/70 dark:bg-primary/70"
+                className="absolute top-0 h-36 -translate-y-[40%] rounded-full blur-xl bg-amber-300/70 dark:bg-rose-500/70"
               />
 
               {/* Main glow */}
@@ -110,7 +110,7 @@ const HeroComponent = React.memo(({ className, config, ...props }: HeroProps) =>
                 whileInView={{ width: "25rem" }}
                 viewport={{ once, amount: 0.4 }}
                 transition={TRANSITION}
-                className="absolute h-40 w-[25rem] -translate-y-[10%] rounded-full opacity-80 blur-2xl bg-amber-400 dark:bg-primary"
+                className="absolute h-40 w-[25rem] -translate-y-[10%] rounded-full opacity-80 blur-2xl bg-amber-400 dark:bg-rose-600"
               />
 
               {/* Secondary glow */}
@@ -119,7 +119,7 @@ const HeroComponent = React.memo(({ className, config, ...props }: HeroProps) =>
                 whileInView={{ width: "35rem" }}
                 viewport={{ once, amount: 0.4 }}
                 transition={TRANSITION}
-                className="absolute h-40 w-[28rem] translate-y-[50%] rounded-full opacity-80 blur-3xl bg-amber-200/80 dark:bg-primary/60"
+                className="absolute h-40 w-[28rem] translate-y-[50%] rounded-full opacity-80 blur-3xl bg-amber-200/80 dark:bg-rose-400/80"
               />
             </LazyMotion>
           </div>
