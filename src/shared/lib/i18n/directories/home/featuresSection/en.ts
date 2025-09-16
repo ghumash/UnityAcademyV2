@@ -50,7 +50,7 @@ export const featuresSection: FeaturesSectionDict = {
     {
       title: "Job Offers",
       description:
-        "Top students will receive job offers from us and/or our partners",
+        "Best students will remain in our top students database and will later receive job offers from us or our partners",
     },
     {
       title: "'Day Off' Meetups",

@@ -1,18 +1,18 @@
+import { siteConfig } from "@/shared/config/common";
 import type { FooterDict } from "./types";
 
 export const footer: FooterDict = {
   resources: {
-    title: "Компания",
+    title: "Ресурсы",
     home: "Главная",
     about: "О нас",
     courses: "Курсы",
-    contacts: "Контакты",
+    contacts: "Контакт",
     faq: "Часто задаваемые вопросы",
   },
   social: {
     title: "Социальные сети",
   },
-  copyright: "© 2025 Unity Academy. Все права защищены.",
-  description:
-    "Образовательная платформа для изучения веб-разработки, AI, дизайна и soft skills. Практические курсы с реальными проектами.",
+  copyright: "Все права защищены.",
+  description: `${siteConfig.name} — современный центр, действующий в Ванадзоре, где ты можешь изучать востребованные профессии новыми методами и возможностями.`,
 };

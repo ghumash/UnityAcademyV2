@@ -1,3 +1,4 @@
+import { siteConfig } from "@/shared/config/common";
 import type { FooterDict } from "./types";
 
 export const footer: FooterDict = {
@@ -12,7 +13,6 @@ export const footer: FooterDict = {
   social: {
     title: "Սոցիալական ցանցեր",
   },
-  copyright: "© 2025 Unity Academy. Բոլոր իրավունքները պաշտպանված են:",
-  description:
-    "Unity Academy-ն Վանաձորում գործող ժամանակակից կենտրոն է, որտեղ կարող ես սովորել պահանջված մասնագիտություններ նոր մեթոդներով և հնարավորություններով։",
+  copyright: "Բոլոր իրավունքները պաշտպանված են:",
+  description: `${siteConfig.name}-ն Վանաձորում գործող ժամանակակից կենտրոն է, որտեղ կարող ես սովորել պահանջված մասնագիտություններ նոր մեթոդներով և հնարավորություններով։`,
 };

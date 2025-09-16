@@ -2,8 +2,8 @@ import type { NavigationDict } from "./types";
 
 export const navigation: NavigationDict = {
   home: "Home",
-  about: "About", 
+  about: "About Us", 
   courses: "Courses",
-  contacts: "Contacts",
-  apply: "Apply"
+  contacts: "Contact",
+  apply: "Start Learning"
 };

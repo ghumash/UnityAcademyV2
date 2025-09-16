@@ -3,19 +3,19 @@ import type { ErrorsDict } from "./types";
 export const errors: ErrorsDict = {
   error: {
     title: "Что-то пошло не так",
-    description: "Попробуй обновить страницу или вернись на главную.",
+    description: "Попробуй обновить страницу или вернуться на главную страницу.",
     tryAgain: "Попробовать снова",
-    goHome: "На главную",
+    goHome: "Главная",
     errorCode: "Код ошибки",
   },
   notFound: {
     title: "Страница не найдена",
-    description: "Такой страницы нет. Проверь адрес или вернись на главную.",
-    goHome: "На главную",
+    description: "Такая страница не существует. Проверь адрес или вернись на главную.",
+    goHome: "Главная",
     courses: "Курсы",
   },
   courseNotFound: {
-    description: "Курс не найден или ещё не опубликован.",
-    backToCourses: "К курсам",
+    description: "Курс не найден или еще не опубликован.",
+    backToCourses: "Курсы",
   },
 };

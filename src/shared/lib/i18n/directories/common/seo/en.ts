@@ -15,11 +15,11 @@ export const seo: SeoDict = {
     description: "Discover our IT courses in Vanadzor: Web development, Python, Android, UI/UX design, SMM, graphic design and soft skills."
   },
   contacts: {
-    title: "Contacts",
+    title: "Contact",
     description: `Contact ${siteConfig.name} in Vanadzor: Our address, phone number and social media.`
   },
   apply: {
-    title: "Apply",
+    title: "Registration",
     description: `Apply for IT courses at ${siteConfig.name} in Vanadzor: Fill out the application and start your IT career with us.`
   },
   faq: {

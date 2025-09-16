@@ -3,19 +3,19 @@ import type { ErrorsDict } from "./types";
 export const errors: ErrorsDict = {
   error: {
     title: "Something went wrong",
-    description: "Try refreshing the page or go back to home.",
+    description: "Try refreshing the page or return to home page.",
     tryAgain: "Try again",
-    goHome: "Go home",
+    goHome: "Home",
     errorCode: "Error code",
   },
   notFound: {
     title: "Page not found",
-    description: "This page doesn't exist. Check the address or go back to home.",
-    goHome: "Go home",
+    description: "Such page does not exist. Check the address or return to home.",
+    goHome: "Home",
     courses: "Courses",
   },
   courseNotFound: {
     description: "Course not found or not yet published.",
-    backToCourses: "Back to courses",
+    backToCourses: "Courses",
   },
 };

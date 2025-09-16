@@ -2,9 +2,9 @@ import type { FormsDict } from "./types";
 
 export const forms: FormsDict = {
   applyForm: {
-    buttonLabel: "Apply",
-    successText: "Thank you! Your application has been sent.",
-    errorText: "An error occurred. Please try again.",
+    buttonLabel: "Register",
+    successText: "Thank you! The message has been sent.",
+    errorText: "Something went wrong. Please try again.",
     fullname: "Full Name",
     phone: "Phone Number",
     telegram: "Telegram @username",

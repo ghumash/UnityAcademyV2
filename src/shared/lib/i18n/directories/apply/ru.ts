@@ -2,10 +2,10 @@ import type { ApplyDict } from "./types";
 
 export const apply: ApplyDict = {
   hero: {
-    title: "Подача заявки",
+    title: "Регистрация",
   },
   callToAction: {
-    title: "Присоединяйтесь сейчас",
+    title: "Присоединяйся сейчас",
     subtitle: "До успеха и знаний остался всего один шаг!",
   },
 } as const;

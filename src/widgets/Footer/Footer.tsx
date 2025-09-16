@@ -70,7 +70,7 @@ const FooterComponent = memo(({ sections, copyright, description }: FooterProps)
                     {description}
                   </p>
 
-                  <p className="text-muted-foreground text-sm">{copyright}</p>
+                  <p className="text-muted-foreground text-sm">&copy; {new Date().getFullYear()} {siteConfig.name}. {copyright}</p>
                 </div>
               </AnimatedContainer>
 

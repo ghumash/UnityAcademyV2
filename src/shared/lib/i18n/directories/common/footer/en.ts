@@ -1,18 +1,18 @@
+import { siteConfig } from "@/shared/config/common";
 import type { FooterDict } from "./types";
 
 export const footer: FooterDict = {
   resources: {
-    title: "Company",
+    title: "Resources",
     home: "Home",
-    about: "About",
+    about: "About Us",
     courses: "Courses",
-    contacts: "Contacts",
+    contacts: "Contact",
     faq: "FAQ",
   },
   social: {
-    title: "Social Media",
+    title: "Social Networks",
   },
-  copyright: "© 2025 Unity Academy. All rights reserved.",
-  description:
-    "Educational platform for learning web development, AI, design and soft skills. Practical courses with real projects.",
+  copyright: "All rights reserved.",
+  description: `${siteConfig.name} is a modern center operating in Vanadzor, where you can learn in-demand professions with new methods and opportunities.`,
 };

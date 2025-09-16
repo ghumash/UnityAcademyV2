@@ -15,11 +15,11 @@ export const seo: SeoDict = {
     description: "Откройте для себя наши IT курсы в Ванадзоре: Веб-разработка, Python, Android, UI/UX дизайн, SMM, графический дизайн и soft skills."
   },
   contacts: {
-    title: "Контакты",
+    title: "Контакт",
     description: `Свяжитесь с ${siteConfig.name} в Ванадзоре: Наш адрес, номер телефона и социальные сети.`
   },
   apply: {
-    title: "Подать заявку",
+    title: "Регистрация",
     description: `Подайте заявку на IT курсы ${siteConfig.name} в Ванадзоре: Заполните заявление и начните свою IT карьеру с нами.`
   },
   faq: {

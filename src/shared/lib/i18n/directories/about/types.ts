@@ -1,8 +1,3 @@
-export type OurStoryDict = {
-  title: string;
-  content: string;
-};
-
 export type TeamMember = {
   name: string;
   role: string;
@@ -20,13 +15,6 @@ export type TeamSectionDict = {
   title: string;
   emptyState: string;
   members: readonly TeamMember[];
-};
-
-export type SubscribeSectionDict = {
-  title: string;
-  description: string;
-  placeholder: string;
-  button: string;
 };
 
 export type GlowingGridDict = {
@@ -57,9 +45,7 @@ export type ContentSectionDict = {
 };
 
 export type AboutDict = {
-  ourStory: OurStoryDict;
   teamSection: TeamSectionDict;
-  subscribeSection: SubscribeSectionDict;
   glowingGrid: GlowingGridDict;
   contentSection: ContentSectionDict;
   introWithDesc: IntroWithDescDict;

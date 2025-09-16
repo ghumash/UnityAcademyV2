@@ -2,7 +2,7 @@ import type { ApplyDict } from "./types";
 
 export const apply: ApplyDict = {
   hero: {
-    title: "Apply",
+    title: "Registration",
   },
   callToAction: {
     title: "Join Now",
