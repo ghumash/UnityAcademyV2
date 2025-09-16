@@ -44,7 +44,7 @@ export const LanguageSwitcher = memo(({ locale }: Props) => {
 
   return (
     <Select value={locale} onValueChange={handleChange}>
-      <SelectTrigger className="rounded-full h-9 w-9 p-0 border hover:bg-muted [&>svg]:hidden justify-center">
+      <SelectTrigger className="rounded-full h-9 w-9 p-0 border hover:bg-muted  justify-center">
         <SelectValue>
           <span className="text-base">{flags[locale]}</span>
         </SelectValue>
@@ -54,7 +54,7 @@ export const LanguageSwitcher = memo(({ locale }: Props) => {
           <SelectItem
             key={l}
             value={l}
-            className="cursor-pointer rounded-full h-9 w-9 p-0 flex items-center justify-center mb-1 last:mb-0"
+            className="cursor-pointer rounded-full h-9 w-9 p-0 flex items-center justify-center mb-1 last:mb-0 [&>span:first-child]:hidden"
           >
             <span className="text-base">{flags[l]}</span>
           </SelectItem>

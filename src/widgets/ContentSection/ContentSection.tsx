@@ -1,11 +1,10 @@
 "use client";
 
-import { memo } from "react";
-import dynamic from "next/dynamic";
+import { memo, type ReactNode } from "react";
 import { Sparkles } from "lucide-react";
 import { Container, Section } from "@/shared/ui/custom";
-import type { ReactNode } from "react";
 import { cn } from "@/shared/lib/utils";
+import dynamic from "next/dynamic";
 
 // Тип для элемента блока
 export type ContentBlockItem = {
@@ -59,169 +58,171 @@ const getGridCols = (
       lg: gridCols.lg || Math.min(blocksCount, 3),
     };
   }
-
-  // Автоматическое определение колонок на основе количества блоков
   if (blocksCount === 1) return { sm: 1, lg: 1 };
   if (blocksCount === 2) return { sm: 2, lg: 2 };
   if (blocksCount === 3) return { sm: 2, lg: 3 };
   if (blocksCount === 4) return { sm: 2, lg: 2 };
-  return { sm: 2, lg: 3 }; // По умолчанию для 5+ блоков
+  return { sm: 2, lg: 3 };
 };
+
+// Безопасные классы сетки для Tailwind (без шаблонных строк)
+function gridColsClasses(sm?: number, lg?: number) {
+  return cn(
+    sm === 1 && "sm:grid-cols-1",
+    sm === 2 && "sm:grid-cols-2",
+    sm === 3 && "sm:grid-cols-3",
+    sm === 4 && "sm:grid-cols-4",
+    lg === 1 && "lg:grid-cols-1",
+    lg === 2 && "lg:grid-cols-2",
+    lg === 3 && "lg:grid-cols-3",
+    lg === 4 && "lg:grid-cols-4"
+  );
+}
 
 // Компонент для отображения списка элементов блока
 function ItemList({
   items,
   itemsGridCols,
+  itemClassName,
 }: {
   items: ContentBlockItem[];
   itemsGridCols?: { sm?: number; lg?: number };
+  itemClassName?: string;
 }) {
-  // Генерируем классы для сетки элементов динамически
-  const getItemsGridClasses = () => {
-    if (!itemsGridCols) {
-      return "grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-1";
-    }
-
-    const baseClasses = "grid gap-2";
-    const smClass = itemsGridCols.sm
-      ? `sm:grid-cols-${itemsGridCols.sm}`
-      : "sm:grid-cols-2";
-    const lgClass = itemsGridCols.lg
-      ? `lg:grid-cols-${itemsGridCols.lg}`
-      : "lg:grid-cols-1";
-
-    return `${baseClasses} grid-cols-1 ${smClass} ${lgClass}`;
-  };
+  const sm = itemsGridCols?.sm ?? 2;
+  const lg = itemsGridCols?.lg ?? 1;
 
   return (
-    <ul className={getItemsGridClasses()}>
-      {items.map((item, i) => {
-        return (
-          <li
-            key={item.key || i}
-            className="
-              group relative flex items-start
-              overflow-hidden rounded-2xl border border-white/10
-              p-3 shadow-2xl backdrop-blur-xl transition
-              hover:border-white/25 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]
-              flex-col items-center
-            "
-          >
-            <div className="absolute inset-0 z-0 overflow-hidden">
-              <div className="absolute inset-0 from-white/5 to-white/10 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
-              <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-gradient-to-tr from-white/10 to-transparent blur-3xl opacity-30 group-hover:opacity-50 transform group-hover:scale-110 transition-all duration-700" />
-              <div className="absolute top-10 left-10 w-16 h-16 rounded-full bg-white/5 blur-xl opacity-0 group-hover:opacity-60 group-hover:scale-125 transition duration-700 ease-out" />
-              <div className="absolute bottom-16 right-16 w-12 h-12 rounded-full bg-white/5 blur-lg opacity-0 group-hover:opacity-50 group-hover:scale-125 transition duration-700 ease-out" />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000 ease-out" />
-            </div>
+    <ul className={cn("grid grid-cols-1 gap-2", gridColsClasses(sm, lg))}>
+      {items.map((item, i) => (
+        <li
+          key={item.key || i}
+          className={cn(
+            "group relative flex flex-col items-start overflow-hidden rounded-2xl border p-3",
+            "bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/60",
+            "shadow-2xl transition-all duration-500",
+            "hover:shadow-primary/20 hover:border-primary/40",
+            itemClassName
+          )}
+        >
+          {/* background ornaments */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <div
+              className={cn(
+                "absolute inset-0 rounded-2xl opacity-60 transition-opacity duration-500",
+                "bg-gradient-to-b from-foreground/5 to-foreground/10",
+                "group-hover:opacity-80"
+              )}
+            />
+            <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-foreground/10 blur-3xl opacity-30 transition-all duration-700 group-hover:scale-110 group-hover:opacity-50" />
+            <div className="absolute top-10 left-10 h-16 w-16 rounded-full bg-foreground/10 blur-xl opacity-0 transition duration-700 ease-out group-hover:scale-125 group-hover:opacity-60" />
+            <div className="absolute bottom-16 right-16 h-12 w-12 rounded-full bg-foreground/10 blur-lg opacity-0 transition duration-700 ease-out group-hover:scale-125 group-hover:opacity-50" />
+            <div className="absolute inset-0 -skew-x-12 translate-x-full bg-gradient-to-r from-transparent via-foreground/10 to-transparent transition-transform duration-1000 ease-out group-hover:-translate-x-[200%]" />
+          </div>
 
-            <div className="flex items-center gap-2">
-              {item.icon && (
-                <div className="transform group-hover:rotate-180 transition-transform duration-700">
-                  <div className="mt-0.5 size-5 text-primary flex items-center justify-center">
-                    {item.icon}
-                  </div>
+          <div className="relative z-10 flex items-center gap-2">
+            {item.icon && (
+              <div className="transition-transform duration-700 group-hover:rotate-180">
+                <div className="mt-0.5 flex size-5 items-center justify-center text-primary">
+                  {item.icon}
                 </div>
-              )}
-              {item.title && (
-                <p className="text-md font-medium">{item.title}</p>
-              )}
-            </div>
-            <div>
-              {item.description && (
-                <p className="text-sm leading-6 text-muted-foreground">
-                  {item.description}
-                </p>
-              )}
-            </div>
-          </li>
-        );
-      })}
+              </div>
+            )}
+            {item.title && (
+              <p className="text-md font-medium text-foreground">
+                {item.title}
+              </p>
+            )}
+          </div>
+
+          {item.description && (
+            <p className="relative z-10 text-sm leading-6 text-muted-foreground">
+              {item.description}
+            </p>
+          )}
+        </li>
+      ))}
     </ul>
   );
 }
 
-// Основной переиспользуемый компонент
-const ContentSectionComponent = memo(({
-  config,
-  className,
-  gridCols = { sm: 1, lg: 3 },
-  itemsGridCols,
-}: ContentSectionProps) => {
-  const { sm, lg } = getGridCols(config.blocks?.length || 0, gridCols);
+const ContentSectionComponent = memo(
+  ({
+    config,
+    className,
+    gridCols = { sm: 1, lg: 3 },
+    itemsGridCols,
+    itemClassName,
+  }: ContentSectionProps) => {
+    const { sm, lg } = getGridCols(config.blocks?.length || 0, gridCols);
 
-  // Генерируем классы для сетки динамически
-  const gridClasses = cn("grid gap-8 p-6 sm:p-8 lg:gap-10", {
-    "sm:grid-cols-1": sm === 1,
-    "sm:grid-cols-2": sm === 2,
-    "sm:grid-cols-3": sm === 3,
-    "lg:grid-cols-1": lg === 1,
-    "lg:grid-cols-2": lg === 2,
-    "lg:grid-cols-3": lg === 3,
-    "lg:grid-cols-4": lg === 4,
-  });
-
-  return (
-    <Section as="section" aria-label="Content Section" className={className}>
-      <Container>
-        {config.title && (
-          <h2
-            id="features-heading"
-            className={cn(
-              "mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white text-center",
-            )}
-          >
-            {config.title}
-          </h2>
-        )}
-
-        <div className="relative z-10 rounded-2xl border bg-background/80 shadow-md backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          {/* Опциональный бейдж */}
-          {config.badge && (
-            <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2 rounded-md border bg-card px-2.5 py-1 text-[10px] text-card-foreground shadow-sm sm:text-xs">
-              <div className="flex items-center gap-1.5">
-                {config.badge.icon || (
-                  <Sparkles className="size-3" aria-hidden="true" />
-                )}
-                <span>{config.badge.text}</span>
-              </div>
-            </div>
+    return (
+      <Section as="section" aria-label="Content" className={className}>
+        <Container>
+          {config.title && (
+            <h2 className="mb-8 text-center text-2xl font-semibold tracking-tight text-foreground sm:mb-10 sm:text-3xl">
+              {config.title}
+            </h2>
           )}
 
-          <div className={gridClasses}>
-            {config.blocks?.map((block: ContentBlock, index: number) => (
-              <article
-                key={block.key || index}
-                aria-labelledby={`content-block-${index}`}
-                className="space-y-3"
-              >
-                {/* Опциональный заголовок блока */}
-                {block.title && (
-                  <header className="flex items-center gap-2">
-                    {block.headerIcon && (
-                      <div className="size-4 text-primary flex items-center justify-center">
-                        {block.headerIcon}
-                      </div>
-                    )}
-                    <h2
-                      id={`content-block-${index}`}
-                      className="text-base font-semibold"
-                    >
-                      {block.title}
-                    </h2>
-                  </header>
-                )}
-                <ItemList items={block.items} itemsGridCols={itemsGridCols} />
-              </article>
-            ))}
-          </div>
-        </div>
-      </Container>
-    </Section>
-  );
-});
+          <div className="relative z-10 rounded-2xl border bg-card/80 shadow-md backdrop-blur supports-[backdrop-filter]:bg-card/60">
+            {/* Опциональный бейдж */}
+            {config.badge && (
+              <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2 rounded-md border bg-card px-2.5 py-1 text-[10px] text-card-foreground shadow-sm sm:text-xs">
+                <div className="flex items-center gap-1.5">
+                  {config.badge.icon ?? (
+                    <Sparkles className="size-3" aria-hidden="true" />
+                  )}
+                  <span>{config.badge.text}</span>
+                </div>
+              </div>
+            )}
 
-export const ContentSection = dynamic(() => 
-  Promise.resolve(ContentSectionComponent), 
+            <div
+              className={cn(
+                "grid gap-8 p-6 sm:p-8 lg:gap-10",
+                gridColsClasses(sm, lg)
+              )}
+            >
+              {config.blocks?.map((block: ContentBlock, index: number) => (
+                <article
+                  key={block.key || index}
+                  aria-labelledby={`content-block-${index}`}
+                  className="space-y-3"
+                >
+                  {/* Опциональный заголовок блока */}
+                  {block.title && (
+                    <header className="flex items-center gap-2">
+                      {block.headerIcon && (
+                        <div className="flex size-4 items-center justify-center text-primary">
+                          {block.headerIcon}
+                        </div>
+                      )}
+                      <h3
+                        id={`content-block-${index}`}
+                        className="text-base font-semibold text-foreground"
+                      >
+                        {block.title}
+                      </h3>
+                    </header>
+                  )}
+
+                  <ItemList
+                    items={block.items}
+                    itemsGridCols={itemsGridCols}
+                    itemClassName={itemClassName}
+                  />
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </Section>
+    );
+  }
+);
+
+export const ContentSection = dynamic(
+  () => Promise.resolve(ContentSectionComponent),
   { ssr: false }
 );
