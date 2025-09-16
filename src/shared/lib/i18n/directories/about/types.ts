@@ -32,7 +32,7 @@ export type SubscribeSectionDict = {
 export type GlowingGridDict = {
   readonly items: readonly {
     readonly title: string;
-    readonly description: string;
+    readonly description: string | React.ReactNode;
   }[];
 };
 
