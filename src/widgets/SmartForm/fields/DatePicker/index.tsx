@@ -67,11 +67,6 @@ export function DatePickerField({
       const formattedDate = format(date, "yyyy-MM-dd");
       onChange(formattedDate);
       setOpen(false);
-      // Принудительно вызываем валидацию после выбора даты
-      setTimeout(() => {
-        const event = new Event('blur', { bubbles: true });
-        document.querySelector(`[name="${name}"]`)?.dispatchEvent(event);
-      }, 0);
     }
   };
 

@@ -20,6 +20,7 @@ import {
 } from "@/widgets";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";
+import { ScrollToHash } from "@/shared/lib/scroll-to-hash";
 
 export async function generateMetadata({
   params,
@@ -56,6 +57,7 @@ export default async function CoursePage({
 
   return (
     <main id="main" className="sm:mt-36 md:mt-40">
+      <ScrollToHash />
       <JsonLd
         id="breadcrumbs-course"
         data={buildBreadcrumbsJsonLd([

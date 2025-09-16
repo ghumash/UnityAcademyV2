@@ -84,11 +84,12 @@ function SmartFormInner<TSchema extends AnySchema>(
     reset,
     setValue,
     watch,
+    trigger,
     formState: { isSubmitting, errors },
   } = useForm<any>({
     resolver: zodResolver(schema as any),
     defaultValues: defaults as any,
-    mode: "onSubmit",
+    mode: "onChange",
   });
 
   const onSubmit = handleSubmit(async (v) => {
@@ -209,7 +210,11 @@ function SmartFormInner<TSchema extends AnySchema>(
                       name={f.name}
                       placeholder={f.placeholder}
                       value={watch(f.name) as string}
-                      onChange={(value) => setValue(f.name, value as any)}
+                      onChange={async (value) => {
+                        setValue(f.name, value as any);
+                        // Принудительно запускаем валидацию для этого поля
+                        await trigger(f.name);
+                      }}
                       error={err}
                       locale={"ru"} // TODO: получать из контекста локализации
                     />
