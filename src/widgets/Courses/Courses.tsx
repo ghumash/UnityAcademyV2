@@ -1,8 +1,9 @@
 "use client";
+
 import React, { memo } from "react";
-import dynamic from "next/dynamic";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 import { Container, Section } from "@/shared/ui/custom";
 import {
   Code2,
@@ -63,6 +64,37 @@ function formatLabel(
   return formats.hybrid;
 }
 
+function CardWrapper({
+  href,
+  className,
+  ariaLabel,
+  children,
+}: {
+  href?: string;
+  className?: string;
+  ariaLabel?: string;
+  children: React.ReactNode;
+}) {
+  if (!href) {
+    return (
+      <article className={className} aria-label={ariaLabel}>
+        {children}
+      </article>
+    );
+  }
+  const external = /^https?:\/\//i.test(href);
+  const common = { className, "aria-label": ariaLabel };
+  return external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" {...common}>
+      {children}
+    </a>
+  ) : (
+    <Link href={href} {...common}>
+      {children}
+    </Link>
+  );
+}
+
 function CourseCard({
   course,
   levels,
@@ -87,29 +119,25 @@ function CourseCard({
   const Icon = ICONS[icon] ?? Code2;
   const FormatIcon = formatIconByMode(format);
 
-  const CardTag = href ? "a" : ("article" as const);
-
   return (
-    <CardTag
-      {...(href ? { href } : {})}
+    <CardWrapper
+      href={href}
+      ariaLabel={title}
       className={cn(
-        "group relative w-full rounded-2xl border-2 bg-gradient-to-br backdrop-blur-xl p-5 sm:p-6",
-        "shadow-2xl hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 active:scale-95",
-        "transition-all duration-500 ease-out overflow-hidden focus:outline-none",
+        "group relative w-full overflow-hidden rounded-2xl border-2 bg-gradient-to-br p-5 sm:p-6 backdrop-blur-xl",
+        "shadow-2xl transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         t.button,
-        t.borderHoverShadow,
-        href &&
-          "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/40"
+        t.borderHoverShadow
       )}
-      aria-label={title}
     >
       {/* sweeping light */}
       <div
         aria-hidden="true"
         className={cn(
           "absolute inset-0 -translate-x-full transition-transform duration-1000 ease-out",
-          t.sweep,
-          "group-hover:translate-x-full"
+          "motion-safe:group-hover:translate-x-full",
+          t.sweep
         )}
       />
 
@@ -118,8 +146,8 @@ function CourseCard({
         aria-hidden="true"
         className={cn(
           "absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500",
-          t.hoverOverlay,
-          "group-hover:opacity-100"
+          "motion-safe:group-hover:opacity-100",
+          t.hoverOverlay
         )}
       />
 
@@ -128,29 +156,24 @@ function CourseCard({
         {/* icon bubble */}
         <div
           className={cn(
-            "shrink-0 p-3 rounded-lg bg-gradient-to-br backdrop-blur-sm transition-all duration-300",
+            "shrink-0 rounded-lg bg-gradient-to-br p-3 backdrop-blur-sm transition-all duration-300",
             t.iconBg
           )}
           aria-hidden="true"
         >
           <Icon
             className={cn(
-              "w-6 h-6 sm:w-7 sm:h-7 drop-shadow-lg transition-all duration-300 group-hover:scale-110",
+              "h-6 w-6 sm:h-7 sm:w-7 drop-shadow-lg transition-all duration-300 motion-safe:group-hover:scale-110",
               t.iconColor
             )}
           />
         </div>
 
         <div className="min-w-0 flex-1">
-          <h3 className={cn("text-lg sm:text-xl font-bold", t.textColor)}>
+          <h3 className={cn("text-lg font-bold sm:text-xl", t.textColor, "text-foreground")}>
             {title}
           </h3>
-          <p
-            className={cn(
-              "mt-1 text-sm leading-6 line-clamp-3",
-              t.subTextColor
-            )}
-          >
+          <p className={cn("mt-1 line-clamp-3 text-sm leading-6", t.subTextColor, "text-muted-foreground")}>
             {description}
           </p>
 
@@ -158,34 +181,31 @@ function CourseCard({
           <div className="mt-4 flex flex-wrap items-center gap-3 text-xs sm:text-sm">
             <span
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-md px-2 py-1 bg-white/5",
-                "ring-1 ring-white/10 backdrop-blur"
+                "inline-flex items-center gap-1.5 rounded-md px-2 py-1",
+                "ring-1 ring-border bg-muted/60 text-foreground/80"
               )}
             >
-              <Clock className="w-4 h-4 opacity-80" aria-hidden="true" />
+              <Clock className="h-4 w-4 text-foreground/70" aria-hidden="true" />
               {duration}
             </span>
 
             <span
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-md px-2 py-1 bg-white/5",
-                "ring-1 ring-white/10 backdrop-blur"
+                "inline-flex items-center gap-1.5 rounded-md px-2 py-1",
+                "ring-1 ring-border bg-muted/60 text-foreground/80"
               )}
             >
-              <GraduationCap
-                className="w-4 h-4 opacity-80"
-                aria-hidden="true"
-              />
+              <GraduationCap className="h-4 w-4 text-foreground/70" aria-hidden="true" />
               {levelLabel(level, levels)}
             </span>
 
             <span
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-md px-2 py-1 bg-white/5",
-                "ring-1 ring-white/10 backdrop-blur capitalize"
+                "inline-flex items-center gap-1.5 rounded-md px-2 py-1 capitalize",
+                "ring-1 ring-border bg-muted/60 text-foreground/80"
               )}
             >
-              <FormatIcon className="w-4 h-4 opacity-80" aria-hidden="true" />
+              <FormatIcon className="h-4 w-4 text-foreground/70" aria-hidden="true" />
               {formatLabel(format, formats)}
             </span>
           </div>
@@ -195,14 +215,14 @@ function CourseCard({
         <div
           aria-hidden="true"
           className={cn(
-            "ml-auto self-center opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1",
-            "transition-all duration-300"
+            "ml-auto self-center translate-x-0 opacity-0 transition-all duration-300",
+            "motion-safe:group-hover:translate-x-1 motion-safe:group-hover:opacity-100"
           )}
         >
-          <ArrowRight className={cn("w-5 h-5", t.arrowColor)} />
+          <ArrowRight className={cn("h-5 w-5", t.arrowColor, "text-foreground")} />
         </div>
       </div>
-    </CardTag>
+    </CardWrapper>
   );
 }
 
@@ -225,33 +245,21 @@ export interface CoursesPropsNew {
   config: CoursesConfig;
 }
 
-const CoursesComponent = memo(({
-  config,
-}: CoursesPropsNew) => {
+const CoursesComponent = memo(function Courses({ config }: CoursesPropsNew) {
   const { title, list, levels, formats } = config;
   return (
     <Section>
       <Container>
         <div className="relative">
           {/* Heading for SEO/A11y */}
-          <h2 className="mb-8 sm:mb-10 text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+          <h2 className="mb-8 text-2xl font-semibold tracking-tight text-foreground sm:mb-10 sm:text-3xl">
             {title}
           </h2>
 
           {/* Grid of course cards */}
-          <div
-            className={cn(
-              "grid gap-6 sm:gap-7",
-              "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
-            )}
-          >
+          <div className={cn("grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 xl:grid-cols-3")}>
             {list.map((course: Course) => (
-              <CourseCard
-                key={course.id}
-                course={course}
-                levels={levels}
-                formats={formats}
-              />
+              <CourseCard key={course.id} course={course} levels={levels} formats={formats} />
             ))}
           </div>
         </div>
@@ -260,17 +268,9 @@ const CoursesComponent = memo(({
   );
 });
 
-export const Courses = dynamic(() => 
-  Promise.resolve(CoursesComponent), 
-  { ssr: false }
-);
+export const Courses = CoursesComponent;
 
 /**
- * Usage:
- * <Courses />
- * or
- * <Courses courses={[{ id:'js', title:'JavaScript', description:'...', duration:'3 месяца', level:'beginner', format:'offline', icon:'Code', theme:'indigo', href:'/courses/js' }]} />
- *
- * Icons: Code, Brain, Palette, Bot, Globe, MapPin, Share2, Clock, GraduationCap, Megaphone, Users, Smartphone, Kids
- * Themes: 'indigo' | 'purple' | 'orange' | 'emerald' | 'cyan' | 'rose'
+ * Icons: Code2, Palette, Puzzle, Megaphone, Workflow, Smartphone, LayoutDashboard, UsersRound, MessageSquareText
+ * Themes: 'indigo' | 'purple' | 'orange' | 'emerald' | 'cyan' | 'rose' | 'violet' | 'teal' | 'amber' | 'lime' | 'fuchsia' | 'blue' | 'pink'
  */
