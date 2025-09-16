@@ -1,14 +1,6 @@
 export type NavItem = { label: string; href: string };
 
-// Надёжное определение SITE_URL для production/preview окружений Vercel
-// Порядок приоритетов:
-// 1) NEXT_PUBLIC_SITE_URL — явная настройка (рекомендуется на проде)
-// 2) VERCEL_URL — домен окружения (без схемы), добавляем https://
-// 3) localhost — дефолт для локальной разработки
-const VERCEL_URL = process.env.VERCEL_URL;
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (VERCEL_URL ? `https://${VERCEL_URL}` : "http://localhost:3000");
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const siteConfig = {
   name: "Unity Academy",
