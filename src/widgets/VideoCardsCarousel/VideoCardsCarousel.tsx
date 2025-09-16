@@ -21,8 +21,6 @@ const VideoCardsCarouselComponent = React.memo(
   ({ config }: VideoCardsCarouselProps) => {
     const { display, title, students } = config;
 
-    if (!display) return null;
-
     const items = React.useMemo(
       () =>
         students.map((promo, index) => (
@@ -34,6 +32,8 @@ const VideoCardsCarouselComponent = React.memo(
         )),
       [students]
     );
+
+    if (!display) return null;
 
     return (
       <Section aria-label="Student promo videos">

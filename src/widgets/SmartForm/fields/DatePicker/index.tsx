@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronDownIcon, CalendarIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { format } from "date-fns";
 import { ru, enUS, hy } from "date-fns/locale";
 
@@ -32,7 +32,7 @@ const localeMap = {
 };
 
 export function DatePickerField({
-  name,
+  name: _name,
   placeholder = "Select date",
   value,
   onChange,
