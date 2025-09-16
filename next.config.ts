@@ -2,12 +2,12 @@ import type { NextConfig } from "next";
 
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com",
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https: https://i.ytimg.com https://img.youtube.com",
-  "font-src 'self' data:",
-  "connect-src 'self' https://vitals.vercel-insights.com",
-  "frame-src 'self' https://docs.google.com https://www.google.com https://www.youtube.com https://www.youtube-nocookie.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com https://yandex.com https://*.yandex.com https://*.yandex.ru",
+  "style-src 'self' 'unsafe-inline' https://yandex.com https://*.yandex.com",
+  "img-src 'self' data: blob: https: https://i.ytimg.com https://img.youtube.com https://yandex.com https://*.yandex.com https://*.yandex.ru",
+  "font-src 'self' data: https://yandex.com https://*.yandex.com",
+  "connect-src 'self' https://vitals.vercel-insights.com https://yandex.com https://*.yandex.com https://*.yandex.ru",
+  "frame-src 'self' https://docs.google.com https://www.google.com https://www.youtube.com https://www.youtube-nocookie.com https://yandex.com https://*.yandex.com https://*.yandex.ru",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",

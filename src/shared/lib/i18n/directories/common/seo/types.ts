@@ -23,4 +23,7 @@ export type SeoDict = {
     readonly title: string;
     readonly description: string;
   };
+  readonly general: {
+    readonly description: string;
+  };
 };

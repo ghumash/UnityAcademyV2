@@ -25,7 +25,7 @@ export async function generateMetadata({
     alternatesPath: siteConfig.routes.home,
     canonical: absoluteUrl(`/${locale}`),
     locale,
-    description: t("common.seo.home.description"),
+    description: t("common.seo.general.description"),
   });
 }
 

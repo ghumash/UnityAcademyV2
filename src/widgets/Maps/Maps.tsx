@@ -6,6 +6,7 @@ import { ExternalLink } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui";
 import { siteConfig } from "@/shared/config/common";
+import { Skeleton } from "@/shared/ui";
 
 type Props = {
   address?: string;
@@ -30,7 +31,10 @@ const MapsComponent = memo(({
     [zoom]
   );
 
-  const wrapperStyle: CSSProperties = useMemo(() => ({ height }), [height]);
+  const wrapperStyle: CSSProperties = useMemo(() => ({ 
+    height,
+    minHeight: typeof height === 'number' ? `${height}px` : height 
+  }), [height]);
 
   const title = useMemo(
     () => `${siteConfig.name} on Yandex Maps${address ? ` — ${address}` : ""}`,
@@ -68,7 +72,35 @@ const MapsComponent = memo(({
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
           className="h-full w-full"
+          width="100%"
+          height={typeof height === 'number' ? height : undefined}
         />
+      </div>
+    </div>
+  );
+});
+
+// Компонент-заглушка для предотвращения CLS
+const MapsSkeleton = memo(({ height = 400, className }: Partial<Props>) => {
+  const wrapperStyle: CSSProperties = useMemo(() => ({ 
+    height,
+    minHeight: typeof height === 'number' ? `${height}px` : height 
+  }), [height]);
+
+  return (
+    <div className={cn("space-y-4 w-full", className)}>
+      {/* Actions Skeleton */}
+      <div className="flex items-center gap-2">
+        <Skeleton className="h-10 w-32 rounded-full" />
+        <Skeleton className="h-10 w-32 rounded-full" />
+      </div>
+
+      {/* Map Skeleton */}
+      <div
+        className="overflow-hidden rounded-2xl border border-border bg-background/50"
+        style={wrapperStyle}
+      >
+        <Skeleton className="h-full w-full" />
       </div>
     </div>
   );
@@ -76,5 +108,8 @@ const MapsComponent = memo(({
 
 export const Maps = dynamic(() => 
   Promise.resolve(MapsComponent), 
-  { ssr: false }
+  { 
+    ssr: false,
+    loading: () => <MapsSkeleton />
+  }
 );
