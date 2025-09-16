@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/shared/ui";
-import { createMetadata } from "@/shared/seo";
+import { createMetadata } from "@/shared/lib/seo";
 import "./globals.css";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";

@@ -9,7 +9,7 @@ import {
   LogoCarouselSection,
   VideoCardsCarousel,
 } from "@/widgets";
-import { JsonLd, buildOrganizationJsonLd, buildWebSiteJsonLd, buildEducationalOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import { JsonLd, buildOrganizationJsonLd, buildWebSiteJsonLd, buildEducationalOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import {
   getHeroConfig,

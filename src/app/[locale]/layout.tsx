@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { Footer, NavBar } from "@/widgets";
 import { HtmlLang } from "@/features/i18n";

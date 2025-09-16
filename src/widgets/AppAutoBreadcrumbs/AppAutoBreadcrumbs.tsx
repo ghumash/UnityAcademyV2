@@ -14,8 +14,8 @@ import {
 import { Fragment, memo, useMemo } from "react";
 import { cn } from "@/shared/lib/utils";
 import { useI18n } from "@/shared/lib/i18n";
-import { buildBreadcrumbsJsonLd } from "@/shared/seo";
-import { JsonLd } from "@/shared/seo";
+import { buildBreadcrumbsJsonLd } from "@/shared/lib/seo";
+import { JsonLd } from "@/shared/lib/seo";
 
 export interface AppAutoBreadcrumbProps {
   ariaLabel?: string;

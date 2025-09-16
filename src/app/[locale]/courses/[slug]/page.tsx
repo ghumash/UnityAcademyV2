@@ -5,7 +5,7 @@ import {
   buildBreadcrumbsJsonLd,
   buildOrganizationJsonLd,
   createMetadata,
-} from "@/shared/seo";
+} from "@/shared/lib/seo";
 import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
