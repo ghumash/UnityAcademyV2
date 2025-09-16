@@ -21,6 +21,7 @@ export const android: CourseDict = {
     formatLabel: "Ֆորմատ",
   },
   instructor: {
+    display: false,
     name: "Արտակ Գրիգորյան",
     role: "Senior Android Developer & Mobile Architect",
     bio: "Փորձառու Android մշակող 8+ տարվա փորձով մոբայլ հավելվածների մշակման ոլորտում: Մասնագիտանում եմ Java, Kotlin, Android SDK և ժամանակակից մոբայլ ճարտարապետության ոլորտում:",

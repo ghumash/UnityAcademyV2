@@ -21,6 +21,7 @@ export const hr: CourseDict = {
     formatLabel: "Ֆորմատ",
   },
   instructor: {
+    display: false,
     name: "Սիրանույշ Ավագյան",
     role: "Senior HR Manager & Business Consultant",
     bio: "Փորձառու HR մենեջեր 10+ տարվա փորձով մարդկային ռեսուրսների կառավարման ոլորտում: Մասնագիտանում եմ աշխատակիցների ընտրության, կարիերայի զարգացման և կազմակերպական մշակույթի ոլորտում:",

@@ -21,6 +21,7 @@ export const soft_skills: CourseDict = {
     formatLabel: "Format",
   },
   instructor: {
+    display: false,
     name: "Armenuhi Manukyan",
     role: "Business Coach & Soft Skills Trainer",
     bio: "Experienced business coach and soft skills trainer with 8+ years of experience. Specializing in personal productivity, leadership, and communication.",

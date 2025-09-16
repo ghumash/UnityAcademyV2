@@ -42,12 +42,17 @@ export type SocialLinks = {
 };
 
 export type UserCardData = {
+  display?: boolean;
   name: string;
   role: string;
   avatarUrl?: string;
   bio: string;
   experience: ExperienceItem[];
   socials: SocialLinks;
+  experienceLabel?: string;
+  socialNetworksLabel?: string;
+  showDetails?: string;
+  hideDetails?: string;
 };
 
 export type UserCardLabels = {
@@ -59,7 +64,7 @@ export type UserCardLabels = {
 
 export type UserCardProps = {
   data: UserCardData;
-  labels: UserCardLabels;
+  labels?: UserCardLabels;
   className?: string;
 };
 
@@ -246,7 +251,15 @@ const SocialLinks: React.FC<{
 // Основной компонент UserCard
 const UserCardComponent = memo(({ data, labels, className }: UserCardProps) => {
   const shouldReduceMotion = useReducedMotion();
-  const { name, role, avatarUrl, bio, experience, socials } = data;
+  const { name, role, avatarUrl, bio, experience, socials, experienceLabel, socialNetworksLabel, showDetails, hideDetails } = data;
+  
+  // Используем labels из data или переданные отдельно
+  const finalLabels = labels || {
+    experienceLabel: experienceLabel || 'Experience',
+    socialNetworksLabel: socialNetworksLabel || 'Social Networks',
+    showDetails: showDetails || 'Show Details',
+    hideDetails: hideDetails || 'Hide Details'
+  };
 
   // Получаем инициалы для fallback аватара
   const getInitials = (name: string) => {
@@ -314,9 +327,9 @@ const UserCardComponent = memo(({ data, labels, className }: UserCardProps) => {
           <ExperienceTimeline 
             experience={experience} 
             labels={{
-              experienceLabel: labels.experienceLabel,
-              showDetails: labels.showDetails,
-              hideDetails: labels.hideDetails
+              experienceLabel: finalLabels.experienceLabel,
+              showDetails: finalLabels.showDetails,
+              hideDetails: finalLabels.hideDetails
             }}
           />
         </div>
@@ -325,7 +338,7 @@ const UserCardComponent = memo(({ data, labels, className }: UserCardProps) => {
       {/* Социальные сети */}
       <SocialLinks 
         socials={socials} 
-        labels={{ socialNetworksLabel: labels.socialNetworksLabel }}
+        labels={{ socialNetworksLabel: finalLabels.socialNetworksLabel }}
       />
     </motion.div>
   );

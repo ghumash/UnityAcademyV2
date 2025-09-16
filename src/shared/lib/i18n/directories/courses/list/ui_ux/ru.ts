@@ -21,6 +21,7 @@ export const ui_ux: CourseDict = {
     formatLabel: "Формат",
   },
   instructor: {
+    display: false,
     name: "Наре Акопян",
     role: "Senior UI/UX Designer & Product Designer",
     bio: "Опытный UI/UX дизайнер с 6+ летним опытом в дизайне цифровых продуктов. Специализируюсь на пользовательских исследованиях, wireframing и прототипировании.",

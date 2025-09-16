@@ -21,6 +21,7 @@ export const python: CourseDict = {
     formatLabel: "Format",
   },
   instructor: {
+    display: false,
     name: "David Avetisyan",
     role: "Senior Python Developer & Data Scientist",
     bio: "Experienced Python developer with 7+ years in web development, data science, and machine learning. Specializes in Django, Flask, pandas, and scikit-learn.",

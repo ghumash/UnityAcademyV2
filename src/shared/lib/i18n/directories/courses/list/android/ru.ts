@@ -21,6 +21,7 @@ export const android: CourseDict = {
     formatLabel: "Формат",
   },
   instructor: {
+    display: false,
     name: "Артак Григорян",
     role: "Senior Android Developer & Mobile Architect",
     bio: "Опытный Android разработчик с 8+ летним опытом в разработке мобильных приложений. Специализируюсь на Java, Kotlin, Android SDK и современной мобильной архитектуре.",

@@ -21,6 +21,7 @@ export const hr: CourseDict = {
     formatLabel: "Format",
   },
   instructor: {
+    display: false,
     name: "Siranuysh Avagyan",
     role: "Senior HR Manager & Business Consultant",
     bio: "Experienced HR manager with 10+ years of experience in human resources management. Specializing in employee selection, career development, and organizational culture.",

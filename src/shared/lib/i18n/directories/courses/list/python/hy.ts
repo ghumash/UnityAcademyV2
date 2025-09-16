@@ -21,6 +21,7 @@ export const python: CourseDict = {
     formatLabel: "Ֆորմատ",
   },
   instructor: {
+    display: false,
     name: "Դավիթ Ավետիսյան",
     role: "Senior Python Developer & Data Scientist",
     bio: "Փորձառու Python մշակող 7+ տարվա փորձով վեբ մշակման, տվյալների գիտության և մեքենայական ուսուցման ոլորտում: Մասնագիտանում եմ Django, Flask, pandas և scikit-learn-ում:",

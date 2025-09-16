@@ -21,6 +21,7 @@ export const ui_ux: CourseDict = {
     formatLabel: "Ֆորմատ",
   },
   instructor: {
+    display: false,
     name: "Նարե Հակոբյան",
     role: "Senior UI/UX Designer & Product Designer",
     bio: "Փորձառու UI/UX դիզայներ 6+ տարվա փորձով դիջիթալ արտադրանքի դիզայնի ոլորտում: Մասնագիտանում եմ օգտատիրական հետազոտությունների, wireframing և պրոտոտիպավորման ոլորտում:",

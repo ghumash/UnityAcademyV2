@@ -21,6 +21,7 @@ export const android: CourseDict = {
     formatLabel: "Format",
   },
   instructor: {
+    display: false,
     name: "Artak Grigoryan",
     role: "Senior Android Developer & Mobile Architect",
     bio: "Experienced Android developer with 8+ years of experience in mobile app development. Specializing in Java, Kotlin, Android SDK, and modern mobile architecture.",

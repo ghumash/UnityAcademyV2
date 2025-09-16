@@ -21,6 +21,7 @@ export const smm: CourseDict = {
     formatLabel: "Format",
   },
   instructor: {
+    display: false,
     name: "Ani Martirosyan",
     role: "Digital Marketing Specialist & SMM Expert",
     bio: "Experienced digital marketing specialist with 6+ years of experience in SMM and advertising campaigns. Worked with local and international brands.",

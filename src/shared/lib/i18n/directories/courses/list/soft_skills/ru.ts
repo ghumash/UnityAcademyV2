@@ -21,6 +21,7 @@ export const soft_skills: CourseDict = {
     formatLabel: "Формат",
   },
   instructor: {
+    display: false,
     name: "Арменухи Манукян",
     role: "Business Coach & Soft Skills Trainer",
     bio: "Опытный бизнес-коуч и тренер по гибким навыкам с 8+ летним опытом. Специализируюсь на личной продуктивности, лидерстве и коммуникации.",

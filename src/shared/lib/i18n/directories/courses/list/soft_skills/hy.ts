@@ -21,6 +21,7 @@ export const soft_skills: CourseDict = {
     formatLabel: "Ֆորմատ",
   },
   instructor: {
+    display: false,
     name: "Արմենուհի Մանուկյան",
     role: "Business Coach & Soft Skills Trainer",
     bio: "Փորձառու բիզնես կոուչ և փափուկ հմտությունների մարզիչ 8+ տարվա փորձով: Մասնագիտանում եմ անձնական արդյունավետության, ղեկավարության և հաղորդակցության ոլորտում:",

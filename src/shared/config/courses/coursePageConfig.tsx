@@ -1,7 +1,7 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 import { BadgeCheck, Rocket, Users, Award, FolderOpen } from "lucide-react";
-import type { GridItemData, UserCardData } from "@/widgets";
+import type { GridItemData } from "@/widgets";
 import type { CourseKey } from "@/entities/course";
 import type { Theme } from "@/widgets/Courses";
 import { siteConfig } from "@/shared/config/common";
@@ -135,16 +135,14 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     });
   }
 
-  const mockUserData: UserCardData = {
+  const instructor = {
+    display: instructorData.display !== false, // по умолчанию true, если не указано false
     name: t(`courses.list.${slug}.instructor.name`),
     role: t(`courses.list.${slug}.instructor.role`),
     avatarUrl: instructorData.avatarUrl,
     bio: t(`courses.list.${slug}.instructor.bio`),
     experience: experienceEntries,
     socials: instructorData.socials || {},
-  };
-
-  const instructorLabels = {
     experienceLabel: t(`courses.list.${slug}.instructor.experienceLabel`),
     socialNetworksLabel: t(
       `courses.list.${slug}.instructor.socialNetworksLabel`
@@ -190,8 +188,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   return {
     courseHeroSection,
     contentSection: contentSectionConfig,
-    instructor: mockUserData,
-    instructorLabels,
+    instructor,
     courseTopics: courseTopicsConfig,
     glowingGrid: glowingGridConfig,
     callToAction: callToActionConfig,

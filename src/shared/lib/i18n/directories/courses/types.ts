@@ -53,6 +53,7 @@ export type CourseDict = {
     formatLabel: string;
   };
   instructor: {
+    display?: boolean;
     name: string;
     role: string;
     bio: string;

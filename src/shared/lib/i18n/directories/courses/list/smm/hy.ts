@@ -21,6 +21,7 @@ export const smm: CourseDict = {
     formatLabel: "Ֆորմատ",
   },
   instructor: {
+    display: false,
     name: "Անի Մարտիրոսյան",
     role: "Digital Marketing Specialist & SMM Expert",
     bio: "Փորձառու դիջիթալ մարքեթինգ մասնագետ 6+ տարվա փորձով SMM և գովազդային արշավների ոլորտում: Աշխատել եմ տեղական և միջազգային բրենդերի հետ:",

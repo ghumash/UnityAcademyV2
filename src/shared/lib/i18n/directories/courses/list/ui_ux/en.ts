@@ -21,6 +21,7 @@ export const ui_ux: CourseDict = {
     formatLabel: "Format",
   },
   instructor: {
+    display: false,
     name: "Nare Hakobyan",
     role: "Senior UI/UX Designer & Product Designer",
     bio: "Experienced UI/UX designer with 6+ years of experience in digital product design. Specializing in user research, wireframing, and prototyping.",
