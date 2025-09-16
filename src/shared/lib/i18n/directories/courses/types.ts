@@ -26,22 +26,10 @@ export type SingleDict = {
   benefits: {
     title_part1: string;
     title_part2: string;
-    career: {
+    items: Array<{
       title: string;
       description: string;
-    };
-    hr_training: {
-      title: string;
-      description: string;
-    };
-    certification: {
-      title: string;
-      description: string;
-    };
-    portfolio: {
-      title: string;
-      description: string;
-    };
+    }>;
   };
 };
 

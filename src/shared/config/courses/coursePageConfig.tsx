@@ -1,6 +1,6 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
-import { BadgeCheck, Rocket } from "lucide-react";
+import { BadgeCheck, Rocket, Users, Award, FolderOpen } from "lucide-react";
 import type { GridItemData, UserCardData } from "@/widgets";
 import type { CourseKey } from "@/entities/course";
 import type { Theme } from "@/widgets/Courses";
@@ -48,28 +48,38 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
           aria-hidden="true"
         />
       ),
-      title: t(`courses.single.benefits.career.title`),
-      description: <>{t(`courses.single.benefits.career.description`)}</>,
+      title: t(`courses.single.benefits.items.0.title`),
+      description: <>{t(`courses.single.benefits.items.0.description`)}</>,
     },
     {
       icon: (
-        <Rocket
+        <Users
           className="h-4 w-4 text-black dark:text-neutral-400"
           aria-hidden="true"
         />
       ),
-      title: t(`courses.single.benefits.certification.title`),
-      description: t(`courses.single.benefits.certification.description`),
+      title: t(`courses.single.benefits.items.1.title`),
+      description: t(`courses.single.benefits.items.1.description`),
     },
     {
       icon: (
-        <Rocket
+        <Award
           className="h-4 w-4 text-black dark:text-neutral-400"
           aria-hidden="true"
         />
       ),
-      title: t(`courses.single.benefits.portfolio.title`),
-      description: t(`courses.single.benefits.portfolio.description`),
+      title: t(`courses.single.benefits.items.2.title`),
+      description: t(`courses.single.benefits.items.2.description`),
+    },
+    {
+      icon: (
+        <FolderOpen
+          className="h-4 w-4 text-black dark:text-neutral-400"
+          aria-hidden="true"
+        />
+      ),
+      title: t(`courses.single.benefits.items.3.title`),
+      description: t(`courses.single.benefits.items.3.description`),
     },
   ];
 

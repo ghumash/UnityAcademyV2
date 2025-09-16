@@ -91,6 +91,16 @@ export async function getGlowingGridConfig(locale: Locale) {
         title: t("about.glowingGrid.items.6.title"),
         description: t("about.glowingGrid.items.6.description"),
       },
+      {
+        icon: (
+          <CalendarDays
+            className="h-4 w-4 text-black dark:text-neutral-400"
+            aria-hidden="true"
+          />
+        ),
+        title: t("about.glowingGrid.items.7.title"),
+        description: t("about.glowingGrid.items.7.description"),
+      },
     ] as const satisfies readonly GlowingGridItem[],
   } as const;
 }
