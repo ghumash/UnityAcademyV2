@@ -3,11 +3,11 @@
 import { memo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-  Button,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/shared/ui";
 import { type Locale, locales } from "@/shared/lib/i18n";
 
@@ -17,15 +17,16 @@ export const LanguageSwitcher = memo(({ locale }: Props) => {
   const router = useRouter();
 
   const handleChange = useCallback(
-    (next: Locale) => {
-      if (next === locale) return;
+    (next: string) => {
+      const nextLocale = next as Locale;
+      if (nextLocale === locale) return;
 
       const url = new URL(window.location.href);
       const segs = url.pathname.split("/"); // ["", "en", ...] or ["", ...]
       const hasLocale = locales.includes(segs[1] as Locale);
 
-      if (hasLocale) segs[1] = next;
-      else segs.splice(1, 0, next);
+      if (hasLocale) segs[1] = nextLocale;
+      else segs.splice(1, 0, nextLocale);
 
       url.pathname = segs.join("/").replace(/\/+/g, "/");
       router.replace(`${url.pathname}${url.search}${url.hash}`, {
@@ -42,30 +43,23 @@ export const LanguageSwitcher = memo(({ locale }: Props) => {
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full h-9 w-9 hover:bg-muted border"
-          aria-label="Language"
-          title={`Current language: ${flags[locale]}`}
-        >
+    <Select value={locale} onValueChange={handleChange}>
+      <SelectTrigger className="rounded-full h-9 w-9 p-0 border hover:bg-muted [&>svg]:hidden justify-center">
+        <SelectValue>
           <span className="text-base">{flags[locale]}</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-auto min-w-0">
+        </SelectValue>
+      </SelectTrigger>
+      <SelectContent align="end" className="w-auto min-w-0 p-2">
         {locales.map((l) => (
-          <DropdownMenuItem
+          <SelectItem
             key={l}
-            onClick={() => handleChange(l)}
-            className={`cursor-pointer ${l === locale ? "bg-muted" : ""}`}
+            value={l}
+            className="cursor-pointer rounded-full h-9 w-9 p-0 flex items-center justify-center mb-1 last:mb-0"
           >
-            <span className="mr-2">{flags[l]}</span>
-            <span className="capitalize">{l}</span>
-          </DropdownMenuItem>
+            <span className="text-base">{flags[l]}</span>
+          </SelectItem>
         ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </SelectContent>
+    </Select>
   );
 });
