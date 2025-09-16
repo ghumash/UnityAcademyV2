@@ -6,6 +6,7 @@ export * from './code-splitting';
 export * from './deprecated-fixes';
 export * from './accessibility-fixes';
 export * from './image-optimization';
+export * from "./user-agent-optimization"
 
 // Главная функция инициализации всех оптимизаций
 export const initializePerformanceOptimizations = () => {
