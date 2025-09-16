@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { useTheme } from "next-themes";
 import {
   DropdownMenu,
@@ -9,8 +10,9 @@ import {
   Button,
 } from "@/shared/ui";
 import { Moon, Sun } from "lucide-react";
+import dynamic from "next/dynamic";
 
-export default function ModeToggle() {
+const ModeToggleComponent = memo(() => {
   const { setTheme, theme } = useTheme();
 
   return (
@@ -22,7 +24,7 @@ export default function ModeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="w-auto min-w-0">
         <DropdownMenuItem
           onClick={() => setTheme("light")}
           aria-checked={theme === "light"}
@@ -47,4 +49,8 @@ export default function ModeToggle() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+});
+
+export const ModeToggle = dynamic(() => Promise.resolve(ModeToggleComponent), {
+  ssr: false,
+});

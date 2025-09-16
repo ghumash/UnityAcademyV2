@@ -1,3 +1,4 @@
+export { SmartForm } from "./SmartForm/SmartForm";
 export { Footer } from "./Footer/Footer";
 export { GlowingGrid, type GridItemData } from "./GlowingGrid/GlowingGrid";
 export { Hero, type HeroAction } from "./Hero/Hero";
@@ -18,6 +19,6 @@ export { TeamSection } from "./TeamSection/TeamSection";
 export { UserCard, type UserCardData } from "./UserCard";
 export { CourseTopics } from "./CourseTopics";
 export { ContactTilesSection } from "./ContactTilesSection/ContactTilesSection";
-export { SmartForm } from "./SmartForm/SmartForm";
 export { CallToAction } from "./CallToAction/CallToAction";
 export { IntroWithDesc } from "./IntroWithDesc/IntroWithDesc";
+export { SettingsDropdown } from "./SettingsDropdown/SettingsDropdown";

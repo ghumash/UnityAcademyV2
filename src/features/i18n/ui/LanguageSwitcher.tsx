@@ -1,25 +1,23 @@
 "use client";
 
-import * as React from "react";
+import { memo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+  Button,
 } from "@/shared/ui";
 import { type Locale, locales } from "@/shared/lib/i18n";
+import dynamic from "next/dynamic";
 
 type Props = { locale: Locale };
 
-const LanguageSwitcher = React.memo(function LanguageSwitcher({
-  locale,
-}: Props) {
+const LanguageSwitcherComponent = memo(({ locale }: Props) => {
   const router = useRouter();
-  const labelId = React.useId();
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     (next: Locale) => {
       if (next === locale) return;
 
@@ -45,42 +43,35 @@ const LanguageSwitcher = React.memo(function LanguageSwitcher({
   };
 
   return (
-    <>
-      <span id={labelId} className="sr-only">
-        Language
-      </span>
-
-      <Select value={locale} onValueChange={(v) => handleChange(v as Locale)}>
-        <SelectTrigger
-          aria-labelledby={labelId}
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="rounded-full h-9 w-9 hover:bg-muted border"
           aria-label="Language"
-          title={flags[locale]}
-          // Small screens: icon-only (hide chevron and text), compact size
-          // ≥sm: show text + chevron, normal size
-          className={`
-            rounded-full
-            h-10 w-auto
-            py-2 px-2.5
-            flex items-center gap-2 justify-center
-            [&_svg]:hidden
-          `}
+          title={`Current language: ${flags[locale]}`}
         >
-          {/* Text value is hidden on small screens */}
-          <span>
-            <SelectValue />
-          </span>
-        </SelectTrigger>
-
-        <SelectContent align="end">
-          {locales.map((l) => (
-            <SelectItem key={l} value={l}>
-              {flags[l]}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </>
+          <span className="text-base">{flags[locale]}</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-auto min-w-0">
+        {locales.map((l) => (
+          <DropdownMenuItem
+            key={l}
+            onClick={() => handleChange(l)}
+            className={`cursor-pointer ${l === locale ? "bg-muted" : ""}`}
+          >
+            <span className="mr-2">{flags[l]}</span>
+            <span className="capitalize">{l}</span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 });
 
-export default LanguageSwitcher;
+export const LanguageSwitcher = dynamic(
+  () => Promise.resolve(LanguageSwitcherComponent),
+  { ssr: false }
+);
