@@ -103,6 +103,20 @@ export function createMetadata(input?: {
       url: input?.canonical ?? absoluteUrl("/"),
       siteName: siteConfig.name,
       type: "website",
+      images: [
+        {
+          url: absoluteUrl("/images/logos/logo.svg"),
+          width: 1200,
+          height: 630,
+          alt: `${siteConfig.name} Logo`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [absoluteUrl("/images/logos/logo.svg")],
     },
   };
 }
