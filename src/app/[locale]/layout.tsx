@@ -10,6 +10,7 @@ import {
   siteConfig,
   absoluteUrl,
 } from "@/shared/config/common";
+import { PerformanceOptimizer } from "@/shared/components/PerformanceOptimizer";
 
 export async function generateMetadata({
   params,
@@ -44,6 +45,7 @@ export default async function LocaleLayout({
       {/* меняем lang атрибут на клиенте согласно locale */}
       <HtmlLang locale={locale as Locale} />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
+      <PerformanceOptimizer />
       <ThemeProvider
         attribute="class"
         defaultTheme={siteConfig.defaultTheme}
