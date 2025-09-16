@@ -10,9 +10,8 @@ import {
   Button,
 } from "@/shared/ui";
 import { Moon, Sun } from "lucide-react";
-import dynamic from "next/dynamic";
 
-const ModeToggleComponent = memo(() => {
+export const ModeToggle = memo(() => {
   const { setTheme, theme } = useTheme();
 
   return (
@@ -49,8 +48,4 @@ const ModeToggleComponent = memo(() => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-});
-
-export const ModeToggle = dynamic(() => Promise.resolve(ModeToggleComponent), {
-  ssr: false,
 });

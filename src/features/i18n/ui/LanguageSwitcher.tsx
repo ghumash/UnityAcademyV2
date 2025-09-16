@@ -10,11 +10,10 @@ import {
   Button,
 } from "@/shared/ui";
 import { type Locale, locales } from "@/shared/lib/i18n";
-import dynamic from "next/dynamic";
 
 type Props = { locale: Locale };
 
-const LanguageSwitcherComponent = memo(({ locale }: Props) => {
+export const LanguageSwitcher = memo(({ locale }: Props) => {
   const router = useRouter();
 
   const handleChange = useCallback(
@@ -70,8 +69,3 @@ const LanguageSwitcherComponent = memo(({ locale }: Props) => {
     </DropdownMenu>
   );
 });
-
-export const LanguageSwitcher = dynamic(
-  () => Promise.resolve(LanguageSwitcherComponent),
-  { ssr: false }
-);
