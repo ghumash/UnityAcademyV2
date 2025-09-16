@@ -215,7 +215,7 @@ function SmartFormInner<TSchema extends AnySchema>(
                     />
                   )}
 
-                  {err && f.type !== "date" && <p className="text-sm text-red-600">{err}</p>}
+                  {err && f.type !== "date" && <p className="text-sm text-destructive">{err}</p>}
                 </div>
               );
             })}

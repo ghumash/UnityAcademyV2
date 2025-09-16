@@ -43,8 +43,9 @@ export const forms: FormsDict = {
       minLength: "Surname must be at least 2 characters",
     },
     fullname: {
-      required: "Enter full name",
+      required: "Full name is required",
       minLength: "Full name must be at least 2 characters",
+      invalid: "Please enter your full name (first and last name)",
     },
     email: {
       required: "Enter email address",

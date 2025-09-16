@@ -39,6 +39,7 @@ export type FormsDict = {
     fullname: {
       required: string;
       minLength: string;
+      invalid: string;
     };
     email: {
       required: string;

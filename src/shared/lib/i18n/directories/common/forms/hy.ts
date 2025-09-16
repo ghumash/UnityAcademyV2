@@ -45,6 +45,7 @@ export const forms: FormsDict = {
     fullname: {
       required: "Մուտքագրեք անուն ազգանունը",
       minLength: "Անուն ազգանունը պետք է լինի նվազագույնը 2 նիշ",
+      invalid: "Նշեք ամբողջական անունը (անուն և ազգանուն)",
     },
     email: {
       required: "Մուտքագրեք email հասցեն",

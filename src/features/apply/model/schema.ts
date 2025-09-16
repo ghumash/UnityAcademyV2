@@ -8,7 +8,15 @@ export type CourseValue = typeof COURSE_DATA[CourseKey]["value"];
 // Функция для создания схемы с локализованными сообщениями
 export const createApplySchema = (validation: FormsDict["validation"]) => {
   return z.object({
-    fullname: z.string().min(2, validation.fullname.minLength),
+    fullname: z.string()
+      .min(2, validation.fullname.minLength)
+      .refine(
+        (name) => {
+          const words = name.trim().split(/\s+/);
+          return words.length >= 2 && words.every(word => word.length >= 2);
+        },
+        { message: validation.fullname.invalid }
+      ),
     birthday: z.string().min(1, validation.birthday.required).refine(
       (date) => {
         const parsed = new Date(date);
