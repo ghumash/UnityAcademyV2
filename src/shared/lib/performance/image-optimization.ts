@@ -2,6 +2,9 @@
  * Система оптимизации изображений для улучшения LCP и производительности
  */
 
+import { browserSupport, isServer } from './utils';
+import type { DeviceInfo } from './device-detection';
+
 // Оптимизированные размеры изображений
 export const imageBreakpoints = {
   mobile: 640,
@@ -21,27 +24,48 @@ export const generateSrcSet = (
     .join(', ');
 };
 
-// Оптимальные форматы изображений
-export const getOptimalImageFormat2 = (): 'avif' | 'webp' | 'jpg' => {
-  if (typeof window === 'undefined') return 'webp';
+// Оптимальные форматы изображений (объединенная логика)
+export const getOptimalImageFormat = (deviceInfo?: DeviceInfo): 'avif' | 'webp' | 'jpg' => {
+  if (deviceInfo) {
+    // Используем информацию об устройстве если доступна
+    if (deviceInfo.supportsAvif) return 'avif';
+    if (deviceInfo.supportsWebP) return 'webp';
+    return 'jpg';
+  }
   
-  // Проверяем поддержку AVIF
-  const canvas = document.createElement('canvas');
-  canvas.width = 1;
-  canvas.height = 1;
+  // Fallback для клиентской проверки
+  if (isServer) return 'webp';
   
-  try {
-    const avifSupported = canvas.toDataURL('image/avif').indexOf('data:image/avif') === 0;
-    if (avifSupported) return 'avif';
-  } catch {}
-  
-  try {
-    const webpSupported = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    if (webpSupported) return 'webp';
-  } catch {}
-  
+  if (browserSupport.avif()) return 'avif';
+  if (browserSupport.webp()) return 'webp';
   return 'jpg';
 };
+
+// Получение оптимальных размеров изображений для устройства
+export function getOptimalImageSizes(deviceInfo: DeviceInfo) {
+  if (deviceInfo.isMobile) {
+    return {
+      hero: { width: 640, height: 360 },
+      card: { width: 320, height: 240 },
+      thumbnail: { width: 150, height: 150 },
+    };
+  }
+  
+  if (deviceInfo.isTablet) {
+    return {
+      hero: { width: 1024, height: 576 },
+      card: { width: 480, height: 360 },
+      thumbnail: { width: 200, height: 200 },
+    };
+  }
+  
+  // Desktop
+  return {
+    hero: { width: 1920, height: 1080 },
+    card: { width: 640, height: 480 },
+    thumbnail: { width: 300, height: 300 },
+  };
+}
 
 // Ленивая загрузка изображений с Intersection Observer
 export const createLazyImageLoader = () => {
@@ -113,7 +137,7 @@ export const getImageProps = ({
   className = '',
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
 }: OptimizedImageProps) => {
-  const format = getOptimalImageFormat2();
+  const format = getOptimalImageFormat();
   const optimizedSrc = `${src}?f=${format}&q=80`;
   const srcSet = generateSrcSet(src);
 

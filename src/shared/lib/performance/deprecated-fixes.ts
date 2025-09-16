@@ -2,13 +2,8 @@
  * Исправления для deprecated APIs и современных стандартов
  */
 
-// Замена deprecated String.prototype.substr на substring
-export const safeSubstring = (str: string, start: number, length?: number): string => {
-  if (length === undefined) {
-    return str.substring(start);
-  }
-  return str.substring(start, start + length);
-};
+import { browserSupport } from './utils';
+// safeSubstring экспортируется из utils.ts
 
 // Современная замена для deprecated document.domain
 export const getOrigin = (): string => {
@@ -47,7 +42,9 @@ export const modernFetch = async (url: string, options?: RequestInit) => {
 };
 
 // Замена deprecated navigator.userAgent на User-Agent Client Hints
+// DEPRECATED: используйте getClientHints из device-detection.ts
 export const getClientHints = () => {
+  console.warn('getClientHints is deprecated. Use getClientHints from device-detection.ts');
   if (typeof navigator !== 'undefined' && 'userAgentData' in navigator) {
     const userAgentData = (navigator as any).userAgentData;
     return {
@@ -57,7 +54,6 @@ export const getClientHints = () => {
     };
   }
   
-  // Fallback для старых браузеров
   return {
     mobile: /Mobi|Android/i.test(navigator?.userAgent || ''),
     platform: navigator?.platform || 'unknown',
@@ -91,7 +87,7 @@ export const modernAPIs = {
     callback: IntersectionObserverCallback,
     options?: IntersectionObserverInit
   ) => {
-    if (typeof IntersectionObserver !== 'undefined') {
+    if (browserSupport.intersectionObserver) {
       return new IntersectionObserver(callback, {
         rootMargin: '50px',
         threshold: 0.1,
@@ -103,28 +99,9 @@ export const modernAPIs = {
 
   // ResizeObserver вместо window.resize
   createResizeObserver: (callback: ResizeObserverCallback) => {
-    if (typeof ResizeObserver !== 'undefined') {
+    if (browserSupport.resizeObserver) {
       return new ResizeObserver(callback);
     }
     return null;
-  },
-
-  // Современный способ работы с localStorage
-  safeLocalStorage: {
-    getItem: (key: string): string | null => {
-      try {
-        return localStorage.getItem(key);
-      } catch {
-        return null;
-      }
-    },
-    setItem: (key: string, value: string): boolean => {
-      try {
-        localStorage.setItem(key, value);
-        return true;
-      } catch {
-        return false;
-      }
-    },
   },
 };
