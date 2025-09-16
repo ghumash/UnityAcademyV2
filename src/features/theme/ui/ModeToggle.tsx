@@ -2,50 +2,84 @@
 
 import { memo } from "react";
 import { useTheme } from "next-themes";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  Button,
-} from "@/shared/ui";
-import { Moon, Sun } from "lucide-react";
+import { Button } from "@/shared/ui";
+import { Moon, Sun, Monitor } from "lucide-react";
+import { useI18n } from "@/shared/lib/i18n";
 
 export const ModeToggle = memo(() => {
   const { setTheme, theme } = useTheme();
+  const { locale } = useI18n();
+
+  // Переводы для темы
+  const themeTranslations = {
+    ru: {
+      switchToLight: "Переключить на светлую тему",
+      switchToDark: "Переключить на тёмную тему",
+      switchToSystem: "Переключить на системную тему",
+    },
+    en: {
+      switchToLight: "Switch to light theme",
+      switchToDark: "Switch to dark theme",
+      switchToSystem: "Switch to system theme",
+    },
+    hy: {
+      switchToLight: "Անցնել բաց թեմային",
+      switchToDark: "Անցնել մուգ թեմային",
+      switchToSystem: "Անցնել համակարգային թեմային",
+    },
+  };
+
+
+  const cycleTheme = () => {
+    switch (theme) {
+      case "light":
+        setTheme("dark");
+        break;
+      case "dark":
+        setTheme("system");
+        break;
+      case "system":
+      default:
+        setTheme("light");
+        break;
+    }
+  };
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case "light":
+        return <Sun className="size-4" />;
+      case "dark":
+        return <Moon className="size-4" />;
+      case "system":
+      default:
+        return <Monitor className="size-4" />;
+    }
+  };
+
+  const t = themeTranslations[locale];
+  const getThemeLabel = () => {
+    switch (theme) {
+      case "light":
+        return t.switchToDark;
+      case "dark":
+        return t.switchToSystem;
+      case "system":
+      default:
+        return t.switchToLight;
+    }
+  };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild className="rounded-full">
-        <Button variant="outline" size="icon" aria-label="Переключить тему">
-          <Sun className="size-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-auto min-w-0">
-        <DropdownMenuItem
-          onClick={() => setTheme("light")}
-          aria-checked={theme === "light"}
-          role="menuitemradio"
-        >
-          Светлая
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme("dark")}
-          aria-checked={theme === "dark"}
-          role="menuitemradio"
-        >
-          Тёмная
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme("system")}
-          aria-checked={theme === "system"}
-          role="menuitemradio"
-        >
-          Системная
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={cycleTheme}
+      aria-label={getThemeLabel()}
+      className="rounded-full transition-all duration-200 hover:scale-105"
+    >
+      <div className="transition-all duration-200">{getThemeIcon()}</div>
+      <span className="sr-only">{getThemeLabel()}</span>
+    </Button>
   );
 });

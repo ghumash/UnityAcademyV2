@@ -32,9 +32,9 @@ const SettingsDropdownComponent = memo(({ locale }: SettingsDropdownProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-auto min-w-0">
-        <div className="p-2 space-y-2">
+        <div className="p-2">
           <LanguageSwitcher locale={locale} />
-          <DropdownMenuSeparator />
+          <DropdownMenuSeparator/>
           <ModeToggle />
         </div>
       </DropdownMenuContent>

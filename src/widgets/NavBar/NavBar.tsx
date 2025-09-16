@@ -84,7 +84,7 @@ export const NavBar = memo(
           className
         )}
       >
-        <div className="flex items-center gap-2 rounded-full border border-border bg-background/5 px-1 py-1 shadow-lg backdrop-blur-lg">
+        <div className="flex items-center gap-2 rounded-full border border-border bg-background/5 px-2 py-1 shadow-lg backdrop-blur-lg">
           {items.map((item) => {
             const active = isMatch(currentPath, item.url);
 
