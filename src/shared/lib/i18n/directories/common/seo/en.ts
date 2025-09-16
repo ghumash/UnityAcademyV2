@@ -7,7 +7,7 @@ export const seo: SeoDict = {
     description: `Learn programming, design and digital marketing at ${siteConfig.name} in Vanadzor: Web development, Python, Android, UI/UX, SMM and other courses.`
   },
   about: {
-    title: "About Us",
+    title: "About us",
     description: `${siteConfig.name} is an IT educational center in Vanadzor. We provide quality education in programming, design and digital marketing.`
   },
   courses: {

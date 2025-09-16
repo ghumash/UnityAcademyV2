@@ -70,17 +70,6 @@ export function createMetadata(input?: {
       )
     : undefined;
 
-  // Абсолютные URL к OG/Twitter изображениям, если для сегмента существует metadata route
-  // Пример: /en/about/opengraph-image
-  const ogImageUrl = (() => {
-    if (!input?.alternatesPath || !input?.locale) return undefined;
-    const pathSegment = input.alternatesPath === "/" ? "" : input.alternatesPath;
-    const joined = `/${input.locale}${pathSegment}/opengraph-image`;
-    // Уберем возможные двойные слэши (кроме протокола)
-    const normalized = joined.replace(/\/{2,}/g, "/");
-    return absoluteUrl(normalized);
-  })();
-
   return {
     title: input?.title
       ? { default: input.title, template: `%s - ${siteConfig.name}` }
@@ -114,16 +103,6 @@ export function createMetadata(input?: {
       url: input?.canonical ?? absoluteUrl("/"),
       siteName: siteConfig.name,
       type: "website",
-      locale: input?.locale
-        ? `${input.locale}-${input.locale.toUpperCase()}`
-        : siteConfig.locale,
-      ...(ogImageUrl && { images: [ogImageUrl] }),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      ...(ogImageUrl && { images: [ogImageUrl] }),
     },
   };
 }

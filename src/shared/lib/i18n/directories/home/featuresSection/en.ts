@@ -55,7 +55,7 @@ export const featuresSection: FeaturesSectionDict = {
     {
       title: "'Day Off' Meetups",
       description:
-        "Weekly, free, and informal community gatherings. Read more details in the 'About Us' section",
+        "Weekly, free, and informal community gatherings. Read more details in the 'About us' section",
     },
     {
       title: "Community",

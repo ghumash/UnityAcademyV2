@@ -5,7 +5,7 @@ export const footer: FooterDict = {
   resources: {
     title: "Resources",
     home: "Home",
-    about: "About Us",
+    about: "About us",
     courses: "Courses",
     contacts: "Contact",
     faq: "FAQ",

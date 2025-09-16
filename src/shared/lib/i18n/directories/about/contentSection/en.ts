@@ -81,6 +81,6 @@ export const contentSection: ContentSectionDict = {
     },
   ],
   badge: {
-    text: "About Us",
+    text: "About us",
   },
 } as const;
