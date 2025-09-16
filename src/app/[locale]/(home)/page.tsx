@@ -9,7 +9,7 @@ import {
   LogoCarouselSection,
   VideoCardsCarousel,
 } from "@/widgets";
-import { JsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/seo";
+import { JsonLd, buildOrganizationJsonLd, buildWebSiteJsonLd, buildEducationalOrganizationJsonLd, createMetadata } from "@/shared/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import {
   getHeroConfig,
@@ -53,7 +53,9 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
 
   return (
     <main className="sm:mt-20 md:mt-22">
+      <JsonLd id="website-jsonld" data={buildWebSiteJsonLd()} />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
+      <JsonLd id="educational-org-jsonld" data={buildEducationalOrganizationJsonLd()} />
       <Hero config={hero} />
       <Carousel config={carousel} />
       <FeaturesSection config={features} />

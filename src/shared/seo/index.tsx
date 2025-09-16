@@ -25,9 +25,12 @@ export function buildOrganizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.url}#organization`,
     name: siteConfig.name,
+    alternateName: "Unity Academy",
     url: siteConfig.url,
     logo: absoluteUrl(siteConfig.assets.logo),
+    description: siteConfig.description,
     ...(sameAs.length && { sameAs }),
     contactPoint: {
       "@type": "ContactPoint",
@@ -36,6 +39,23 @@ export function buildOrganizationJsonLd() {
       contactType: "customer support",
       availableLanguage: ["hy", "ru", "en"],
     },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Vanadzor",
+      addressCountry: "AM",
+    },
+    foundingDate: "2025",
+    knowsAbout: [
+      "Programming",
+      "Web Development",
+      "Mobile Development",
+      "UI/UX Design",
+      "Digital Marketing",
+      "Python",
+      "JavaScript",
+      "Android Development",
+      "Graphic Design"
+    ],
   };
 }
 
@@ -47,8 +67,98 @@ export function buildBreadcrumbsJsonLd(items: BreadcrumbItem[]) {
       "@type": "ListItem",
       position: idx + 1,
       name: item.name,
-      item: absoluteUrl(item.href),
+      item: {
+        "@type": "WebPage",
+        "@id": absoluteUrl(item.href),
+        name: item.name,
+        url: absoluteUrl(item.href),
+      },
     })),
+  };
+}
+
+export function buildWebSiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}#website`,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    publisher: {
+      "@id": `${siteConfig.url}#organization`,
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+    inLanguage: ["hy", "ru", "en"],
+  };
+}
+
+export function buildEducationalOrganizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "@id": `${siteConfig.url}#educational-organization`,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    logo: absoluteUrl(siteConfig.assets.logo),
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Vanadzor",
+      addressRegion: "Lori Province",
+      addressCountry: "AM",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: siteConfig.contacts.email,
+      telephone: siteConfig.contacts.phone,
+      contactType: "admissions",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "IT Courses",
+      itemListElement: [
+        {
+          "@type": "Course",
+          name: "Web Development",
+          description: "HTML, CSS, JavaScript course",
+          provider: {
+            "@id": `${siteConfig.url}#educational-organization`,
+          },
+        },
+        {
+          "@type": "Course",
+          name: "Python Programming",
+          description: "Learn Python programming from basics to advanced",
+          provider: {
+            "@id": `${siteConfig.url}#educational-organization`,
+          },
+        },
+        {
+          "@type": "Course",
+          name: "UI/UX Design",
+          description: "User Interface and User Experience Design",
+          provider: {
+            "@id": `${siteConfig.url}#educational-organization`,
+          },
+        },
+        {
+          "@type": "Course",
+          name: "Android Development",
+          description: "Mobile app development for Android",
+          provider: {
+            "@id": `${siteConfig.url}#educational-organization`,
+          },
+        },
+      ],
+    },
   };
 }
 
