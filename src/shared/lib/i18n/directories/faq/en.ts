@@ -12,7 +12,7 @@ export const faq = {
     },
     {
       question: "Where are the classes held?",
-      answer: "In our educational space in Vanadzor. You can find the exact address and map on our Contact page",
+      answer: "In our educational space in Vanadzor. You can find the exact address and map on our Contacts page",
     },
     {
       question: "How is the schedule arranged?",

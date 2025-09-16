@@ -1,7 +1,7 @@
 import type { ContactDict } from "./types";
 
 export const contacts: ContactDict = {
-  pageTitle: "Контакт",
+  pageTitle: "Контакты",
   tiles: [
     {
       title: "Присоединяйтесь к нашему сообществу",

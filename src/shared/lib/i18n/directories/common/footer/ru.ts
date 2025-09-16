@@ -7,7 +7,7 @@ export const footer: FooterDict = {
     home: "Главная",
     about: "О нас",
     courses: "Курсы",
-    contacts: "Контакт",
+    contacts: "Контакты",
     faq: "Часто задаваемые вопросы",
   },
   social: {

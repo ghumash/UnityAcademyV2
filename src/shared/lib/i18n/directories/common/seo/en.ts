@@ -16,7 +16,7 @@ export const seo: SeoDict = {
       "Discover our IT courses in Vanadzor: Web development, Python, Android, UI/UX design, SMM, graphic design and soft skills.",
   },
   contacts: {
-    title: "Contact",
+    title: "Contacts",
     description: `Contact ${siteConfig.name} in Vanadzor: Our address, phone number and social media.`,
   },
   apply: {

@@ -16,7 +16,7 @@ export const seo: SeoDict = {
       "Откройте для себя наши IT курсы в Ванадзоре: Веб-разработка, Python, Android, UI/UX дизайн, SMM, графический дизайн и soft skills.",
   },
   contacts: {
-    title: "Контакт",
+    title: "Контакты",
     description: `Свяжитесь с ${siteConfig.name} в Ванадзоре: Наш адрес, номер телефона и социальные сети.`,
   },
   apply: {

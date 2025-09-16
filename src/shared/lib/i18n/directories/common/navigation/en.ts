@@ -4,6 +4,6 @@ export const navigation: NavigationDict = {
   home: "Home",
   about: "About us", 
   courses: "Courses",
-  contacts: "Contact",
+  contacts: "Contacts",
   apply: "Start Learning"
 };
