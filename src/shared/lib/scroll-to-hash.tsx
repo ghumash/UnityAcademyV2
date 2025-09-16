@@ -10,7 +10,8 @@ export function ScrollToHash() {
     let attempts = 0;
 
     const check = () => {
-      document.getElementById(hash.slice(1))?.scrollIntoView();
+      const element = document.getElementById(hash.slice(1));
+      if (element) return element.scrollIntoView();
       if (++attempts < maxAttempts) setTimeout(check, 250);
     };
     setTimeout(check, 1000);
