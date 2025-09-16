@@ -13,6 +13,7 @@ export async function getVideoCardsCarouselConfig(locale: Locale) {
   const t = await getT(locale);
 
   return {
+    display: t("home.videoCardsCarousel.display"),
     title: t("home.videoCardsCarousel.title"),
     students: [
       {
