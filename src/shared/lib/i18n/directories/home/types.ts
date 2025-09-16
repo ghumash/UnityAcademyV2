@@ -22,6 +22,7 @@ export type FeaturesSectionDict = {
 };
 
 export type VideoCardsCarouselDict = {
+  display: boolean;
   title: string;
   students: Array<{
     student: string;
