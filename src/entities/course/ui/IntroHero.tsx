@@ -9,7 +9,6 @@ import { cn } from "@/shared/lib/utils";
 import { THEMES, type Theme } from "@/widgets/Courses";
 import Link from "next/link";
 
-// Тип для объекта конфигурации
 type IntroHeroConfig = {
   title: string;
   description: string;
@@ -27,12 +26,10 @@ type IntroHeroConfig = {
   theme: Theme;
 };
 
-// Тип для пропсов компонента
 type IntroHeroProps = {
   config: IntroHeroConfig;
 };
 
-// Компонент с использованием единого объекта конфигурации
 export const IntroHero = ({ config }: IntroHeroProps) => {
   const {
     title,
@@ -53,7 +50,6 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
 
   const themeStyles = THEMES[theme];
 
-  // Массив с информацией о курсе для отображения в виде бейджей
   const courseInfo = [
     { icon: Clock, text: duration },
     { icon: BookOpen, text: lessonsCount },
@@ -62,26 +58,29 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
     { icon: User, text: level },
     { icon: Briefcase, text: format },
   ];
+
   return (
     <Section>
       <Container>
         <AppAutoBreadcrumb />
+
         <div
           className={cn(
-            "relative group mt-8 grid gap-8 lg:grid-cols-3 rounded-2xl border-2 bg-gradient-to-br backdrop-blur-xl p-6 sm:p-8",
-            "shadow-2xl hover:shadow-2xl",
-            "transition-all duration-500 ease-out overflow-hidden",
+            "relative group mt-8 grid gap-8 lg:grid-cols-3 rounded-2xl border-2 bg-gradient-to-br p-6 sm:p-8 backdrop-blur-xl",
+            "shadow-2xl transition-all duration-500 ease-out overflow-hidden",
+            // аккуратные ховеры без резких скачков
+            "motion-safe:hover:shadow-2xl motion-safe:hover:-translate-y-1 motion-safe:hover:scale-[1.02]",
             themeStyles.button,
             themeStyles.borderHoverShadow
           )}
         >
-          {/* Sweeping light effect */}
+          {/* Sweeping light */}
           <div
             aria-hidden="true"
             className={cn(
-              "absolute inset-0 -translate-x-full transition-transform duration-1000 ease-out rounded-2xl",
+              "absolute inset-0 -translate-x-full rounded-2xl transition-transform duration-1000 ease-out",
               themeStyles.sweep,
-              "group-hover:translate-x-full"
+              "motion-safe:group-hover:translate-x-full"
             )}
           />
 
@@ -91,58 +90,60 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
             className={cn(
               "absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500",
               themeStyles.hoverOverlay,
-              "group-hover:opacity-100"
+              "motion-safe:group-hover:opacity-100"
             )}
           />
 
+          {/* Левая колонка */}
           <div className="relative z-10 lg:col-span-2">
             <TextGenerateEffect
               as="h1"
               words={title}
               className={cn(
-                "text-4xl md:text-5xl lg:text-6xl font-bold mb-4",
+                "mb-4 text-4xl font-bold md:text-5xl lg:text-6xl",
+                // Цвета берём из темы (там уже настроены light/dark)
                 themeStyles.textColor
               )}
               duration={0.3}
               staggerDelay={0.08}
             />
+
             <p
               className={cn(
-                "text-lg mb-6 leading-relaxed",
+                "mb-6 text-lg leading-relaxed",
                 themeStyles.subTextColor
               )}
             >
               {description}
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-sm">
+
+            <div className="flex flex-wrap items-center gap-3 text-sm">
               {courseInfo.map((item, index) => (
                 <Badge
-                  variant="secondary"
                   key={index}
-                  className="bg-white/5 ring-1 ring-white/10 backdrop-blur text-white/80"
+                  variant="secondary"
+                  className={cn(
+                    "inline-flex items-center gap-2",
+                    // вместо белых полупрозрачностей используем токены
+                    "bg-muted/60 text-foreground/80 ring-1 ring-border backdrop-blur"
+                  )}
                 >
-                  <item.icon className="h-4 w-4" />
+                  <item.icon className="h-4 w-4 text-foreground/70" aria-hidden="true" />
                   {item.text}
                 </Badge>
               ))}
             </div>
           </div>
-          {/* Боковая панель */}
+
+          {/* Правая колонка (панель) */}
           <div className="relative z-10 lg:col-span-1">
-            <Card className="border-0 bg-black/80 backdrop-blur-sm">
+            <Card className={cn("bg-card")}>
               <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <span
-                    className={cn("text-3xl font-bold", themeStyles.textColor)}
-                  >
+                <div className="mb-2 flex items-center gap-3">
+                  <span className={cn("text-3xl font-bold", themeStyles.textColor)}>
                     {price}
                   </span>
-                  <span
-                    className={cn(
-                      "text-lg line-through",
-                      themeStyles.subTextColor
-                    )}
-                  >
+                  <span className={cn("text-lg line-through", themeStyles.subTextColor)}>
                     {originalPrice}
                   </span>
                 </div>
@@ -150,11 +151,13 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                   {sale}
                 </Badge>
               </CardHeader>
+
               <CardContent className="space-y-4">
-                <Button size="lg" className="w-full">
+                <Button size="lg" className="w-full" asChild>
                   <Link href="#form">{registerCourseButtonText}</Link>
                 </Button>
-                <Button variant="outline" size="lg" className="w-full">
+
+                <Button variant="outline" size="lg" className="w-full" type="button">
                   {registerFreeLessonButtonText}
                 </Button>
               </CardContent>
