@@ -30,6 +30,10 @@ export type SingleDict = {
       title: string;
       description: string;
     };
+    hr_training: {
+      title: string;
+      description: string;
+    };
     certification: {
       title: string;
       description: string;

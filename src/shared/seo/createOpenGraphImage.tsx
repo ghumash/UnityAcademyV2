@@ -9,36 +9,36 @@ interface OpenGraphImageProps {
 
 const themes = {
   default: {
-    background: "linear-gradient(135deg, rgba(16,16,20,1) 0%, rgba(32,32,40,1) 50%, rgba(16,16,20,1) 100%)",
-    iconGradient: "radial-gradient(100% 100% at 50% 0%, #7c3aed 0%, #22d3ee 100%)",
+    bgColor: "#101014",
+    iconBg: "#7c3aed",
     iconSize: 64,
     titleSize: 40,
     descSize: 28,
   },
   about: {
-    background: "linear-gradient(135deg, rgba(16,16,24,1) 0%, rgba(38,25,72,1) 50%, rgba(16,16,24,1) 100%)",
-    iconGradient: "radial-gradient(100% 100% at 50% 0%, #7c3aed 0%, #22d3ee 100%)",
+    bgColor: "#151426",
+    iconBg: "#7c3aed",
     iconSize: 56,
     titleSize: 54,
     descSize: 26,
   },
   courses: {
-    background: "linear-gradient(135deg, rgba(16,16,24,1) 0%, rgba(38,25,72,1) 55%, rgba(16,16,24,1) 100%)",
-    iconGradient: "radial-gradient(100% 100% at 50% 0%, #7c3aed 0%, #22d3ee 100%)",
+    bgColor: "#171426",
+    iconBg: "#7c3aed",
     iconSize: 56,
     titleSize: 60,
     descSize: 28,
   },
   contacts: {
-    background: "linear-gradient(135deg, rgba(16,24,24,1) 0%, rgba(20,60,90,1) 50%, rgba(16,24,24,1) 100%)",
-    iconGradient: "radial-gradient(100% 100% at 50% 0%, #22d3ee 0%, #7c3aed 100%)",
+    bgColor: "#0f1a1a",
+    iconBg: "#22d3ee",
     iconSize: 56,
     titleSize: 54,
     descSize: 26,
   },
   apply: {
-    background: "linear-gradient(135deg, rgba(18,18,24,1) 0%, rgba(16,80,60,1) 50%, rgba(18,18,24,1) 100%)",
-    iconGradient: "radial-gradient(100% 100% at 50% 0%, #34d399 0%, #22d3ee 100%)",
+    bgColor: "#0f1514",
+    iconBg: "#34d399",
     iconSize: 56,
     titleSize: 54,
     descSize: 26,
@@ -51,6 +51,7 @@ export function createOpenGraphImage({ title, description, theme = "default" }: 
     const desc = description || siteConfig.description;
     console.log("[OG][create] props", { title, hasDesc: Boolean(description), theme });
     console.log("[OG][create] site", { name: siteConfig.name, url: siteConfig.url });
+    const debug = process.env.NEXT_PUBLIC_OG_DEBUG === "1" || process.env.NEXT_PUBLIC_OG_DEBUG === "true";
 
     return new ImageResponse(
       (
@@ -62,8 +63,10 @@ export function createOpenGraphImage({ title, description, theme = "default" }: 
             flexDirection: "column",
             justifyContent: "space-between",
             padding: 48,
-            background: selectedTheme.background,
+            // Сплошной фон: Satori стабильно рендерит backgroundColor
+            backgroundColor: selectedTheme.bgColor,
             color: "white",
+            fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
           }}
         >
           {/* Header with logo and site name */}
@@ -73,7 +76,7 @@ export function createOpenGraphImage({ title, description, theme = "default" }: 
                 width: selectedTheme.iconSize,
                 height: selectedTheme.iconSize,
                 borderRadius: 12,
-                background: selectedTheme.iconGradient,
+                backgroundColor: selectedTheme.iconBg,
               }}
             />
             <div style={{ fontSize: 36, fontWeight: 800 }}>{siteConfig.name}</div>
@@ -121,9 +124,29 @@ export function createOpenGraphImage({ title, description, theme = "default" }: 
             <span>{new Date().getFullYear()}</span>
             <span>{siteConfig.url.replace(/^https?:\/\//, "")}</span>
           </div>
+          {/* Debug overlay (включается флагом NEXT_PUBLIC_OG_DEBUG=1|true) */}
+          {debug && (
+            <div
+              style={{
+                marginTop: 8,
+                fontSize: 16,
+                opacity: 0.7,
+              }}
+            >
+              {`dbg theme=${theme} url=${siteConfig.url}`}
+            </div>
+          )}
         </div>
       ),
-      { width: 1200, height: 630 }
+      {
+        width: 1200,
+        height: 630,
+        // Диагностические заголовки помогут в Network → Response Headers
+        headers: {
+          "x-og-theme": theme,
+          "x-og-site": siteConfig.url,
+        },
+      }
     );
   } catch (err) {
     console.error("[OG][create] error", err);
