@@ -9,7 +9,16 @@ export type CourseValue = typeof COURSE_DATA[CourseKey]["value"];
 export const createApplySchema = (validation: FormsDict["validation"]) => {
   return z.object({
     fullname: z.string().min(2, validation.fullname.minLength),
-    phone: z.string().min(5, validation.phone.minLength),
+    birthday: z.string().min(1, validation.birthday.required).refine(
+      (date) => {
+        const parsed = new Date(date);
+        return !isNaN(parsed.getTime()) && parsed < new Date();
+      },
+      { message: validation.birthday.invalid }
+    ),
+    phone: z.string()
+      .min(1, validation.phone.required)
+      .regex(/^\+374\d{8}$/, validation.phone.invalid),
     telegram: z.string()
       .min(1, validation.telegram.required)
       .regex(/^@[a-zA-Z0-9_]{5,32}$/, validation.telegram.invalid),

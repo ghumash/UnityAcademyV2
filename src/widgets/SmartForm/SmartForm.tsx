@@ -15,14 +15,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Calendar,
 } from "@/shared/ui"; // ⚡️ проверь, что эти компоненты экспортятся из shared/ui
 import { cn } from "@/shared/lib/utils";
 import { toast } from "sonner";
-import { CalendarIcon } from "lucide-react";
+import { DatePickerField } from "./fields/DatePicker";
 
 type FieldType =
   | "text"
@@ -209,41 +205,17 @@ function SmartFormInner<TSchema extends AnySchema>(
 
                   {/* DATE */}
                   {f.type === "date" && (
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className={cn(
-                            "justify-start text-left font-normal",
-                            !watch(f.name) && "text-muted-foreground"
-                          )}
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {watch(f.name)
-                            ? new Date(
-                                watch(f.name) as string
-                              ).toLocaleDateString()
-                            : f.placeholder || "Pick a date"}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={
-                            watch(f.name)
-                              ? new Date(watch(f.name) as string)
-                              : undefined
-                          }
-                          onSelect={(date) =>
-                            setValue(f.name, date?.toISOString() as any)
-                          }
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
+                    <DatePickerField
+                      name={f.name}
+                      placeholder={f.placeholder}
+                      value={watch(f.name) as string}
+                      onChange={(value) => setValue(f.name, value as any)}
+                      error={err}
+                      locale={"ru"} // TODO: получать из контекста локализации
+                    />
                   )}
 
-                  {err && <p className="text-sm text-red-600">{err}</p>}
+                  {err && f.type !== "date" && <p className="text-sm text-red-600">{err}</p>}
                 </div>
               );
             })}

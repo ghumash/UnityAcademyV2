@@ -6,6 +6,7 @@ export const forms: FormsDict = {
     successText: "Спасибо! Сообщение отправлено.",
     errorText: "Что-то пошло не так. Пожалуйста, попробуйте еще раз.",
     fullname: "Имя Фамилия",
+    birthday: "Дата рождения",
     phone: "Номер телефона",
     telegram: "Telegram @username",
     course: {
@@ -52,10 +53,15 @@ export const forms: FormsDict = {
     phone: {
       required: "Введите номер телефона",
       minLength: "Номер телефона должен содержать минимум 5 символов",
+      invalid: "Номер телефона должен начинаться с +374 и содержать 12 цифр",
     },
     telegram: {
       required: "Введите Telegram username",
-      invalid: "Telegram username должен начинаться с @ и содержать 5-32 символа",
+      invalid: "Telegram username должен начинаться с @ и быть 5-32 символа",
+    },
+    birthday: {
+      required: "Выберите дату рождения",
+      invalid: "Неверная дата",
     },
     message: {
       required: "Напишите сообщение",

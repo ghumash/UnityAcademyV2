@@ -16,6 +16,7 @@ export const gforms = {
     formId: process.env.NEXT_PUBLIC_GFORM_APPLY_ID, // "1FAIpQLS_replace_me"
     entries: {
       fullname: "entry.2005620554",
+      birthday: "entry.462508876",
       phone: "entry.1166974658",
       telegram: "entry.571806996",
       course: "entry.839337160",

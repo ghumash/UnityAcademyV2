@@ -6,6 +6,7 @@ export const forms: FormsDict = {
     successText: "Շնորհակալություն! Հաղորդագրությունը ուղարկվել է.",
     errorText: "Ինչ-որ բան սխալ գնաց. Խնդրում ենք փորձել կրկին.",
     fullname: "Անուն Ազգանուն",
+    birthday: "Ծննդյան ամսաթիվ",
     phone: "Հեռախոսահամար",
     telegram: "Telegram @username",
     course: {
@@ -52,10 +53,15 @@ export const forms: FormsDict = {
     phone: {
       required: "Մուտքագրեք հեռախոսահամարը",
       minLength: "Հեռախոսահամարը պետք է լինի նվազագույնը 5 նիշ",
+      invalid: "Հեռախոսահամարը պետք է սկսվի +374-ով և լինի 12 նիշ",
     },
     telegram: {
       required: "Մուտքագրեք Telegram username",
       invalid: "Telegram username-ը պետք է սկսվի @ նշանով և լինի 5-32 նիշ",
+    },
+    birthday: {
+      required: "Ընտրեք ծննդյան ամսաթիվը",
+      invalid: "Սխալ ամսաթիվ",
     },
     message: {
       required: "Գրեք հաղորդագրություն",

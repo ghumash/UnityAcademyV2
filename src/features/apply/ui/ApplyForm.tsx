@@ -35,6 +35,12 @@ export const ApplyForm = ({
           type: "text",
         },
         {
+          name: "birthday",
+          placeholder: applyForm.birthday,
+          autoComplete: "bday",
+          type: "date",
+        },
+        {
           name: "phone",
           placeholder: applyForm.phone,
           autoComplete: "tel",
@@ -60,14 +66,14 @@ export const ApplyForm = ({
       ]}
       defaults={{
         fullname: "",
-        email: "",
+        birthday: "",
         phone: "",
         telegram: "",
         course: defaultCourse || "",
       }}
       transform={(v: any) => ({
         fullname: v.fullname.trim(),
-        email: v.email.trim(),
+        birthday: v.birthday.trim(),
         phone: v.phone.trim(),
         telegram: v.telegram.trim(),
         course: v.course.trim(),

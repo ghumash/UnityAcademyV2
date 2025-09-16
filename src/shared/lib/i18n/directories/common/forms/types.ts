@@ -13,6 +13,7 @@ export type FormsDict = {
     successText: string;
     errorText: string;
     fullname: string;
+    birthday: string;
     phone: string;
     telegram: string;
     course: CourseConfig;
@@ -46,6 +47,7 @@ export type FormsDict = {
     phone: {
       required: string;
       minLength: string;
+      invalid: string;
     };
     telegram: {
       required: string;
@@ -54,6 +56,10 @@ export type FormsDict = {
     message: {
       required: string;
       minLength: string;
+    };
+    birthday: {
+      required: string;
+      invalid: string;
     };
     course: {
       required: string;
