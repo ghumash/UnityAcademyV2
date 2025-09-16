@@ -105,7 +105,7 @@ export function createMetadata(input?: {
       type: "website",
       images: [
         {
-          url: absoluteUrl("/images/logos/logo.svg"),
+          url: "/images/logos/logo.svg",
           width: 1200,
           height: 630,
           alt: `${siteConfig.name} Logo`,
@@ -116,7 +116,7 @@ export function createMetadata(input?: {
       card: "summary_large_image",
       title,
       description,
-      images: [absoluteUrl("/images/logos/logo.svg")],
+      images: "/images/logos/logo.svg",
     },
   };
 }
