@@ -26,7 +26,7 @@ export const web_development: CourseDict = {
     bio: "Опытный программист с 9+ годами опыта работы, специализируется на полнофункциональной разработке, веб-программировании, программной инженерии и проектировании баз данных.",
     avatarUrl: "/images/users/vagharshak.jpg",
     socials: {
-      github: "https://github.com/vagharshakgasparyan",
+      github: "https://github.com/VagharshakGasparyan",
       linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",
     },
     experience: {

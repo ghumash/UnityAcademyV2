@@ -26,7 +26,7 @@ export const web_development: CourseDict = {
     bio: "Experienced computer programmer with 9+ years of work experience, skilled in full-stack development, web programming, software engineering, and database design.",
     avatarUrl: "/images/users/vagharshak.jpg",
     socials: {
-      github: "https://github.com/vagharshakgasparyan",
+      github: "https://github.com/VagharshakGasparyan",
       linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",
     },
     experience: {

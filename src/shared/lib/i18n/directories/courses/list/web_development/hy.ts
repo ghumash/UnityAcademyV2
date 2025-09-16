@@ -26,7 +26,7 @@ export const web_development: CourseDict = {
     bio: "Փորձառու համակարգչային ծրագրավորող 9+ տարվա աշխատանքային փորձով, հմտորեն զբաղվում է ամբողջական փաթեթի մշակման, վեբ ծրագրավորման, ծրագրային ապահովման ճարտարագիտության և տվյալների բազայի նախագծման մեջ:",
     avatarUrl: "/images/users/vagharshak.jpg",
     socials: {
-      github: "https://github.com/vagharshakgasparyan",
+      github: "https://github.com/VagharshakGasparyan",
       linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",
     },
     experience: {
