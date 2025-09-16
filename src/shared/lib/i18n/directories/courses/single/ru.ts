@@ -1,3 +1,4 @@
+import { siteConfig } from "@/shared/config/common";
 import type { SingleDict } from "../types";
 
 export const single: SingleDict = {
@@ -6,7 +7,7 @@ export const single: SingleDict = {
     button_text: "Перейти по ссылке",
   },
   benefits: {
-    title_part1: "Обучаясь в Unity Academy",
+    title_part1: `Обучаясь в ${siteConfig.name}`,
     title_part2: "вы получите следующие преимущества",
     career: {
       title: "Карьера",
@@ -15,8 +16,7 @@ export const single: SingleDict = {
     },
     certification: {
       title: "Сертификация и цифровая верификация",
-      description:
-        "После успешного завершения курса вы получаете именной сертификат Unity Academy Armenia с цифровой верификацией (QR/ссылка). Его можно добавить в LinkedIn и приложить к резюме. Оценка основана на посещаемости, домашних заданиях и итоговом проекте.",
+      description: `После успешного завершения курса вы получаете именной сертификат ${siteConfig.name} с цифровой верификацией (QR/ссылка). Его можно добавить в LinkedIn и приложить к резюме. Оценка основана на посещаемости, домашних заданиях и итоговом проекте.`,
     },
     portfolio: {
       title: "Портфолио и резюме",

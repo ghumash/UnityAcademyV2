@@ -6,7 +6,6 @@ export const forms: FormsDict = {
     successText: "Շնորհակալություն! Հաղորդագրությունը ուղարկվել է.",
     errorText: "Ինչ-որ բան սխալ գնաց. Խնդրում ենք փորձել կրկին.",
     fullname: "Անուն Ազգանուն",
-    email: "Էլ. հասցե",
     phone: "Հեռախոսահամար",
     telegram: "Telegram @username",
     course: {

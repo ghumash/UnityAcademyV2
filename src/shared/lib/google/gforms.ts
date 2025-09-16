@@ -17,7 +17,6 @@ export const gforms = {
     entries: {
       fullname: "entry.2005620554",
       phone: "entry.1166974658",
-      email: "entry.1045781291",
       telegram: "entry.571806996",
       course: "entry.839337160",
     },

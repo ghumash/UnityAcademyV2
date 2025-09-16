@@ -13,7 +13,6 @@ export type FormsDict = {
     successText: string;
     errorText: string;
     fullname: string;
-    email: string;
     phone: string;
     telegram: string;
     course: CourseConfig;

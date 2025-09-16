@@ -6,7 +6,6 @@ export const forms: FormsDict = {
     successText: "Спасибо! Ваша заявка отправлена.",
     errorText: "Произошла ошибка. Попробуйте еще раз.",
     fullname: "Имя Фамилия",
-    email: "Эл. адрес",
     phone: "Номер телефона",
     telegram: "Telegram @username",
     course: {

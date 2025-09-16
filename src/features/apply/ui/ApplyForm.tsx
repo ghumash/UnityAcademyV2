@@ -35,12 +35,6 @@ export const ApplyForm = ({
           type: "text",
         },
         {
-          name: "email",
-          placeholder: applyForm.email,
-          autoComplete: "email",
-          type: "email",
-        },
-        {
           name: "phone",
           placeholder: applyForm.phone,
           autoComplete: "tel",
