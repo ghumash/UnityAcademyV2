@@ -87,12 +87,12 @@ export const PhotoGallery = memo(({
 
   const sizes =
     list.length <= 2
-      ? "(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 560px"
-      : "(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 220px";
+      ? "(max-width: 640px) 90vw, (max-width: 1024px) 45vw, (max-width: 1280px) 40vw, 500px"
+      : "(max-width: 640px) 45vw, (max-width: 768px) 30vw, (max-width: 1024px) 22vw, (max-width: 1280px) 20vw, (max-width: 1536px) 18vw, 350px";
 
   return (
     <Section className={cn("relative", className)}>
-      <Container className="max-w-4xl">
+      <Container className="max-w-4xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1600px]">
         <div
           aria-hidden="true"
           className="absolute inset-0 top-[200px] -z-10 hidden h-[300px] w-full bg-transparent bg-[linear-gradient(to_right,#57534e_1px,transparent_1px),linear-gradient(to_bottom,#57534e_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20 [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] dark:bg-[linear-gradient(to_right,#a8a29e_1px,transparent_1px),linear-gradient(to_bottom,#a8a29e_1px,transparent_1px)] md:block"
@@ -115,8 +115,10 @@ export const PhotoGallery = memo(({
         <motion.ul
           role="list"
           className={cn(
-            "grid gap-4 sm:gap-5 md:gap-6 mb-8 px-4",
-            "grid-cols-[repeat(auto-fit,minmax(160px,1fr))]"
+            "grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 mb-8 px-4",
+            "grid-cols-2",
+            "sm:grid-cols-3", 
+            "lg:grid-cols-4"
           )}
           initial="hidden"
           whileInView="visible"
@@ -164,7 +166,7 @@ export const PhotoGallery = memo(({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 rounded-3xl"
-                    aria-label={`Открыть проект ${i + 1}`}
+                    aria-label={`${i + 1}`}
                   >
                     {photoElement}
                   </a>
