@@ -16,6 +16,7 @@ import {
   CourseTopics,
   CtaBanner,
   GlowingGrid,
+  PhotoGallery,
   UserCard,
 } from "@/widgets";
 import { Container, Section } from "@/shared/ui/custom";
@@ -83,9 +84,7 @@ export default async function CoursePage({
             topics={coursePageConfig.courseTopics.topics}
           />
           {coursePageConfig.instructor.display !== false && (
-            <UserCard
-              data={coursePageConfig.instructor}
-            />
+            <UserCard data={coursePageConfig.instructor} />
           )}
         </Container>
       </Section>
@@ -99,6 +98,9 @@ export default async function CoursePage({
         config={coursePageConfig.glowingGrid}
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
+
+      <PhotoGallery />
+      
       <Section id="form">
         <Container>
           <CallToAction
