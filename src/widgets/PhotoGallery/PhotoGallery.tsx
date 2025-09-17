@@ -188,17 +188,17 @@ export const PhotoGallery = memo(({
                         {photoElement}
                       </div>
                     </DialogTrigger>
-                    <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-2 bg-black/90 border-none shadow-2xl">
+                    <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 bg-black/90 border-none shadow-2xl">
                       <DialogTitle className="sr-only">
                         Gallery image {i + 1}
                       </DialogTitle>
-                      <div className="relative w-full h-full max-w-4xl max-h-[90vh] mx-auto overflow-hidden rounded-xl">
+                      <div className="relative w-full h-[80vh] max-w-4xl mx-auto overflow-hidden rounded-xl">
                         <Image
                           fill
                           src={src}
                           alt={`Gallery image ${i + 1} - full size`}
                           className="object-contain"
-                          sizes="95vw"
+                          sizes="90vw"
                           quality={95}
                         />
                       </div>

@@ -1,7 +1,7 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 import { siteConfig } from "./site";
-import { Briefcase, Home, User, Phone } from "lucide-react";
+import { GraduationCap, Home, User, Phone } from "lucide-react";
 
 export async function getNavigationConfig(locale: Locale) {
   const t = await getT(locale);
@@ -23,7 +23,7 @@ export async function getNavigationConfig(locale: Locale) {
       {
         name: t("common.navigation.courses"),
         url: siteConfig.routes.courses,
-        icon: <Briefcase size={18} strokeWidth={2.5} />,
+        icon: <GraduationCap size={18} strokeWidth={2.5} />,
         ariaLabel: t("common.navigation.courses"),
       },
       {
