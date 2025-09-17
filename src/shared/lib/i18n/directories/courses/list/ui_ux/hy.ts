@@ -20,6 +20,20 @@ export const ui_ux: CourseDict = {
     theme: "fuchsia",
     formatLabel: "Ֆորմատ",
   },
+  projects: [
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project1"
+    },
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project2"
+    },
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project3"
+    },
+  ],
   instructor: {
     display: false,
     name: "Նարե Հակոբյան",

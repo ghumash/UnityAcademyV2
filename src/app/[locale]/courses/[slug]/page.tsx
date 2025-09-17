@@ -99,7 +99,7 @@ export default async function CoursePage({
         glow={{ proximity: 64, spread: 80, borderWidth: 3, glow: true }}
       />
 
-      <PhotoGallery />
+      <PhotoGallery config={coursePageConfig.projects} />
       
       <Section id="form">
         <Container>

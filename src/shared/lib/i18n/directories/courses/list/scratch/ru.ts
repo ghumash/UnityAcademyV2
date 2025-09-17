@@ -20,6 +20,20 @@ export const scratch: CourseDict = {
     theme: "orange",
     formatLabel: "Формат",
   },
+  projects: [
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project1"
+    },
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project2"
+    },
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project3"
+    },
+  ],
   instructor: {
     name: "Мариам Авагян",
     role: "Scratch Instructor & Game Developer",

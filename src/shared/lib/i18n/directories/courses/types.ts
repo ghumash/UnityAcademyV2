@@ -52,6 +52,10 @@ export type CourseDict = {
     theme: Theme;
     formatLabel: string;
   };
+  projects: Array<{
+    img: string;
+    href?: string;
+  }>;
   instructor: {
     display?: boolean;
     name: string;

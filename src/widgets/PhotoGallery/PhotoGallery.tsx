@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/shared/lib/utils";
@@ -21,19 +22,33 @@ const PHOTOS = [
 
 type Direction = "left" | "right";
 
+type ProjectConfig = {
+  img: string;
+  href?: string;
+};
+
 export function PhotoGallery({
   animationDelay = 0.5,
   images,
+  config,
   className,
 }: {
   animationDelay?: number;
   /** Необязательно: свой массив ссылок (1–10). Если не задан — используются дефолтные */
   images?: string[];
+  /** Конфигурация проектов с изображениями и ссылками */
+  config?: ProjectConfig[];
   className?: string;
 }) {
   const reduce = useReducedMotion();
 
-  const list = (images?.length ? images : PHOTOS).slice(0, 10);
+  // Приоритет: config > images > PHOTOS
+  const list = config?.length 
+    ? config.map(item => item.img).slice(0, 10)
+    : (images?.length ? images : PHOTOS).slice(0, 10);
+  
+  // Сохраняем конфигурацию проектов для ссылок
+  const projectsConfig = config?.slice(0, 10) || [];
 
   const containerVariants: Variants = {
     hidden: { opacity: 1 },
@@ -93,7 +108,7 @@ export function PhotoGallery({
         <motion.ul
           role="list"
           className={cn(
-            "grid gap-4 sm:gap-5 md:gap-6 mb-8",
+            "grid gap-4 sm:gap-5 md:gap-6 mb-8 px-4",
             "grid-cols-[repeat(auto-fit,minmax(160px,1fr))]"
           )}
           initial="hidden"
@@ -103,6 +118,18 @@ export function PhotoGallery({
         >
           {list.map((src, i) => {
             const { dx, dy, tilt, direction } = smallOffset(i);
+            const projectConfig = projectsConfig[i];
+            const hasLink = projectConfig?.href;
+
+            const photoElement = (
+              <Photo
+                src={src}
+                alt={`Gallery image ${i + 1}`}
+                direction={direction}
+                sizes={sizes}
+                priority={list.length <= 2 && i === 0}
+              />
+            );
 
             return (
               <motion.li
@@ -124,13 +151,19 @@ export function PhotoGallery({
                 }
                 whileTap={reduce ? undefined : { scale: 1.08, zIndex: 10 }}
               >
-                <Photo
-                  src={src}
-                  alt={`Gallery image ${i + 1}`}
-                  direction={direction}
-                  sizes={sizes}
-                  priority={list.length <= 2 && i === 0}
-                />
+                {hasLink ? (
+                  <a
+                    href={projectConfig.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 rounded-3xl"
+                    aria-label={`Открыть проект ${i + 1}`}
+                  >
+                    {photoElement}
+                  </a>
+                ) : (
+                  photoElement
+                )}
               </motion.li>
             );
           })}
@@ -138,9 +171,9 @@ export function PhotoGallery({
 
         <div className="flex w-full justify-center">
           <Button asChild aria-label="View All Stories">
-            <a href="/stories" rel="noopener noreferrer">
+            <Link href="/stories">
               View All Stories
-            </a>
+            </Link>
           </Button>
         </div>
       </Container>

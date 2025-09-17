@@ -3,7 +3,8 @@ import type { CourseDict } from "../../types";
 export const graphic_design: CourseDict = {
   courseHeroSection: {
     title: "Графический дизайн: Photoshop, Illustrator, Canva",
-    description: "Изучите графический дизайн с использованием стандартных инструментов отрасли, таких как Photoshop, Illustrator и Canva. Создавайте потрясающие визуальные эффекты для печати и цифровых медиа.",
+    description:
+      "Изучите графический дизайн с использованием стандартных инструментов отрасли, таких как Photoshop, Illustrator и Canva. Создавайте потрясающие визуальные эффекты для печати и цифровых медиа.",
     level: "Начальный",
     format: "Офлайн",
     duration: "2 месяца",
@@ -19,6 +20,40 @@ export const graphic_design: CourseDict = {
     theme: "rose",
     formatLabel: "Формат",
   },
+  projects: [
+    {
+      img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
+      href: "https:...",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=800&fit=crop&crop=entropy",
+      href: "https:...",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
+      href: "https:...",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
+      href: "https:...",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
+      href: "https:...",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
+      href: "https:...",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
+      href: "https:...",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
+      href: "https:...",
+    },
+  ],
   instructor: {
     name: "Анна Петрова",
     role: "Senior Frontend Developer",
@@ -28,19 +63,22 @@ export const graphic_design: CourseDict = {
         title: "Senior Frontend Developer",
         company: "TechCorp Inc.",
         period: "2022 - настоящее время",
-        summary: "Руководство командой из 4 разработчиков, архитектура и разработка крупномасштабных React приложений, внедрение лучших практик и code review.",
+        summary:
+          "Руководство командой из 4 разработчиков, архитектура и разработка крупномасштабных React приложений, внедрение лучших практик и code review.",
       },
       mid: {
         title: "Frontend Developer",
         company: "StartupXYZ",
         period: "2020 - 2022",
-        summary: "Разработка пользовательских интерфейсов для SaaS платформы, оптимизация производительности, интеграция с REST API и GraphQL.",
+        summary:
+          "Разработка пользовательских интерфейсов для SaaS платформы, оптимизация производительности, интеграция с REST API и GraphQL.",
       },
       junior: {
         title: "Junior Frontend Developer",
         company: "WebStudio",
         period: "2019 - 2020",
-        summary: "Создание адаптивных веб-сайтов, изучение современных фреймворков, участие в командной разработке и code review процессах.",
+        summary:
+          "Создание адаптивных веб-сайтов, изучение современных фреймворков, участие в командной разработке и code review процессах.",
       },
     },
     experienceLabel: "Рабочий опыт",
@@ -66,7 +104,7 @@ export const graphic_design: CourseDict = {
       "Дизайн для печати",
       "Дизайн для цифровых медиа",
       "Создание портфолио",
-      "Работа с клиентами"
+      "Работа с клиентами",
     ],
   },
   conditions: {

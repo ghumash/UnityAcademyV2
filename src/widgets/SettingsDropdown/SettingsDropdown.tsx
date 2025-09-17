@@ -28,13 +28,13 @@ const SettingsDropdownComponent = memo(({ locale }: SettingsDropdownProps) => {
           className="rounded-full h-9 w-9 hover:bg-muted"
           aria-label="Настройки"
         >
-          <Settings className="h-4 w-4" />
+          <Settings size={18} strokeWidth={2.5} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-auto min-w-0">
         <div className="p-2">
           <LanguageSwitcher locale={locale} />
-          <DropdownMenuSeparator/>
+          <DropdownMenuSeparator />
           <ModeToggle />
         </div>
       </DropdownMenuContent>

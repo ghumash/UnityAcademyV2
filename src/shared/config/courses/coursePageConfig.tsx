@@ -185,6 +185,12 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     },
   };
 
+  // Получаем проекты из переводов
+  const projects = t(`courses.list.${slug}.projects`) as Array<{
+    img: string;
+    href?: string;
+  }>;
+
   return {
     courseHeroSection,
     contentSection: contentSectionConfig,
@@ -193,5 +199,6 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     glowingGrid: glowingGridConfig,
     callToAction: callToActionConfig,
     ctaBanner: ctaBannerConfig,
+    projects,
   };
 }

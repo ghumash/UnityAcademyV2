@@ -20,6 +20,20 @@ export const web_development: CourseDict = {
     theme: "blue",
     formatLabel: "Format",
   },
+  projects: [
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project1"
+    },
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project2"
+    },
+    {
+      img: "/images/projects/project.jpg",
+      href: "https://example.com/project3"
+    },
+  ],
   instructor: {
     name: "Vagharshak Gasparyan",
     role: "Senior Full-Stack Developer",
