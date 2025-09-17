@@ -2,7 +2,7 @@
 
 import { type Ref, forwardRef, useState, useEffect } from "react";
 import Image, { type ImageProps } from "next/image";
-import { motion, useMotionValue, type Variants } from "framer-motion";
+import { motion, useMotionValue, type Variants } from "motion/react";
 
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
