@@ -47,19 +47,21 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
-  // Оптимизация бандла
+  // Оптимизация импортов библиотек
   experimental: {
     optimizePackageImports: [
       "motion/react",
       "date-fns",
       "lucide-react",
     ],
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
+  },
+
+  // Turbopack конфигурация
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
       },
     },
   },
