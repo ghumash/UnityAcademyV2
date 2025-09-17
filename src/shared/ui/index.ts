@@ -19,3 +19,4 @@ export * from "./badge";
 export * from "./accordion";
 export * from "./popover";
 export * from "./calendar";
+export * from "./dialog";
