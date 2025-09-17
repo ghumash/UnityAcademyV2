@@ -7,6 +7,7 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui";
 import { Container, Section } from "@/shared/ui/custom";
+import { memo } from "react";
 
 /** Можно заменить на свой список; поддерживается 1–10 элементов */
 const PHOTOS = [
@@ -23,11 +24,17 @@ const PHOTOS = [
 type Direction = "left" | "right";
 
 type ProjectConfig = {
-  img: string;
-  href?: string;
+  subtitle: string;
+  titlePart1: string;
+  titlePart2: string;
+  buttonLabel: string;
+  list: Array<{
+    img: string;
+    href?: string;
+  }>;
 };
 
-export function PhotoGallery({
+export const PhotoGallery = memo(({
   animationDelay = 0.5,
   images,
   config,
@@ -37,18 +44,18 @@ export function PhotoGallery({
   /** Необязательно: свой массив ссылок (1–10). Если не задан — используются дефолтные */
   images?: string[];
   /** Конфигурация проектов с изображениями и ссылками */
-  config?: ProjectConfig[];
+  config?: ProjectConfig;
   className?: string;
-}) {
+}) => {
   const reduce = useReducedMotion();
 
   // Приоритет: config > images > PHOTOS
-  const list = config?.length 
-    ? config.map(item => item.img).slice(0, 10)
+  const list = config?.list?.length 
+    ? config.list.map(item => item.img).slice(0, 10)
     : (images?.length ? images : PHOTOS).slice(0, 10);
   
   // Сохраняем конфигурацию проектов для ссылок
-  const projectsConfig = config?.slice(0, 10) || [];
+  const projectsConfig = config?.list?.slice(0, 10) || [];
 
   const containerVariants: Variants = {
     hidden: { opacity: 1 },
@@ -92,16 +99,16 @@ export function PhotoGallery({
         />
 
         <p className="my-2 text-center text-[0.7rem] font-light uppercase tracking-widest text-slate-600 dark:text-slate-400 md:text-sm">
-          ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ
+          {config?.subtitle}
         </p>
         <h2
           className="z-20 mx-auto max-w-2xl bg-gradient-to-r from-slate-900
         via-slate-800 to-slate-900 bg-clip-text pb-8 text-center text-4xl text-transparent
         dark:bg-gradient-to-r dark:from-slate-100 dark:via-slate-200 dark:to-slate-100 md:text-7xl"
         >
-          Դասընթացավարի
+          {config?.titlePart1}
           <br />
-          <span className="text-rose-500">Աշխատանքները</span>
+          <span className="text-rose-500">{config?.titlePart2}</span>
         </h2>
 
         {/* Плитка без наложений */}
@@ -170,16 +177,16 @@ export function PhotoGallery({
         </motion.ul>
 
         <div className="flex w-full justify-center">
-          <Button asChild aria-label="View All Stories">
+          <Button asChild aria-label={config?.buttonLabel}>
             <Link href="/stories">
-              View All Stories
+              {config?.buttonLabel}
             </Link>
           </Button>
         </div>
       </Container>
     </Section>
   );
-}
+})
 
 function randomBetween(min: number, max: number) {
   return Math.random() * (max - min) + min;
@@ -236,5 +243,3 @@ function Photo({
     </motion.div>
   );
 }
-
-export default PhotoGallery;

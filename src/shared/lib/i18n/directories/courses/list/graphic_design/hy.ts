@@ -11,8 +11,8 @@ export const graphic_design: CourseDict = {
     lessonsCount: "24 Դաս",
     projectsCount: "4 Պրոեկտ",
     certificateIncluded: true,
-    price: "40000 ֏",
-    originalPrice: "50000 ֏",
+    price: "40 000 ֏",
+    originalPrice: "50 000 ֏",
     sale: "20% Զեղչ",
     registerCourseButtonText: "Գրանցվել դասընթացին",
     registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
@@ -20,40 +20,46 @@ export const graphic_design: CourseDict = {
     theme: "rose",
     formatLabel: "Ֆորմատ",
   },
-  projects: [
-    {
-      img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-  ],
+  projects: {
+    subtitle: "ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ",
+    titlePart1: "Դասընթացավարի",
+    titlePart2: "Աշխատանքները",
+    buttonLabel: "Տեսնել բոլոր պրոեկտները",
+    list: [
+      {
+        img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+    ],
+  },
   instructor: {
     name: "Անա Պետրովա",
     role: "Senior Frontend Developer",

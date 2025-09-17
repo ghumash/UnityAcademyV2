@@ -28,7 +28,7 @@ const SettingsDropdownComponent = memo(({ locale }: SettingsDropdownProps) => {
           className="rounded-full h-9 w-9 hover:bg-muted"
           aria-label="Настройки"
         >
-          <Settings size={18} strokeWidth={2.5} />
+          <Settings size={18} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-auto min-w-0">

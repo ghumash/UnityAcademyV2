@@ -186,10 +186,16 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   };
 
   // Получаем проекты из переводов
-  const projects = t(`courses.list.${slug}.projects`) as Array<{
-    img: string;
-    href?: string;
-  }>;
+  const projects = t(`courses.list.${slug}.projects`) as {
+    subtitle: string;
+    titlePart1: string;
+    titlePart2: string;
+    buttonLabel: string;
+    list: Array<{
+      img: string;
+      href?: string;
+    }>;
+  };
 
   return {
     courseHeroSection,

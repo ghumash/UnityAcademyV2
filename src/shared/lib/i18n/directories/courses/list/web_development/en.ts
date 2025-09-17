@@ -11,29 +11,39 @@ export const web_development: CourseDict = {
     lessonsCount: "48 Lessons",
     projectsCount: "12 Projects",
     certificateIncluded: true,
-    price: "40000 ֏",
-    originalPrice: "50000 ֏",
-    sale: "20% Discount",
+    price: "40 000 ֏",
+    originalPrice: "50 000 ֏",
+    sale: "20% OFF",
     registerCourseButtonText: "Register for Course",
     registerFreeLessonButtonText: "Register for Free Lesson",
     certificate: "Certificate",
     theme: "blue",
     formatLabel: "Format",
   },
-  projects: [
-    {
-      img: "/images/projects/project.jpg",
-      href: "https://example.com/project1"
-    },
-    {
-      img: "/images/projects/project.jpg",
-      href: "https://example.com/project2"
-    },
-    {
-      img: "/images/projects/project.jpg",
-      href: "https://example.com/project3"
-    },
-  ],
+    projects: {
+    subtitle: "CREATE YOUR UNIQUE STYLE",
+    titlePart1: "Instructor's",
+    titlePart2: "Works",
+    buttonLabel: "View All Projects",
+    list: [
+      {
+        img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https://example.com/project1"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
+        href: "https://example.com/project2"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https://example.com/project3"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
+        href: "https://example.com/project4"
+      },
+    ],
+  },
   instructor: {
     name: "Vagharshak Gasparyan",
     role: "Senior Full-Stack Developer",

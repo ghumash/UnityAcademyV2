@@ -11,8 +11,8 @@ export const hr: CourseDict = {
     lessonsCount: "24 Դաս",
     projectsCount: "6 Պրոեկտ",
     certificateIncluded: true,
-    price: "40000 ֏",
-    originalPrice: "50000 ֏",
+    price: "40 000 ֏",
+    originalPrice: "50 000 ֏",
     sale: "20% Զեղչ",
     registerCourseButtonText: "Գրանցվել դասընթացին",
     registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
@@ -20,20 +20,30 @@ export const hr: CourseDict = {
     theme: "amber",
     formatLabel: "Ֆորմատ",
   },
-  projects: [
-    {
-      img: "/images/projects/project.jpg",
-      href: "https://example.com/project1"
-    },
-    {
-      img: "/images/projects/project.jpg",
-      href: "https://example.com/project2"
-    },
-    {
-      img: "/images/projects/project.jpg",
-      href: "https://example.com/project3"
-    },
-  ],
+    projects: {
+    subtitle: "ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ",
+    titlePart1: "Դասընթացավարի",
+    titlePart2: "Աշխատանքները",
+    buttonLabel: "Տեսնել բոլոր պրոեկտները",
+    list: [
+      {
+        img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https://example.com/project1"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
+        href: "https://example.com/project2"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https://example.com/project3"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
+        href: "https://example.com/project4"
+      },
+    ],
+  },
   instructor: {
     display: false,
     name: "Սիրանույշ Ավագյան",

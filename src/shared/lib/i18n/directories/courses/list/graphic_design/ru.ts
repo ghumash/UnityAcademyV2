@@ -11,49 +11,55 @@ export const graphic_design: CourseDict = {
     lessonsCount: "20 уроков",
     projectsCount: "10 проектов",
     certificateIncluded: true,
-    price: "100 000 ֏",
-    originalPrice: "120 000 ֏",
-    sale: "Скидка 40%",
+    price: "40 000 ֏",
+    originalPrice: "50 000 ֏",
+    sale: "20% Скидка",
     registerCourseButtonText: "Записаться на курс",
     registerFreeLessonButtonText: "Записаться на бесплатный урок",
     certificate: "Сертификат",
     theme: "rose",
     formatLabel: "Формат",
   },
-  projects: [
-    {
-      img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
-      href: "https:...",
-    },
-  ],
+  projects: {
+    subtitle: "СОЗДАЙ СВОЙ УНИКАЛЬНЫЙ СТИЛЬ",
+    titlePart1: "Работы",
+    titlePart2: "Преподавателя",
+    buttonLabel: "Посмотреть все проекты",
+    list: [
+      {
+        img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+      {
+        img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
+        href: "https:...",
+      },
+    ],
+  },
   instructor: {
     name: "Анна Петрова",
     role: "Senior Frontend Developer",
