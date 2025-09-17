@@ -1,312 +1,207 @@
 "use client";
 
-import { type Ref, forwardRef, useState, useEffect } from "react";
-import Image, { type ImageProps } from "next/image";
-import { motion, useMotionValue, type Variants } from "motion/react";
+import Image from "next/image";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { cn } from "@/shared/lib/utils";
-import { Button } from "@/shared/ui/button";
+import { Button } from "@/shared/ui";
+import { Container, Section } from "@/shared/ui/custom";
 
-export const PhotoGallery = ({
-  animationDelay = 0.5,
-}: {
-  animationDelay?: number;
-}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // First make the container visible with a fade-in
-    const visibilityTimer = setTimeout(() => {
-      setIsVisible(true);
-    }, animationDelay * 1000);
-
-    // Then start the photo animations after a short delay
-    const animationTimer = setTimeout(
-      () => {
-        setIsLoaded(true);
-      },
-      (animationDelay + 0.4) * 1000
-    ); // Add 0.4s for the opacity transition
-
-    return () => {
-      clearTimeout(visibilityTimer);
-      clearTimeout(animationTimer);
-    };
-  }, [animationDelay]);
-
-  // Animation variants for the container
-  const containerVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1, // Reduced from 0.3 to 0.1 since we already have the fade-in delay
-      },
-    },
-  };
-
-  // Animation variants for each photo
-  const photoVariants: Variants = {
-    hidden: {
-      x: 0,
-      y: 0,
-      rotate: 0,
-      scale: 1,
-    },
-    visible: (custom: { x: string; y: string; order: number }) => ({
-      x: custom.x,
-      y: custom.y,
-      rotate: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 70,
-        damping: 12,
-        mass: 1,
-        delay: custom.order * 0.15,
-      },
-    }),
-  };
-
-  // Photo positions - widely spaced layout to prevent overlapping
-  const photos = [
-    {
-      id: 1,
-      order: 0,
-      x: "-560px",
-      y: "30px",
-      zIndex: 50, // Highest z-index (on top)
-      direction: "left" as Direction,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&crop=faces",
-    },
-    {
-      id: 2,
-      order: 1,
-      x: "-280px",
-      y: "50px",
-      zIndex: 40,
-      direction: "left" as Direction,
-      src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=entropy",
-    },
-    {
-      id: 3,
-      order: 2,
-      x: "0px",
-      y: "20px",
-      zIndex: 30,
-      direction: "right" as Direction,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&crop=entropy",
-    },
-    {
-      id: 4,
-      order: 3,
-      x: "280px",
-      y: "40px",
-      zIndex: 20,
-      direction: "right" as Direction,
-      src: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&h=400&fit=crop&crop=entropy",
-    },
-    {
-      id: 5,
-      order: 4,
-      x: "560px",
-      y: "60px",
-      zIndex: 10,
-      direction: "left" as Direction,
-      src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=400&fit=crop&crop=entropy",
-    },
-    {
-      id: 6,
-      order: 5,
-      x: "-420px",
-      y: "-40px",
-      zIndex: 35,
-      direction: "right" as Direction,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&crop=entropy",
-    },
-    {
-      id: 7,
-      order: 6,
-      x: "140px",
-      y: "-30px",
-      zIndex: 25,
-      direction: "left" as Direction,
-      src: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop&crop=entropy",
-    },
-    {
-      id: 8,
-      order: 7,
-      x: "420px",
-      y: "-20px",
-      zIndex: 15,
-      direction: "right" as Direction,
-      src: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=400&fit=crop&crop=entropy",
-    },
-  ];
-
-  return (
-    <div className="mt-40 relative">
-      <div className="absolute inset-0 max-md:hidden top-[200px] -z-10 h-[300px] w-full bg-transparent bg-[linear-gradient(to_right,#57534e_1px,transparent_1px),linear-gradient(to_bottom,#57534e_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20 [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] dark:bg-[linear-gradient(to_right,#a8a29e_1px,transparent_1px),linear-gradient(to_bottom,#a8a29e_1px,transparent_1px)]"></div>
-      <p className="lg:text-md my-2 text-center text-xs font-light uppercase tracking-widest text-slate-600 dark:text-slate-400">
-        A Journey Through Visual Stories
-      </p>
-      <h3 className="z-20 mx-auto max-w-2xl justify-center bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text py-3 text-center text-4xl text-transparent dark:bg-gradient-to-r dark:from-slate-100 dark:via-slate-200 dark:to-slate-100 dark:bg-clip-text md:text-7xl">
-        Մեր Դասընթացավարի<br/><span className="text-rose-500">Աշխատանքները</span>
-      </h3>
-      <div className="relative mb-8 h-[350px] w-full items-center justify-center lg:flex">
-        <motion.div
-          className="relative mx-auto flex w-full max-w-7xl justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isVisible ? 1 : 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        >
-          <motion.div
-            className="relative flex w-full justify-center"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-          >
-            <div className="relative h-[220px] w-[220px]">
-              {/* Render photos in reverse order so that higher z-index photos are rendered later in the DOM */}
-              {[...photos].reverse().map((photo) => (
-                <motion.div
-                  key={photo.id}
-                  className="absolute left-0 top-0"
-                  style={{ zIndex: photo.zIndex }} // Apply z-index directly in style
-                  variants={photoVariants}
-                  custom={{
-                    x: photo.x,
-                    y: photo.y,
-                    order: photo.order,
-                  }}
-                >
-                  <Photo
-                    width={220}
-                    height={220}
-                    src={photo.src}
-                    alt="Family photo"
-                    direction={photo.direction}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-      <div className="flex w-full justify-center">
-        <Button>View All Stories</Button>
-      </div>
-    </div>
-  );
-};
-
-function getRandomNumberInRange(min: number, max: number): number {
-  if (min >= max) {
-    throw new Error("Min value should be less than max value");
-  }
-  return Math.random() * (max - min) + min;
-}
-
-const MotionImage = motion(
-  forwardRef(function MotionImage(
-    props: ImageProps,
-    ref: Ref<HTMLImageElement>
-  ) {
-    return <Image ref={ref} {...props} />;
-  })
-);
+/** Можно заменить на свой список; поддерживается 1–10 элементов */
+const PHOTOS = [
+  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=800&fit=crop&crop=entropy",
+  "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
+  "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
+  "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
+  "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
+  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
+  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
+];
 
 type Direction = "left" | "right";
 
-export const Photo = ({
+export function PhotoGallery({
+  animationDelay = 0.5,
+  images,
+  className,
+}: {
+  animationDelay?: number;
+  /** Необязательно: свой массив ссылок (1–10). Если не задан — используются дефолтные */
+  images?: string[];
+  className?: string;
+}) {
+  const reduce = useReducedMotion();
+
+  const list = (images?.length ? images : PHOTOS).slice(0, 10);
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: animationDelay },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 18, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: "spring", stiffness: 120, damping: 16, mass: 0.6 },
+    },
+  };
+
+  // Лёгкая “смешанность” без наложений — маленькие сдвиги внутри плитки
+  const smallOffset = (i: number) => {
+    // ~[-8..8] px/deg закономерно, но “рандомно” на глаз
+    const dx = ((i % 4) - 1.5) * 4; // -6, -2, 2, 6
+    const dy = (i % 2 ? -1 : 1) * 4; // ±4
+    const direction: Direction = i % 2 === 0 ? "left" : "right";
+    const tilt = direction === "left" ? -3 : 3; // базовый наклон
+    return { dx, dy, tilt, direction };
+  };
+
+  const sizes =
+    list.length <= 2
+      ? "(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 560px"
+      : "(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 220px";
+
+  return (
+    <Section className={cn("relative", className)}>
+      <Container className="max-w-4xl">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 top-[200px] -z-10 hidden h-[300px] w-full bg-transparent bg-[linear-gradient(to_right,#57534e_1px,transparent_1px),linear-gradient(to_bottom,#57534e_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20 [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] dark:bg-[linear-gradient(to_right,#a8a29e_1px,transparent_1px),linear-gradient(to_bottom,#a8a29e_1px,transparent_1px)] md:block"
+        />
+
+        <p className="my-2 text-center text-[0.7rem] font-light uppercase tracking-widest text-slate-600 dark:text-slate-400 md:text-sm">
+          ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ
+        </p>
+        <h2
+          className="z-20 mx-auto max-w-2xl bg-gradient-to-r from-slate-900
+        via-slate-800 to-slate-900 bg-clip-text pb-8 text-center text-4xl text-transparent
+        dark:bg-gradient-to-r dark:from-slate-100 dark:via-slate-200 dark:to-slate-100 md:text-7xl"
+        >
+          Դասընթացավարի
+          <br />
+          <span className="text-rose-500">Աշխատանքները</span>
+        </h2>
+
+        {/* Плитка без наложений */}
+        <motion.ul
+          role="list"
+          className={cn(
+            "grid gap-4 sm:gap-5 md:gap-6 mb-8",
+            "grid-cols-[repeat(auto-fit,minmax(160px,1fr))]"
+          )}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-15% 0px" }}
+          variants={containerVariants}
+        >
+          {list.map((src, i) => {
+            const { dx, dy, tilt, direction } = smallOffset(i);
+
+            return (
+              <motion.li
+                key={src + i}
+                variants={itemVariants}
+                className="group relative"
+                // Микро-сдвиг карточки — “смешанность”, но без выхода из своей ячейки
+                style={{
+                  transform: `translate(${dx}px, ${dy}px)`,
+                }}
+                whileHover={
+                  reduce
+                    ? undefined
+                    : {
+                        scale: 1.06,
+                        rotateZ: direction === "left" ? tilt - 1 : tilt + 1,
+                        zIndex: 5,
+                      }
+                }
+                whileTap={reduce ? undefined : { scale: 1.08, zIndex: 10 }}
+              >
+                <Photo
+                  src={src}
+                  alt={`Gallery image ${i + 1}`}
+                  direction={direction}
+                  sizes={sizes}
+                  priority={list.length <= 2 && i === 0}
+                />
+              </motion.li>
+            );
+          })}
+        </motion.ul>
+
+        <div className="flex w-full justify-center">
+          <Button asChild aria-label="View All Stories">
+            <a href="/stories" rel="noopener noreferrer">
+              View All Stories
+            </a>
+          </Button>
+        </div>
+      </Container>
+    </Section>
+  );
+}
+
+function randomBetween(min: number, max: number) {
+  return Math.random() * (max - min) + min;
+}
+
+function Photo({
   src,
   alt,
   className,
-  direction,
-  width,
-  height,
-  ...props
+  direction = "left",
+  sizes,
+  priority,
 }: {
   src: string;
   alt: string;
   className?: string;
   direction?: Direction;
-  width: number;
-  height: number;
-}) => {
-  const [rotation, setRotation] = useState<number>(0);
-  const x = useMotionValue(200);
-  const y = useMotionValue(200);
-
-  useEffect(() => {
-    const randomRotation =
-      getRandomNumberInRange(1, 4) * (direction === "left" ? -1 : 1);
-    setRotation(randomRotation);
-  }, []);
-
-  function handleMouse(event: {
-    currentTarget: { getBoundingClientRect: () => any };
-    clientX: number;
-    clientY: number;
-  }) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
-  }
-
-  const resetMouse = () => {
-    x.set(200);
-    y.set(200);
-  };
+  sizes: string;
+  priority?: boolean;
+}) {
+  const reduce = useReducedMotion();
+  // Небольшой случайный наклон (как было), но стабильный на маунте
+  const initialTilt =
+    (direction === "left" ? -1 : 1) * Math.round(randomBetween(1, 4));
 
   return (
     <motion.div
-      drag
+      drag={reduce ? false : true}
       dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      whileTap={{ scale: 1.2, zIndex: 9999 }}
-      whileHover={{
-        scale: 1.1,
-        rotateZ: 2 * (direction === "left" ? -1 : 1),
-        zIndex: 9999,
-      }}
-      whileDrag={{
-        scale: 1.1,
-        zIndex: 9999,
-      }}
+      whileDrag={reduce ? undefined : { scale: 1.03, zIndex: 10 }}
       initial={{ rotate: 0 }}
-      animate={{ rotate: rotation }}
-      style={{
-        width,
-        height,
-        perspective: 400,
-        transform: `rotate(0deg) rotateX(0deg) rotateY(0deg)`,
-        zIndex: 1,
-        WebkitTouchCallout: "none",
-        WebkitUserSelect: "none",
-        userSelect: "none",
-        touchAction: "none",
-      }}
+      animate={{ rotate: initialTilt }}
       className={cn(
-        className,
-        "relative mx-auto shrink-0 cursor-grab active:cursor-grabbing"
+        "relative w-full select-none touch-none outline-none",
+        "focus-visible:ring-2 focus-visible:ring-rose-500",
+        "cursor-grab active:cursor-grabbing",
+        className
       )}
-      onMouseMove={handleMouse}
-      onMouseLeave={resetMouse}
-      draggable={false}
       tabIndex={0}
+      aria-label={alt}
     >
-      <div className="relative h-full w-full overflow-hidden rounded-3xl shadow-sm">
-        <MotionImage
-          className={cn("rounded-3xl  object-cover")}
+      <figure className="relative aspect-square overflow-hidden rounded-3xl shadow-sm">
+        <Image
           fill
           src={src}
           alt={alt}
-          {...props}
+          sizes={sizes}
+          className="object-cover rounded-3xl"
+          decoding="async"
           draggable={false}
+          priority={priority}
         />
-      </div>
+      </figure>
     </motion.div>
   );
-};
+}
+
+export default PhotoGallery;
