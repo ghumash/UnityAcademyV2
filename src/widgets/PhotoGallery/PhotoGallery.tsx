@@ -7,6 +7,7 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui";
 import { Container, Section } from "@/shared/ui/custom";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/shared/ui/dialog";
 import { memo } from "react";
 
 /** Можно заменить на свой список; поддерживается 1–10 элементов */
@@ -128,7 +129,7 @@ export const PhotoGallery = memo(({
           {list.map((src, i) => {
             const { dx, dy, tilt, direction } = smallOffset(i);
             const projectConfig = projectsConfig[i];
-            const hasLink = projectConfig?.href;
+            const hasLink = projectConfig?.href && projectConfig.href.length > 0;
 
             const photoElement = (
               <Photo
@@ -142,19 +143,18 @@ export const PhotoGallery = memo(({
 
             return (
               <motion.li
-                key={src + i}
+                key={i}
+                className="relative"
                 variants={itemVariants}
-                className="group relative"
-                // Микро-сдвиг карточки — “смешанность”, но без выхода из своей ячейки
                 style={{
-                  transform: `translate(${dx}px, ${dy}px)`,
+                  transform: `translate(${dx}px, ${dy}px) rotate(${tilt}deg)`,
                 }}
                 whileHover={
                   reduce
                     ? undefined
                     : {
-                        scale: 1.06,
-                        rotateZ: direction === "left" ? tilt - 1 : tilt + 1,
+                        scale: 1.05,
+                        rotate: tilt + (direction === "left" ? 2 : -2),
                         zIndex: 5,
                       }
                 }
@@ -166,12 +166,44 @@ export const PhotoGallery = memo(({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 rounded-3xl"
-                    aria-label={`${i + 1}`}
+                    aria-label={`Open project ${i + 1}`}
                   >
                     {photoElement}
                   </a>
                 ) : (
-                  photoElement
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <div
+                        className="block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 rounded-3xl cursor-pointer touch-manipulation"
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`View image ${i + 1}`}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            e.currentTarget.click();
+                          }
+                        }}
+                      >
+                        {photoElement}
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-2 bg-black/90 border-none shadow-2xl">
+                      <DialogTitle className="sr-only">
+                        Gallery image {i + 1}
+                      </DialogTitle>
+                      <div className="relative w-full h-full max-w-4xl max-h-[90vh] mx-auto overflow-hidden rounded-xl">
+                        <Image
+                          fill
+                          src={src}
+                          alt={`Gallery image ${i + 1} - full size`}
+                          className="object-contain"
+                          sizes="95vw"
+                          quality={95}
+                        />
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 )}
               </motion.li>
             );
