@@ -50,6 +50,7 @@ export const android: CourseDict = {
     name: "Արտակ Գրիգորյան",
     role: "Senior Android Developer & Mobile Architect",
     bio: "Փորձառու Android մշակող 8+ տարվա փորձով մոբայլ հավելվածների մշակման ոլորտում: Մասնագիտանում եմ Java, Kotlin, Android SDK և ժամանակակից մոբայլ ճարտարապետության ոլորտում:",
+    avatarUrl: "/instructors/artak-grigoryan.jpg",
     experience: {
       senior: {
         title: "Senior Android Developer",

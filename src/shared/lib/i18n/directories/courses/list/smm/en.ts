@@ -50,6 +50,7 @@ export const smm: CourseDict = {
     name: "Ani Martirosyan",
     role: "Digital Marketing Specialist & SMM Expert",
     bio: "Experienced digital marketing specialist with 6+ years of experience in SMM and advertising campaigns. Worked with local and international brands.",
+    avatarUrl: "/instructors/ani-martirosyan.jpg",
     experience: {
       senior: {
         title: "Senior Digital Marketing Manager",

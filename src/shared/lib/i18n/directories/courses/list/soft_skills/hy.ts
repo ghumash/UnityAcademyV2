@@ -49,7 +49,8 @@ export const soft_skills: CourseDict = {
     display: false,
     name: "Արմենուհի Մանուկյան",
     role: "Business Coach & Soft Skills Trainer",
-    bio: "Փորձառու բիզնես կոուչ և փափուկ հմտությունների մարզիչ 8+ տարվա փորձով: Մասնագիտանում եմ անձնական արդյունավետության, ղեկավարության և հաղորդակցության ոլորտում:",
+    bio: "Փորձառու բիզնես քոոչ և մեղմ հմտությունների վարժիչ 8+ տարվա փորձով: Մասնագիտանում եմ անձնական արդյունավետության, առաջնորդության և հաղորդակցության ոլորտում:",
+    avatarUrl: "/instructors/armenuhi-manukyan.jpg",
     experience: {
       senior: {
         title: "Senior Business Coach",

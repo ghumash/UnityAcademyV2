@@ -46,35 +46,21 @@ export const scratch: CourseDict = {
     ],
   },
   instructor: {
-    name: "Mariam Avagyan",
+    name: "Ani Tamaryan",
     role: "Scratch Instructor & Game Developer",
-    bio: "Experienced teacher and game developer with 4+ years of experience in teaching programming to children. Specializes in Scratch, Blockly, and creative programming.",
-    avatarUrl: "/users/mariam.jpg",
+    bio: "I am a programming instructor with experience in teaching over 100+ children. I specialize in Scratch programming, algorithms, and digital skills education, as well as developing educational programs. My goal is to make technology accessible, interesting, and motivating, contributing to the development of children's logical thinking and creativity.",
+    avatarUrl: "/images/users/ani.png",
     socials: {
-      instagram: "https://instagram.com/mariam_scratch_teacher",
-      linkedin: "https://linkedin.com/in/mariam-avagyan",
+      // instagram: "https://instagram.com/mariam_scratch_teacher",
+      // linkedin: "https://linkedin.com/in/mariam-avagyan",
     },
     experience: {
       senior: {
-        title: "Senior Scratch Instructor",
-        company: "CodeKids Academy",
-        period: "2021 - Present",
+        title: "Coding Instructor",
+        company: "Armath Engineering Laboratories",
+        period: "2024 - Present",
         summary:
-          "Teaching 200+ children Scratch programming, developing educational curricula, working with parents and children.",
-      },
-      mid: {
-        title: "Game Developer",
-        company: "EduGames Studio",
-        period: "2020 - 2021",
-        summary:
-          "Developing educational games for children, creating interactive learning materials, Scratch-based projects.",
-      },
-      junior: {
-        title: "Programming Tutor",
-        company: "TechStart Kids",
-        period: "2019 - 2020",
-        summary:
-          "Individual and group lessons with Scratch, teaching programming fundamentals, developing creative thinking.",
+          "I teach children Scratch programming, algorithm fundamentals, and digital skills. I have taught over 200+ children, developed educational programs, and organized effective communication with both children and parents.",
       },
     },
     experienceLabel: "Work Experience",

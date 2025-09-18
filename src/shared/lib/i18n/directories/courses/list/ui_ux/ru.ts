@@ -49,7 +49,8 @@ export const ui_ux: CourseDict = {
     display: false,
     name: "Наре Акопян",
     role: "Senior UI/UX Designer & Product Designer",
-    bio: "Опытный UI/UX дизайнер с 6+ летним опытом в дизайне цифровых продуктов. Специализируюсь на пользовательских исследованиях, wireframing и прототипировании.",
+    bio: "Опытный UI/UX дизайнер с 6+ годами опыта в дизайне цифровых продуктов. Специализируется на исследовании пользователей, wireframing и prototyping.",
+    avatarUrl: "/instructors/nare-hakobyan.jpg",
     experience: {
       senior: {
         title: "Senior UI/UX Designer",

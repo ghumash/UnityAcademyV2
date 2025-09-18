@@ -50,6 +50,7 @@ export const ui_ux: CourseDict = {
     name: "Nare Hakobyan",
     role: "Senior UI/UX Designer & Product Designer",
     bio: "Experienced UI/UX designer with 6+ years of experience in digital product design. Specializing in user research, wireframing, and prototyping.",
+    avatarUrl: "/instructors/nare-hakobyan.jpg",
     experience: {
       senior: {
         title: "Senior UI/UX Designer",

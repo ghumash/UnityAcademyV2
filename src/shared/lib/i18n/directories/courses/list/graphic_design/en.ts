@@ -62,30 +62,31 @@ export const graphic_design: CourseDict = {
     ],
   },
   instructor: {
-    name: "Anna Petrova",
-    role: "Senior Frontend Developer",
-    bio: "Experienced frontend developer with 5+ years of experience in creating modern web applications. I specialize in React, TypeScript and performance optimization.",
+    name: "Mane Hovsepyan",
+    role: "Senior Graphic Designer",
+    bio: "I am a graphic designer with over 8 years of professional experience. I create visual solutions that help businesses become visible, memorable, and competitive.",
+    avatarUrl: "/images/users/mane.png",
     experience: {
       senior: {
-        title: "Senior Frontend Developer",
-        company: "TechCorp Inc.",
-        period: "2022 - present",
+        title: "Senior Graphic Designer",
+        company: "Digitain",
+        period: "2019 - present",
         summary:
-          "Leading a team of 4 developers, architecture and development of large-scale React applications, implementation of best practices and code review.",
+          "Working as a graphic designer, creating brand and advertising materials, UI/UX solutions, and diverse visual content. Also participated in iGaming industry projects, ensuring modern and high-quality design results.",
       },
       mid: {
-        title: "Frontend Developer",
-        company: "StartupXYZ",
-        period: "2020 - 2022",
+        title: "Technical Designer",
+        company: "Digitain",
+        period: "2018 - 2019",
         summary:
-          "Development of user interfaces for SaaS platform, performance optimization, integration with REST API and GraphQL.",
+          "Executed graphic and technical design work, creating mockups, UI/UX solutions, and ensuring precise project implementation through team collaboration.",
       },
       junior: {
-        title: "Junior Frontend Developer",
-        company: "WebStudio",
-        period: "2019 - 2020",
+        title: "Freelancer",
+        company: "Freelance Projects",
+        period: "2018 - present",
         summary:
-          "Creating responsive websites, learning modern frameworks, participating in team development and code review processes.",
+          "Completed over 50+ projects, developing corporate styles, logos and brand books, creating advertising materials and visual communications for digital and print environments. Collaborated with both startups and large companies, providing effective and modern solutions.",
       },
     },
     experienceLabel: "Work Experience",

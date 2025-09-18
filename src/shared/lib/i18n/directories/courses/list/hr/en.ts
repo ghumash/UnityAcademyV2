@@ -50,6 +50,7 @@ export const hr: CourseDict = {
     name: "Siranuysh Avagyan",
     role: "Senior HR Manager & Business Consultant",
     bio: "Experienced HR manager with 10+ years of experience in human resources management. Specializing in employee selection, career development, and organizational culture.",
+    avatarUrl: "/instructors/siranuysh-avagyan.jpg",
     experience: {
       senior: {
         title: "Senior HR Manager",

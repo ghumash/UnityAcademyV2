@@ -49,7 +49,8 @@ export const smm: CourseDict = {
     display: false,
     name: "Անի Մարտիրոսյան",
     role: "Digital Marketing Specialist & SMM Expert",
-    bio: "Փորձառու դիջիթալ մարքեթինգ մասնագետ 6+ տարվա փորձով SMM և գովազդային արշավների ոլորտում: Աշխատել եմ տեղական և միջազգային բրենդերի հետ:",
+    bio: "Փորձառու թվային մարքետինգի մասնագետ 6+ տարվա փորձով SMM և գովազդային առաքելությունների ոլորտում: Աշխատել եմ տեղական և միջազգային բրենդների հետ:",
+    avatarUrl: "/instructors/ani-martirosyan.jpg",
     experience: {
       senior: {
         title: "Senior Digital Marketing Manager",

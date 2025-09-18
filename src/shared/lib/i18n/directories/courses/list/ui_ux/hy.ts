@@ -49,7 +49,8 @@ export const ui_ux: CourseDict = {
     display: false,
     name: "Նարե Հակոբյան",
     role: "Senior UI/UX Designer & Product Designer",
-    bio: "Փորձառու UI/UX դիզայներ 6+ տարվա փորձով դիջիթալ արտադրանքի դիզայնի ոլորտում: Մասնագիտանում եմ օգտատիրական հետազոտությունների, wireframing և պրոտոտիպավորման ոլորտում:",
+    bio: "Փորձառու UI/UX դիզայներ 6+ տարվա փորձով թվային արտադրանքների դիզայնի ոլորտում: Մասնագիտանում եմ օգտագործների հետազոտության, wireframing և prototyping ոլորտում:",
+    avatarUrl: "/instructors/nare-hakobyan.jpg",
     experience: {
       senior: {
         title: "Senior UI/UX Designer",

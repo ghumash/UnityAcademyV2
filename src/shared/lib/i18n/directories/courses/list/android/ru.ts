@@ -49,7 +49,8 @@ export const android: CourseDict = {
     display: false,
     name: "Артак Григорян",
     role: "Senior Android Developer & Mobile Architect",
-    bio: "Опытный Android разработчик с 8+ летним опытом в разработке мобильных приложений. Специализируюсь на Java, Kotlin, Android SDK и современной мобильной архитектуре.",
+    bio: "Опытный Android-разработчик с 8+ годами опыта в разработке мобильных приложений. Специализируется на Java, Kotlin, Android SDK и современной мобильной архитектуре.",
+    avatarUrl: "/instructors/artak-grigoryan.jpg",
     experience: {
       senior: {
         title: "Senior Android Developer",

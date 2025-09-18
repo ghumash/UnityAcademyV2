@@ -46,35 +46,21 @@ export const scratch: CourseDict = {
     ],
   },
   instructor: {
-    name: "Мариам Авагян",
+    name: "Ани Тамарян",
     role: "Scratch Instructor & Game Developer",
-    bio: "Опытный преподаватель и разработчик игр с 4+ годами опыта обучения детей программированию. Специализируется на Scratch, Blockly и креативном программировании.",
-    avatarUrl: "/users/mariam.jpg",
+    bio: "Я преподаватель программирования с опытом обучения более 100+ детей. Специализируюсь на программировании в Scratch, обучении алгоритмам и цифровым навыкам, а также занимаюсь разработкой образовательных программ. Моя цель — сделать технологии доступными, интересными и мотивирующими, способствуя развитию логического мышления и творчества у детей.",
+    avatarUrl: "/images/users/ani.png",
     socials: {
-      instagram: "https://instagram.com/mariam_scratch_teacher",
-      linkedin: "https://linkedin.com/in/mariam-avagyan",
+      // instagram: "https://instagram.com/mariam_scratch_teacher",
+      // linkedin: "https://linkedin.com/in/mariam-avagyan",
     },
     experience: {
       senior: {
-        title: "Старший преподаватель Scratch",
-        company: "CodeKids Academy",
-        period: "2021 - настоящее время",
+        title: "Преподаватель программирования",
+        company: "Armath Engineering Laboratories",
+        period: "2024 - настоящее время",
         summary:
-          "Обучение 200+ детей программированию на Scratch, разработка образовательных программ, работа с родителями и детьми.",
-      },
-      mid: {
-        title: "Разработчик игр",
-        company: "EduGames Studio",
-        period: "2020 - 2021",
-        summary:
-          "Разработка образовательных игр для детей, создание интерактивных учебных материалов, проекты на основе Scratch.",
-      },
-      junior: {
-        title: "Репетитор по программированию",
-        company: "TechStart Kids",
-        period: "2019 - 2020",
-        summary:
-          "Индивидуальные и групповые занятия по Scratch, обучение основам программирования, развитие творческого мышления.",
+          "Преподаю детям программирование в Scratch, основы алгоритмов и цифровые навыки. Обучила более 200+ детей, разработала образовательные программы и организовала эффективное общение как с детьми, так и с родителями.",
       },
     },
     experienceLabel: "Опыт работы",

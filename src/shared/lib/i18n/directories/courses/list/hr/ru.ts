@@ -49,7 +49,8 @@ export const hr: CourseDict = {
     display: false,
     name: "Сирануйш Авагян",
     role: "Senior HR Manager & Business Consultant",
-    bio: "Опытный HR менеджер с 10+ летним опытом в управлении человеческими ресурсами. Специализируюсь на подборе персонала, развитии карьеры и организационной культуре.",
+    bio: "Опытный HR-менеджер с 10+ годами опыта в управлении человеческими ресурсами. Специализируется на отборе сотрудников, развитии карьеры и организационной культуре.",
+    avatarUrl: "/instructors/siranuysh-avagyan.jpg",
     experience: {
       senior: {
         title: "Senior HR Manager",

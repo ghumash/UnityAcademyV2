@@ -49,7 +49,8 @@ export const soft_skills: CourseDict = {
     display: false,
     name: "Арменухи Манукян",
     role: "Business Coach & Soft Skills Trainer",
-    bio: "Опытный бизнес-коуч и тренер по гибким навыкам с 8+ летним опытом. Специализируюсь на личной продуктивности, лидерстве и коммуникации.",
+    bio: "Опытный бизнес-коуч и тренер по мягким навыкам с 8+ годами опыта. Специализируется на личной продуктивности, лидерстве и коммуникации.",
+    avatarUrl: "/instructors/armenuhi-manukyan.jpg",
     experience: {
       senior: {
         title: "Senior Business Coach",

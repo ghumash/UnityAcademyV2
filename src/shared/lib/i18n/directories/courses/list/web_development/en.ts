@@ -49,7 +49,7 @@ export const web_development: CourseDict = {
     name: "Vagharshak Gasparyan",
     role: "Senior Full-Stack Developer",
     bio: "Experienced computer programmer with 9+ years of work experience, skilled in full-stack development, web programming, software engineering, and database design.",
-    avatarUrl: "/images/users/vagharshak.jpg",
+    avatarUrl: "/images/users/vagharshak.png",
     socials: {
       github: "https://github.com/VagharshakGasparyan",
       linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",

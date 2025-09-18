@@ -20,7 +20,7 @@ export const scratch: CourseDict = {
     theme: "orange",
     formatLabel: "Ֆորմատ",
   },
-    projects: {
+  projects: {
     display: false,
     subtitle: "ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ",
     titlePart1: "Դասընթացավարի",
@@ -29,52 +29,38 @@ export const scratch: CourseDict = {
     list: [
       {
         img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
-        href: "https://example.com/project1"
+        href: "https://example.com/project1",
       },
       {
         img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
-        href: "https://example.com/project2"
+        href: "https://example.com/project2",
       },
       {
         img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
-        href: "https://example.com/project3"
+        href: "https://example.com/project3",
       },
       {
         img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
-        href: "https://example.com/project4"
+        href: "https://example.com/project4",
       },
     ],
   },
   instructor: {
-    name: "Մարիամ Ավագյան",
+    name: "Անի Թամարյան",
     role: "Scratch Instructor & Game Developer",
-    bio: "Փորձառու ուսուցիչ և խաղային մշակող 4+ տարվա փորձով երեխաների ծրագրավորման ուսուցման գործում: Մասնագիտանում եմ Scratch, Blockly և ստեղծագործական ծրագրավորման ոլորտում:",
-    avatarUrl: "/users/mariam.jpg",
+    bio: "Ես ծրագրավորման ուսուցիչ եմ՝ փորձառություն ունենալով ավելի քան 100+ երեխաների ուսուցման մեջ։ Մասնագիտանում եմ Scratch ծրագրավորման, ալգորիթմների և թվային հմտությունների ուսուցման մեջ, ինչպես նաև զբաղվում եմ ուսումնական ծրագրերի մշակմամբ։ Իմ նպատակն է տեխնոլոգիաները դարձնել հասանելի, հետաքրքիր և մոտիվացնող՝ նպաստելով երեխաների տրամաբանական մտածողության և ստեղծագործականության զարգացմանը։",
+    avatarUrl: "/images/users/ani.png",
     socials: {
-      instagram: "https://instagram.com/mariam_scratch_teacher",
-      linkedin: "https://linkedin.com/in/mariam-avagyan",
+      // instagram: "https://instagram.com/mariam_scratch_teacher",
+      // linkedin: "https://linkedin.com/in/mariam-avagyan",
     },
     experience: {
       senior: {
-        title: "Senior Scratch Instructor",
-        company: "CodeKids Academy",
-        period: "2021 - ներկայումս",
+        title: "Coding Instructor",
+        company: "Armath Engineering Laboratories",
+        period: "2024 - ներկայումս",
         summary:
-          "200+ երեխաների ուսուցում Scratch ծրագրավորման, ուսումնական ծրագրերի մշակում, ծնողների և երեխաների հետ աշխատանք:",
-      },
-      mid: {
-        title: "Game Developer",
-        company: "EduGames Studio",
-        period: "2020 - 2021",
-        summary:
-          "Կրթական խաղերի մշակում երեխաների համար, ինտերակտիվ ուսումնական նյութերի ստեղծում, Scratch-ի հիման վրա կառուցված նախագծեր:",
-      },
-      junior: {
-        title: "Programming Tutor",
-        company: "TechStart Kids",
-        period: "2019 - 2020",
-        summary:
-          "Անհատական և խմբային դասեր Scratch-ով, ծրագրավորման հիմունքների ուսուցում, ստեղծագործական մտածողության զարգացում:",
+          "Դասավանդում եմ երեխաներին Scratch ծրագրավորում, ալգորիթմների հիմունքներ և թվային հմտություններ։ Ուսուցանել եմ ավելի քան 200+ երեխայի, մշակել եմ ուսումնական ծրագրեր և կազմակերպել արդյունավետ հաղորդակցություն թե՛ երեխաների, թե՛ ծնողների հետ։",
       },
     },
     experienceLabel: "Աշխատանքային փորձ",
@@ -108,15 +94,18 @@ export const scratch: CourseDict = {
     list: [
       {
         title: "Կրեատիվ մոտեցում",
-        description: "Երեխաները ստեղծում են իրենց անիմացիաներ, խաղեր և ինտերակտիվ պատմություններ:",
+        description:
+          "Երեխաները ստեղծում են իրենց անիմացիաներ, խաղեր և ինտերակտիվ պատմություններ:",
       },
       {
         title: "Լոգիկական մտածելակերպ",
-        description: "Սովորում են ալգորիթմական մտածելակերպը, հաջարդականությունը և խնդիր լուծման հմտությունները:",
+        description:
+          "Սովորում են ալգորիթմական մտածելակերպը, հաջարդականությունը և խնդիր լուծման հմտությունները:",
       },
       {
         title: "Տասնային ատմոսֆեր",
-        description: "Աշխատում են բարեկամական միջավայրում և սովորում են միասին աշխատել նախագծերի վրա:",
+        description:
+          "Աշխատում են բարեկամական միջավայրում և սովորում են միասին աշխատել նախագծերի վրա:",
       },
     ],
   },
