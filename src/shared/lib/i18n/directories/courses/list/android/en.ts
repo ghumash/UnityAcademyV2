@@ -9,6 +9,7 @@ export const android: CourseDict = {
     format: "Offline",
     duration: "6 Months",
     lessonsCount: "48 Lessons",
+    weeklyLessonCount: "2 Lessons per Week",
     projectsCount: "12 Projects",
     certificateIncluded: true,
     price: "40 000 ֏",

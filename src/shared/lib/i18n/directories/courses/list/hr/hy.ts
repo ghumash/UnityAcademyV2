@@ -9,6 +9,7 @@ export const hr: CourseDict = {
     format: "Օֆլայն",
     duration: "3 Ամիս",
     lessonsCount: "24 Դաս",
+    weeklyLessonCount: "Շաբաթական 2 Դաս",
     projectsCount: "6 Պրոեկտ",
     certificateIncluded: true,
     price: "40 000 ֏",

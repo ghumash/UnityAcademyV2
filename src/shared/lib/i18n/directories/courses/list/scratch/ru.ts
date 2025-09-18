@@ -9,6 +9,7 @@ export const scratch: CourseDict = {
     format: "Офлайн",
     duration: "2 Месяца",
     lessonsCount: "16 Уроков",
+    weeklyLessonCount: "2 Урока в неделю",
     projectsCount: "6 Проектов",
     certificateIncluded: true,
     price: "20 000 ֏",

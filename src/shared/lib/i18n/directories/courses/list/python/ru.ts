@@ -9,6 +9,7 @@ export const python: CourseDict = {
     format: "Офлайн",
     duration: "5 Месяцев",
     lessonsCount: "40 Уроков",
+    weeklyLessonCount: "2 Урока в неделю",
     projectsCount: "10 Проектов",
     certificateIncluded: true,
     price: "40 000 ֏",

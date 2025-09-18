@@ -9,6 +9,7 @@ export const smm: CourseDict = {
     format: "Офлайн",
     duration: "4 Месяца",
     lessonsCount: "32 Урока",
+    weeklyLessonCount: "2 Урока в неделю",
     projectsCount: "8 Проектов",
     certificateIncluded: true,
     price: "40 000 ֏",

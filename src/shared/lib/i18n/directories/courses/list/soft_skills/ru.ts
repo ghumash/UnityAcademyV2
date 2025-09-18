@@ -9,6 +9,7 @@ export const soft_skills: CourseDict = {
     format: "Офлайн",
     duration: "2 Месяца",
     lessonsCount: "16 Уроков",
+    weeklyLessonCount: "2 Урока в неделю",
     projectsCount: "4 Проекта",
     certificateIncluded: true,
     price: "40 000 ֏",

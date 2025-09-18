@@ -9,6 +9,7 @@ export const web_development: CourseDict = {
     format: "Офлайн",
     duration: "6 Месяцев",
     lessonsCount: "48 Уроков",
+    weeklyLessonCount: "2 Урока в неделю",
     projectsCount: "12 Проектов",
     certificateIncluded: true,
     price: "40 000 ֏",

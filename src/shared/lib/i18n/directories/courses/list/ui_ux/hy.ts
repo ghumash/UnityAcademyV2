@@ -9,6 +9,7 @@ export const ui_ux: CourseDict = {
     format: "Օֆլայն",
     duration: "4 Ամիս",
     lessonsCount: "32 Դաս",
+    weeklyLessonCount: "Շաբաթական 2 Դաս",
     projectsCount: "8 Պրոեկտ",
     certificateIncluded: true,
     price: "40 000 ֏",

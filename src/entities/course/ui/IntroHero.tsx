@@ -4,7 +4,7 @@ import { Section, Container } from "@/shared/ui/custom";
 import { AppAutoBreadcrumb } from "@/widgets";
 import { Badge, Button, Card, CardContent, CardHeader } from "@/shared/ui";
 import { TextGenerateEffect } from "@/shared/ui/lib";
-import { Award, BookOpen, Briefcase, Clock, Play, User } from "lucide-react";
+import { Award, BookOpen, Briefcase, Clock, Play, User, Calendar } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { THEMES, type Theme } from "@/widgets/Courses";
 import Link from "next/link";
@@ -21,6 +21,7 @@ type IntroHeroConfig = {
   level: string;
   duration: string;
   lessonsCount: string;
+  weeklyLessonCount: string;
   projectsCount: string;
   certificate: string;
   theme: Theme;
@@ -43,6 +44,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
     level,
     duration,
     lessonsCount,
+    weeklyLessonCount,
     projectsCount,
     certificate,
     theme,
@@ -53,6 +55,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
   const courseInfo = [
     { icon: Clock, text: duration },
     { icon: BookOpen, text: lessonsCount },
+    { icon: Calendar, text: weeklyLessonCount },
     { icon: Play, text: projectsCount },
     { icon: Award, text: certificate },
     { icon: User, text: level },

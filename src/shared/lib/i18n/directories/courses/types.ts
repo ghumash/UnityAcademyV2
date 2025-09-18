@@ -41,6 +41,7 @@ export type CourseDict = {
     format: string;
     duration: string;
     lessonsCount: string;
+    weeklyLessonCount: string;
     projectsCount: string;
     certificateIncluded: boolean;
     price: string;

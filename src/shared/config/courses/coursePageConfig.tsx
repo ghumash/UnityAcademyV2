@@ -26,6 +26,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     format: t(`courses.list.${slug}.courseHeroSection.format`),
     duration: t(`courses.list.${slug}.courseHeroSection.duration`),
     lessonsCount: t(`courses.list.${slug}.courseHeroSection.lessonsCount`),
+    weeklyLessonCount: t(`courses.list.${slug}.courseHeroSection.weeklyLessonCount`),
     projectsCount: t(`courses.list.${slug}.courseHeroSection.projectsCount`),
     price: t(`courses.list.${slug}.courseHeroSection.price`),
     originalPrice: t(`courses.list.${slug}.courseHeroSection.originalPrice`),

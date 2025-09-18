@@ -9,6 +9,7 @@ export const hr: CourseDict = {
     format: "Офлайн",
     duration: "3 Месяца",
     lessonsCount: "24 Урока",
+    weeklyLessonCount: "2 Урока в неделю",
     projectsCount: "6 Проектов",
     certificateIncluded: true,
     price: "40 000 ֏",
