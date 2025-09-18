@@ -25,7 +25,7 @@ export const smm: CourseDict = {
     subtitle: "СОЗДАЙ СВОЙ УНИКАЛЬНЫЙ СТИЛЬ",
     titlePart1: "Работы",
     titlePart2: "Преподавателя",
-    buttonLabel: "Посмотреть все проекты",
+    buttonLabel: "",
     list: [
       {
         img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",

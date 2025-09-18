@@ -25,7 +25,7 @@ export const graphic_design: CourseDict = {
     subtitle: "ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ",
     titlePart1: "Դասընթացավարի",
     titlePart2: "Աշխատանքները",
-    buttonLabel: "Տեսնել բոլոր պրոեկտները",
+    buttonLabel: "",
     list: [
       {
         img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",

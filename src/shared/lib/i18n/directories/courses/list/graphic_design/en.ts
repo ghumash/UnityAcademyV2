@@ -25,7 +25,7 @@ export const graphic_design: CourseDict = {
     subtitle: "CREATE YOUR UNIQUE STYLE",
     titlePart1: "Instructor's",
     titlePart2: "Works",
-    buttonLabel: "View All Projects",
+    buttonLabel: "",
     list: [
       {
         img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",

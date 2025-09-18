@@ -220,11 +220,13 @@ export const PhotoGallery = memo(
             })}
           </motion.ul>
 
-          <div className="flex w-full justify-center">
-            <Button asChild aria-label={config?.buttonLabel}>
-              <Link href="/stories">{config?.buttonLabel}</Link>
-            </Button>
-          </div>
+          {!!config?.buttonLabel.length && (
+            <div className="flex w-full justify-center">
+              <Button asChild aria-label={config?.buttonLabel}>
+                <Link href="/stories">{config?.buttonLabel}</Link>
+              </Button>
+            </div>
+          )}
         </Container>
       </Section>
     );

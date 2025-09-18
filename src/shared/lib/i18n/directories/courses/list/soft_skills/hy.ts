@@ -25,7 +25,7 @@ export const soft_skills: CourseDict = {
     subtitle: "ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ",
     titlePart1: "Դասընթացավարի",
     titlePart2: "Աշխատանքները",
-    buttonLabel: "Տեսնել բոլոր պրոեկտները",
+    buttonLabel: "",
     list: [
       {
         img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
