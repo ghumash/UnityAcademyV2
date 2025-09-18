@@ -162,7 +162,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
               {description}
             </p>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 mt-6 sm:mt-8">
               {courseInfo.map((item, index) => (
                 <div
                   key={index}
@@ -171,7 +171,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                     "bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-sm",
                     "hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]",
                     "border-border/50",
-                    "p-3 sm:p-4",
+                    "p-2 sm:p-3",
                     item.borderColor,
                     item.textColor
                   )}
@@ -188,14 +188,14 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                     <div className={cn(
                       "flex items-center justify-center rounded-md transition-all duration-300",
                       "group-hover:scale-110",
-                      "h-8 w-8 sm:h-10 sm:w-10",
+                      "h-6 w-6 sm:h-8 sm:w-8",
                       // На мобильных - цветной фон, на десктопе - прозрачный с hover
                       "bg-current/10 border-2 border-current/20",
                       "sm:bg-transparent sm:border-muted-foreground/30",
                       "sm:group-hover:border-current sm:group-hover:bg-current/5"
                     )}>
                       <item.icon className={cn(
-                        "h-4 w-4 sm:h-5 sm:w-5 transition-colors duration-300",
+                        "h-3 w-3 sm:h-4 sm:w-4 transition-colors duration-300",
                         // На мобильных - цветные иконки, на десктопе - серые с цветным hover
                         "text-current",
                         "sm:text-muted-foreground sm:group-hover:text-current"
@@ -204,7 +204,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                     <span className={cn(
                       "font-medium transition-colors duration-300",
                       "text-foreground",
-                      "text-xs sm:text-sm leading-tight"
+                      "text-xs leading-tight"
                     )}>
                       {item.text}
                     </span>
