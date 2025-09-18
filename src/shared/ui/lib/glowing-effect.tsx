@@ -15,6 +15,7 @@ interface GlowingEffectProps {
   disabled?: boolean; // форс-отключение (например, для SSR/тестов)
   movementDuration?: number; // длительность поворота «конуса» (сек)
   borderWidth?: number; // толщина бордера «свечения»
+  forceEnable?: boolean; // принудительно включить эффект даже при prefers-reduced-motion
 }
 
 /** Уважает настройку системы «предпочитать уменьшенное движение». */
@@ -50,6 +51,7 @@ const GlowingEffect = memo(
     movementDuration = 0.6,
     borderWidth = 1,
     disabled = false,
+    forceEnable = false,
   }: GlowingEffectProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const lastPosition = useRef({ x: 0, y: 0 });
@@ -124,8 +126,9 @@ const GlowingEffect = memo(
       const el = containerRef.current;
 
       // Авто-отключение при reduced motion или когда glow=false
+      // forceEnable позволяет принудительно включить эффект даже при prefers-reduced-motion
       const runtimeDisabled =
-        disabled || !glow || prefersReducedMotionRef.current;
+        disabled || !glow || (prefersReducedMotionRef.current && !forceEnable);
 
       if (runtimeDisabled) {
         // Сброс активного состояния/анимаций
@@ -153,9 +156,9 @@ const GlowingEffect = memo(
         window.removeEventListener("pointermove", onPointerMove);
         if (angleAnimRef.current?.cancel) angleAnimRef.current.cancel();
       };
-    }, [disabled, glow, handleMove, prefersReducedMotionRef]);
+    }, [disabled, glow, forceEnable, handleMove, prefersReducedMotionRef]);
 
-    const isStaticBorder = disabled || !glow || prefersReducedMotionRef.current;
+    const isStaticBorder = disabled || !glow || (prefersReducedMotionRef.current && !forceEnable);
 
     return (
       <>

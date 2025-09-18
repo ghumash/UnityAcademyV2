@@ -24,6 +24,7 @@ export type GlowingEffectOptions = Partial<{
   disabled: boolean;
   proximity: number;
   inactiveZone: number;
+  forceEnable: boolean;
 }>;
 
 export type GlowingGridConfig = {
@@ -51,6 +52,7 @@ const DEFAULT_GLOW: Required<GlowingEffectOptions> = {
   disabled: false,
   proximity: 64,
   inactiveZone: 0.01,
+  forceEnable: true, // Принудительно включаем эффект для мобильных устройств
 };
 
 /** Устойчивые раскладки для разных количеств карточек */
