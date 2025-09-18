@@ -56,51 +56,44 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
     { 
       icon: Clock, 
       text: duration, 
-      color: "bg-slate-600 hover:bg-slate-700",
-      borderColor: "hover:border-slate-500",
-      textColor: "hover:text-slate-600"
+      iconColor: "text-white",
+      bgColor: "bg-slate-600"
     },
     { 
       icon: BookOpen, 
       text: lessonsCount, 
-      color: "bg-emerald-600 hover:bg-emerald-700",
-      borderColor: "hover:border-emerald-500",
-      textColor: "hover:text-emerald-600"
+      iconColor: "text-white",
+      bgColor: "bg-emerald-600"
     },
     { 
       icon: Calendar, 
       text: weeklyLessonCount, 
-      color: "bg-violet-600 hover:bg-violet-700",
-      borderColor: "hover:border-violet-500",
-      textColor: "hover:text-violet-600"
+      iconColor: "text-white",
+      bgColor: "bg-violet-600"
     },
     { 
       icon: Play, 
       text: projectsCount, 
-      color: "bg-amber-600 hover:bg-amber-700",
-      borderColor: "hover:border-amber-500",
-      textColor: "hover:text-amber-600"
+      iconColor: "text-white",
+      bgColor: "bg-amber-600"
     },
     { 
       icon: Award, 
       text: certificate, 
-      color: "bg-rose-600 hover:bg-rose-700",
-      borderColor: "hover:border-rose-500",
-      textColor: "hover:text-rose-600"
+      iconColor: "text-white",
+      bgColor: "bg-rose-600"
     },
     { 
       icon: User, 
       text: level, 
-      color: "bg-sky-600 hover:bg-sky-700",
-      borderColor: "hover:border-sky-500",
-      textColor: "hover:text-sky-600"
+      iconColor: "text-white",
+      bgColor: "bg-sky-600"
     },
     { 
       icon: Briefcase, 
       text: format, 
-      color: "bg-teal-600 hover:bg-teal-700",
-      borderColor: "hover:border-teal-500",
-      textColor: "hover:text-teal-600"
+      iconColor: "text-white",
+      bgColor: "bg-teal-600"
     },
   ];
 
@@ -167,44 +160,26 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                 <div
                   key={index}
                   className={cn(
-                    "group relative overflow-hidden rounded-xl border-2 transition-all duration-300",
+                    "relative overflow-hidden rounded-xl",
                     "bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-sm",
-                    "hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]",
-                    "border-border/50",
                     "p-2 sm:p-3",
-                    item.borderColor,
-                    item.textColor
+                    "hover:-translate-y-1 hover:scale-[1.02] transition-all"
                   )}
                 >
-                  {/* Gradient overlay on hover */}
-                  <div
-                    className={cn(
-                      "absolute inset-0 opacity-0 transition-opacity duration-300",
-                      "bg-gradient-to-br group-hover:opacity-5"
-                    )}
-                  />
                   
-                  <div className="relative z-10 flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
+                  <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
                     <div className={cn(
-                      "flex items-center justify-center rounded-md transition-all duration-300",
-                      "group-hover:scale-110",
+                      "flex items-center justify-center rounded-md",
                       "h-6 w-6 sm:h-8 sm:w-8",
-                      // На мобильных - цветной фон, на десктопе - прозрачный с hover
-                      "bg-current/10 border-2 border-current/20",
-                      "sm:bg-transparent sm:border-muted-foreground/30",
-                      "sm:group-hover:border-current sm:group-hover:bg-current/5"
+                      item.bgColor
                     )}>
                       <item.icon className={cn(
-                        "h-3 w-3 sm:h-4 sm:w-4 transition-colors duration-300",
-                        // На мобильных - цветные иконки, на десктопе - серые с цветным hover
-                        "text-current",
-                        "sm:text-muted-foreground sm:group-hover:text-current"
+                        "h-3 w-3 sm:h-4 sm:w-4",
+                        item.iconColor
                       )} aria-hidden="true" />
                     </div>
                     <span className={cn(
-                      "font-medium transition-colors duration-300",
-                      "text-foreground",
-                      "text-xs leading-tight"
+                      "font-medium text-foreground text-xs leading-tight"
                     )}>
                       {item.text}
                     </span>
