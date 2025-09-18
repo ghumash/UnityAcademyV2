@@ -53,13 +53,55 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
   const themeStyles = THEMES[theme];
 
   const courseInfo = [
-    { icon: Clock, text: duration },
-    { icon: BookOpen, text: lessonsCount },
-    { icon: Calendar, text: weeklyLessonCount },
-    { icon: Play, text: projectsCount },
-    { icon: Award, text: certificate },
-    { icon: User, text: level },
-    { icon: Briefcase, text: format },
+    { 
+      icon: Clock, 
+      text: duration, 
+      color: "bg-slate-600 hover:bg-slate-700",
+      borderColor: "hover:border-slate-500",
+      textColor: "hover:text-slate-600"
+    },
+    { 
+      icon: BookOpen, 
+      text: lessonsCount, 
+      color: "bg-emerald-600 hover:bg-emerald-700",
+      borderColor: "hover:border-emerald-500",
+      textColor: "hover:text-emerald-600"
+    },
+    { 
+      icon: Calendar, 
+      text: weeklyLessonCount, 
+      color: "bg-violet-600 hover:bg-violet-700",
+      borderColor: "hover:border-violet-500",
+      textColor: "hover:text-violet-600"
+    },
+    { 
+      icon: Play, 
+      text: projectsCount, 
+      color: "bg-amber-600 hover:bg-amber-700",
+      borderColor: "hover:border-amber-500",
+      textColor: "hover:text-amber-600"
+    },
+    { 
+      icon: Award, 
+      text: certificate, 
+      color: "bg-rose-600 hover:bg-rose-700",
+      borderColor: "hover:border-rose-500",
+      textColor: "hover:text-rose-600"
+    },
+    { 
+      icon: User, 
+      text: level, 
+      color: "bg-sky-600 hover:bg-sky-700",
+      borderColor: "hover:border-sky-500",
+      textColor: "hover:text-sky-600"
+    },
+    { 
+      icon: Briefcase, 
+      text: format, 
+      color: "bg-teal-600 hover:bg-teal-700",
+      borderColor: "hover:border-teal-500",
+      textColor: "hover:text-teal-600"
+    },
   ];
 
   return (
@@ -120,20 +162,54 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
               {description}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 text-sm">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8">
               {courseInfo.map((item, index) => (
-                <Badge
+                <div
                   key={index}
-                  variant="secondary"
                   className={cn(
-                    "inline-flex items-center gap-2",
-                    // вместо белых полупрозрачностей используем токены
-                    "bg-muted/60 text-foreground/80 ring-1 ring-border backdrop-blur"
+                    "group relative overflow-hidden rounded-xl border-2 transition-all duration-300",
+                    "bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-sm",
+                    "hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]",
+                    "border-border/50",
+                    "p-3 sm:p-4",
+                    item.borderColor,
+                    item.textColor
                   )}
                 >
-                  <item.icon className="h-4 w-4 text-foreground/70" aria-hidden="true" />
-                  {item.text}
-                </Badge>
+                  {/* Gradient overlay on hover */}
+                  <div
+                    className={cn(
+                      "absolute inset-0 opacity-0 transition-opacity duration-300",
+                      "bg-gradient-to-br group-hover:opacity-5"
+                    )}
+                  />
+                  
+                  <div className="relative z-10 flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
+                    <div className={cn(
+                      "flex items-center justify-center rounded-md transition-all duration-300",
+                      "group-hover:scale-110",
+                      "h-8 w-8 sm:h-10 sm:w-10",
+                      // На мобильных - цветной фон, на десктопе - прозрачный с hover
+                      "bg-current/10 border-2 border-current/20",
+                      "sm:bg-transparent sm:border-muted-foreground/30",
+                      "sm:group-hover:border-current sm:group-hover:bg-current/5"
+                    )}>
+                      <item.icon className={cn(
+                        "h-4 w-4 sm:h-5 sm:w-5 transition-colors duration-300",
+                        // На мобильных - цветные иконки, на десктопе - серые с цветным hover
+                        "text-current",
+                        "sm:text-muted-foreground sm:group-hover:text-current"
+                      )} aria-hidden="true" />
+                    </div>
+                    <span className={cn(
+                      "font-medium transition-colors duration-300",
+                      "text-foreground",
+                      "text-xs sm:text-sm leading-tight"
+                    )}>
+                      {item.text}
+                    </span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
