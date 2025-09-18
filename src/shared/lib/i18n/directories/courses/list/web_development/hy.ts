@@ -21,6 +21,7 @@ export const web_development: CourseDict = {
     formatLabel: "Ֆորմատ",
   },
     projects: {
+    display: false,
     subtitle: "ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ",
     titlePart1: "Դասընթացավարի",
     titlePart2: "Աշխատանքները",

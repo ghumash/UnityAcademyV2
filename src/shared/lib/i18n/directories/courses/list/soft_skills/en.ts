@@ -21,6 +21,7 @@ export const soft_skills: CourseDict = {
     formatLabel: "Format",
   },
     projects: {
+    display: false,
     subtitle: "CREATE YOUR UNIQUE STYLE",
     titlePart1: "Instructor's",
     titlePart2: "Works",

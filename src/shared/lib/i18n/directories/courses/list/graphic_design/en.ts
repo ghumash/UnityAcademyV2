@@ -21,6 +21,7 @@ export const graphic_design: CourseDict = {
     formatLabel: "Format",
   },
   projects: {
+    display: true,
     subtitle: "CREATE YOUR UNIQUE STYLE",
     titlePart1: "Instructor's",
     titlePart2: "Works",

@@ -53,6 +53,7 @@ export type CourseDict = {
     formatLabel: string;
   };
   projects: {
+    display: boolean;
     subtitle: string;
     titlePart1: string;
     titlePart2: string;

@@ -21,6 +21,7 @@ export const web_development: CourseDict = {
     formatLabel: "Format",
   },
     projects: {
+    display: false,
     subtitle: "CREATE YOUR UNIQUE STYLE",
     titlePart1: "Instructor's",
     titlePart2: "Works",

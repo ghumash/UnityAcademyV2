@@ -21,6 +21,7 @@ export const scratch: CourseDict = {
     formatLabel: "Формат",
   },
     projects: {
+    display: false,
     subtitle: "СОЗДАЙ СВОЙ УНИКАЛЬНЫЙ СТИЛЬ",
     titlePart1: "Работы",
     titlePart2: "Преподавателя",

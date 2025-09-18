@@ -187,6 +187,7 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
 
   // Получаем проекты из переводов
   const projects = t(`courses.list.${slug}.projects`) as {
+    display: boolean;
     subtitle: string;
     titlePart1: string;
     titlePart2: string;

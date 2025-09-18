@@ -51,6 +51,14 @@ const normalizePath = (path: string): string => {
 const isMatch = (current: string, itemUrl: string): boolean => {
   const base = normalizePath(itemUrl);
   if (base === "/") return current === "/";
+  
+  // Специальная логика для страниц курсов:
+  // /courses - активна только на точной странице /courses
+  // /courses/[slug] - кнопка /courses должна быть доступна (не активна)
+  if (base === "/courses") {
+    return current === "/courses";
+  }
+  
   // точное совпадение или начало нового сегмента (исключаем ложные срабатывания вроде /faq2)
   return current === base || current.startsWith(`${base}/`);
 };
