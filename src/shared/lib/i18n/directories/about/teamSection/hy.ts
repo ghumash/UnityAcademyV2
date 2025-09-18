@@ -7,15 +7,15 @@ export const teamSection: TeamSectionDict = {
     {
       name: "Տիգրան Ղումաշյան",
       role: "Հիմնադիր և գլխավոր տնօրեն",
-      avatarUrl: "https://images.unsplash.com/photo-1544006659-f0b21884ce1d?w=256&h=256&fit=crop",
+      avatarUrl: "/images/users/tigran.png",
       socials: {
-        github: "https://github.com/example",
+        github: "https://github.com/ghumash",
       },
     },
     {
       name: "Սիրանուշ Հակոբյան",
       role: "Բովանդակության մենեջեր",
-      avatarUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=256&h=256&fit=crop",
+      avatarUrl: "/images/users/siranush.png",
       socials: {
         instagram: "https://instagram.com/sir_hakobyan_",
       },
@@ -23,7 +23,7 @@ export const teamSection: TeamSectionDict = {
     {
       name: "Մանե Հովսեփյան",
       role: "Գրաֆիկական դիզայնի դասախոս",
-      avatarUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=256&h=256&fit=crop",
+      avatarUrl: "/images/users/mane.png",
       socials: {
         instagram: "https://instagram.com/",
       },
@@ -31,7 +31,7 @@ export const teamSection: TeamSectionDict = {
     {
       name: "Անի Թամարյան",
       role: "Մանկական ծրագրավորման դասախոս",
-      avatarUrl: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=256&h=256&fit=crop",
+      avatarUrl: "/images/users/ani.png",
       socials: {
         instagram: "https://instagram.com/",
       },
@@ -39,7 +39,7 @@ export const teamSection: TeamSectionDict = {
     {
       name: "Վաղարշակ Գասպարյան",
       role: "JavaScript դասախոս",
-      avatarUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=256&h=256&fit=crop",
+      avatarUrl: "/images/users/vagharshak.png",
       socials: {
         instagram: "https://instagram.com/",
       },

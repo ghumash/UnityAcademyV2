@@ -30,7 +30,7 @@ export default function PersonCard({
     <Card className="overflow-hidden">
       <CardContent className="flex items-center gap-4 pt-6">
         <Avatar className="size-14">
-          {avatarUrl ? <AvatarImage src={avatarUrl} alt={name} /> : null}
+          {avatarUrl ? <AvatarImage className="object-cover" src={avatarUrl} alt={name} /> : null}
           <AvatarFallback>{initials}</AvatarFallback>
         </Avatar>
         <div>
