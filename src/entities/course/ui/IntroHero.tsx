@@ -57,43 +57,50 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
       icon: Clock, 
       text: duration, 
       iconColor: "text-white",
-      bgColor: "bg-slate-600"
+      bgColor: "bg-slate-600",
+      borderColor: "hover:border-slate-400"
     },
     { 
       icon: BookOpen, 
       text: lessonsCount, 
       iconColor: "text-white",
-      bgColor: "bg-emerald-600"
+      bgColor: "bg-emerald-600",
+      borderColor: "hover:border-emerald-400"
     },
     { 
       icon: Calendar, 
       text: weeklyLessonCount, 
       iconColor: "text-white",
-      bgColor: "bg-violet-600"
+      bgColor: "bg-violet-600",
+      borderColor: "hover:border-violet-400"
     },
     { 
       icon: Play, 
       text: projectsCount, 
       iconColor: "text-white",
-      bgColor: "bg-amber-600"
+      bgColor: "bg-amber-600",
+      borderColor: "hover:border-amber-400"
     },
     { 
       icon: Award, 
       text: certificate, 
       iconColor: "text-white",
-      bgColor: "bg-rose-600"
+      bgColor: "bg-rose-600",
+      borderColor: "hover:border-rose-400"
     },
     { 
       icon: User, 
       text: level, 
       iconColor: "text-white",
-      bgColor: "bg-sky-600"
+      bgColor: "bg-sky-600",
+      borderColor: "hover:border-sky-400"
     },
     { 
       icon: Briefcase, 
       text: format, 
       iconColor: "text-white",
-      bgColor: "bg-teal-600"
+      bgColor: "bg-teal-600",
+      borderColor: "hover:border-teal-400"
     },
   ];
 
@@ -160,10 +167,11 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                 <div
                   key={index}
                   className={cn(
-                    "relative overflow-hidden rounded-xl",
+                    "relative overflow-hidden rounded-xl border-2 border-transparent",
                     "bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-sm",
                     "p-2 sm:p-3",
-                    "hover:-translate-y-1 hover:scale-[1.02] transition-all"
+                    "hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300",
+                    item.borderColor
                   )}
                 >
                   
