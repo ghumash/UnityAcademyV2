@@ -25,9 +25,7 @@ export const android: CourseDict = {
     display: false,
     subtitle: "СОЗДАЙ СВОЙ УНИКАЛЬНЫЙ СТИЛЬ",
     titlePart1: "Работы",
-    titlePart2: "Преподавателя",
-    buttonLabel: "",
-    list: [
+    titlePart2: "Преподавателя",    list: [
       {
         img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
         href: "https://example.com/project1"
