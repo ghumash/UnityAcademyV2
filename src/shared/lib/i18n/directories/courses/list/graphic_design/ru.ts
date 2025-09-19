@@ -32,36 +32,52 @@ export const graphic_design: CourseDict = {
     },
     list: [
       {
-        img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
-        href: "https:...",
+        img: "/images/gallery/graphic_design/diet.png",
+        href: "",
       },
       {
-        img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=800&fit=crop&crop=entropy",
-        href: "https:...",
+        img: "/images/gallery/graphic_design/salori.png",
+        href: "",
       },
       {
-        img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
-        href: "https:...",
+        img: "/images/gallery/graphic_design/nori.png",
+        href: "",
       },
       {
-        img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
-        href: "https:...",
+        img: "/images/gallery/graphic_design/wine.png",
+        href: "",
       },
       {
-        img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
-        href: "https:...",
+        img: "/images/gallery/graphic_design/siroon.png",
+        href: "",
       },
       {
-        img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
-        href: "https:...",
+        img: "/images/gallery/graphic_design/lara.png",
+        href: "",
       },
       {
-        img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
-        href: "https:...",
+        img: "/images/gallery/graphic_design/riverside.png",
+        href: "",
       },
       {
-        img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
-        href: "https:...",
+        img: "/images/gallery/graphic_design/profzone.png",
+        href: "",
+      },
+      {
+        img: "/images/gallery/graphic_design/morisa.png",
+        href: "",
+      },
+      {
+        img: "/images/gallery/graphic_design/luce.png",
+        href: "",
+      },
+      {
+        img: "/images/gallery/graphic_design/alice.png",
+        href: "",
+      },
+      {
+        img: "/images/gallery/graphic_design/magicall.png",
+        href: "",
       },
     ],
   },
