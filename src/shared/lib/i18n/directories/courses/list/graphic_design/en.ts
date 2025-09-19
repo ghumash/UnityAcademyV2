@@ -26,7 +26,10 @@ export const graphic_design: CourseDict = {
     subtitle: "CREATE YOUR UNIQUE STYLE",
     titlePart1: "Instructor's",
     titlePart2: "Works",
-    buttonLabel: "",
+    button: {
+      label: "View More",
+      href: "https://www.instagram.com/montserrat.ads"
+    },
     list: [
       {
         img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
@@ -69,7 +72,7 @@ export const graphic_design: CourseDict = {
     avatarUrl: "/images/users/mane.png",
     experience: {
       senior: {
-        title: "Senior Graphic Designer",
+        title: "Graphic Designer",
         company: "Digitain",
         period: "2019 - present",
         summary:

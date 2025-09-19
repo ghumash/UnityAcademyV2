@@ -58,7 +58,10 @@ export type CourseDict = {
     subtitle: string;
     titlePart1: string;
     titlePart2: string;
-    buttonLabel: string;
+    button?: {
+      label: string;
+      href: string;
+    };
     list: Array<{
       img: string;
       href?: string;

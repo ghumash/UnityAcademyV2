@@ -15,18 +15,6 @@ import {
 } from "@/shared/ui/dialog";
 import { memo } from "react";
 
-/** Можно заменить на свой список; поддерживается 1–10 элементов */
-const PHOTOS = [
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop&crop=faces",
-  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=800&fit=crop&crop=entropy",
-  "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
-  "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
-  "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
-  "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
-  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
-  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=800&fit=crop&crop=entropy",
-];
-
 type Direction = "left" | "right";
 
 type ProjectConfig = {
@@ -34,7 +22,10 @@ type ProjectConfig = {
   subtitle: string;
   titlePart1: string;
   titlePart2: string;
-  buttonLabel: string;
+  button?: {
+    label: string;
+    href: string;
+  };
   list: Array<{
     img: string;
     href?: string;
@@ -49,7 +40,7 @@ export const PhotoGallery = memo(
     className,
   }: {
     animationDelay?: number;
-    /** Необязательно: свой массив ссылок (1–10). Если не задан — используются дефолтные */
+    /** Необязательно: свой массив ссылок. Если не задан — используются дефолтные */
     images?: string[];
     /** Конфигурация проектов с изображениями и ссылками */
     config?: ProjectConfig;
@@ -59,13 +50,10 @@ export const PhotoGallery = memo(
 
     if (config?.display === false) return null;
 
-    // Приоритет: config > images > PHOTOS
-    const list = config?.list?.length
-      ? config.list.map((item) => item.img).slice(0, 10)
-      : (images?.length ? images : PHOTOS).slice(0, 10);
+    const list = config?.list?.map((item) => item.img) || [];
 
     // Сохраняем конфигурацию проектов для ссылок
-    const projectsConfig = config?.list?.slice(0, 10) || [];
+    const projectsConfig = config?.list || [];
 
     const containerVariants: Variants = {
       hidden: { opacity: 1 },
@@ -220,10 +208,16 @@ export const PhotoGallery = memo(
             })}
           </motion.ul>
 
-          {!!config?.buttonLabel.length && (
+          {config?.button?.label && config?.button?.href && (
             <div className="flex w-full justify-center">
-              <Button asChild aria-label={config?.buttonLabel}>
-                <Link href="/stories">{config?.buttonLabel}</Link>
+              <Button asChild aria-label={config.button.label}>
+                <Link 
+                  href={config.button.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {config.button.label}
+                </Link>
               </Button>
             </div>
           )}
