@@ -34,6 +34,7 @@ type IntroHeroConfig = {
   projectsCount: string;
   certificate: string;
   theme: Theme;
+  slug: string;
   discountTimer: {
     title: string;
     subtitle: string;
@@ -61,6 +62,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
     projectsCount,
     certificate,
     theme,
+    slug,
     discountTimer,
   } = config;
 
@@ -239,7 +241,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                 
                 {/* Таймер скидки */}
                 <CountdownTimer
-                  storageKey={`course-discount-${theme}`}
+                  storageKey={`course-discount-${slug}`}
                   title={discountTimer.title}
                   subtitle={discountTimer.subtitle}
                   durationDays={3}

@@ -7,11 +7,11 @@ export const countdown = {
     days: "օր",
     hours: "ժամ", 
     minutes: "րոպե",
-    seconds: "վայրկյան",
+    seconds: "վրկ",
     day: "օր",
     hour: "ժամ",
     minute: "րոպե", 
-    second: "վայրկյան"
+    second: "վրկ"
   },
   messages: {
     almostExpired: "Գրեթե ավարտվել է:",

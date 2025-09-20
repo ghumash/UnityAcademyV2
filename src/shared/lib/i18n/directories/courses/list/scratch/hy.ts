@@ -21,7 +21,7 @@ export const scratch: CourseDict = {
     theme: "orange",
     formatLabel: "Ֆորմատ",
     discountTimer: {
-      title: "Զեղչը գործում է",
+      title: "Զեղչը գործում է՝",
       subtitle: "Շտապիր գրանցվել:",
     },
   },

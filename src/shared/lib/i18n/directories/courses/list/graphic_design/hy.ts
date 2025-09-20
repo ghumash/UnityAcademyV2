@@ -21,7 +21,7 @@ export const graphic_design: CourseDict = {
     theme: "rose",
     formatLabel: "Ֆորմատ",
     discountTimer: {
-      title: "Զեղչը գործում է",
+      title: "Զեղչը գործում է՝",
       subtitle: "Շտապիր գրանցվել:",
     },
   },

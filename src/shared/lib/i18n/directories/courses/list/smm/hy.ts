@@ -21,7 +21,7 @@ export const smm: CourseDict = {
     theme: "cyan",
     formatLabel: "Ֆորմատ",
     discountTimer: {
-      title: "Զեղչը գործում է",
+      title: "Զեղչը գործում է՝",
       subtitle: "Շտապիր գրանցվել:",
     },
   },
