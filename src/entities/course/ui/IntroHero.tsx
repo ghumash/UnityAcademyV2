@@ -244,8 +244,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                   subtitle={discountTimer.subtitle}
                   durationDays={3}
                   size="sm"
-                  variant="card"
-                  colorScheme="forest"
+                  colorScheme="yellow"
                   className="mt-3"
                 />
               </CardHeader>

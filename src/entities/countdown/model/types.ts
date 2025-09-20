@@ -5,7 +5,7 @@ export interface CountdownTimerProps {
   subtitle?: string;
   size?: "sm" | "md" | "lg";
   variant?: "default" | "compact" | "card" | "premium";
-  colorScheme?: "gradient" | "neon" | "sunset" | "ocean" | "forest";
+  colorScheme?: "gradient" | "neon" | "sunset" | "ocean" | "forest" | "yellow";
   onExpire?: () => void;
   className?: string;
 }

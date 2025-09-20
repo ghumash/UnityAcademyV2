@@ -80,7 +80,7 @@ import { CountdownTimer } from '@/shared/ui/custom/CoutdownTimer';
 | `subtitle` | `string` | - | Подзаголовок |
 | `size` | `"sm" \| "md" \| "lg"` | `"md"` | Размер компонента |
 | `variant` | `"compact" \| "card" \| "premium"` | `"card"` | Вариант отображения |
-| `colorScheme` | `"gradient" \| "neon" \| "sunset" \| "ocean" \| "forest"` | `"gradient"` | Цветовая схема |
+| `colorScheme` | `"gradient" \| "neon" \| "sunset" \| "ocean" \| "forest" \| "yellow"` | `"gradient"` | Цветовая схема |
 | `onExpire` | `() => void` | - | Callback при истечении времени |
 | `className` | `string` | - | Дополнительные CSS классы |
 
@@ -91,6 +91,7 @@ import { CountdownTimer } from '@/shared/ui/custom/CoutdownTimer';
 - **sunset** - теплые оранжево-красные тона
 - **ocean** - морские сине-зеленые цвета
 - **forest** - природные зеленые оттенки
+- **yellow** - солнечные желто-оранжевые тона
 
 ## Размеры
 

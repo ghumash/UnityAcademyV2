@@ -30,7 +30,7 @@ export const sizeClasses: Record<"sm" | "md" | "lg", SizeConfig> = {
   },
 };
 
-export const colorSchemes: Record<"gradient" | "neon" | "sunset" | "ocean" | "forest", ColorScheme> = {
+export const colorSchemes: Record<"gradient" | "neon" | "sunset" | "ocean" | "forest" | "yellow", ColorScheme> = {
   gradient: {
     gradient: "from-violet-500/30 via-fuchsia-500/20 to-pink-500/30",
     border: "border-violet-500/50",
@@ -85,5 +85,16 @@ export const colorSchemes: Record<"gradient" | "neon" | "sunset" | "ocean" | "fo
     unitBg: "bg-gradient-to-br from-green-100/80 to-emerald-100/80 dark:from-green-900/60 dark:to-emerald-900/60",
     unitBorder: "border-green-300/60 dark:border-green-700/60",
     pulseColor: "bg-green-400",
+  },
+  yellow: {
+    gradient: "from-yellow-400/30 via-amber-500/20 to-orange-500/30",
+    border: "border-yellow-400/60",
+    glow: "shadow-yellow-400/40 shadow-2xl",
+    text: "text-yellow-600 dark:text-yellow-400",
+    accent: "text-amber-600 dark:text-amber-300",
+    bg: "bg-gradient-to-br from-yellow-50/90 via-amber-50/80 to-orange-50/90 dark:from-yellow-950/40 dark:via-amber-950/30 dark:to-orange-950/40",
+    unitBg: "bg-gradient-to-br from-yellow-100/80 to-amber-100/80 dark:from-yellow-900/60 dark:to-amber-900/60",
+    unitBorder: "border-yellow-300/60 dark:border-yellow-700/60",
+    pulseColor: "bg-yellow-400",
   },
 };
