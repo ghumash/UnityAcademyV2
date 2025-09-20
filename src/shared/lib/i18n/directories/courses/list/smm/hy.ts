@@ -20,6 +20,10 @@ export const smm: CourseDict = {
     certificate: "Սերտիֆիկատ",
     theme: "cyan",
     formatLabel: "Ֆորմատ",
+    discountTimer: {
+      title: "Զեղչը գործում է",
+      subtitle: "Շտապիր գրանցվել:",
+    },
   },
     projects: {
     display: false,

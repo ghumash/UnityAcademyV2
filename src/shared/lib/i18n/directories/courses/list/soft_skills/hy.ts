@@ -20,6 +20,10 @@ export const soft_skills: CourseDict = {
     certificate: "Սերտիֆիկատ",
     theme: "pink",
     formatLabel: "Ֆորմատ",
+    discountTimer: {
+      title: "Զեղչը գործում է",
+      subtitle: "Շտապիր գրանցվել:",
+    },
   },
     projects: {
     display: false,

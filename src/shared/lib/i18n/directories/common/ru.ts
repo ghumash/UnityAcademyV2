@@ -4,6 +4,7 @@ import { navigation } from "./navigation/ru";
 import { footer } from "./footer/ru";
 import { forms } from "./forms/ru";
 import { seo } from "./seo/ru";
+import { countdown } from "./countdown/ru";
 
 export const common: CommonDict = {
   errors,
@@ -11,4 +12,5 @@ export const common: CommonDict = {
   footer,
   forms,
   seo,
+  countdown,
 };

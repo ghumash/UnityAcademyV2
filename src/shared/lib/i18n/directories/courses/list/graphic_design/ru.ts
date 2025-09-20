@@ -20,6 +20,10 @@ export const graphic_design: CourseDict = {
     certificate: "Сертификат",
     theme: "rose",
     formatLabel: "Формат",
+    discountTimer: {
+      title: "Скидка действует",
+      subtitle: "Успей записаться!",
+    },
   },
   projects: {
     display: true,

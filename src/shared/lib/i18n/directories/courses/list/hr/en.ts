@@ -20,6 +20,10 @@ export const hr: CourseDict = {
     certificate: "Certificate",
     theme: "amber",
     formatLabel: "Format",
+    discountTimer: {
+      title: "Discount Active",
+      subtitle: "Hurry up to register!",
+    },
   },
     projects: {
     display: false,

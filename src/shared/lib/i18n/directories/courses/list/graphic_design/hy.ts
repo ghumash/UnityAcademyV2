@@ -20,6 +20,10 @@ export const graphic_design: CourseDict = {
     certificate: "Սերտիֆիկատ",
     theme: "rose",
     formatLabel: "Ֆորմատ",
+    discountTimer: {
+      title: "Զեղչը գործում է",
+      subtitle: "Շտապիր գրանցվել:",
+    },
   },
   projects: {
     display: true,

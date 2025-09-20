@@ -20,6 +20,10 @@ export const ui_ux: CourseDict = {
     certificate: "Սերտիֆիկատ",
     theme: "fuchsia",
     formatLabel: "Ֆորմատ",
+    discountTimer: {
+      title: "Զեղչը գործում է",
+      subtitle: "Շտապիր գրանցվել:",
+    },
   },
     projects: {
     display: false,

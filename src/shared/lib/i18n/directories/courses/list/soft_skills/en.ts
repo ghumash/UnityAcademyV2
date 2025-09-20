@@ -20,6 +20,10 @@ export const soft_skills: CourseDict = {
     certificate: "Certificate",
     theme: "pink",
     formatLabel: "Format",
+    discountTimer: {
+      title: "Discount Active",
+      subtitle: "Hurry up to register!",
+    },
   },
     projects: {
     display: false,

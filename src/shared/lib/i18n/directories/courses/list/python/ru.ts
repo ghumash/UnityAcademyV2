@@ -20,6 +20,10 @@ export const python: CourseDict = {
     certificate: "Сертификат",
     theme: "lime",
     formatLabel: "Формат",
+    discountTimer: {
+      title: "Скидка действует",
+      subtitle: "Успей записаться!",
+    },
   },
     projects: {
     display: false,

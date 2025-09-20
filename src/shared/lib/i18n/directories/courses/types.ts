@@ -52,6 +52,10 @@ export type CourseDict = {
     certificate: string;
     theme: Theme;
     formatLabel: string;
+    discountTimer: {
+      title: string;
+      subtitle: string;
+    };
   };
   projects: {
     display: boolean;

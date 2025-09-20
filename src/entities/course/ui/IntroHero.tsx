@@ -1,6 +1,7 @@
 "use client";
 
 import { Section, Container } from "@/shared/ui/custom";
+import { CountdownTimer } from "@/entities/countdown";
 import { AppAutoBreadcrumb } from "@/widgets";
 import { Badge, Button, Card, CardContent, CardHeader } from "@/shared/ui";
 import { TextGenerateEffect } from "@/shared/ui/lib";
@@ -33,6 +34,10 @@ type IntroHeroConfig = {
   projectsCount: string;
   certificate: string;
   theme: Theme;
+  discountTimer: {
+    title: string;
+    subtitle: string;
+  };
 };
 
 type IntroHeroProps = {
@@ -56,6 +61,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
     projectsCount,
     certificate,
     theme,
+    discountTimer,
   } = config;
 
   const themeStyles = THEMES[theme];
@@ -230,6 +236,18 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                 <Badge variant="destructive" className="w-fit">
                   {sale}
                 </Badge>
+                
+                {/* Таймер скидки */}
+                <CountdownTimer
+                  storageKey={`course-discount-${theme}`}
+                  title={discountTimer.title}
+                  subtitle={discountTimer.subtitle}
+                  durationDays={3}
+                  size="sm"
+                  variant="card"
+                  colorScheme="forest"
+                  className="mt-3"
+                />
               </CardHeader>
 
               <CardContent className="space-y-4">

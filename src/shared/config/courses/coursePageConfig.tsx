@@ -39,6 +39,10 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
     ),
     certificate: t(`courses.list.${slug}.courseHeroSection.certificate`),
     theme: t(`courses.list.${slug}.courseHeroSection.theme`) as Theme,
+    discountTimer: {
+      title: t(`courses.list.${slug}.courseHeroSection.discountTimer.title`),
+      subtitle: t(`courses.list.${slug}.courseHeroSection.discountTimer.subtitle`),
+    },
   } as const;
 
   const items: GridItemData[] = [

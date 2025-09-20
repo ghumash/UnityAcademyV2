@@ -20,6 +20,10 @@ export const scratch: CourseDict = {
     certificate: "Certificate",
     theme: "orange",
     formatLabel: "Format",
+    discountTimer: {
+      title: "Discount Active",
+      subtitle: "Hurry up to register!",
+    },
   },
     projects: {
     display: false,

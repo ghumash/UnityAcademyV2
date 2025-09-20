@@ -20,6 +20,10 @@ export const android: CourseDict = {
     certificate: "Սերտիֆիկատ",
     theme: "emerald",
     formatLabel: "Ֆորմատ",
+    discountTimer: {
+      title: "Զեղչը գործում է",
+      subtitle: "Շտապիր գրանցվել:",
+    },
   },
   projects: {
     display: false,
