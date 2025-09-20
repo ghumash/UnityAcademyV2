@@ -244,7 +244,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                   storageKey={`course-discount-${slug}`}
                   title={discountTimer.title}
                   subtitle={discountTimer.subtitle}
-                  durationDays={3}
+                  durationDays={2}
                   size="sm"
                   colorScheme="yellow"
                   className="mt-3"
