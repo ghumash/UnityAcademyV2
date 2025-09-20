@@ -4,7 +4,7 @@ export interface CountdownTimerProps {
   title?: string;
   subtitle?: string;
   size?: "sm" | "md" | "lg";
-  variant?: "default" | "compact" | "card" | "premium";
+  variant?: "compact" | "card";
   colorScheme?: "gradient" | "neon" | "sunset" | "ocean" | "forest" | "yellow";
   onExpire?: () => void;
   className?: string;
@@ -21,15 +21,12 @@ export interface SizeConfig {
 }
 
 export interface ColorScheme {
-  gradient: string;
   border: string;
-  glow: string;
   text: string;
   accent: string;
   bg: string;
   unitBg: string;
   unitBorder: string;
-  pulseColor: string;
 }
 
 export interface TimerData {
@@ -51,31 +48,14 @@ export interface TimerHeaderProps {
   subtitle?: string;
   colors: ColorScheme;
   sizes: SizeConfig;
-  variant?: "compact" | "card" | "premium";
-  isUrgent?: boolean;
-  isAlmostExpired?: boolean;
-  dict?: any;
 }
 
 export interface CompactTimerProps {
   timer: TimerData;
   colors: ColorScheme;
-  sizes: SizeConfig;
   title: string;
   dict: any;
   className?: string;
-}
-
-export interface AnimatedBackgroundProps {
-  colors: ColorScheme;
-  variant?: "simple" | "pulsing";
-}
-
-export interface ProgressBarProps {
-  timer: TimerData;
-  colors: ColorScheme;
-  durationDays: number;
-  variant?: "simple" | "premium";
 }
 
 export interface CardTimerProps {
@@ -84,23 +64,6 @@ export interface CardTimerProps {
   sizes: SizeConfig;
   title: string;
   subtitle?: string;
-  durationDays: number;
-  dict: any;
-  className?: string;
-}
-
-export interface AnimatedParticlesProps {
-  colors: ColorScheme;
-  count?: number;
-}
-
-export interface PremiumTimerProps {
-  timer: TimerData;
-  colors: ColorScheme;
-  sizes: SizeConfig;
-  title: string;
-  subtitle?: string;
-  durationDays: number;
   dict: any;
   className?: string;
 }
@@ -108,10 +71,7 @@ export interface PremiumTimerProps {
 export interface TimeUnitProps {
   value: number;
   unit: TimeUnit;
-  timer: TimerData;
   colors: ColorScheme;
   sizes: SizeConfig;
   dict: any;
-  variant?: "simple" | "premium";
-  delay?: number;
 }

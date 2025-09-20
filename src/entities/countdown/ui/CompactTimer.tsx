@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
 import { cn } from "@/shared/lib/utils";
-import { TimerHeader } from './TimerHeader';
+import { Timer } from "lucide-react";
 import type { CompactTimerProps } from '../model/types';
 import { getTimeUnitLabel } from '../lib/utils';
 
@@ -10,30 +9,21 @@ import { getTimeUnitLabel } from '../lib/utils';
 export const CompactTimer = ({ 
   timer, 
   colors, 
-  sizes, 
   title, 
   dict, 
   className 
 }: CompactTimerProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className={cn(
-        "inline-flex items-center gap-2 rounded-lg border px-3 py-2",
-        "bg-gradient-to-r backdrop-blur-sm",
-        colors.gradient,
-        colors.border,
-        colors.bg,
-        className
-      )}
-    >
-      <TimerHeader
-        title={title}
-        colors={colors}
-        sizes={sizes}
-        variant="compact"
-      />
+    <div className={cn(
+      "inline-flex items-center gap-2 rounded-lg border px-3 py-2 bg-gradient-to-r",
+      colors.border,
+      colors.bg,
+      className
+    )}>
+      <div className="flex items-center gap-1">
+        <Timer className="h-4 w-4" />
+        <span className="text-sm font-semibold">{title}</span>
+      </div>
       
       <div className="flex items-center gap-2 text-sm font-semibold">
         {timer.days > 0 && (
@@ -47,6 +37,6 @@ export const CompactTimer = ({
           {String(timer.seconds).padStart(2, "0")}
         </span>
       </div>
-    </motion.div>
+    </div>
   );
 };

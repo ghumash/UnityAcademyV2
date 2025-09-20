@@ -3,7 +3,6 @@
 import { useCountdownTimer } from "@/shared/lib/hooks/useCountdownTimer";
 import { useDictionary } from "@/shared/lib/i18n/useDictionary";
 import { CompactTimer } from './CompactTimer';
-import { PremiumTimer } from './PremiumTimer';
 import { CardTimer } from './CardTimer';
 import { sizeClasses, colorSchemes } from '../model/config';
 import type { CountdownTimerProps } from '../model/types';
@@ -30,12 +29,8 @@ export const CountdownTimer = ({
     return null;
   }
 
-  // Динамические тексты в зависимости от оставшегося времени
-  const isUrgent = timer.days === 0 && timer.hours < 6;
-  const isAlmostExpired = timer.days === 0 && timer.hours === 0 && timer.minutes < 30;
-  
-  const dynamicTitle = title || (isUrgent ? dict.common.countdown.urgentTitle : dict.common.countdown.title);
-  const dynamicSubtitle = subtitle || (isUrgent ? dict.common.countdown.urgentSubtitle : dict.common.countdown.subtitle);
+  const dynamicTitle = title || dict.common.countdown.title;
+  const dynamicSubtitle = subtitle || dict.common.countdown.subtitle;
 
   const sizes = sizeClasses[size];
   const colors = colorSchemes[colorScheme];
@@ -46,7 +41,6 @@ export const CountdownTimer = ({
       <CompactTimer
         timer={timer}
         colors={colors}
-        sizes={sizes}
         title={dynamicTitle}
         dict={dict}
         className={className}
@@ -54,21 +48,6 @@ export const CountdownTimer = ({
     );
   }
 
-  // Premium вариант с максимальными эффектами
-  if (variant === "premium") {
-    return (
-      <PremiumTimer
-        timer={timer}
-        colors={colors}
-        sizes={sizes}
-        title={dynamicTitle}
-        subtitle={dynamicSubtitle}
-        durationDays={durationDays}
-        dict={dict}
-        className={className}
-      />
-    );
-  }
 
   // Основной вариант (card)
   return (
@@ -78,7 +57,6 @@ export const CountdownTimer = ({
       sizes={sizes}
       title={dynamicTitle}
       subtitle={dynamicSubtitle}
-      durationDays={durationDays}
       dict={dict}
       className={className}
     />
