@@ -18,8 +18,8 @@ import {
   GlowingGrid,
   IntroHero,
   PhotoGallery,
-  UserCard,
 } from "@/widgets";
+import { InstructorCard } from "@/entities/instructor";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";
 import { ScrollToHash } from "@/shared/lib/scroll-to-hash";
@@ -85,7 +85,7 @@ export default async function CoursePage({
             topics={coursePageConfig.courseTopics.topics}
           />
           {coursePageConfig.instructor.display !== false && (
-            <UserCard data={coursePageConfig.instructor} />
+            <InstructorCard data={coursePageConfig.instructor} />
           )}
         </Container>
       </Section>

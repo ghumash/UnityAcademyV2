@@ -25,7 +25,7 @@ export default function LoadingCourse() {
         </Container>
       </Section>
 
-      {/* CourseTopics and UserCard Section Skeleton */}
+      {/* CourseTopics and InstructorCard Section Skeleton */}
       <Section>
         <Container className="flex flex-row gap-8">
           {/* CourseTopics Skeleton */}
@@ -41,7 +41,7 @@ export default function LoadingCourse() {
             </div>
           </div>
 
-          {/* UserCard Skeleton */}
+          {/* InstructorCard Skeleton */}
           <div className="w-80 rounded-lg border p-6 space-y-4">
             <div className="text-center space-y-4">
               <Skeleton className="h-24 w-24 rounded-full mx-auto" />
