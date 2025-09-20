@@ -128,7 +128,7 @@ export function buildEducationalOrganizationJsonLd() {
         {
           "@type": "Course",
           name: "Web Development",
-          description: "HTML, CSS, JavaScript course",
+          description: "HTML, CSS, JavaScript, React course",
           provider: {
             "@id": `${siteConfig.url}#educational-organization`,
           },
@@ -168,10 +168,20 @@ export function createMetadata(input?: {
   canonical?: string; // абсолютный URL
   alternatesPath?: string; // относительный путь без локали, например "/contacts"
   locale?: Locale; // текущая локаль
+  keywords?: string[];
+  ogImage?: string;
+  ogType?: "website" | "article" | "profile";
+  publishedTime?: string;
+  modifiedTime?: string;
+  authors?: string[];
+  section?: string;
+  tags?: string[];
 }): Metadata {
   const title =
     typeof input?.title === "string" ? input.title : siteConfig.name;
   const description = input?.description ?? siteConfig.description;
+  const ogImage = input?.ogImage ?? "/images/logos/logo.svg";
+  const ogType = input?.ogType ?? "website";
 
   // alternates.languages
   const languages = input?.alternatesPath
@@ -207,26 +217,51 @@ export function createMetadata(input?: {
       canonical: input?.canonical ?? absoluteUrl("/"),
       languages,
     },
+    keywords: input?.keywords,
+    authors: input?.authors?.map(name => ({ name })),
     openGraph: {
       title,
       description,
       url: input?.canonical ?? absoluteUrl("/"),
       siteName: siteConfig.name,
-      type: "website",
+      type: ogType,
       images: [
         {
-          url: "/images/logos/logo.svg",
+          url: ogImage,
           width: 1200,
           height: 630,
-          alt: `${siteConfig.name} Logo`,
+          alt: `${siteConfig.name} - ${title}`,
         },
       ],
+      locale: input?.locale ?? "hy",
+      ...(input?.publishedTime && { publishedTime: input.publishedTime }),
+      ...(input?.modifiedTime && { modifiedTime: input.modifiedTime }),
+      ...(input?.section && { section: input.section }),
+      ...(input?.tags && { tags: input.tags }),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: "/images/logos/logo.svg",
+      images: ogImage,
+      // creator: siteConfig.socials.twitter ? `@${siteConfig.socials.twitter.split('/').pop()}` : undefined,
+      // site: siteConfig.socials.twitter ? `@${siteConfig.socials.twitter.split('/').pop()}` : undefined,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    verification: {
+      // Добавьте ваши коды верификации
+      // google: "your-google-verification-code",
+      // yandex: "your-yandex-verification-code",
     },
   };
 }

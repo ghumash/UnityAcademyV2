@@ -2,7 +2,7 @@ import type { CourseDict } from "../../types";
 
 export const web_development: CourseDict = {
   courseHeroSection: {
-    title: "Web Development: HTML, CSS, JavaScript",
+    title: "Web Development: HTML, CSS, JavaScript, React",
     description:
       "Learn modern web development from scratch. Create responsive websites, interactive web applications, and professional portfolios. Perfect for beginners and intermediate specialists.",
     level: "Beginner",

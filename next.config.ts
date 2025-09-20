@@ -53,17 +53,33 @@ const nextConfig: NextConfig = {
       "motion/react",
       "date-fns",
       "lucide-react",
+      "@radix-ui/react-accordion",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-navigation-menu",
+      "@radix-ui/react-scroll-area",
+      "react-hook-form",
+      "zod",
     ],
-  },
-
-  // Turbopack конфигурация
-  turbopack: {
-    rules: {
-      "*.svg": {
-        loaders: ["@svgr/webpack"],
-        as: "*.js",
+    // Оптимизация CSS
+    optimizeCss: true,
+    // Турбо режим для сборки
+    turbo: {
+      rules: {
+        "*.svg": {
+          loaders: ["@svgr/webpack"],
+          as: "*.js",
+        },
       },
     },
+  },
+
+  // Оптимизация производительности
+  onDemandEntries: {
+    // Период в мс для хранения страниц в памяти
+    maxInactiveAge: 25 * 1000,
+    // Количество одновременно компилируемых страниц
+    pagesBufferLength: 2,
   },
 
   // Сжатие и оптимизация
@@ -81,6 +97,11 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 год
+    // Ленивая загрузка по умолчанию
+    loader: "default",
+    // Оптимизация для production
+    dangerouslyAllowSVG: false,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
   // Webpack оптимизации
@@ -106,7 +127,7 @@ const nextConfig: NextConfig = {
               reuseExistingChunk: true,
             },
             icons: {
-              test: /[\\/]node_modules[\\/]@tabler[\\/]icons-react[\\/]/,
+              test: /[\\/]node_modules[\\/](lucide-react|@tabler[\\/]icons-react)[\\/]/,
               name: "icons",
               chunks: "all",
               priority: 15,
@@ -116,6 +137,18 @@ const nextConfig: NextConfig = {
               name: "motion",
               chunks: "all",
               priority: 15,
+            },
+            radix: {
+              test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
+              name: "radix",
+              chunks: "all",
+              priority: 12,
+            },
+            forms: {
+              test: /[\\/]node_modules[\\/](react-hook-form|zod)[\\/]/,
+              name: "forms",
+              chunks: "all",
+              priority: 12,
             },
           },
         },
@@ -148,6 +181,26 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Кэширование шрифтов
+      {
+        source: "/:path*.{woff,woff2,eot,ttf,otf}",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Preload критических ресурсов
+      {
+        source: "/",
+        headers: [
+          {
+            key: "Link",
+            value: "</images/logos/logo.svg>; rel=preload; as=image",
           },
         ],
       },

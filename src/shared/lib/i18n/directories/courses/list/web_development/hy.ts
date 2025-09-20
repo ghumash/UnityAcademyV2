@@ -2,7 +2,7 @@ import type { CourseDict } from "../../types";
 
 export const web_development: CourseDict = {
   courseHeroSection: {
-    title: "Վեբ ծրագրավորում: HTML, CSS, JavaScript",
+    title: "Վեբ ծրագրավորում: HTML, CSS, JavaScript, React",
     description:
       "Սովորիր ժամանակակից վեբ ծրագրավորումը զրոյից։ Ստեղծիր ռեսպոնսիվ կայքեր, ինտերակտիվ վեբ հավելվածներ և պրոֆեսիոնալ պորտֆոլիո։ Կատարյալ է սկսնակների և միջին մակարդակի մասնագետների համար։",
     level: "Սկսնակ",

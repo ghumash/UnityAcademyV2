@@ -6,7 +6,7 @@ export const coursesSection: CoursesSectionDict = {
     {
       title: "Վեբ ծրագրավորում: HTML, CSS, JavaScript, React",
       description:
-        "Սովորի՛ր HTML, CSS, JavaScript ու React՝ ստեղծելու արագ, հուսալի և ադապտիվ կայքեր։",
+        "Սովորի՛ր HTML, CSS, JavaScript և React՝ ստեղծելու արագ, հուսալի և ադապտիվ կայքեր։",
       duration: "6 ամիս",
       level: "Սկսնակ",
       format: "Օֆլայն",
