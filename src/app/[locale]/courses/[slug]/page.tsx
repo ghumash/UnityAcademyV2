@@ -9,13 +9,14 @@ import {
 import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
-import { COURSE_DATA, IntroHero, type CourseKey } from "@/entities/course";
+import { COURSE_DATA, type CourseKey } from "@/entities/course";
 import {
   CallToAction,
   ContentSection,
   CourseTopics,
   CtaBanner,
   GlowingGrid,
+  IntroHero,
   PhotoGallery,
   UserCard,
 } from "@/widgets";
@@ -100,7 +101,7 @@ export default async function CoursePage({
       />
 
       <PhotoGallery config={coursePageConfig.projects} />
-      
+
       <Section id="form">
         <Container>
           <CallToAction

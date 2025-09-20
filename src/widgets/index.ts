@@ -23,3 +23,4 @@ export { CallToAction } from "./CallToAction/CallToAction";
 export { IntroWithDesc } from "./IntroWithDesc/IntroWithDesc";
 export { SettingsDropdown } from "./SettingsDropdown/SettingsDropdown";
 export { PhotoGallery } from "./PhotoGallery/PhotoGallery";
+export { IntroHero } from "./IntroHero/IntroHero";
