@@ -16,7 +16,7 @@ export const graphic_design: CourseDict = {
     originalPrice: "50 000 ֏",
     sale: "20% Զեղչ",
     registerCourseButtonText: "Գրանցվել դասընթացին",
-    registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
+    registerFreeLessonButtonText: "",
     certificate: "Սերտիֆիկատ",
     theme: "rose",
     formatLabel: "Ֆորմատ",

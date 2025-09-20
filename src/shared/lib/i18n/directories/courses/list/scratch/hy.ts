@@ -16,7 +16,7 @@ export const scratch: CourseDict = {
     originalPrice: "50 000 ֏",
     sale: "60% Զեղչ",
     registerCourseButtonText: "Գրանցվել դասընթացին",
-    registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
+    registerFreeLessonButtonText: "",
     certificate: "Սերտիֆիկատ",
     theme: "orange",
     formatLabel: "Ֆորմատ",

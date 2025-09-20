@@ -16,7 +16,7 @@ export const graphic_design: CourseDict = {
     originalPrice: "50 000 ֏",
     sale: "20% OFF",
     registerCourseButtonText: "Enroll in Course",
-    registerFreeLessonButtonText: "Register for Free Lesson",
+    registerFreeLessonButtonText: "",
     certificate: "Certificate",
     theme: "rose",
     formatLabel: "Format",

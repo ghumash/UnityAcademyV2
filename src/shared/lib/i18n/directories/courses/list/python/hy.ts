@@ -16,7 +16,7 @@ export const python: CourseDict = {
     originalPrice: "50 000 ֏",
     sale: "20% Զեղչ",
     registerCourseButtonText: "Գրանցվել դասընթացին",
-    registerFreeLessonButtonText: "Գրանցվել անվճար դասի",
+    registerFreeLessonButtonText: "",
     certificate: "Սերտիֆիկատ",
     theme: "lime",
     formatLabel: "Ֆորմատ",

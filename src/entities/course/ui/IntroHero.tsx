@@ -4,7 +4,15 @@ import { Section, Container } from "@/shared/ui/custom";
 import { AppAutoBreadcrumb } from "@/widgets";
 import { Badge, Button, Card, CardContent, CardHeader } from "@/shared/ui";
 import { TextGenerateEffect } from "@/shared/ui/lib";
-import { Award, BookOpen, Briefcase, Clock, Play, User, Calendar } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  Briefcase,
+  Clock,
+  Play,
+  User,
+  Calendar,
+} from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { THEMES, type Theme } from "@/widgets/Courses";
 import Link from "next/link";
@@ -53,54 +61,54 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
   const themeStyles = THEMES[theme];
 
   const courseInfo = [
-    { 
-      icon: Clock, 
-      text: duration, 
+    {
+      icon: Clock,
+      text: duration,
       iconColor: "text-white",
       bgColor: "bg-slate-600",
-      borderColor: "hover:border-slate-400"
+      borderColor: "hover:border-slate-400",
     },
-    { 
-      icon: BookOpen, 
-      text: lessonsCount, 
+    {
+      icon: BookOpen,
+      text: lessonsCount,
       iconColor: "text-white",
       bgColor: "bg-emerald-600",
-      borderColor: "hover:border-emerald-400"
+      borderColor: "hover:border-emerald-400",
     },
-    { 
-      icon: Calendar, 
-      text: weeklyLessonCount, 
+    {
+      icon: Calendar,
+      text: weeklyLessonCount,
       iconColor: "text-white",
       bgColor: "bg-violet-600",
-      borderColor: "hover:border-violet-400"
+      borderColor: "hover:border-violet-400",
     },
-    { 
-      icon: Play, 
-      text: projectsCount, 
+    {
+      icon: Play,
+      text: projectsCount,
       iconColor: "text-white",
       bgColor: "bg-amber-600",
-      borderColor: "hover:border-amber-400"
+      borderColor: "hover:border-amber-400",
     },
-    { 
-      icon: Award, 
-      text: certificate, 
+    {
+      icon: Award,
+      text: certificate,
       iconColor: "text-white",
       bgColor: "bg-rose-600",
-      borderColor: "hover:border-rose-400"
+      borderColor: "hover:border-rose-400",
     },
-    { 
-      icon: User, 
-      text: level, 
+    {
+      icon: User,
+      text: level,
       iconColor: "text-white",
       bgColor: "bg-sky-600",
-      borderColor: "hover:border-sky-400"
+      borderColor: "hover:border-sky-400",
     },
-    { 
-      icon: Briefcase, 
-      text: format, 
+    {
+      icon: Briefcase,
+      text: format,
       iconColor: "text-white",
       bgColor: "bg-teal-600",
-      borderColor: "hover:border-teal-400"
+      borderColor: "hover:border-teal-400",
     },
   ];
 
@@ -174,21 +182,24 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                     item.borderColor
                   )}
                 >
-                  
                   <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
-                    <div className={cn(
-                      "flex items-center justify-center rounded-md",
-                      "h-6 w-6 sm:h-8 sm:w-8",
-                      item.bgColor
-                    )}>
-                      <item.icon className={cn(
-                        "h-3 w-3 sm:h-4 sm:w-4",
-                        item.iconColor
-                      )} aria-hidden="true" />
+                    <div
+                      className={cn(
+                        "flex items-center justify-center rounded-md",
+                        "h-6 w-6 sm:h-8 sm:w-8",
+                        item.bgColor
+                      )}
+                    >
+                      <item.icon
+                        className={cn("h-3 w-3 sm:h-4 sm:w-4", item.iconColor)}
+                        aria-hidden="true"
+                      />
                     </div>
-                    <span className={cn(
-                      "font-medium text-foreground text-xs leading-tight"
-                    )}>
+                    <span
+                      className={cn(
+                        "font-medium text-foreground text-xs leading-tight"
+                      )}
+                    >
                       {item.text}
                     </span>
                   </div>
@@ -202,10 +213,17 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
             <Card className={cn("bg-card")}>
               <CardHeader>
                 <div className="mb-2 flex items-center gap-3">
-                  <span className={cn("text-3xl font-bold", themeStyles.textColor)}>
+                  <span
+                    className={cn("text-3xl font-bold", themeStyles.textColor)}
+                  >
                     {price}
                   </span>
-                  <span className={cn("text-lg line-through", themeStyles.subTextColor)}>
+                  <span
+                    className={cn(
+                      "text-lg line-through",
+                      themeStyles.subTextColor
+                    )}
+                  >
                     {originalPrice}
                   </span>
                 </div>
@@ -218,10 +236,16 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                 <Button size="lg" className="w-full" asChild>
                   <Link href="#form">{registerCourseButtonText}</Link>
                 </Button>
-
-                <Button variant="outline" size="lg" className="w-full" type="button">
-                  {registerFreeLessonButtonText}
-                </Button>
+                {!!registerFreeLessonButtonText.length && (
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full"
+                    type="button"
+                  >
+                    {registerFreeLessonButtonText}
+                  </Button>
+                )}
               </CardContent>
             </Card>
           </div>

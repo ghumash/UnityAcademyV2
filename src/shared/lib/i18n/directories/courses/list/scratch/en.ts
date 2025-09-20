@@ -16,7 +16,7 @@ export const scratch: CourseDict = {
     originalPrice: "50 000 ֏",
     sale: "60% OFF",
     registerCourseButtonText: "Register for Course",
-    registerFreeLessonButtonText: "Register for Free Lesson",
+    registerFreeLessonButtonText: "",
     certificate: "Certificate",
     theme: "orange",
     formatLabel: "Format",

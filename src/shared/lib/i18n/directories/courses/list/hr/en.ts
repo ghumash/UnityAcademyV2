@@ -16,7 +16,7 @@ export const hr: CourseDict = {
     originalPrice: "50 000 ֏",
     sale: "20% OFF",
     registerCourseButtonText: "Register for Course",
-    registerFreeLessonButtonText: "Register for Free Lesson",
+    registerFreeLessonButtonText: "",
     certificate: "Certificate",
     theme: "amber",
     formatLabel: "Format",

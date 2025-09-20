@@ -35,7 +35,6 @@ type ProjectConfig = {
 export const PhotoGallery = memo(
   ({
     animationDelay = 0.5,
-    images,
     config,
     className,
   }: {

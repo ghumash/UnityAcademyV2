@@ -16,7 +16,7 @@ export const smm: CourseDict = {
     originalPrice: "50 000 ֏",
     sale: "20% Скидка",
     registerCourseButtonText: "Записаться на курс",
-    registerFreeLessonButtonText: "Записаться на бесплатный урок",
+    registerFreeLessonButtonText: "",
     certificate: "Сертификат",
     theme: "cyan",
     formatLabel: "Формат",
