@@ -1,7 +1,6 @@
 "use client";
 
 import { memo } from "react";
-import dynamic from "next/dynamic";
 import { Sparkles } from "lucide-react";
 import { Container, Section } from "@/shared/ui/custom";
 import type { ReactNode } from "react";
@@ -136,7 +135,7 @@ function ItemList({
 }
 
 // Основной компонент
-const ContentSectionComponent = memo(
+export const ContentSection = memo(
   ({
     config,
     className,
@@ -213,9 +212,4 @@ const ContentSectionComponent = memo(
       </Section>
     );
   }
-);
-
-export const ContentSection = dynamic(
-  () => Promise.resolve(ContentSectionComponent),
-  { ssr: false }
 );

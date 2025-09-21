@@ -3,7 +3,6 @@
 import * as React from "react";
 import Image from "next/image";
 import { memo } from "react";
-import dynamic from "next/dynamic";
 import {
   SliderBtnGroup,
   ProgressSlider,
@@ -28,7 +27,7 @@ export interface CarouselProps {
   indicatorPosition?: "bottom" | "overlay";
 }
 
-const CarouselComponent = memo(({
+export const Carousel = memo(({
   config,
   hideFooter = true,
   indicatorVariant = "bars",
@@ -156,8 +155,3 @@ const CarouselComponent = memo(({
     </Section>
   );
 });
-
-export const Carousel = dynamic(() => 
-  Promise.resolve(CarouselComponent), 
-  { ssr: false }
-);

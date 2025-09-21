@@ -2,7 +2,6 @@
 
 import React from "react";
 import { memo, useId } from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { cn } from "@/shared/lib";
 import { Button } from "@/shared/ui";
@@ -52,7 +51,7 @@ function SmartLink({ href, newTab, ...rest }: SmartLinkProps) {
   return <Link href={href} {...rest} />;
 }
 
-const CtaBannerComponent = memo(({
+export const CtaBanner = memo(({
   config,
   className,
 }: CtaBannerProps) => {
@@ -115,8 +114,3 @@ const CtaBannerComponent = memo(({
     </Section>
   );
 });
-
-export const CtaBanner = dynamic(() => 
-  Promise.resolve(CtaBannerComponent), 
-  { ssr: false }
-);

@@ -17,6 +17,7 @@ import {
 import { cn } from "@/shared/lib/utils";
 import { THEMES, type Theme } from "@/widgets/Courses";
 import Link from "next/link";
+import { memo } from "react";
 
 type IntroHeroConfig = {
   title: string;
@@ -45,7 +46,7 @@ type IntroHeroProps = {
   config: IntroHeroConfig;
 };
 
-export const IntroHero = ({ config }: IntroHeroProps) => {
+export const IntroHero = memo(({ config }: IntroHeroProps) => {
   const {
     title,
     description,
@@ -238,7 +239,7 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
                 <Badge variant="destructive" className="w-fit">
                   {sale}
                 </Badge>
-                
+
                 {/* Таймер скидки */}
                 <CountdownTimer
                   storageKey={`course-discount-${slug}`}
@@ -272,4 +273,4 @@ export const IntroHero = ({ config }: IntroHeroProps) => {
       </Container>
     </Section>
   );
-};
+});

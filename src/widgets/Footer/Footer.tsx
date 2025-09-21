@@ -3,7 +3,6 @@
 import React from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { memo } from "react";
-import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import { Container, Section } from "@/shared/ui/custom";
 import Link from "next/link";
@@ -30,7 +29,7 @@ export interface FooterProps {
   description: string;
 }
 
-const FooterComponent = memo(({ sections, copyright, description }: FooterProps) => {
+export const Footer = memo(({ sections, copyright, description }: FooterProps) => {
     return (
       <Section as="footer" role="contentinfo" aria-labelledby="footer-heading">
         <Container>
@@ -111,11 +110,6 @@ const FooterComponent = memo(({ sections, copyright, description }: FooterProps)
       </Section>
     );
 });
-
-export const Footer = dynamic(() => 
-  Promise.resolve(FooterComponent), 
-  { ssr: false }
-);
 
 /** Renders a single footer link with correct component (Link vs <a>) and a11y */
 function FooterItem({ link }: { link: FooterLink }) {

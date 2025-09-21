@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { LazyMotion, domAnimation, m, useReducedMotion } from "motion/react";
 import { cn } from "@/shared/lib";
 import { Button } from "@/shared/ui";
@@ -41,7 +40,7 @@ export interface HeroProps extends SectionProps {
 
 const TRANSITION = { ease: "easeInOut" as const, delay: 0.3, duration: 0.8 };
 
-const HeroComponent = React.memo(({ className, config, ...props }: HeroProps) => {
+export const Hero = React.memo(({ className, config, ...props }: HeroProps) => {
   const {
     title,
     subtitle,
@@ -175,5 +174,3 @@ const HeroComponent = React.memo(({ className, config, ...props }: HeroProps) =>
     </Section>
   );
 });
-
-export const Hero = dynamic(() => Promise.resolve(HeroComponent), { ssr: false });

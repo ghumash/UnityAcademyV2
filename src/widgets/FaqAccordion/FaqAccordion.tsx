@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "motion/react";
 import * as Accordion from "@radix-ui/react-accordion";
 import { Minus, Plus } from "lucide-react";
@@ -123,82 +122,81 @@ const AccordionItemComponent: React.FC<AccordionItemProps> = ({
   </Accordion.Item>
 );
 
-const FaqAccordionComponent = ({
-  data,
-  className,
-  title,
-  timestamp,
-  questionClassName,
-  answerClassName,
-  allowMultiple = false,
-  showTimestamp = false,
-}: FaqAccordionProps) => {
-  const shouldReduceMotion = useReducedMotion();
-  const [openItems, setOpenItems] = React.useState<string[]>([]);
+export const FaqAccordion = React.memo(
+  ({
+    data,
+    className,
+    title,
+    timestamp,
+    questionClassName,
+    answerClassName,
+    allowMultiple = false,
+    showTimestamp = false,
+  }: FaqAccordionProps) => {
+    const shouldReduceMotion = useReducedMotion();
+    const [openItems, setOpenItems] = React.useState<string[]>([]);
 
-  const isItemOpen = (itemId: string) => openItems.includes(itemId);
+    const isItemOpen = (itemId: string) => openItems.includes(itemId);
 
-  return (
-    <div className={cn("w-full", className)}>
-      {title && <h2 className="text-2xl font-semibold mb-6">{title}</h2>}
+    return (
+      <div className={cn("w-full", className)}>
+        {title && <h2 className="text-2xl font-semibold mb-6">{title}</h2>}
 
-      {showTimestamp && timestamp && (
-        <div className="mb-4 text-sm text-muted-foreground">{timestamp}</div>
-      )}
+        {showTimestamp && timestamp && (
+          <div className="mb-4 text-sm text-muted-foreground">{timestamp}</div>
+        )}
 
-      {allowMultiple ? (
-        <Accordion.Root
-          type="multiple"
-          value={openItems}
-          onValueChange={setOpenItems}
-        >
-          {data.map((item) => {
-            const itemId = item.id.toString();
-            const isOpen = isItemOpen(itemId);
+        {allowMultiple ? (
+          <Accordion.Root
+            type="multiple"
+            value={openItems}
+            onValueChange={setOpenItems}
+          >
+            {data.map((item) => {
+              const itemId = item.id.toString();
+              const isOpen = isItemOpen(itemId);
 
-            return (
-              <AccordionItemComponent
-                key={item.id}
-                item={item}
-                itemId={itemId}
-                isOpen={isOpen}
-                questionClassName={questionClassName}
-                answerClassName={answerClassName}
-                shouldReduceMotion={shouldReduceMotion}
-              />
-            );
-          })}
-        </Accordion.Root>
-      ) : (
-        <Accordion.Root
-          type="single"
-          collapsible
-          value={openItems[0] || ""}
-          onValueChange={(value: string) => setOpenItems(value ? [value] : [])}
-        >
-          {data.map((item) => {
-            const itemId = item.id.toString();
-            const isOpen = isItemOpen(itemId);
+              return (
+                <AccordionItemComponent
+                  key={item.id}
+                  item={item}
+                  itemId={itemId}
+                  isOpen={isOpen}
+                  questionClassName={questionClassName}
+                  answerClassName={answerClassName}
+                  shouldReduceMotion={shouldReduceMotion}
+                />
+              );
+            })}
+          </Accordion.Root>
+        ) : (
+          <Accordion.Root
+            type="single"
+            collapsible
+            value={openItems[0] || ""}
+            onValueChange={(value: string) =>
+              setOpenItems(value ? [value] : [])
+            }
+          >
+            {data.map((item) => {
+              const itemId = item.id.toString();
+              const isOpen = isItemOpen(itemId);
 
-            return (
-              <AccordionItemComponent
-                key={item.id}
-                item={item}
-                itemId={itemId}
-                isOpen={isOpen}
-                questionClassName={questionClassName}
-                answerClassName={answerClassName}
-                shouldReduceMotion={shouldReduceMotion}
-              />
-            );
-          })}
-        </Accordion.Root>
-      )}
-    </div>
-  );
-};
-
-export const FaqAccordion = dynamic(() => 
-  Promise.resolve(FaqAccordionComponent), 
-  { ssr: false }
+              return (
+                <AccordionItemComponent
+                  key={item.id}
+                  item={item}
+                  itemId={itemId}
+                  isOpen={isOpen}
+                  questionClassName={questionClassName}
+                  answerClassName={answerClassName}
+                  shouldReduceMotion={shouldReduceMotion}
+                />
+              );
+            })}
+          </Accordion.Root>
+        )}
+      </div>
+    );
+  }
 );

@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { memo } from "react";
-import dynamic from "next/dynamic";
 import { useReducedMotion } from "motion/react";
 import { GlowingEffect } from "@/shared/ui/lib";
 import { Container, Section } from "@/shared/ui/custom";
@@ -134,7 +133,7 @@ const DEFAULT_AREAS: Record<number, string[]> = {
   ],
 };
 
-const GlowingGridComponent = memo(({
+export const GlowingGrid = memo(({
   config,
   glow,
   className,
@@ -203,11 +202,6 @@ const GlowingGridComponent = memo(({
     </Section>
   );
 });
-
-export const GlowingGrid = dynamic(() => 
-  Promise.resolve(GlowingGridComponent), 
-  { ssr: false }
-);
 
 type GridItemProps = {
   area: string;

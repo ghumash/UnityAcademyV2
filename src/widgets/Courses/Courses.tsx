@@ -245,7 +245,7 @@ export interface CoursesPropsNew {
   config: CoursesConfig;
 }
 
-const CoursesComponent = memo(function Courses({ config }: CoursesPropsNew) {
+export const Courses = memo(function Courses({ config }: CoursesPropsNew) {
   const { title, list, levels, formats } = config;
   return (
     <Section>
@@ -267,8 +267,6 @@ const CoursesComponent = memo(function Courses({ config }: CoursesPropsNew) {
     </Section>
   );
 });
-
-export const Courses = CoursesComponent;
 
 /**
  * Icons: Code2, Palette, Puzzle, Megaphone, Workflow, Smartphone, LayoutDashboard, UsersRound, MessageSquareText

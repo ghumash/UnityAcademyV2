@@ -210,7 +210,7 @@ export const PhotoGallery = memo(
           {config?.button?.label && config?.button?.href && (
             <div className="flex w-full justify-center">
               <Button asChild aria-label={config.button.label}>
-                <Link 
+                <Link
                   href={config.button.href}
                   target="_blank"
                   rel="noopener noreferrer"

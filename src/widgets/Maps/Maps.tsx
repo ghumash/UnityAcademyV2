@@ -1,7 +1,6 @@
 "use client";
 
 import React, { memo, useMemo, type CSSProperties } from "react";
-import dynamic from "next/dynamic";
 import { ExternalLink } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui";
@@ -81,7 +80,7 @@ const MapsComponent = memo(({
 });
 
 // Компонент-заглушка для предотвращения CLS
-const MapsSkeleton = memo(({ height = 400, className }: Partial<Props>) => {
+export const Maps = memo(({ height = 400, className }: Partial<Props>) => {
   const wrapperStyle: CSSProperties = useMemo(() => ({ 
     height,
     minHeight: typeof height === 'number' ? `${height}px` : height 
@@ -105,11 +104,3 @@ const MapsSkeleton = memo(({ height = 400, className }: Partial<Props>) => {
     </div>
   );
 });
-
-export const Maps = dynamic(() => 
-  Promise.resolve(MapsComponent), 
-  { 
-    ssr: false,
-    loading: () => <MapsSkeleton />
-  }
-);

@@ -1,7 +1,6 @@
 "use client"
 
 import { memo } from "react";
-import dynamic from "next/dynamic";
 import { cn } from "@/shared/lib/utils";
 import { Container, Section } from "@/shared/ui/custom";
 import type { FeatureItem } from "@/shared/config/home";
@@ -14,7 +13,7 @@ export interface FeaturesSectionProps {
   config: FeaturesSectionConfig;
 }
 
-const FeaturesSectionComponent = memo(({ config }: FeaturesSectionProps) => {
+export const FeaturesSection = memo(({ config }: FeaturesSectionProps) => {
   const { features } = config;
   const total = features.length;
 
@@ -46,11 +45,6 @@ const FeaturesSectionComponent = memo(({ config }: FeaturesSectionProps) => {
     </Section>
   );
 });
-
-export const FeaturesSection = dynamic(
-  () => Promise.resolve(FeaturesSectionComponent),
-  { ssr: false }
-);
 
 type FeatureProps = FeatureItem & { idx: number; total: number };
 

@@ -1,8 +1,6 @@
-// app/(components)/VideoCardsCarousel.tsx
 "use client";
 
 import React from "react";
-import dynamic from "next/dynamic";
 import { Container, Section } from "@/shared/ui/custom";
 import { Card, Carousel } from "@/shared/ui/lib";
 import type { StudentPromo } from "@/shared/config/home";
@@ -17,7 +15,7 @@ export interface VideoCardsCarouselProps {
   config: VideoCardsCarouselConfig;
 }
 
-const VideoCardsCarouselComponent = React.memo(
+export const VideoCardsCarousel = React.memo(
   ({ config }: VideoCardsCarouselProps) => {
     const { display, title, students } = config;
 
@@ -51,9 +49,4 @@ const VideoCardsCarouselComponent = React.memo(
       </Section>
     );
   }
-);
-
-export const VideoCardsCarousel = dynamic(
-  () => Promise.resolve(VideoCardsCarouselComponent),
-  { ssr: false }
 );

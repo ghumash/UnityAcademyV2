@@ -1,7 +1,6 @@
 "use client";
 
 import { memo } from "react";
-import dynamic from "next/dynamic";
 import { Container, Section } from "@/shared/ui/custom";
 import { GradientHeading } from "@/shared/ui/lib";
 import { LogoCarousel } from "@/shared/ui/lib/logo-carousel";
@@ -22,7 +21,7 @@ export interface LogoCarouselSectionProps {
   config: LogoCarouselSectionConfig;
 }
 
-const LogoCarouselSectionComponent = memo(
+export const LogoCarouselSection = memo(
   ({ config }: LogoCarouselSectionProps) => {
     const { title, subtitle } = config;
     return (
@@ -44,9 +43,4 @@ const LogoCarouselSectionComponent = memo(
       </Section>
     );
   }
-);
-
-export const LogoCarouselSection = dynamic(
-  () => Promise.resolve(LogoCarouselSectionComponent),
-  { ssr: false }
 );

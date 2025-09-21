@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { memo } from "react";
-import dynamic from "next/dynamic";
 import {
   useAnimate,
   type AnimationSequence,
@@ -20,7 +19,7 @@ interface CallToActionProps {
   activeTagId?: CourseKey;
 }
 
-const CallToActionComponent = memo(
+export const CallToAction = memo(
   ({ title, subtitle, children, activeTagId }: CallToActionProps) => {
     const [scope, animate] = useAnimate();
     const controlsRef = React.useRef<AnimationPlaybackControls | null>(null);
@@ -226,11 +225,6 @@ const CallToActionComponent = memo(
       </HighlightGroup>
     );
   }
-);
-
-export const CallToAction = dynamic(
-  () => Promise.resolve(CallToActionComponent),
-  { ssr: false }
 );
 
 /* Вспомогательные элементы */

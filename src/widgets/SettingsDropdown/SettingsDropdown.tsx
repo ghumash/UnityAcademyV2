@@ -12,13 +12,12 @@ import {
 import { LanguageSwitcher } from "@/features/i18n";
 import { ModeToggle } from "@/features/theme";
 import type { Locale } from "@/shared/lib/i18n";
-import dynamic from "next/dynamic";
 
 interface SettingsDropdownProps {
   locale: Locale;
 }
 
-const SettingsDropdownComponent = memo(({ locale }: SettingsDropdownProps) => {
+export const SettingsDropdown = memo(({ locale }: SettingsDropdownProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="border">
@@ -41,10 +40,3 @@ const SettingsDropdownComponent = memo(({ locale }: SettingsDropdownProps) => {
     </DropdownMenu>
   );
 });
-
-export const SettingsDropdown = dynamic(
-  () => Promise.resolve(SettingsDropdownComponent),
-  {
-    ssr: false,
-  }
-);

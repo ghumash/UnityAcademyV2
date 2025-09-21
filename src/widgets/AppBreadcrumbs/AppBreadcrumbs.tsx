@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import dynamic from "next/dynamic";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -25,7 +24,7 @@ export interface AppBreadcrumbProps {
   className?: string;
 }
 
-const AppBreadcrumbComponent = memo(({
+export const AppBreadcrumb = memo(({
   items,
   ariaLabel = "Breadcrumb",
   className,
@@ -59,8 +58,3 @@ const AppBreadcrumbComponent = memo(({
     </Breadcrumb>
   );
 });
-
-export const AppBreadcrumb = dynamic(() => 
-  Promise.resolve(AppBreadcrumbComponent), 
-  { ssr: false }
-);

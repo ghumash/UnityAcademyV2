@@ -1,7 +1,6 @@
 "use client";
 
 import React, { memo, useEffect, useId, useMemo, useState } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "motion/react";
 import {
   GraduationCap,
@@ -158,7 +157,7 @@ const BlockItem: React.FC<BlockItemProps> = ({
 );
 
 /* ---------- Main ---------- */
-const AnimatedLinesBadgesComponent = memo(({
+export const AnimatedLinesBadges = memo(({
   className,
   circleText,
   badgeTexts,
@@ -357,11 +356,6 @@ const AnimatedLinesBadgesComponent = memo(({
     </Section>
   );
 });
-
-export const AnimatedLinesBadges = dynamic(() => 
-  Promise.resolve(AnimatedLinesBadgesComponent), 
-  { ssr: false }
-);
 
 /* ---------- Bottom circle (SSR-safe) ---------- */
 const AutoCircle: React.FC<{ label: string }> = ({ label }) => {

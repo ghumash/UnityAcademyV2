@@ -1,7 +1,6 @@
 "use client";
 
 import React, { memo } from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { cn } from "@/shared/lib/utils";
 import { Container, Section } from "@/shared/ui/custom";
@@ -162,7 +161,7 @@ const LongInfoCard = React.memo(({ items }: { items: ReadonlyArray<LongInfoItem>
   );
 });
 
-const ContactTilesSectionComponent = memo(({
+export const ContactTilesSection = memo(({
   items,
   longItems,
   className,
@@ -188,8 +187,3 @@ const ContactTilesSectionComponent = memo(({
     </Section>
   );
 });
-
-export const ContactTilesSection = dynamic(() => 
-  Promise.resolve(ContactTilesSectionComponent), 
-  { ssr: false }
-);

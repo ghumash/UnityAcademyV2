@@ -28,7 +28,7 @@ export interface AppAutoBreadcrumbProps {
  * - подписи берёт из словаря (common.nav.*)
  * - в <head> добавляет JSON-LD для SEO
  */
-const AppAutoBreadcrumbComponent = memo(({
+export const AppAutoBreadcrumb = memo(({
   ariaLabel = "Breadcrumb",
   className,
 }: AppAutoBreadcrumbProps) => {
@@ -108,8 +108,3 @@ const AppAutoBreadcrumbComponent = memo(({
     </>
   );
 });
-
-export const AppAutoBreadcrumb = dynamic(() => 
-  Promise.resolve(AppAutoBreadcrumbComponent), 
-  { ssr: false }
-);
