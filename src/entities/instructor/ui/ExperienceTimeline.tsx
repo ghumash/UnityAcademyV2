@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { LazyMotion, domAnimation, m, useReducedMotion, type Variants } from "motion/react";
 import { ChevronDown, ChevronUp, Briefcase } from "lucide-react";
 import { Badge, Button } from "@/shared/ui";
 import type { ExperienceItem, InstructorLabels } from "../model/types";
@@ -60,7 +60,8 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
   const motionProps = shouldReduceMotion ? {} : { variants: itemVariants };
 
   return (
-    <motion.div {...motionProps} className="space-y-6">
+    <LazyMotion features={domAnimation}>
+      <m.div {...motionProps} className="space-y-6">
       <h3 className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
         <Briefcase className="h-4 w-4 text-primary" />
         {labels.experienceLabel}
@@ -70,12 +71,12 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
         {/* Вертикальная линия с градиентом */}
         <div className="absolute left-4 top-4 bottom-4 w-px bg-gradient-to-b from-primary via-primary/50 to-transparent" />
         
-        <div className="space-y-6">
+        <div>
           {experience.map((item, index) => {
             const isOpen = openItems.has(index);
             
             return (
-              <motion.div 
+              <m.div 
                 key={index} 
                 className="relative flex gap-6"
                 initial={shouldReduceMotion ? {} : { opacity: 0, x: -20 }}
@@ -84,7 +85,7 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
               >
                 {/* Точка на временной шкале с анимацией */}
                 <div className="relative z-10 flex h-8 w-8 items-center justify-center">
-                  <motion.div 
+                  <m.div 
                     className="h-3 w-3 rounded-full bg-primary shadow-lg"
                     whileHover={shouldReduceMotion ? {} : { scale: 1.2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -93,11 +94,10 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                   <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
                 </div>
                 
-                <div className="flex-1 min-w-0 pb-6">
+                <div className="flex-1 min-w-0 pb-4">
                   {/* Карточка опыта */}
-                  <motion.div 
-                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 hover:border-primary/30 transition-all duration-300 hover:shadow-md"
-                    whileHover={shouldReduceMotion ? {} : { y: -2 }}
+                  <m.div 
+                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 border-primary/30 transition-all duration-300 shadow-md"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                       <div className="min-w-0 flex-1">
@@ -138,7 +138,7 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                     </Button>
                     
                     {/* Анимированные детали */}
-                    <motion.div
+                    <m.div
                       initial="hidden"
                       animate={isOpen ? "visible" : "hidden"}
                       exit="exit"
@@ -150,14 +150,15 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                           {item.summary}
                         </p>
                       </div>
-                    </motion.div>
-                  </motion.div>
+                    </m.div>
+                  </m.div>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>
       </div>
-    </motion.div>
+      </m.div>
+    </LazyMotion>
   );
 };

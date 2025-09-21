@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { LazyMotion, domAnimation, m, useReducedMotion, type Variants } from "motion/react";
 import { 
   Github, 
   Linkedin, 
@@ -51,7 +51,8 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ socials, labels }) => 
   const motionProps = shouldReduceMotion ? {} : { variants: itemVariants };
 
   return (
-    <motion.div {...motionProps}>
+    <LazyMotion features={domAnimation}>
+      <m.div {...motionProps}>
       <h3 className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
         <div className="h-px bg-gradient-to-r from-primary/50 to-transparent flex-1" />
         {labels.socialNetworksLabel}
@@ -64,7 +65,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ socials, labels }) => 
           const platformName = getPlatformName(platform);
 
           return (
-            <motion.div
+            <m.div
               key={platform}
               whileHover={shouldReduceMotion ? {} : { scale: 1.1, y: -2 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
@@ -87,10 +88,11 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ socials, labels }) => 
                   <Icon className="h-4 w-4 relative z-10 group-hover:text-primary transition-colors duration-300" />
                 </a>
               </Button>
-            </motion.div>
+            </m.div>
           );
         })}
       </div>
-    </motion.div>
+      </m.div>
+    </LazyMotion>
   );
 };
