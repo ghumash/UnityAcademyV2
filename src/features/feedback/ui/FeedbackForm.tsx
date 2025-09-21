@@ -1,7 +1,7 @@
 "use client";
 
 import { createFeedbackSchema } from "@/features/feedback";
-import { SmartForm } from "@/widgets";
+import { SmartForm } from "@/shared/ui/custom";
 import type { FormsDict } from "@/shared/lib/i18n";
 
 interface FeedbackFormProps {

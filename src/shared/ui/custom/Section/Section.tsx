@@ -28,7 +28,7 @@ export type SectionProps<T extends ElementType = "section"> = {
 /**
  * Универсальная секция с поддержкой ref и семантического тега
  */
-const Section = React.forwardRef<HTMLElement, SectionProps<ElementType>>(
+export const Section = React.forwardRef<HTMLElement, SectionProps<ElementType>>(
   (
     { children, className, as: Tag = "section", id, padding = "md", ...rest },
     ref
@@ -45,7 +45,3 @@ const Section = React.forwardRef<HTMLElement, SectionProps<ElementType>>(
     );
   }
 );
-
-Section.displayName = "Section";
-
-export { Section };

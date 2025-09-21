@@ -2,7 +2,7 @@
 
 import { createApplySchema } from "../model/schema";
 import type { CourseValue } from "../model/schema";
-import { SmartForm } from "@/widgets";
+import { SmartForm } from "@/shared/ui/custom";
 import type { FormsDict } from "@/shared/lib/i18n";
 import { COURSE_DATA, COURSE_KEYS } from "@/entities/course";
 

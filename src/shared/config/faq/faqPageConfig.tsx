@@ -1,6 +1,6 @@
 import { getDictionary, type Locale } from "@/shared/lib/i18n";
 import { siteConfig } from "@/shared/config/common";
-import type { FAQItem } from "@/widgets";
+import type { FAQItem } from "@/shared/ui/custom";
 
 export async function getFaqConfig(locale: Locale) {
   const dict = await getDictionary(locale);

@@ -6,11 +6,9 @@ import { GradientHeading } from "@/shared/ui/lib";
 import { LogoCarousel } from "@/shared/ui/lib/logo-carousel";
 import React from "react";
 import type { StaticImageData } from "next/image";
-import ArdaLogo from "../../../public/images/logos/arda.jpg";
-
 type LogoItem = { id: number; name: string; img: string | StaticImageData };
 
-const allLogos: LogoItem[] = [{ name: "ARDA", id: 1, img: ArdaLogo }];
+const allLogos: LogoItem[] = [{ name: "ARDA", id: 1, img: "/images/logos/arda.jpg" }];
 
 export type LogoCarouselSectionConfig = {
   title: string;

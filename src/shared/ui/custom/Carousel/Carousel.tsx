@@ -122,7 +122,6 @@ export const Carousel = memo(({
                       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-foreground/50"
                     )}
                   >
-                    {/* Без текста — только форму оставляем; делаем чуть шире */}
                     <span className="sr-only">{item.title}</span>
                     <span aria-hidden className="block w-4 md:w-5" />
                   </SliderBtn>

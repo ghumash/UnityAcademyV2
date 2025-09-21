@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/shared/lib/i18n";
 import {
-  Carousel,
   Courses,
-  CtaBanner,
   FeaturesSection,
   Hero,
+} from "@/widgets";
+import {
+  Carousel,
+  CtaBanner,
   LogoCarouselSection,
   VideoCardsCarousel,
-} from "@/widgets";
+} from "@/shared/ui/custom";
 import { JsonLd, buildOrganizationJsonLd, buildWebSiteJsonLd, buildEducationalOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import {

@@ -13,11 +13,13 @@ import { COURSE_DATA, type CourseKey } from "@/entities/course";
 import {
   CallToAction,
   ContentSection,
+  IntroHero,
+} from "@/widgets";
+import {
   CtaBanner,
   GlowingGrid,
-  IntroHero,
   PhotoGallery,
-} from "@/widgets";
+} from "@/shared/ui/custom";
 import { InstructorCard } from "@/entities/instructor";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";

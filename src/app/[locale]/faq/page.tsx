@@ -3,7 +3,7 @@ import { Container, Section } from "@/shared/ui/custom";
 import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
-import { FaqAccordion } from "@/widgets";
+import { FaqAccordion } from "@/shared/ui/custom";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { getFaqConfig } from "@/shared/config/faq";
 

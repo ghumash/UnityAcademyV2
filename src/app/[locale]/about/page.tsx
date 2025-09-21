@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
+import {
+  JsonLd,
+  buildBreadcrumbsJsonLd,
+  buildOrganizationJsonLd,
+  createMetadata,
+} from "@/shared/lib/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
-import { CtaBanner, IntroWithDesc } from "@/widgets";
-import { GlowingGrid, TeamSection, ContentSection } from "@/widgets";
+import { TeamSection, ContentSection } from "@/widgets";
+import { CtaBanner, IntroWithDesc, GlowingGrid } from "@/shared/ui/custom";
 import { getCtaBannerConfig } from "@/shared/config/home";
-import { getGlowingGridConfig } from "@/shared/config/about/glowingGrid";
-import { getContentSectionConfig } from "@/shared/config/about/contentSection";
 import {
   getIntroWithDescConfig,
   getTeamSectionConfig,
+  getGlowingGridConfig,
+  getContentSectionConfig,
 } from "@/shared/config/about";
 
 export async function generateMetadata({
