@@ -84,8 +84,11 @@ export default async function CoursePage({
             title={coursePageConfig.courseTopics.title}
             topics={coursePageConfig.courseTopics.topics}
           />
-          {coursePageConfig.instructor.display !== false && (
-            <InstructorCard data={coursePageConfig.instructor} />
+          {coursePageConfig.instructor.data.display !== false && (
+            <InstructorCard 
+              data={coursePageConfig.instructor.data} 
+              labels={coursePageConfig.instructor.labels}
+            />
           )}
         </Container>
       </Section>

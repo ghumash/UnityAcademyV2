@@ -1,7 +1,6 @@
 "use client";
 
 import React, { memo } from "react";
-import dynamic from "next/dynamic";
 import {
   LazyMotion,
   domAnimation,
@@ -15,6 +14,7 @@ import { getInitials } from "../lib/utils";
 import { ExperienceTimeline } from "./ExperienceTimeline";
 import { SocialLinks } from "./SocialLinks";
 import type { InstructorCardProps } from "../model/types";
+import dynamic from "next/dynamic";
 
 // Анимационные варианты
 const containerVariants: Variants = {
@@ -66,19 +66,8 @@ const InstructorCardComponent = memo(
       bio,
       experience,
       socials,
-      experienceLabel,
-      socialNetworksLabel,
-      showDetails,
-      hideDetails,
     } = data;
 
-    // Используем labels из data или переданные отдельно
-    const finalLabels = labels || {
-      experienceLabel: experienceLabel || "Опыт работы",
-      socialNetworksLabel: socialNetworksLabel || "Социальные сети",
-      showDetails: showDetails || "Подробнее",
-      hideDetails: hideDetails || "Скрыть",
-    };
 
     const motionProps = shouldReduceMotion
       ? {}
@@ -155,9 +144,9 @@ const InstructorCardComponent = memo(
               <ExperienceTimeline
                 experience={experience}
                 labels={{
-                  experienceLabel: finalLabels.experienceLabel,
-                  showDetails: finalLabels.showDetails,
-                  hideDetails: finalLabels.hideDetails,
+                  experienceLabel: labels.experienceLabel,
+                  showDetails: labels.showDetails,
+                  hideDetails: labels.hideDetails,
                 }}
               />
           )}
@@ -165,15 +154,13 @@ const InstructorCardComponent = memo(
           {/* Социальные сети */}
           <SocialLinks
             socials={socials}
-            labels={{ socialNetworksLabel: finalLabels.socialNetworksLabel }}
+            labels={{ socialNetworksLabel: labels.socialNetworksLabel }}
           />
         </m.div>
       </LazyMotion>
     );
   }
 );
-
-InstructorCardComponent.displayName = "InstructorCard";
 
 export const InstructorCard = dynamic(
   () => Promise.resolve(InstructorCardComponent),

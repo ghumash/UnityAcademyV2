@@ -142,19 +142,23 @@ export async function getCoursePageConfig(locale: Locale, slug: string) {
   }
 
   const instructor = {
-    display: instructorData.display !== false, // по умолчанию true, если не указано false
-    name: t(`courses.list.${slug}.instructor.name`),
-    role: t(`courses.list.${slug}.instructor.role`),
-    avatarUrl: instructorData.avatarUrl,
-    bio: t(`courses.list.${slug}.instructor.bio`),
-    experience: experienceEntries,
-    socials: instructorData.socials || {},
-    experienceLabel: t(`courses.list.${slug}.instructor.experienceLabel`),
-    socialNetworksLabel: t(
-      `courses.list.${slug}.instructor.socialNetworksLabel`
-    ),
-    showDetails: t(`courses.list.${slug}.instructor.showDetails`),
-    hideDetails: t(`courses.list.${slug}.instructor.hideDetails`),
+    data: {
+      display: instructorData.display !== false, // по умолчанию true, если не указано false
+      name: t(`courses.list.${slug}.instructor.name`),
+      role: t(`courses.list.${slug}.instructor.role`),
+      avatarUrl: instructorData.avatarUrl,
+      bio: t(`courses.list.${slug}.instructor.bio`),
+      experience: experienceEntries,
+      socials: instructorData.socials || {},
+    },
+    labels: {
+      experienceLabel: t(`courses.list.${slug}.instructor.experienceLabel`),
+      socialNetworksLabel: t(
+        `courses.list.${slug}.instructor.socialNetworksLabel`
+      ),
+      showDetails: t(`courses.list.${slug}.instructor.showDetails`),
+      hideDetails: t(`courses.list.${slug}.instructor.hideDetails`),
+    },
   };
 
   const courseTopicsConfig = {

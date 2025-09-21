@@ -23,10 +23,6 @@ export type InstructorData = {
   bio: string;
   experience: ExperienceItem[];
   socials: SocialLinks;
-  experienceLabel?: string;
-  socialNetworksLabel?: string;
-  showDetails?: string;
-  hideDetails?: string;
 };
 
 export type InstructorLabels = {
@@ -38,6 +34,6 @@ export type InstructorLabels = {
 
 export type InstructorCardProps = {
   data: InstructorData;
-  labels?: InstructorLabels;
+  labels: InstructorLabels;
   className?: string;
 };

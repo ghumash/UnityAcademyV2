@@ -2,8 +2,5 @@
 export { InstructorCard } from './ui/InstructorCard';
 export type { 
   InstructorCardProps,
-  InstructorData,
-  InstructorLabels,
-  ExperienceItem,
-  SocialLinks
+  InstructorData
 } from './model/types';
