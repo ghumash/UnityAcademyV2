@@ -10,6 +10,5 @@ export { AnimatedLinesBadges } from "./AnimatedLinesBadges/AnimatedLinesBadges";
 export { Maps } from "./Maps/Maps";
 export { TeamSection } from "./TeamSection/TeamSection";
 export { ContactTilesSection } from "./ContactTilesSection/ContactTilesSection";
-export { CallToAction } from "./CallToAction/CallToAction";
 export { SettingsDropdown } from "./SettingsDropdown/SettingsDropdown";
 export { IntroHero } from "./IntroHero/IntroHero";

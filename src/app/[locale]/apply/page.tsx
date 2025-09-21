@@ -5,7 +5,7 @@ import { getT, type Locale } from "@/shared/lib/i18n";
 import { Container, Section } from "@/shared/ui/custom";
 import { TextHoverEffect } from "@/shared/ui/lib";
 import { ApplyForm } from "@/features/apply";
-import { CallToAction } from "@/widgets";
+import { CallToAction } from "@/shared/ui/custom";
 import { getApplyConfig } from "@/shared/config/apply";
 
 export async function generateMetadata({
