@@ -14,7 +14,6 @@ import { getInitials } from "../lib/utils";
 import { ExperienceTimeline } from "./ExperienceTimeline";
 import { SocialLinks } from "./SocialLinks";
 import type { InstructorCardProps } from "../model/types";
-import dynamic from "next/dynamic";
 
 // Анимационные варианты
 const containerVariants: Variants = {
@@ -56,7 +55,7 @@ const avatarVariants: Variants = {
 };
 
 // Основной компонент InstructorCard
-const InstructorCardComponent = memo(
+export const InstructorCard = memo(
   ({ data, labels, className }: InstructorCardProps) => {
     const shouldReduceMotion = useReducedMotion();
     const {
@@ -160,9 +159,4 @@ const InstructorCardComponent = memo(
       </LazyMotion>
     );
   }
-);
-
-export const InstructorCard = dynamic(
-  () => Promise.resolve(InstructorCardComponent),
-  { ssr: false }
 );

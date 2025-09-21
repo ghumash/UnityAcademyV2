@@ -1,7 +1,6 @@
 "use client";
 
 import React, { memo } from "react";
-import dynamic from "next/dynamic";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Check } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
