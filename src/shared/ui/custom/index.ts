@@ -1,14 +1,3 @@
 export { Container } from "./Container/Container";
 export { Section } from "./Section/Section";
 export { SkipLink } from "./SkipLink/SkipLink";
-export { PromoVideo } from "./PromoVideo/PromoVideo";
-export { SmartForm } from "./SmartForm/SmartForm";
-export { GlowingGrid, type GridItemData } from "./GlowingGrid/GlowingGrid";
-export { Carousel } from "./Carousel/Carousel";
-export { VideoCardsCarousel } from "./VideoCardsCarousel/VideoCardsCarousel";
-export { LogoCarouselSection } from "./LogoCarouselSection/LogoCarouselSection";
-export { CtaBanner } from "./CtaBanner/CtaBanner";
-export { FaqAccordion, type FAQItem } from "./FaqAccordion/FaqAccordion";
-export { IntroWithDesc } from "./IntroWithDesc/IntroWithDesc";
-export { PhotoGallery } from "./PhotoGallery/PhotoGallery";
-export { CallToAction } from "./CallToAction/CallToAction";

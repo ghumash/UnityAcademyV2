@@ -1,3 +1,4 @@
+export { SmartForm } from "./SmartForm/SmartForm";
 export { Footer } from "./Footer/Footer";
 export { Hero, type HeroAction } from "./Hero/Hero";
 export { NavBar } from "./NavBar/NavBar";
@@ -12,3 +13,13 @@ export { TeamSection } from "./TeamSection/TeamSection";
 export { ContactTilesSection } from "./ContactTilesSection/ContactTilesSection";
 export { SettingsDropdown } from "./SettingsDropdown/SettingsDropdown";
 export { IntroHero } from "./IntroHero/IntroHero";
+export { PromoVideo } from "./PromoVideo/PromoVideo";
+export { GlowingGrid, type GridItemData } from "./GlowingGrid/GlowingGrid";
+export { Carousel } from "./Carousel/Carousel";
+export { VideoCardsCarousel } from "./VideoCardsCarousel/VideoCardsCarousel";
+export { LogoCarouselSection } from "./LogoCarouselSection/LogoCarouselSection";
+export { CtaBanner } from "./CtaBanner/CtaBanner";
+export { FaqAccordion, type FAQItem } from "./FaqAccordion/FaqAccordion";
+export { IntroWithDesc } from "./IntroWithDesc/IntroWithDesc";
+export { PhotoGallery } from "./PhotoGallery/PhotoGallery";
+export { CallToAction } from "./CallToAction/CallToAction";

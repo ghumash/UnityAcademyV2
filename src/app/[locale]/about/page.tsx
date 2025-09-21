@@ -8,7 +8,7 @@ import {
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { TeamSection, ContentSection } from "@/widgets";
-import { CtaBanner, IntroWithDesc, GlowingGrid } from "@/shared/ui/custom";
+import { CtaBanner, IntroWithDesc, GlowingGrid } from "@/widgets";
 import { getCtaBannerConfig } from "@/shared/config/home";
 import {
   getIntroWithDescConfig,

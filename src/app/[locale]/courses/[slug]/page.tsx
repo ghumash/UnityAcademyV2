@@ -19,7 +19,7 @@ import {
   GlowingGrid,
   PhotoGallery,
   CallToAction,
-} from "@/shared/ui/custom";
+} from "@/widgets";
 import { InstructorCard } from "@/entities/instructor";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";

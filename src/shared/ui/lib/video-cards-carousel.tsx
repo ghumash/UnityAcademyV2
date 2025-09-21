@@ -22,7 +22,7 @@ import {
 import { cn } from "@/shared/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useOutsideClick } from "@/shared/hooks";
-import { PromoVideo } from "../custom";
+import { PromoVideo } from "@/widgets";
 
 /* =========================
  * Types & Context

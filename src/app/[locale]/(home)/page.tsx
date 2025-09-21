@@ -10,7 +10,7 @@ import {
   CtaBanner,
   LogoCarouselSection,
   VideoCardsCarousel,
-} from "@/shared/ui/custom";
+} from "@/widgets";
 import { JsonLd, buildOrganizationJsonLd, buildWebSiteJsonLd, buildEducationalOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import {
