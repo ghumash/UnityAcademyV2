@@ -41,7 +41,6 @@ export const Maps = memo(
 
     return (
       <div className={cn("space-y-4 w-full", className)}>
-        {/* Actions */}
         <div className="flex items-center gap-2">
           <Button asChild variant="outline" className="gap-2 rounded-full">
             <a href={OPEN_LINK} target="_blank" rel="noopener noreferrer">
@@ -62,7 +61,6 @@ export const Maps = memo(
           </Button>
         </div>
 
-        {/* Map */}
         <div
           className="overflow-hidden rounded-2xl border border-border bg-background/50"
           style={wrapperStyle}
