@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { COURSE_DATA, type CourseKey } from "@/entities/course";
+import { COURSE_DATA, type CourseKey } from "@/shared/lib/const";
 import type { FormsDict } from "@/shared/lib/i18n";
 
 // Типы курсов на основе значений курсов

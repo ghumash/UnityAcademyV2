@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { locales, type Locale } from "@/shared/lib/i18n";
-import { COURSE_DATA } from "@/entities/course";
+import { COURSE_DATA } from "@/shared/lib/const";
 
 function pathForLocale(locale: Locale, path: `/${string}` | "/") {
   return path === "/" ? `/${locale}` : `/${locale}${path}`;

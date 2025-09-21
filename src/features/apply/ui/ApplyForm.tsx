@@ -4,7 +4,7 @@ import { createApplySchema } from "../model/schema";
 import type { CourseValue } from "../model/schema";
 import { SmartForm } from "@/widgets";
 import type { FormsDict } from "@/shared/lib/i18n";
-import { COURSE_DATA, COURSE_KEYS } from "@/entities/course";
+import { COURSE_DATA, COURSE_KEYS } from "@/shared/lib/const";
 
 interface ApplyFormProps {
   defaultCourse?: CourseValue;

@@ -2,7 +2,7 @@ import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 import { BadgeCheck, Rocket, Users, Award, FolderOpen } from "lucide-react";
 import type { GridItemData } from "@/widgets";
-import type { CourseKey } from "@/entities/course";
+import type { CourseKey } from "@/shared/lib/const";
 import type { Theme } from "@/widgets/Courses";
 import { siteConfig } from "@/shared/config/common";
 

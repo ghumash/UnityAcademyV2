@@ -1,4 +1,4 @@
-import type { CourseKey } from "@/entities/course";
+import type { CourseKey } from "@/shared/lib/const";
 
 export type CourseOption = string;
 

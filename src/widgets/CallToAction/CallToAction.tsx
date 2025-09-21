@@ -10,7 +10,7 @@ import {
 
 import { HighlighterItem, HighlightGroup, Particles } from "@/shared/ui/lib";
 import { cn } from "@/shared/lib/utils";
-import { COURSE_KEYS, COURSE_DATA, type CourseKey } from "@/entities/course";
+import { COURSE_KEYS, COURSE_DATA, type CourseKey } from "@/shared/lib/const";
 
 interface CallToActionProps {
   title: string;

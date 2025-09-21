@@ -1,7 +1,7 @@
 import { getT, type Locale } from "@/shared/lib/i18n";
 import type { Course } from "@/widgets/Courses";
 import { siteConfig } from "@/shared/config/common";
-import { COURSE_DATA } from "@/entities/course";
+import { COURSE_DATA } from "@/shared/lib/const";
 
 export async function getHomeCoursesConfig(locale: Locale) {
   const t = await getT(locale);

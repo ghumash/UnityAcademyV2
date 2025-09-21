@@ -9,7 +9,7 @@ import {
 import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
-import { COURSE_DATA, type CourseKey } from "@/entities/course";
+import { COURSE_DATA, type CourseKey } from "@/shared/lib/const";
 import {
   ContentSection,
   IntroHero,

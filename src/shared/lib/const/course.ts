@@ -1,3 +1,4 @@
+
 /**
  * Централизованные ключи курсов
  * Используется во всем проекте для обеспечения консистентности
@@ -15,10 +16,10 @@ export const COURSE_KEYS = [
 ] as const;
 
 export type CourseKey = (typeof COURSE_KEYS)[number];
-
 /**
  * Данные курсов с их отображаемыми названиями и позициями для CallToAction
  */
+
 export const COURSE_DATA = {
   web_development: {
     key: "web_development" as const,
