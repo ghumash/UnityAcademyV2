@@ -16,7 +16,6 @@ export { AnimatedLinesBadges } from "./AnimatedLinesBadges/AnimatedLinesBadges";
 export { FaqAccordion, type FAQItem } from "./FaqAccordion/FaqAccordion";
 export { Maps } from "./Maps/Maps";
 export { TeamSection } from "./TeamSection/TeamSection";
-export { CourseTopics } from "./CourseTopics";
 export { ContactTilesSection } from "./ContactTilesSection/ContactTilesSection";
 export { CallToAction } from "./CallToAction/CallToAction";
 export { IntroWithDesc } from "./IntroWithDesc/IntroWithDesc";

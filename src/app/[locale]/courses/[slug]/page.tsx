@@ -13,7 +13,6 @@ import { COURSE_DATA, type CourseKey } from "@/entities/course";
 import {
   CallToAction,
   ContentSection,
-  CourseTopics,
   CtaBanner,
   GlowingGrid,
   IntroHero,
@@ -23,6 +22,7 @@ import { InstructorCard } from "@/entities/instructor";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";
 import { ScrollToHash } from "@/shared/lib/scroll-to-hash";
+import { CourseTopics } from "@/entities/course-topics";
 
 export async function generateMetadata({
   params,
