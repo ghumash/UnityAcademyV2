@@ -25,26 +25,27 @@ export const web_development: CourseDict = {
       subtitle: "Շտապիր գրանցվել:",
     },
   },
-    projects: {
+  projects: {
     display: false,
     subtitle: "ՍՏԵՂԾԻՐ ՔՈ ԱՆՁՆԱԿԱՆԸ",
     titlePart1: "Դասընթացավարի",
-    titlePart2: "Աշխատանքները",    list: [
+    titlePart2: "Աշխատանքները",
+    list: [
       {
         img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop&crop=entropy",
-        href: "https://example.com/project1"
+        href: "https://example.com/project1",
       },
       {
         img: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=800&fit=crop&crop=entropy",
-        href: "https://example.com/project2"
+        href: "https://example.com/project2",
       },
       {
         img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=800&fit=crop&crop=entropy",
-        href: "https://example.com/project3"
+        href: "https://example.com/project3",
       },
       {
         img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=800&fit=crop&crop=entropy",
-        href: "https://example.com/project4"
+        href: "https://example.com/project4",
       },
     ],
   },
@@ -55,7 +56,6 @@ export const web_development: CourseDict = {
     avatarUrl: "/images/users/vagharshak.png",
     socials: {
       github: "https://github.com/VagharshakGasparyan",
-      linkedin: "https://www.linkedin.com/in/vagharshak-gasparyan-6401b2316/",
     },
     experience: {
       senior: {
