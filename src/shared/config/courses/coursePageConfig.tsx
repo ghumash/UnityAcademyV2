@@ -3,7 +3,7 @@ import type { Locale } from "@/shared/lib/i18n";
 import { BadgeCheck, Rocket, Users, Award, FolderOpen } from "lucide-react";
 import type { GridItemData } from "@/widgets";
 import type { CourseKey } from "@/shared/lib/const";
-import type { Theme } from "@/widgets/Courses";
+import type { Theme } from "@/entities/course";
 import { siteConfig } from "@/shared/config/common";
 
 // Простая фильтрация - убирает элементы с пустыми полями или ключами переводов

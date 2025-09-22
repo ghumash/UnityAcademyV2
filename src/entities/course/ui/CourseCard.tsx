@@ -4,7 +4,6 @@ import React, { memo } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
-import { Container, Section } from "@/shared/ui/custom";
 import {
   Code2,
   Palette,
@@ -18,12 +17,10 @@ import {
   GraduationCap,
   Clock,
   ArrowRight,
-  Share2,
-  Globe,
-  MapPin,
 } from "lucide-react";
-import type { Course, Level, Format } from "./types";
-import { THEMES } from "./theme";
+import { THEMES } from "../model/theme";
+import { formatIconByMode, levelLabel, formatLabel } from "../lib/utils";
+import type { CourseCardProps } from "../model/types";
 
 const cn = (...classes: Array<string | false | null | undefined>) =>
   twMerge(clsx(classes));
@@ -39,30 +36,6 @@ const ICONS = {
   UsersRound,
   MessageSquareText,
 };
-
-function formatIconByMode(mode: Format) {
-  if (mode === "online") return Globe;
-  if (mode === "offline") return MapPin;
-  return Share2; // hybrid
-}
-
-function levelLabel(
-  level: Level,
-  levels: { beginner: string; intermediate: string; advanced: string }
-) {
-  if (level === "beginner") return levels.beginner;
-  if (level === "intermediate") return levels.intermediate;
-  return levels.advanced;
-}
-
-function formatLabel(
-  format: Format,
-  formats: { online: string; offline: string; hybrid: string }
-) {
-  if (format === "online") return formats.online;
-  if (format === "offline") return formats.offline;
-  return formats.hybrid;
-}
 
 function CardWrapper({
   href,
@@ -95,15 +68,11 @@ function CardWrapper({
   );
 }
 
-function CourseCard({
+export const CourseCard = memo(function CourseCard({
   course,
   levels,
   formats,
-}: {
-  course: Course;
-  levels: { beginner: string; intermediate: string; advanced: string };
-  formats: { online: string; offline: string; hybrid: string };
-}) {
+}: CourseCardProps) {
   const {
     title,
     description,
@@ -224,51 +193,4 @@ function CourseCard({
       </div>
     </CardWrapper>
   );
-}
-
-export type CoursesConfig = {
-  title: string;
-  list: readonly Course[];
-  levels: {
-    beginner: string;
-    intermediate: string;
-    advanced: string;
-  };
-  formats: {
-    online: string;
-    offline: string;
-    hybrid: string;
-  };
-};
-
-export interface CoursesPropsNew {
-  config: CoursesConfig;
-}
-
-export const Courses = memo(function Courses({ config }: CoursesPropsNew) {
-  const { title, list, levels, formats } = config;
-  return (
-    <Section>
-      <Container>
-        <div className="relative">
-          {/* Heading for SEO/A11y */}
-          <h2 className="mb-8 text-2xl font-semibold tracking-tight text-foreground sm:mb-10 sm:text-3xl">
-            {title}
-          </h2>
-
-          {/* Grid of course cards */}
-          <div className={cn("grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 xl:grid-cols-3")}>
-            {list.map((course: Course) => (
-              <CourseCard key={course.id} course={course} levels={levels} formats={formats} />
-            ))}
-          </div>
-        </div>
-      </Container>
-    </Section>
-  );
 });
-
-/**
- * Icons: Code2, Palette, Puzzle, Megaphone, Workflow, Smartphone, LayoutDashboard, UsersRound, MessageSquareText
- * Themes: 'indigo' | 'purple' | 'orange' | 'emerald' | 'cyan' | 'rose' | 'violet' | 'teal' | 'amber' | 'lime' | 'fuchsia' | 'blue' | 'pink'
- */

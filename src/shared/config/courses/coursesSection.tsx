@@ -1,7 +1,7 @@
 import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 import { siteConfig } from "@/shared/config/common";
-import type { Course } from "@/widgets/Courses/types";
+import type { Course } from "@/entities/course";
 import { COURSE_DATA } from "@/shared/lib/const";
 
 export async function getCoursesConfig(locale: Locale) {

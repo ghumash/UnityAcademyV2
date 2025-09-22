@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
-import { AppAutoBreadcrumb, Courses } from "@/widgets";
+import { AppAutoBreadcrumb } from "@/widgets";
+import { Courses } from "@/entities/course";
 import { Container, Section } from "@/shared/ui/custom";
 import { getCoursesConfig } from "@/shared/config/courses";
 
@@ -48,7 +49,7 @@ export default async function CoursesPage({
           <AppAutoBreadcrumb />
         </Container>
       </Section>
-      <Courses config={courses} />
+      <Courses {...courses} />
     </main>
   );
 }

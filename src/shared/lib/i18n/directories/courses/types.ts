@@ -1,4 +1,4 @@
-import type { Theme } from "@/widgets/Courses";
+import type { Theme } from "@/entities/course";
 
 export type CoursesDict = {
   general: {

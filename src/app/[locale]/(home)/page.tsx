@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/shared/lib/i18n";
 import {
-  Courses,
   FeaturesSection,
   Hero,
 } from "@/widgets";
+import { Courses } from "@/entities/course";
 import {
   Carousel,
   CtaBanner,
@@ -63,7 +63,7 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
       <FeaturesSection config={features} />
       <VideoCardsCarousel config={videoCards} />
       <LogoCarouselSection config={logoCarousel} />
-      <Courses config={courses} />
+      <Courses {...courses} />
       <CtaBanner config={ctaBanner} />
     </main>
   );

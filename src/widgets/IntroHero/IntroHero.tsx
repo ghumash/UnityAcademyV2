@@ -15,7 +15,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
-import { THEMES, type Theme } from "@/widgets/Courses";
+import { THEMES, type Theme } from "@/entities/course";
 import Link from "next/link";
 import { memo } from "react";
 

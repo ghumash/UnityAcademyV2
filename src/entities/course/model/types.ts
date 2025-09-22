@@ -53,3 +53,10 @@ export interface CoursesProps {
     hybrid: string;
   };
 }
+
+// UI Component Props
+export interface CourseCardProps {
+  course: Course;
+  levels: CoursesProps["levels"];
+  formats: CoursesProps["formats"];
+}

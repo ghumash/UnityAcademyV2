@@ -1,5 +1,5 @@
 import { getT, type Locale } from "@/shared/lib/i18n";
-import type { Course } from "@/widgets/Courses";
+import type { Course } from "@/entities/course";
 import { siteConfig } from "@/shared/config/common";
 import { COURSE_DATA } from "@/shared/lib/const";
 

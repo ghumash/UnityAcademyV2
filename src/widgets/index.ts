@@ -3,7 +3,6 @@ export { Footer } from "./Footer/Footer";
 export { Hero, type HeroAction } from "./Hero/Hero";
 export { NavBar } from "./NavBar/NavBar";
 export { FeaturesSection } from "./FeaturesSection/FeaturesSection";
-export { Courses } from "./Courses/Courses";
 export { AppBreadcrumb } from "./AppBreadcrumbs/AppBreadcrumbs";
 export { AppAutoBreadcrumb } from "./AppAutoBreadcrumbs/AppAutoBreadcrumbs";
 export { ContentSection } from "./ContentSection/ContentSection";
