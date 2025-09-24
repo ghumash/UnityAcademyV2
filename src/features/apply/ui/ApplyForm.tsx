@@ -75,7 +75,7 @@ export const ApplyForm = ({
         fullname: v.fullname.trim(),
         birthday: v.birthday.trim(),
         phone: v.phone.trim(),
-        telegram: v.telegram.trim(),
+        telegram: v.telegram?.trim() || undefined,
         course: v.course.trim(),
       })}
     />
