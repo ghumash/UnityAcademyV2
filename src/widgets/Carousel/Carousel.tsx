@@ -3,6 +3,7 @@
 import { memo, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Container, Section } from "@/shared/ui/custom";
+import { Skeleton } from "@/shared/ui";
 import type { CarouselItem } from "@/shared/config/home";
 import { cn } from "@/shared/lib/utils";
 
@@ -23,6 +24,7 @@ export const Carousel = memo(
     const { items } = config;
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemsPerView, setItemsPerView] = useState(3);
+    const [imageLoadingStates, setImageLoadingStates] = useState<{[key: string]: boolean}>({});
 
     // Адаптивность
     useEffect(() => {
@@ -93,14 +95,30 @@ export const Carousel = memo(
                       )
                       .map((item: CarouselItem, index: number) => (
                         <figure key={index} className="relative">
-                          <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
+                          <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-muted/10">
+                            {/* Skeleton fallback */}
+                            {imageLoadingStates[`${pageIndex}-${index}`] !== false && (
+                              <Skeleton className="absolute inset-0 w-full h-full rounded-lg" />
+                            )}
                             <Image
-                              className="object-cover hover:scale-105 transition-transform duration-300"
+                              className={cn(
+                                "object-cover hover:scale-105 transition-transform duration-300",
+                                imageLoadingStates[`${pageIndex}-${index}`] === false ? "opacity-100" : "opacity-0"
+                              )}
                               src={item.img}
                               fill
-                              priority={pageIndex === 0 && index < 3}
+                              priority={
+                                // Приоритет для текущего и соседних слайдов
+                                pageIndex === currentIndex || 
+                                pageIndex === (currentIndex + 1) % totalPages ||
+                                pageIndex === (currentIndex - 1 + totalPages) % totalPages
+                              }
                               sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                               alt={item.title || "Carousel image"}
+                              placeholder="blur"
+                              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGBobHB0eH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/2gAMAwEAAhEDEQA/AL+AD6E3dEg=="
+                              onLoad={() => setImageLoadingStates(prev => ({ ...prev, [`${pageIndex}-${index}`]: false }))}
+                              onError={() => setImageLoadingStates(prev => ({ ...prev, [`${pageIndex}-${index}`]: false }))}
                             />
                           </div>
                           {(item.title || item.desc) && (
@@ -155,9 +173,36 @@ export const Carousel = memo(
                 ))}
               </div>
             )}
+
+            {/* Скрытая предзагрузка соседних слайдов */}
+            {Array.from({ length: totalPages }).map((_, pageIndex) => {
+              // Предзагружаем следующие 2 страницы
+              const isNextPage = pageIndex === (currentIndex + 1) % totalPages || pageIndex === (currentIndex + 2) % totalPages;
+              if (!isNextPage) return null;
+
+              return (
+                <div key={`preload-${pageIndex}`} className="sr-only" aria-hidden="true">
+                  {items
+                    .slice(pageIndex * itemsPerView, (pageIndex + 1) * itemsPerView)
+                    .map((item, index) => (
+                      <Image
+                        key={`${pageIndex}-${index}`}
+                        src={item.img}
+                        alt=""
+                        width={400}
+                        height={500}
+                        priority={false}
+                        sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                      />
+                    ))}
+                </div>
+              );
+            })}
           </div>
         </Container>
       </Section>
     );
   }
 );
+
+Carousel.displayName = "Carousel";
