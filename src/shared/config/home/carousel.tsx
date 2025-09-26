@@ -1,4 +1,3 @@
-import { getT } from "@/shared/lib/i18n";
 import type { Locale } from "@/shared/lib/i18n";
 
 export type CarouselItem = {
@@ -8,8 +7,8 @@ export type CarouselItem = {
   desc?: string;
 };
 
-export async function getCarouselConfig(locale: Locale) {
-  const t = await getT(locale);
+export async function getCarouselConfig(_locale: Locale) {
+  // const t = await getT(locale);
 
   return {
     items: [

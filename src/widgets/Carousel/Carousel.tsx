@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState, useEffect } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Container, Section } from "@/shared/ui/custom";
 import type { CarouselItem } from "@/shared/config/home";
@@ -24,8 +24,6 @@ export const Carousel = memo(
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemsPerView, setItemsPerView] = useState(3);
 
-    if (!items?.length) return null;
-
     // Адаптивность
     useEffect(() => {
       const handleResize = () => {
@@ -46,9 +44,9 @@ export const Carousel = memo(
     const totalPages = Math.ceil(items.length / itemsPerView);
 
     // Функции навигации
-    const goToNext = () => {
+    const goToNext = useCallback(() => {
       setCurrentIndex((prev) => (prev + 1) % totalPages);
-    };
+    }, [totalPages]);
 
     const goToPage = (index: number) => {
       setCurrentIndex(index);
@@ -63,7 +61,9 @@ export const Carousel = memo(
       }, autoPlayInterval);
 
       return () => clearInterval(interval);
-    }, [autoPlay, autoPlayInterval, totalPages, currentIndex]);
+    }, [autoPlay, autoPlayInterval, totalPages, currentIndex, goToNext]);
+
+    if (!items?.length) return null;
 
     return (
       <Section aria-label="Photo carousel" className="py-12">
