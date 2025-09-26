@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/shared/lib/i18n";
-import {
-  FeaturesSection,
-  Hero,
-} from "@/widgets";
+import { FeaturesSection, Hero } from "@/widgets";
 import { Courses } from "@/entities/course";
 import {
   Carousel,
@@ -11,7 +8,13 @@ import {
   LogoCarouselSection,
   VideoCardsCarousel,
 } from "@/widgets";
-import { JsonLd, buildOrganizationJsonLd, buildWebSiteJsonLd, buildEducationalOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
+import {
+  JsonLd,
+  buildOrganizationJsonLd,
+  buildWebSiteJsonLd,
+  buildEducationalOrganizationJsonLd,
+  createMetadata,
+} from "@/shared/lib/seo";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import {
   getHeroConfig,
@@ -57,9 +60,12 @@ async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
     <main className="sm:mt-20 md:mt-22">
       <JsonLd id="website-jsonld" data={buildWebSiteJsonLd()} />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
-      <JsonLd id="educational-org-jsonld" data={buildEducationalOrganizationJsonLd()} />
+      <JsonLd
+        id="educational-org-jsonld"
+        data={buildEducationalOrganizationJsonLd()}
+      />
       <Hero config={hero} />
-      <Carousel config={carousel} />
+      <Carousel config={carousel} autoPlay={true} autoPlayInterval={4000} />
       <FeaturesSection config={features} />
       <VideoCardsCarousel config={videoCards} />
       <LogoCarouselSection config={logoCarousel} />

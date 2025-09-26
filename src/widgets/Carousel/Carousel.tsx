@@ -1,15 +1,7 @@
 "use client";
 
-import * as React from "react";
+import { memo, useState, useEffect } from "react";
 import Image from "next/image";
-import { memo } from "react";
-import {
-  SliderBtnGroup,
-  ProgressSlider,
-  SliderBtn,
-  SliderContent,
-  SliderWrapper,
-} from "@/shared/ui/lib";
 import { Container, Section } from "@/shared/ui/custom";
 import type { CarouselItem } from "@/shared/config/home";
 import { cn } from "@/shared/lib/utils";
@@ -20,137 +12,152 @@ export type CarouselConfig = {
 
 export interface CarouselProps {
   config: CarouselConfig;
-  hideFooter?: boolean;
-  /** Стиль индикатора, когда footer скрыт */
-  indicatorVariant?: "bars" | "pills";
-  /** Позиция индикатора */
-  indicatorPosition?: "bottom" | "overlay";
+  /** Включить автоматическое переключение слайдов */
+  autoPlay?: boolean;
+  /** Интервал автоматического переключения в миллисекундах (по умолчанию 5000) */
+  autoPlayInterval?: number;
 }
 
-export const Carousel = memo(({
-  config,
-  hideFooter = true,
-  indicatorVariant = "bars",
-  indicatorPosition = "overlay",
-}: CarouselProps) => {
-  const { items } = config;
-  if (!items?.length) return null;
+export const Carousel = memo(
+  ({ config, autoPlay = false, autoPlayInterval = 5000 }: CarouselProps) => {
+    const { items } = config;
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [itemsPerView, setItemsPerView] = useState(3);
 
-  const baseGroupPos =
-    indicatorPosition === "bottom"
-      ? "relative mt-4 flex justify-center"
-      : "absolute bottom-4 left-1/2 -translate-x-1/2";
+    if (!items?.length) return null;
 
-  return (
-    <Section aria-label="Featured photo carousel">
-      <Container>
-        <ProgressSlider
-          vertical={false}
-          activeSlider={items[0].sliderName}
-          aria-roledescription="carousel"
-          aria-label="Featured photos"
-        >
-          <SliderContent>
-            {items.map((item: CarouselItem, index: number) => {
-              const captionId = `${item.sliderName}-caption`;
-              return (
-                <SliderWrapper
-                  key={item.sliderName}
-                  value={item.sliderName}
-                  aria-labelledby={captionId}
-                >
-                  <figure className="relative">
-                    <Image
-                      className="rounded-xl w-full h-[450px] 2xl:h-[500px] object-cover"
-                      src={item.img}
-                      width={1900}
-                      height={1080}
-                      priority={index === 0}
-                      sizes="(min-width:1536px) 1280px, (min-width:1280px) 1024px, (min-width:1024px) 896px, 100vw"
-                      alt={item.title}
-                    />
-                    <figcaption id={captionId} className="sr-only">
-                      {item.title}. {item.desc}
-                    </figcaption>
-                  </figure>
-                </SliderWrapper>
-              );
-            })}
-          </SliderContent>
+    // Адаптивность
+    useEffect(() => {
+      const handleResize = () => {
+        if (window.innerWidth < 640) {
+          setItemsPerView(1); // мобильные
+        } else if (window.innerWidth < 1024) {
+          setItemsPerView(2); // планшеты
+        } else {
+          setItemsPerView(3); // десктоп
+        }
+      };
 
-          {hideFooter ? (
-            <SliderBtnGroup
-              aria-label="Slide navigation"
-              className={cn(
-                baseGroupPos,
-                "flex items-center gap-2 pointer-events-auto select-none"
-              )}
-            >
-              {items.map((item: CarouselItem) => {
-                if (indicatorVariant === "bars") {
-                  // ▬ Чуть больше и с круглыми краями, без бордера
-                  return (
-                    <SliderBtn
-                      key={item.sliderName}
-                      value={item.sliderName}
-                      aria-label={`Show slide: ${item.title}`}
-                      aria-describedby={`${item.sliderName}-caption`}
-                      className={cn(
-                        "p-0 h-2 w-8 md:w-10 rounded-full transition",
-                        "bg-foreground/35 hover:bg-foreground/60",
-                        "data-[state=active]:bg-foreground aria-[selected=true]:bg-foreground",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-foreground/50"
-                      )}
-                    >
-                      <span className="sr-only">{item.title}</span>
-                    </SliderBtn>
-                  );
-                }
-              
-                // indicatorVariant === "pills"
-                return (
-                  <SliderBtn
-                    key={item.sliderName}
-                    value={item.sliderName}
-                    aria-label={`Show slide: ${item.title}`}
-                    aria-describedby={`${item.sliderName}-caption`}
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const totalPages = Math.ceil(items.length / itemsPerView);
+
+    // Функции навигации
+    const goToNext = () => {
+      setCurrentIndex((prev) => (prev + 1) % totalPages);
+    };
+
+    const goToPage = (index: number) => {
+      setCurrentIndex(index);
+    };
+
+    // Автоматическое переключение слайдов
+    useEffect(() => {
+      if (!autoPlay || totalPages <= 1) return;
+
+      const interval = setInterval(() => {
+        goToNext();
+      }, autoPlayInterval);
+
+      return () => clearInterval(interval);
+    }, [autoPlay, autoPlayInterval, totalPages, currentIndex]);
+
+    return (
+      <Section aria-label="Photo carousel" className="py-12">
+        <Container>
+          <div className="relative">
+            {/* Слайды */}
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {Array.from({ length: totalPages }).map((_, pageIndex) => (
+                  <div
+                    key={pageIndex}
                     className={cn(
-                      "p-0 h-6 px-3 rounded-full text-xs font-medium transition",
-                      "bg-foreground/[0.08] hover:bg-foreground/[0.16]",
-                      "data-[state=active]:bg-foreground data-[state=active]:text-background",
-                      "aria-[selected=true]:bg-foreground aria-[selected=true]:text-background",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-foreground/50"
+                      "w-full flex-shrink-0",
+                      "grid gap-4 md:gap-6",
+                      itemsPerView === 1 && "grid-cols-1",
+                      itemsPerView === 2 && "grid-cols-2",
+                      itemsPerView === 3 && "grid-cols-3"
                     )}
                   >
-                    <span className="sr-only">{item.title}</span>
-                    <span aria-hidden className="block w-4 md:w-5" />
-                  </SliderBtn>
-                );
-              })}
-            </SliderBtnGroup>
-          ) : (
-            <SliderBtnGroup className="absolute bottom-0 h-fit text-black dark:text-white bg-white/40 dark:bg-black/40 backdrop-blur-md overflow-hidden grid grid-cols-2 md:grid-cols-4 rounded-md">
-              {items.map((item: CarouselItem) => (
-                <SliderBtn
-                  key={item.sliderName}
-                  value={item.sliderName}
-                  aria-label={`Show slide: ${item.title}`}
-                  aria-describedby={`${item.sliderName}-caption`}
-                  className="text-left cursor-pointer p-3 border-r focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-800 dark:focus-visible:ring-gray-200"
-                  progressBarClass="h-full bg-white dark:bg-black"
-                >
-                  <h4 className="relative px-4 rounded-full w-fit bg-gray-900 text-white dark:bg-white dark:text-black mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm font-medium line-clamp-2">
-                    {item.desc}
-                  </p>
-                </SliderBtn>
-              ))}
-            </SliderBtnGroup>
-          )}
-        </ProgressSlider>
-      </Container>
-    </Section>
-  );
-});
+                    {items
+                      .slice(
+                        pageIndex * itemsPerView,
+                        (pageIndex + 1) * itemsPerView
+                      )
+                      .map((item: CarouselItem, index: number) => (
+                        <figure key={index} className="relative">
+                          <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
+                            <Image
+                              className="object-cover hover:scale-105 transition-transform duration-300"
+                              src={item.img}
+                              fill
+                              priority={pageIndex === 0 && index < 3}
+                              sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                              alt={item.title || "Carousel image"}
+                            />
+                          </div>
+                          {(item.title || item.desc) && (
+                            <figcaption className="mt-3 space-y-1">
+                              {item.title && (
+                                <h3 className="font-medium text-foreground">
+                                  {item.title}
+                                </h3>
+                              )}
+                              {item.desc && (
+                                <p className="text-sm text-muted-foreground line-clamp-2">
+                                  {item.desc}
+                                </p>
+                              )}
+                            </figcaption>
+                          )}
+                        </figure>
+                      ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Индикаторы страниц */}
+            {totalPages > 1 && (
+              <div className="flex justify-center gap-2 mt-6">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToPage(index)}
+                    className={cn(
+                      "h-2 rounded-full transition-all relative overflow-hidden",
+                      index === currentIndex
+                        ? "w-8 bg-primary/30"
+                        : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    )}
+                    aria-label={`Go to page ${index + 1}`}
+                  >
+                    {/* Прогресс-бар для активного слайда при автопроигрывании */}
+                    {index === currentIndex && autoPlay && (
+                      <span
+                        className="absolute left-0 top-0 h-full bg-primary transition-none"
+                        style={{
+                          animationName: "progress",
+                          animationDuration: `${autoPlayInterval}ms`,
+                          animationTimingFunction: "linear",
+                          animationFillMode: "forwards",
+                        }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </Container>
+      </Section>
+    );
+  }
+);
