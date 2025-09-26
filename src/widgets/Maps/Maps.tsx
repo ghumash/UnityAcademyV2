@@ -3,7 +3,7 @@
 import React, { memo, useMemo, type CSSProperties } from "react";
 import { ExternalLink } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
-import { Button, Skeleton } from "@/shared/ui";
+import { Button } from "@/shared/ui";
 import { siteConfig } from "@/shared/config/common";
 
 type Props = {
