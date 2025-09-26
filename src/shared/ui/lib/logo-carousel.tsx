@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import type { ComponentType, SVGProps } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -12,10 +12,10 @@ type SvgComponent = ComponentType<SVGProps<SVGSVGElement>>;
 type RasterLike = StaticImageData | string;
 
 export interface Logo {
-  id: number;
   name: string;
   /** Может прийти как SVGR-компонент, так и StaticImageData (или URL-строка) */
   img: SvgComponent | RasterLike;
+  href?: string;
 }
 
 interface LogoColumnProps {
@@ -67,38 +67,47 @@ function isSvgComponent(x: Logo["img"]): x is SvgComponent {
   return typeof x === "function";
 }
 
-function LogoNode({
-  img,
-  className,
-}: {
-  img: Logo["img"];
-  className?: string;
-}) {
-  if (isSvgComponent(img)) {
-    const Svg = img;
-    return (
-      <Svg
-        className={className}
-        focusable="false"
-        aria-hidden="true"
-        role="img"
-      />
-    );
-  }
+function LogoNode({ logo, className }: { logo: Logo; className?: string }) {
+  const { img, href, name } = logo;
 
-  // Raster / URL case → next/image
-  return (
+  const logoElement = isSvgComponent(img) ? (
+    React.createElement(img, {
+      className,
+      focusable: "false",
+      "aria-hidden": "true",
+      role: "img",
+    })
+  ) : (
     <Image
       src={img}
-      alt="" // декоративно
+      alt={`${name} logo`}
       width={128}
       height={128}
       className={cn("object-contain", className)}
-      // sizes: логотип в пределах контейнера, адаптивность решаем классами
       sizes="(min-width:768px) 128px, 80px"
       priority={false}
     />
   );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          "block transition-transform duration-300 hover:scale-110",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "rounded-lg"
+        )}
+        aria-label={`Visit ${name} website`}
+      >
+        {logoElement}
+      </a>
+    );
+  }
+
+  return logoElement;
 }
 
 /* === Column ============================================================= */
@@ -160,14 +169,13 @@ const LogoColumn = memo(function LogoColumn({
       {reduceMotion ? (
         <div className="absolute inset-0 flex items-center justify-center">
           <LogoNode
-            img={current.img}
+            logo={current}
             className="h-20 w-20 max-h-[80%] max-w-[80%] md:h-32 md:w-32"
           />
         </div>
       ) : (
         <AnimatePresence mode="wait">
           <motion.div
-            key={`${current.id}-${idx}`}
             className="absolute inset-0 flex items-center justify-center"
             initial={{ y: "10%", opacity: 0, filter: "blur(8px)" }}
             animate={{
@@ -190,7 +198,7 @@ const LogoColumn = memo(function LogoColumn({
             }}
           >
             <LogoNode
-              img={current.img}
+              logo={current}
               className="h-20 w-20 max-h-[80%] max-w-[80%] md:h-32 md:w-32"
             />
           </motion.div>

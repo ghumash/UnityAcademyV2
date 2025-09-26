@@ -4,24 +4,20 @@ import { memo } from "react";
 import { Container, Section } from "@/shared/ui/custom";
 import { GradientHeading } from "@/shared/ui/lib";
 import { LogoCarousel } from "@/shared/ui/lib/logo-carousel";
-import React from "react";
-import type { StaticImageData } from "next/image";
-type LogoItem = { id: number; name: string; img: string | StaticImageData };
-
-const allLogos: LogoItem[] = [{ name: "ARDA", id: 1, img: "/images/logos/arda.jpg" }];
+import type { LogoItem } from "@/shared/config/home";
 
 export type LogoCarouselSectionConfig = {
   title: string;
   subtitle: string;
+  logos: LogoItem[];
 };
 
 export interface LogoCarouselSectionProps {
   config: LogoCarouselSectionConfig;
 }
-
 export const LogoCarouselSection = memo(
   ({ config }: LogoCarouselSectionProps) => {
-    const { title, subtitle } = config;
+    const { title, subtitle, logos } = config;
     return (
       <Section id="logo-carousel" aria-labelledby="logo-carousel-title">
         <Container>
@@ -34,7 +30,10 @@ export const LogoCarouselSection = memo(
             </div>
 
             <div role="region" aria-label="Partner and technology logos">
-              <LogoCarousel columnCount={allLogos?.length} logos={allLogos} />
+              <LogoCarousel
+                columnCount={Math.min(logos?.length || 0, 4)}
+                logos={logos || []}
+              />
             </div>
           </div>
         </Container>
