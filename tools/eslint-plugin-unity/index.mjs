@@ -1,5 +1,5 @@
 // небольшой локальный плагин: требует Promise-параметр "params"
-export default {
+const unityPlugin = {
   rules: {
     "require-async-params": {
       meta: {
@@ -105,3 +105,5 @@ export default {
     },
   },
 };
+
+export default unityPlugin;
