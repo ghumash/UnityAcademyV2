@@ -1,7 +1,7 @@
 "use client";
 
 import { Section, Container } from "@/shared/ui/custom";
-import { CountdownTimer } from "@/entities/countdown";
+import { CountdownTimer } from "./CountdownTimer";
 import { Badge, Button, Card, CardContent, CardHeader } from "@/shared/ui";
 import { TextGenerateEffect } from "@/shared/ui/lib";
 import {

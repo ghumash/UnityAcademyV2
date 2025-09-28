@@ -6,6 +6,7 @@ export { CourseTopics } from "./ui/CourseTopics";
 export { InstructorCard } from "./ui/InstructorCard";
 export { SocialLinks } from "./ui/SocialLinks";
 export { ExperienceTimeline } from "./ui/ExperienceTimeline";
+export { CountdownTimer } from "./ui/CountdownTimer";
 
 // Types
 export type { 
@@ -21,7 +22,12 @@ export type {
   InstructorLabels,
   InstructorCardProps,
   ExperienceItem,
-  SocialLinks as SocialLinksType
+  SocialLinks as SocialLinksType,
+  CountdownTimerProps,
+  TimerData,
+  TimeUnit,
+  SizeConfig,
+  ColorScheme
 } from "./model/types";
 
 // Utils
@@ -32,14 +38,15 @@ export {
   getTopicsDisplayConfig,
   getTopicAriaLabel,
   getInitials,
-  getPlatformName
+  getPlatformName,
+  getTimeUnitLabel
 } from "./lib/utils";
 
 // Theme configurations
 export { THEMES } from "./model/theme";
 
 // Course Topics configurations
-export { courseTopicsConfig, animations } from "./model/config";
+export { courseTopicsConfig, animations, sizeClasses, colorSchemes } from "./model/config";
 
 // Constants - reexported from shared config
 export * from "@/shared/lib/const";
