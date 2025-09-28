@@ -12,11 +12,10 @@ import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
 import { COURSE_DATA, COURSE_KEYS, type CourseKey } from "@/shared/lib/const";
 import { AppAutoBreadcrumb, ContentSection } from "@/widgets";
 import { CtaBanner, GlowingGrid, PhotoGallery, CallToAction } from "@/widgets";
-import { InstructorCard } from "@/entities/instructor";
+import { IntroHero, CourseTopics, InstructorCard } from "@/entities/course";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";
 import { ScrollToHash } from "@/shared/lib/scroll-to-hash";
-import { IntroHero, CourseTopics } from "@/entities/course";
 
 export async function generateMetadata({
   params,

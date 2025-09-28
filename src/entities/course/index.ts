@@ -3,6 +3,9 @@ export { Courses } from "./ui/Courses";
 export { CourseCard } from "./ui/CourseCard";
 export { IntroHero } from "./ui/IntroHero";
 export { CourseTopics } from "./ui/CourseTopics";
+export { InstructorCard } from "./ui/InstructorCard";
+export { SocialLinks } from "./ui/SocialLinks";
+export { ExperienceTimeline } from "./ui/ExperienceTimeline";
 
 // Types
 export type { 
@@ -13,7 +16,12 @@ export type {
   CoursesProps, 
   CourseCardProps,
   CourseTopicsProps,
-  CourseTopicsConfig
+  CourseTopicsConfig,
+  InstructorData,
+  InstructorLabels,
+  InstructorCardProps,
+  ExperienceItem,
+  SocialLinks as SocialLinksType
 } from "./model/types";
 
 // Utils
@@ -22,7 +30,9 @@ export {
   levelLabel, 
   formatLabel,
   getTopicsDisplayConfig,
-  getTopicAriaLabel
+  getTopicAriaLabel,
+  getInitials,
+  getPlatformName
 } from "./lib/utils";
 
 // Theme configurations
