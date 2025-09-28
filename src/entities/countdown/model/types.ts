@@ -41,37 +41,4 @@ export interface TimerData {
 
 export type TimeUnit = 'days' | 'hours' | 'minutes' | 'seconds';
 
-// UI Component Props Interfaces
-
-export interface TimerHeaderProps {
-  title: string;
-  subtitle?: string;
-  colors: ColorScheme;
-  sizes: SizeConfig;
-}
-
-export interface CompactTimerProps {
-  timer: TimerData;
-  colors: ColorScheme;
-  title: string;
-  dict: any;
-  className?: string;
-}
-
-export interface CardTimerProps {
-  timer: TimerData;
-  colors: ColorScheme;
-  sizes: SizeConfig;
-  title: string;
-  subtitle?: string;
-  dict: any;
-  className?: string;
-}
-
-export interface TimeUnitProps {
-  value: number;
-  unit: TimeUnit;
-  colors: ColorScheme;
-  sizes: SizeConfig;
-  dict: any;
-}
+// Убраны отдельные UI компоненты - все объединено в CountdownTimer
