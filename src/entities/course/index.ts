@@ -3,6 +3,7 @@ export { Courses } from "./ui/Courses";
 
 // Sub-components
 export { CourseCard } from "./ui/CourseCard";
+export { IntroHero } from "./ui/IntroHero";
 
 // Types
 export type {

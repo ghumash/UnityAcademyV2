@@ -10,13 +10,14 @@ import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
 import { COURSE_DATA, COURSE_KEYS, type CourseKey } from "@/shared/lib/const";
-import { AppAutoBreadcrumb, ContentSection, IntroHero } from "@/widgets";
+import { AppAutoBreadcrumb, ContentSection } from "@/widgets";
 import { CtaBanner, GlowingGrid, PhotoGallery, CallToAction } from "@/widgets";
 import { InstructorCard } from "@/entities/instructor";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";
 import { ScrollToHash } from "@/shared/lib/scroll-to-hash";
 import { CourseTopics } from "@/entities/course-topics";
+import { IntroHero } from "@/entities/course";
 
 export async function generateMetadata({
   params,

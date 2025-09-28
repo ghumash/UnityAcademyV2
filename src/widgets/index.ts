@@ -11,7 +11,6 @@ export { Maps } from "./Maps/Maps";
 export { TeamSection } from "./TeamSection/TeamSection";
 export { ContactTilesSection } from "./ContactTilesSection/ContactTilesSection";
 export { SettingsDropdown } from "./SettingsDropdown/SettingsDropdown";
-export { IntroHero } from "./IntroHero/IntroHero";
 export { PromoVideo } from "./PromoVideo/PromoVideo";
 export { GlowingGrid, type GridItemData } from "./GlowingGrid/GlowingGrid";
 export { Carousel } from "./Carousel/Carousel";
