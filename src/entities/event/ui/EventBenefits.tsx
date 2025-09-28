@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Gift } from "lucide-react";
-import { motion } from "motion/react";
+import { LazyMotion, domAnimation, m } from "motion/react";
 import { cn } from "@/shared/lib/utils";
 import { Section, Container } from "@/shared/ui/custom";
 
@@ -70,9 +70,10 @@ export const EventBenefits: React.FC<EventBenefitsProps> = ({
   if (!list.length) return null;
 
   return (
+    <LazyMotion features={domAnimation}>
     <Section>
       <Container>
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -95,7 +96,7 @@ export const EventBenefits: React.FC<EventBenefitsProps> = ({
               const colors = getBenefitColors(index);
 
               return (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -153,13 +154,14 @@ export const EventBenefits: React.FC<EventBenefitsProps> = ({
                     {/* Shine Effect */}
                     <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
 
-        </motion.div>
+        </m.div>
       </Container>
     </Section>
+    </LazyMotion>
   );
 };

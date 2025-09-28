@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Clock, User, CheckCircle } from "lucide-react";
-import { motion } from "motion/react";
+import { LazyMotion, domAnimation, m } from "motion/react";
 import { cn } from "@/shared/lib/utils";
 import { Section, Container } from "@/shared/ui/custom";
 
@@ -64,9 +64,10 @@ export const EventAgenda: React.FC<EventAgendaProps> = ({
   if (!display || !items.length) return null;
 
   return (
+    <LazyMotion features={domAnimation}>
     <Section>
       <Container>
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -94,7 +95,7 @@ export const EventAgenda: React.FC<EventAgendaProps> = ({
             {/* Timeline Items */}
             <div className="space-y-8">
               {items.map((item, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -167,12 +168,12 @@ export const EventAgenda: React.FC<EventAgendaProps> = ({
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </m.div>
               ))}
             </div>
 
             {/* End Marker */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
@@ -204,10 +205,11 @@ export const EventAgenda: React.FC<EventAgendaProps> = ({
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       </Container>
     </Section>
+    </LazyMotion>
   );
 };

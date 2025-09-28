@@ -10,7 +10,7 @@ import {
   XCircle,
   User,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { LazyMotion, domAnimation, m } from "motion/react";
 import { cn } from "@/shared/lib/utils";
 import { Section, Container } from "@/shared/ui/custom";
 import { Badge, Button } from "@/shared/ui";
@@ -96,6 +96,7 @@ export const EventHero: React.FC<EventHeroProps> = ({ config }) => {
   );
 
   return (
+    <LazyMotion features={domAnimation}>
     <Section className="relative overflow-hidden bg-gradient-to-br from-background via-background/50 to-primary/5">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
@@ -107,7 +108,7 @@ export const EventHero: React.FC<EventHeroProps> = ({ config }) => {
         <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
           {/* Left Column - Event Info */}
           <div className="lg:col-span-3">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -246,12 +247,12 @@ export const EventHero: React.FC<EventHeroProps> = ({ config }) => {
                   </div>
                 </div>
               )}
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Right Column - Visual Element */}
           <div className="lg:col-span-2">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -321,7 +322,7 @@ export const EventHero: React.FC<EventHeroProps> = ({ config }) => {
               </div>
 
               {/* Floating Elements */}
-              <motion.div
+              <m.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{
                   duration: 3,
@@ -331,9 +332,9 @@ export const EventHero: React.FC<EventHeroProps> = ({ config }) => {
                 className="absolute -top-4 -right-4 rounded-full bg-primary/20 p-3"
               >
                 <User className="h-6 w-6 text-primary" />
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{
                   duration: 4,
@@ -344,11 +345,12 @@ export const EventHero: React.FC<EventHeroProps> = ({ config }) => {
                 className="absolute -bottom-4 -left-4 rounded-full bg-primary/20 p-3"
               >
                 <Clock className="h-6 w-6 text-primary" />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           </div>
         </div>
       </Container>
     </Section>
+    </LazyMotion>
   );
 };

@@ -3,7 +3,7 @@
 import React, { memo } from "react";
 import Link from "next/link";
 import { Clock, Users, ArrowRight, CheckCircle, XCircle } from "lucide-react";
-import { motion } from "motion/react";
+import { LazyMotion, domAnimation, m } from "motion/react";
 import { cn } from "@/shared/lib/utils";
 import type { EventCardProps } from "../model/types";
 import { isEventFull, getRegistrationProgress } from "../lib/utils";
@@ -23,7 +23,8 @@ export const EventCard = memo(({ event, soon, cardLabels }: EventCardProps) => {
   );
 
   return (
-    <motion.div
+    <LazyMotion features={domAnimation}>
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -172,6 +173,7 @@ export const EventCard = memo(({ event, soon, cardLabels }: EventCardProps) => {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </m.div>
+    </LazyMotion>
   );
 });

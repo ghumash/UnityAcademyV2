@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Building, ExternalLink } from "lucide-react";
-import { motion } from "motion/react";
+import { LazyMotion, domAnimation, m } from "motion/react";
 import { Section, Container } from "@/shared/ui/custom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui";
 
@@ -33,9 +33,10 @@ export const EventSpeakers: React.FC<EventSpeakersProps> = ({ title, list, displ
   if (!display || !list.length) return null;
 
   return (
+    <LazyMotion features={domAnimation}>
     <Section>
       <Container>
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -55,7 +56,7 @@ export const EventSpeakers: React.FC<EventSpeakersProps> = ({ title, list, displ
           {/* Speakers Grid */}
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((speaker, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -131,11 +132,12 @@ export const EventSpeakers: React.FC<EventSpeakersProps> = ({ title, list, displ
                   {/* Hover Glow Effect */}
                   <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </Container>
     </Section>
+    </LazyMotion>
   );
 };
