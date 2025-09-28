@@ -16,8 +16,7 @@ import { InstructorCard } from "@/entities/instructor";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";
 import { ScrollToHash } from "@/shared/lib/scroll-to-hash";
-import { CourseTopics } from "@/entities/course-topics";
-import { IntroHero } from "@/entities/course";
+import { IntroHero, CourseTopics } from "@/entities/course";
 
 export async function generateMetadata({
   params,

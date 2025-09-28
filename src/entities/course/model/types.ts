@@ -60,3 +60,16 @@ export interface CourseCardProps {
   levels: CoursesProps["levels"];
   formats: CoursesProps["formats"];
 }
+
+// Course Topics types (merged from course-topics entity)
+export interface CourseTopicsProps {
+  title: string;
+  topics: string[];
+  className?: string;
+}
+
+export interface CourseTopicsConfig {
+  maxVisibleItems: number;
+  enableScroll: boolean;
+  useGridLayout: boolean;
+}
