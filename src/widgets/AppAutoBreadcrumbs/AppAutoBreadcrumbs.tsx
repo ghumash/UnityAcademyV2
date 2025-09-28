@@ -51,29 +51,30 @@ export const AppAutoBreadcrumb = memo(({
       }),
     ];
 
-    // Спец-обработка страницы курса: /:locale/courses/:slug
-    if (segments[0] === "courses" && segments.length >= 2) {
-      const slug = segments[1];
-      const directPath = `courses.${slug}.title`;
-      const altPath = `courses.${slug.replace(/-/g, "_")}.title`;
+    // Универсальная обработка динамических страниц
+    const updatePageTitle = (section: string, pathTemplate: string) => {
+      if (segments[0] === section && segments.length >= 2) {
+        const slug = segments[1];
+        const directPath = pathTemplate.replace("{slug}", slug);
+        const altPath = pathTemplate.replace("{slug}", slug.replace(/-/g, "_"));
 
-      let courseTitle = t(directPath);
-      if (courseTitle === directPath) {
-        const alt = t(altPath);
-        courseTitle =
-          alt !== altPath
-            ? alt
-            : slug
-                .replace(/[-_]/g, " ")
-                .replace(/\b\w/g, (c) => c.toUpperCase());
-      }
+        let title = t(directPath);
+        if (title === directPath) {
+          const alt = t(altPath);
+          title = alt !== altPath ? alt : 
+            slug.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+        }
 
-      const detailHref = `/${locale}/courses/${slug}`;
-      const targetIndex = base.findIndex((c) => c.href === detailHref);
-      if (targetIndex !== -1) {
-        base[targetIndex] = { ...base[targetIndex], name: courseTitle };
+        const detailHref = `/${locale}/${section}/${slug}`;
+        const targetIndex = base.findIndex((c) => c.href === detailHref);
+        if (targetIndex !== -1) {
+          base[targetIndex] = { ...base[targetIndex], name: title };
+        }
       }
-    }
+    };
+
+    updatePageTitle("courses", "courses.{slug}.title");
+    updatePageTitle("events", "events.list.{slug}.eventHeroSection.title");
 
     return base;
   }, [pathname, locale, t]);

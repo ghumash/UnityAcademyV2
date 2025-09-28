@@ -2,7 +2,6 @@
 
 import { Section, Container } from "@/shared/ui/custom";
 import { CountdownTimer } from "@/entities/countdown";
-import { AppAutoBreadcrumb } from "@/widgets";
 import { Badge, Button, Card, CardContent, CardHeader } from "@/shared/ui";
 import { TextGenerateEffect } from "@/shared/ui/lib";
 import {
@@ -124,8 +123,6 @@ export const IntroHero = memo(({ config }: IntroHeroProps) => {
   return (
     <Section>
       <Container>
-        <AppAutoBreadcrumb />
-
         <div
           className={cn(
             "relative group mt-8 grid gap-8 lg:grid-cols-3 rounded-2xl border-2 bg-gradient-to-br p-6 sm:p-8 backdrop-blur-xl",
@@ -217,7 +214,7 @@ export const IntroHero = memo(({ config }: IntroHeroProps) => {
             </div>
           </div>
 
-          {/* Правая колонка (панель) */}
+          {/* Правая колонка (панель) right */}
           <div className="relative z-10 lg:col-span-1">
             <Card className={cn("bg-card")}>
               <CardHeader>

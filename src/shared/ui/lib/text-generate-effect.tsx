@@ -108,4 +108,3 @@ function TextGenerateEffectImpl({
 }
 
 export const TextGenerateEffect = memo(TextGenerateEffectImpl);
-TextGenerateEffect.displayName = "TextGenerateEffect";

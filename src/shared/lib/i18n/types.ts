@@ -5,6 +5,7 @@ import type { HomeDict } from "./directories/home/types";
 import type { CoursesDict } from "./directories/courses/types";
 import type { ApplyDict } from "./directories/apply/types";
 import type { FaqDict } from "./directories/faq/types";
+import type { EventsDict } from "./directories/events/types";
 
 export const locales = ["hy", "ru", "en"] as const;
 export type Locale = (typeof locales)[number];
@@ -17,4 +18,5 @@ export type Dict = {
   contacts: ContactDict;
   apply: ApplyDict;
   faq: FaqDict;
+  events: EventsDict;
 };

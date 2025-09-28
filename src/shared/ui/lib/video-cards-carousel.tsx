@@ -55,10 +55,10 @@ export const CarouselContext = createContext<{
  * Carousel
  * =======================*/
 
-export const Carousel = memo(function Carousel({
+export const Carousel = memo(({
   items,
   initialScroll = 0,
-}: CarouselProps) {
+}: CarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -212,14 +212,14 @@ type Props = {
   onOpen?: () => void; // callback для открытия диалога
 };
 
-const PromoVideoPreview = memo(function PromoVideoPreview({
+const PromoVideoPreview = memo(({
   srcWebm,
   srcMp4,
   posterSrc,
   title,
   className,
   onOpen,
-}: Props) {
+}: Props) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduced = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -295,7 +295,7 @@ const PromoVideoPreview = memo(function PromoVideoPreview({
   );
 });
 
-const PromoVideoDialog = memo(function PromoVideoDialog({
+const PromoVideoDialog = memo(({
   srcWebm,
   srcMp4,
   posterSrc,
@@ -305,7 +305,7 @@ const PromoVideoDialog = memo(function PromoVideoDialog({
   srcMp4?: string;
   posterSrc?: string;
   title: string;
-}) {
+}) => {
   return (
     <PromoVideo
       title={title}
@@ -326,7 +326,7 @@ const PromoVideoDialog = memo(function PromoVideoDialog({
  * Card (video version)
  * =======================*/
 
-export const Card = memo(function Card({
+export const Card = memo(({
   card,
   index,
   layout = false,
@@ -334,7 +334,7 @@ export const Card = memo(function Card({
   card: StudentPromoCard;
   index: number;
   layout?: boolean;
-}) {
+}) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const openBtnRef = useRef<HTMLButtonElement>(null);

@@ -7,12 +7,14 @@ import { courses } from "./courses/hy";
 import { contacts } from "./contacts/hy";
 import { apply } from "./apply/hy";
 import { faq } from "./faq/hy";
+import { events } from "./events/hy";
 
 export const hy: Dict = {
   common,
   home,
   about,
   courses,
+  events,
   contacts,
   apply,
   faq,

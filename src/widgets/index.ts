@@ -21,4 +21,4 @@ export { CtaBanner } from "./CtaBanner/CtaBanner";
 export { FaqAccordion, type FAQItem } from "./FaqAccordion/FaqAccordion";
 export { IntroWithDesc } from "./IntroWithDesc/IntroWithDesc";
 export { PhotoGallery } from "./PhotoGallery/PhotoGallery";
-export { CallToAction } from "./CallToAction/CallToAction";
+export { CallToAction } from "./CallToAction";

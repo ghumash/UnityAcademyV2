@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl, siteConfig } from "@/shared/config/common";
 import { locales, type Locale } from "@/shared/lib/i18n";
-import { COURSE_DATA } from "@/shared/lib/const";
+import { COURSE_DATA, EVENT_DATA } from "@/shared/lib/const";
 
 function pathForLocale(locale: Locale, path: `/${string}` | "/") {
   return path === "/" ? `/${locale}` : `/${locale}${path}`;
@@ -20,11 +20,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Статические страницы с конфигурацией
   const staticPages = [
-    { path: siteConfig.routes.home, changeFrequency: "weekly" as const, priority: 1.0 },
+    {
+      path: siteConfig.routes.home,
+      changeFrequency: "weekly" as const,
+      priority: 1.0,
+    },
     {
       path: siteConfig.routes.courses,
       changeFrequency: "daily" as const,
       priority: 0.8,
+    },
+    {
+      path: siteConfig.routes.events,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
     },
     {
       path: siteConfig.routes.about,
@@ -62,17 +71,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const courseIds = [
-    COURSE_DATA.web_development.key,
-    COURSE_DATA.graphic_design.key,
-    COURSE_DATA.scratch.key,
-    COURSE_DATA.smm.key,
-    COURSE_DATA.python.key,
-    COURSE_DATA.android.key,
-    COURSE_DATA.ui_ux.key,
-    COURSE_DATA.hr.key,
-    COURSE_DATA.soft_skills.key,
-  ];
+  // Автоматическое извлечение всех курсов из COURSE_DATA
+  const courseIds = Object.values(COURSE_DATA).map((course) => course.key);
   for (const locale of locales) {
     for (const courseId of courseIds) {
       const coursePath = `${siteConfig.routes.courses}/${courseId}` as const;
@@ -83,6 +83,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: "weekly",
         priority: 0.7,
         alternates: alternatesForPath(coursePath),
+      });
+    }
+  }
+
+  // Автоматическое извлечение всех событий из EVENT_DATA
+  const eventIds = Object.values(EVENT_DATA).map((event) => event.key);
+  for (const locale of locales) {
+    for (const eventId of eventIds) {
+      const eventPath = `${siteConfig.routes.events}/${eventId}` as const;
+      const url = absoluteUrl(pathForLocale(locale, eventPath));
+      entries.push({
+        url,
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 0.6,
+        alternates: alternatesForPath(eventPath),
       });
     }
   }

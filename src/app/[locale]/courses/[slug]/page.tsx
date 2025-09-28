@@ -9,17 +9,9 @@ import {
 import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { getCoursesConfig, getCoursePageConfig } from "@/shared/config/courses";
-import { COURSE_DATA, type CourseKey } from "@/shared/lib/const";
-import {
-  ContentSection,
-  IntroHero,
-} from "@/widgets";
-import {
-  CtaBanner,
-  GlowingGrid,
-  PhotoGallery,
-  CallToAction,
-} from "@/widgets";
+import { COURSE_DATA, COURSE_KEYS, type CourseKey } from "@/shared/lib/const";
+import { AppAutoBreadcrumb, ContentSection, IntroHero } from "@/widgets";
+import { CtaBanner, GlowingGrid, PhotoGallery, CallToAction } from "@/widgets";
 import { InstructorCard } from "@/entities/instructor";
 import { Container, Section } from "@/shared/ui/custom";
 import { ApplyForm } from "@/features/apply";
@@ -78,6 +70,12 @@ export default async function CoursePage({
       />
       <JsonLd id="org-jsonld" data={buildOrganizationJsonLd()} />
 
+      <Section>
+        <Container>
+          <AppAutoBreadcrumb />
+        </Container>
+      </Section>
+
       <IntroHero config={coursePageConfig.courseHeroSection} />
 
       <Section>
@@ -87,8 +85,8 @@ export default async function CoursePage({
             topics={coursePageConfig.courseTopics.topics}
           />
           {coursePageConfig.instructor.data.display !== false && (
-            <InstructorCard 
-              data={coursePageConfig.instructor.data} 
+            <InstructorCard
+              data={coursePageConfig.instructor.data}
               labels={coursePageConfig.instructor.labels}
             />
           )}
@@ -113,6 +111,8 @@ export default async function CoursePage({
             title={coursePageConfig.callToAction.title}
             subtitle={coursePageConfig.callToAction.subtitle}
             activeTagId={coursePageConfig.callToAction.activeTagId}
+            keys={COURSE_KEYS}
+            data={COURSE_DATA}
           >
             <ApplyForm
               config={formConfig}

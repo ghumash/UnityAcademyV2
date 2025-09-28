@@ -11,6 +11,10 @@ export type SeoDict = {
     readonly title: string;
     readonly description: string;
   };
+  readonly events: {
+    readonly title: string;
+    readonly description: string;
+  };
   readonly contacts: {
     readonly title: string;
     readonly description: string;

@@ -71,7 +71,6 @@ const BaseHeading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
     );
   }
 );
-BaseHeading.displayName = "GradientHeading";
 
 export const GradientHeading = React.memo(BaseHeading);
 

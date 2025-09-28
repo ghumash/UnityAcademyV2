@@ -50,17 +50,16 @@ const normalizePath = (path: string): string => {
 
 const isMatch = (current: string, itemUrl: string): boolean => {
   const base = normalizePath(itemUrl);
-  if (base === "/") return current === "/";
-  
-  // Специальная логика для страниц курсов:
-  // /courses - активна только на точной странице /courses
-  // /courses/[slug] - кнопка /courses должна быть доступна (не активна)
-  if (base === "/courses") {
-    return current === "/courses";
+  switch (base) {
+    case "/":
+      return current === "/";
+    case "/courses":
+      return current === "/courses";
+    case "/events":
+      return current === "/events";
+    default:
+      return current === base || current.startsWith(`${base}/`);
   }
-  
-  // точное совпадение или начало нового сегмента (исключаем ложные срабатывания вроде /faq2)
-  return current === base || current.startsWith(`${base}/`);
 };
 
 export const NavBar = memo(
@@ -92,7 +91,7 @@ export const NavBar = memo(
           className
         )}
       >
-        <div className="flex items-center gap-2 rounded-full border border-border bg-background/5 px-[6px] py-[3px] shadow-lg backdrop-blur-lg">
+        <div className="flex items-center gap-1 sm:gap-2 rounded-full border border-border bg-background/5 px-[6px] py-[3px] shadow-lg backdrop-blur-lg">
           {items.map((item) => {
             const active = isMatch(currentPath, item.url);
 
@@ -102,7 +101,7 @@ export const NavBar = memo(
                 aria-label={item.ariaLabel ?? item.name}
                 aria-current="page"
                 className={cn(
-                  "relative rounded-full border px-6 py-2 text-sm font-semibold transition-all duration-300 outline-none whitespace-nowrap",
+                  "relative rounded-full border px-3 py-2 md:px-6 text-sm font-semibold transition-all duration-300 outline-none whitespace-nowrap",
                   "bg-muted text-primary border-primary/50 cursor-default"
                 )}
               >
@@ -163,7 +162,7 @@ export const NavBar = memo(
                 prefetch={item.prefetch ?? false}
                 aria-label={item.ariaLabel ?? item.name}
                 className={cn(
-                  "relative rounded-full border px-6 py-2 text-sm font-semibold transition-all duration-300 outline-none whitespace-nowrap group",
+                  "relative rounded-full border px-3 py-2 md:px-6 text-sm font-semibold transition-all duration-300 outline-none whitespace-nowrap group",
                   "cursor-pointer text-foreground/80 hover:text-primary hover:bg-muted/50 hover:border-primary/30 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary/40"
                 )}
               >

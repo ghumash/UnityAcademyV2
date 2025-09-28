@@ -4,6 +4,7 @@ export type FooterDict = {
     home: string;
     about: string;
     courses: string;
+    events: string;
     contacts: string;
     faq: string;
   };

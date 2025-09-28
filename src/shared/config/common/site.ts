@@ -27,6 +27,7 @@ export const siteConfig = {
     home: "/",
     about: "/about",
     courses: "/courses",
+    events: "/events",
     contacts: "/contacts",
     apply: "/apply",
     faq: "/faq",

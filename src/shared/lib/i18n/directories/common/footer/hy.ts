@@ -7,6 +7,7 @@ export const footer: FooterDict = {
     home: "Գլխավոր",
     about: "Մեր մասին",
     courses: "Դասընթացներ",
+    events: "Իվենթներ",
     contacts: "Կապ",
     faq: "Հաճախ տրվող հարցեր",
   },

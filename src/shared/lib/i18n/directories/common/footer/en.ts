@@ -7,6 +7,7 @@ export const footer: FooterDict = {
     home: "Home",
     about: "About us",
     courses: "Courses",
+    events: "Events",
     contacts: "Contacts",
     faq: "FAQ",
   },

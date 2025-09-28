@@ -24,6 +24,19 @@ export const forms: FormsDict = {
       },
     },
   },
+  eventRegisterForm: {
+    buttonLabel: "Зарегистрироваться",
+    successText: "Спасибо! Регистрация прошла успешно:",
+    errorText: "Что-то пошло не так. Пожалуйста, попробуйте еще раз:",
+    fullname: "Имя Фамилия",
+    birthday: "Дата рождения",
+    phone: "Номер телефона",
+    event: {
+      list: {
+        graphic_design_open_class: "Графический дизайн: Открытый урок",
+      },
+    },
+  },
   feedbackForm: {
     buttonLabel: "Отправить",
     successText: "Спасибо! Ваше сообщение отправлено.",
@@ -71,6 +84,10 @@ export const forms: FormsDict = {
     course: {
       required: "Выберите курс",
       invalid: "Неверный курс",
+    },
+    event: {
+      required: "Выберите событие",
+      invalid: "Неверное событие",
     },
   },
 };

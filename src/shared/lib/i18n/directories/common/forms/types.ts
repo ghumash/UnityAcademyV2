@@ -1,10 +1,12 @@
-import type { CourseKey } from "@/shared/lib/const";
-
-export type CourseOption = string;
+import type { CourseKey, EventKey } from "@/shared/lib/const";
 
 export type CourseConfig = {
   label: string;
-  list: Record<CourseKey, CourseOption>;
+  list: Record<CourseKey, string>;
+};
+
+export type EventConfig = {
+  list: Record<EventKey, string>;
 };
 
 export type FormsDict = {
@@ -17,6 +19,15 @@ export type FormsDict = {
     phone: string;
     telegram: string;
     course: CourseConfig;
+  };
+  eventRegisterForm: {
+    buttonLabel: string;
+    successText: string;
+    errorText: string;
+    fullname: string;
+    birthday: string;
+    phone: string;
+    event: EventConfig;
   };
   feedbackForm: {
     buttonLabel: string;
@@ -63,6 +74,10 @@ export type FormsDict = {
       invalid: string;
     };
     course: {
+      required: string;
+      invalid: string;
+    };
+    event: {
       required: string;
       invalid: string;
     };

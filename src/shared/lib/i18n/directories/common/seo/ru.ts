@@ -15,6 +15,10 @@ export const seo: SeoDict = {
     description:
       "Откройте для себя наши IT курсы в Ванадзоре: Веб-разработка, Python, Android, UI/UX дизайн, SMM, графический дизайн и soft skills.",
   },
+  events: {
+    title: "События",
+    description: `Узнайте о лучших событиях ${siteConfig.name} в Ванадзоре: буткемпы, воркшопы, митапы и дни карьеры.`,
+  },
   contacts: {
     title: "Контакты",
     description: `Свяжитесь с ${siteConfig.name} в Ванадзоре: Наш адрес, номер телефона и социальные сети.`,

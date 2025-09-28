@@ -13,6 +13,7 @@ export async function getFooterConfig(locale: Locale) {
           { name: t("common.footer.resources.home"), href: siteConfig.routes.home },
           { name: t("common.footer.resources.about"), href: siteConfig.routes.about },
           { name: t("common.footer.resources.courses"), href: siteConfig.routes.courses },
+          { name: t("common.footer.resources.events"), href: siteConfig.routes.events },
           { name: t("common.footer.resources.contacts"), href: siteConfig.routes.contacts },
           { name: t("common.footer.resources.faq"), href: siteConfig.routes.faq },
         ],

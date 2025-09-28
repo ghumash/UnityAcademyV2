@@ -36,7 +36,7 @@ export const contacts: ContactDict = {
   longItems: [
     {
       label: "Հասցե",
-      value: "Վանաձոր, Վարդանանցի փողոց, 116Ա",
+      value: "Վանաձոր, Վարդանանց փողոց, 116Ա",
     },
     {
       label: "Հեռախոս",

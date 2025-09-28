@@ -112,11 +112,11 @@ function LogoNode({ logo, className }: { logo: Logo; className?: string }) {
 
 /* === Column ============================================================= */
 
-const LogoColumn = memo(function LogoColumn({
+const LogoColumn = memo(({
   logos,
   index,
   cycleMs = CYCLE_MS_DEFAULT,
-}: LogoColumnProps) {
+}: LogoColumnProps) => {
   const reduceMotion = useReducedMotion();
   const [idx, setIdx] = useState(0);
 

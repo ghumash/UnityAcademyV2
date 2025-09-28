@@ -10,7 +10,12 @@ import type { CoursesProps } from "../model/types";
 const cn = (...classes: Array<string | false | null | undefined>) =>
   twMerge(clsx(classes));
 
-export const Courses = memo(function Courses({ title, list, levels, formats }: CoursesProps) {
+export const Courses = memo(({
+  title,
+  list,
+  levels,
+  formats,
+}: CoursesProps) => {
   return (
     <Section>
       <Container>
@@ -21,9 +26,18 @@ export const Courses = memo(function Courses({ title, list, levels, formats }: C
           </h2>
 
           {/* Grid of course cards */}
-          <div className={cn("grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 xl:grid-cols-3")}>
+          <div
+            className={cn(
+              "grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 xl:grid-cols-3"
+            )}
+          >
             {list.map((course) => (
-              <CourseCard key={course.id} course={course} levels={levels} formats={formats} />
+              <CourseCard
+                key={course.id}
+                course={course}
+                levels={levels}
+                formats={formats}
+              />
             ))}
           </div>
         </div>

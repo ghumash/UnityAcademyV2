@@ -3,8 +3,8 @@ import type { FormsDict } from "./types";
 export const forms: FormsDict = {
   applyForm: {
     buttonLabel: "Գրանցվել",
-    successText: "Շնորհակալություն! Հաղորդագրությունը ուղարկվել է.",
-    errorText: "Ինչ-որ բան սխալ գնաց. Խնդրում ենք փորձել կրկին.",
+    successText: "Շնորհակալություն! Գրանցումը հաջողվել է:",
+    errorText: "Ինչ-որ բան սխալ գնաց. Խնդրում ենք փորձել կրկին:",
     fullname: "Անուն Ազգանուն",
     birthday: "Ծննդյան ամսաթիվ",
     phone: "Հեռախոսահամար",
@@ -24,6 +24,19 @@ export const forms: FormsDict = {
       },
     },
   },
+  eventRegisterForm: {
+    buttonLabel: "Գրանցվել",
+    successText: "Շնորհակալություն! Գրանցումը հաջողվել է:",
+    errorText: "Ինչ-որ բան սխալ գնաց. Խնդրում ենք փորձել կրկին:",
+    fullname: "Անուն Ազգանուն",
+    birthday: "Ծննդյան ամսաթիվ",
+    phone: "Հեռախոսահամար",
+    event: {
+      list: {
+        graphic_design_open_class: "Գրաֆիկ դիզայն: Բաց դաս",
+      },
+    },
+  },
   feedbackForm: {
     buttonLabel: "Ուղարկել",
     successText: "Շնորհակալություն! Հաղորդագրությունը ուղարկվել է:",
@@ -39,7 +52,7 @@ export const forms: FormsDict = {
       minLength: "Անունը պետք է լինի նվազագույնը 2 նիշ",
     },
     surname: {
-      required: "Մուտքագրեք ձեր ազգանունը", 
+      required: "Մուտքագրեք ձեր ազգանունը",
       minLength: "Ազգանունը պետք է լինի նվազագույնը 2 նիշ",
     },
     fullname: {
@@ -71,6 +84,10 @@ export const forms: FormsDict = {
     course: {
       required: "Ընտրեք դասընթաց",
       invalid: "Սխալ դասընթաց",
+    },
+    event: {
+      required: "Ընտրեք իվենթը",
+      invalid: "Սխալ իվենթ",
     },
   },
 };

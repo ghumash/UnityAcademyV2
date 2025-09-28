@@ -68,11 +68,11 @@ function CardWrapper({
   );
 }
 
-export const CourseCard = memo(function CourseCard({
+export const CourseCard = memo(({
   course,
   levels,
   formats,
-}: CourseCardProps) {
+}: CourseCardProps) => {
   const {
     title,
     description,

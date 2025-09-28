@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JsonLd, buildBreadcrumbsJsonLd, buildOrganizationJsonLd, createMetadata } from "@/shared/lib/seo";
 import { absoluteUrl, getFormConfig, siteConfig } from "@/shared/config/common";
+import { COURSE_KEYS, COURSE_DATA } from "@/shared/lib/const";
 import { getT, type Locale } from "@/shared/lib/i18n";
 import { Container, Section } from "@/shared/ui/custom";
 import { TextHoverEffect } from "@/shared/ui/lib";
@@ -56,6 +57,8 @@ export default async function ApplyPage({
           <CallToAction
             title={config.callToAction.title}
             subtitle={config.callToAction.subtitle}
+            keys={COURSE_KEYS}
+            data={COURSE_DATA}
           >
             <ApplyForm config={formConfig} />
           </CallToAction>
